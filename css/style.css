@@ -88,6 +88,15 @@ body{
 #wilPanel h1{background: linear-gradient(to bottom left,#0266FF, lightgrey );}
 #cisPanel h1{background: linear-gradient(to bottom left,#CFCFCF, white );}
 
+#buttonWykresCont{
+    padding: 1em 0;
+    
+}
+
+#buttonWykres{
+    width: 100%;
+    padding: 1em 0;
+}
 
 header{ background: linear-gradient(lightblue,#eee);
 }

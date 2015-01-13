@@ -194,6 +194,11 @@ mysql_select_db($database);
                     <b>Długość dnia</b> - <span id='dayLen'>0:00</span>
                 </p>
         </div>    
+    
+        <div id='buttonWykresCont' class="ramka bigPanel">
+            <button id='buttonWykres'>Wykresy</button>
+        </div>
+    
         <div id='fore' class="ramka bigPanel">
             <h3>Prognoza</h3>
             <p><b><span id='forecast'>Przewiduje</span></b></p>
@@ -212,6 +217,7 @@ mysql_select_db($database);
             <img src='#'/>
             </div>
         </div>
+    
     
 <footer class="bigPanel">&copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina</footer>    
     
