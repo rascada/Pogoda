@@ -99,6 +99,16 @@ function bottomPanel(){
         $('#panel1').css('flex-grow','1');        
     }   
 }
+
+
+function tenTempCol(tend){
+    var col;
+    
+    if(tend.toLowerCase.charAt(0) == 'r') col='#5f0, #8f0 )'          
+    else                                            col='lightgrey, #00aeee )'    
+    $('#tempPanel h3').css('background','linear-gradient(to bottom left,'+col);    
+}
+
 function compass(num,procent) {    
     if(procent>=90 && procent<=270 ) pRotate=135;
     else pRotate=-45;    
@@ -253,6 +263,8 @@ function refresh() {
 					wind(3, podstawowe[3]);
 					document.getElementById("pressval").innerHTML = podstawowe[13]+"<br/>"+podstawowe[3]+"hPa";
 					document.getElementById("tentemp").innerHTML=podstawowe[14];
+                    tenTempCol(podstawowe[14]);
+                
 					document.getElementById("forecast").innerHTML="Pogoda: "+podstawowe[15]+"</br>Prognoza: "+podstawowe[16];
 					document.getElementById("forecast").innerHTML="Pogoda: "+podstawowe[15]+"</br>Prognoza: "+podstawowe[16];
 					document.getElementById("dewDeg").innerHTML=podstawowe[17];
