@@ -43,6 +43,7 @@ body{
     border-top: 3px double white;       
     border-bottom: 3px double white;   
     margin-bottom: 20px;    
+	font-size: 20px;
 }
 .bigPanel h3{
     text-align: center;
