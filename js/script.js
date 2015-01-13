@@ -130,11 +130,6 @@ function temp(id, C){
      $('#'+id).css('height',c+'px' );     
 }
 
-function gitHubTest(){
-    var nowafunkcja = true;   
-}
-
-
 var podstawowe = new Array();
 var dzien = new Array();
 
