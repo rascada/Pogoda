@@ -97,6 +97,7 @@ body{
 #buttonWykres{
     width: 100%;
     padding: 1em 0;
+    border: 0;
 }
 
 header{ background: linear-gradient(lightblue,#eee);
