@@ -1,4 +1,0 @@
-﻿open pogoda-skalagi.ugu.pl
-pogoda-skalagi.ugu.pl
-Szkola23
-bin
