@@ -233,10 +233,10 @@ $zILE = mysql_query("SELECT id FROM podstawowe WHERE date='$dzisiaj'");
 $iledzis = mysql_num_rows($zILE);
 
 $ostatni = explode(":", $dir['time']);
-$online = 0;
+$online = "Stacja jest offline!";
 $nowdate = date("H:i");
 $now = explode (":", $nowdate);
-if($ostatni[0]==$now[0] && $now[1]<$ostatni+8) $online=1;
+if($ostatni[0]==$now[0] && $now[1]<$ostatni+8) $online="Stacja jest online!";
 
 $zap = mysql_query("SELECT * FROM podstawowe ORDER BY id DESC LIMIT 1");
 $dir = mysql_fetch_array($zap); 
