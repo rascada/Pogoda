@@ -287,7 +287,7 @@ $cisL = $cisLt[0].":".$cisLt[1];
 $mPow = $powiewMtt[0].":".$powiewMtt[1];
 $mOpa = $opadMtt[0].":".$opadMtt[1];
 
-echo $tmpH." <b>".$dat['tempmax']."</b>|".$wilH." <b>".$dat['hummax']."</b>|".$cisH." <b>".$dat['pressmax']."</b>|".$oth['domdir']."|".$mPow." <b>".$oth['mspeed']."</b>|".$mPow." <b>".$oth['mpowiew']."</b>|".$mOpa." <b>".$oth['mopad']."</b>|".$blue['sunrise']."|".$blue['sunset']."|".$blue['daylen']."|".$blue['moonrise']."|".$blue['moonset']."|".$blue['moonph']."|".$tmpL." <b>".$dat['tempmin']."</b>|".$wilL." <b>".$dat['hummin']."</b>|".$cisL." <b>".$dat['pressmin']."</b>";
+echo "<b>".$dat['tempmax']."°C</b> (".$tmpH.") | <b>".$dat['hummax']."%</b> (".$wilH.") | <b>".$dat['pressmax']."hPa</b> (".$cisH.") |".$oth['domdir']."|".$mPow." <b>".$oth['mspeed']."m/s</b>| <b>".$oth['mpowiew']."m/s</b> (".$mPow.") |<b>".$oth['mopad']."</b> (".$mOpa.") |".$blue['sunrise']."|".$blue['sunset']."|".$blue['daylen']."|".$blue['moonrise']."|".$blue['moonset']."|".$blue['moonph']."| <b>".$dat['tempmin']."°C</b> (".$tmpL.") | <b>".$dat['hummin']."%</b> (".$wilL.") |<b>".$dat['pressmin']."hPa</b> (".$cisL.")";
 ?>
 </div>
 </div>

@@ -283,14 +283,14 @@ function refresh() {
 		document.getElementById("moonZch").innerHTML=dzien[11];
 		document.getElementById("moonPhase").innerHTML=dzien[12];
 		
-		document.getElementById("tempDayMax").innerHTML=" "+dzien[0]+"<b>°C</b>";
-	    document.getElementById("wilDayMax").innerHTML=" "+dzien[1]+"<b>%</b>";
-		document.getElementById("cisDayMax").innerHTML=" "+dzien[2]+"<b>hPa</b>";
-		document.getElementById("tempDayMin").innerHTML=" "+dzien[13]+"<b>°C</b>";
-	    document.getElementById("wilDayMin").innerHTML=" "+dzien[14]+"<b>%</b>";
-		document.getElementById("cisDayMin").innerHTML=" "+dzien[15]+"<b>hPa</b>";
+		document.getElementById("tempDayMax").innerHTML=" "+dzien[0];
+	    document.getElementById("wilDayMax").innerHTML=" "+dzien[1];
+		document.getElementById("cisDayMax").innerHTML=" "+dzien[2];
+		document.getElementById("tempDayMin").innerHTML=" "+dzien[13];
+	    document.getElementById("wilDayMin").innerHTML=" "+dzien[14];
+		document.getElementById("cisDayMin").innerHTML=" "+dzien[15];
 		
-		document.getElementById("windDayBlow").innerHTML=" "+dzien[5]+"<b>m/s</b>";
+		document.getElementById("windDayBlow").innerHTML=" "+dzien[5];
 	    document.getElementById("rainDay").innerHTML=" "+dzien[6];
 	}
 
