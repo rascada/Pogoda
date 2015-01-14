@@ -159,8 +159,8 @@ function miarka(id,water,p){
 }
 
 function temp(id, C){
-    for(var i=0;i<C ;i++){}
-    C=11;
+    C= C+25;
+    for(var i=C;i>0 ;i--){C+=1.05;}
     
      $('#'+id).css('height',C+'%' );     
 }
