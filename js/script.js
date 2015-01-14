@@ -160,8 +160,7 @@ function miarka(id,water,p){
 
 function temp(id, C){
     C= C+25;
-    for(var i=C;i>0 ;i--){C+=1.05;}
-    
+    for(var i=C;i>0 ;i--){C+=1.05;}    
      $('#'+id).css('height',C+'%' );     
 }
 

@@ -202,7 +202,7 @@ footer{
     z-index: 2;
 }
 .termMeter{
-    height: 55%;
+    height: 27em;
     width: .6em;
     margin-left: -.3em;
     background: linear-gradient(to top,lightblue 35%,#F44);
