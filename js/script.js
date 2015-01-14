@@ -161,7 +161,7 @@ function miarka(id,water,p){
 function temp(id, C){
     for(var i=0;i<C ;i++){}
     
-     $('#'+id).css('height',C+'px' );     
+     $('#'+id).css('height',10+'%' );     
 }
 
 var podstawowe = new Array();
