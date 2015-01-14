@@ -237,10 +237,10 @@ $dir = mysql_fetch_array($zap);
 
 $online = "Stacja jest offline!";
 $nowdate = date("H:i:s");
-int $ostatni = (int)str_replace(":", "", $dir['time']);
-int $now = (int)str_replace(":", "", $nowdate);
+$ostatni = str_replace(":", "", $dir['time']);
+$now = str_replace(":", "", $nowdate);
 
-if($ostatni>$now-8) $online="Stacja jest online!";
+if(intval($ostatni)>intval($now)-8) $online="Stacja jest online!";
 echo $dir['date']." ".$dir['time']."|".$dir['atemp']."|".$dir['wilgo']."|".$dir['cisnie']."|".$dir['srtemp']."|".$dir['podmuch']."|".$dir['swind']."|".$dir['dirwind']."|".$dir['domdirwind']."|".$dir['otemp']."|".$dir['bfw']."|".$dir['dobopad']."|".$dir['deszcz']."|".$dir['tencisn']."  ".$dir['tencisnval']."hPa/h |".$dir['tentemp']." ".$dir['tentempval']."Â°C/h |".$dir['progno']."|".$dir['zamb']."|".$dir['dew']."Â°C"."|".$iledzis."|".$online;
 ?>
 </div>
