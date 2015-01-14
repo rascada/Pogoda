@@ -160,8 +160,9 @@ function miarka(id,water,p){
 
 function temp(id, C){
     for(var i=0;i<C ;i++){}
+    C=10;
     
-     $('#'+id).css('height',10+'%' );     
+     $('#'+id).css('height',C+'%' );     
 }
 
 var podstawowe = new Array();
