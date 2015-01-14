@@ -251,12 +251,12 @@ function refresh() {
 				podstawowe[3]+"hPa";
 			    temp('srTemp',Math.floor(podstawowe[4]));
 			    document.getElementById("srtemval").innerHTML=podstawowe[4]+"°C";
-				wind(2, podstawowe[5]); 
-				if(pod_kmph) document.getElementById("wPSpeed").innerHTML="Podmuch <br/>"+pkmph+"km/h";
-				else document.getElementById("wPSpeed").innerHTML="Podmuch <br/>"+podstawowe[5]+"m/s";
-			    wind(1, podstawowe[6]); 
-				if(ak_kmph) document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+akmph+"km/h";
-				else document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+podstawowe[6]+"m/s";
+				
+				if(pod_kmph) { document.getElementById("wPSpeed").innerHTML="Podmuch <br/>"+pkmph+"km/h"; wind(2, pkmph);  }
+				else { document.getElementById("wPSpeed").innerHTML="Podmuch <br/>"+podstawowe[5]+"m/s"; wind(2, podstawowe[5]);  }
+			    
+				if(ak_kmph) { document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+akmph+"km/h"; wind(1, akmph);  }
+				else { document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+podstawowe[6]+"m/s"; wind(1, podstawowe[6]); }
 				compass(1, parseInt(podstawowe[7])); 
 					var jaki=" ";
 					if(podstawowe[7]<20 || podstawowe[7]>=315) jaki="z północy";
