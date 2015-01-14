@@ -196,7 +196,7 @@ mysql_select_db($database);
         </div>    
     
         <div id='buttonWykresCont' class="ramka bigPanel">
-            <button id='buttonWykres'>Wykresy</button>
+            <a href="graph.html"><button id='buttonWykres'>Wykresy</button></a>
         </div>
     
         <div id='fore' class="ramka bigPanel">
