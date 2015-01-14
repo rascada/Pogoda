@@ -92,6 +92,9 @@ body{
 #buttonWykresCont{
     padding: 1em 0;
     min-width: 14em;
+    display: flex;
+    align-items:center;
+    justify-content: center;
     
 }
 
@@ -99,12 +102,16 @@ body{
     cursor:pointer;
     font-size: 1.4em;
     color: #777;
-    width: 100%;
+    width: 200%;
+    margin-left: -47.5%;
     padding: .5em 0;
-    border: 0;
-    transition: background-color 500ms ease-in-out, color 250ms ease-out 250ms;
+    border: .2em double white;
+    transition: background-color 500ms ease-in-out,
+                border 500ms ease-out,
+                color 250ms ease-out 250ms;
 }
 #buttonWykres:hover{
+    border: .2em double white;
     background-color: lightblue;
     color: #fff;
 }
