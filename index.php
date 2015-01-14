@@ -232,11 +232,13 @@ $dzisiaj = date("Y-m-d");
 $zILE = mysql_query("SELECT id FROM podstawowe WHERE date='$dzisiaj'");
 $iledzis = mysql_num_rows($zILE);
 
-$ostatni = explode(":", $dir['time']);
 $online = "Stacja jest offline!";
 $nowdate = date("H:i");
-$now = explode (":", $nowdate);
-if($ostatni[0]==$now[0] && $now[1]<$ostatni+8) $online="Stacja jest online!";
+$ostatni = str_replace(":", "", $dir['time']);
+$now = str_replace (":", "", $nowdate);
+
+if($now<$ostatni+8) $online="Stacja jest online!";
+
 
 $zap = mysql_query("SELECT * FROM podstawowe ORDER BY id DESC LIMIT 1");
 $dir = mysql_fetch_array($zap); 
