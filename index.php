@@ -142,7 +142,7 @@ mysql_select_db($database);
               <div id='strz1' class='strz'></div>
               <div class='dot'></div>
               <div class='liczPods' id='liczPods1'></div>  
-                <span class='liczCyf' id='wSpeed'>Aktulany<br/>1 m/s</span>
+                <span class='liczCyf' id='wSpeed' onclick="akt_wind_click()">Aktulany<br/>1 m/s</span>
             </div>  
         </div><br/>  
         <span class="compassSpan"  id="aktDirVal">Aktualny</span>
@@ -157,7 +157,7 @@ mysql_select_db($database);
               <div id='strz2' class='strz'></div>
               <div class='dot'></div>
               <div class='liczPods' id='liczPods2'></div>  
-                <span class='liczCyf' id='wPSpeed'>Aktulany<br/>0 m/s</span>
+                <span class='liczCyf' id='wPSpeed' onclick="pod_wind_click()">Aktulany<br/>0 m/s</span>
             </div>
         </div><br/>
         <span class="compassSpan"  id="domDirVal">Dominujący</span>

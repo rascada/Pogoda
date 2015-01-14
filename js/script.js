@@ -230,6 +230,10 @@ cmL1 - aktualny kierunek wiatru
 cmL2 - dominujący kierunek wiatru
 
 */
+
+var ak_kmph=false;
+var pod_kmph = false;
+
 setInterval("refresh();", 9000);
 function refresh() {
 	$('#podstawowe_p').load(location.href + ' #podstawowe_k');
@@ -252,9 +256,11 @@ function refresh() {
 			    temp('srTemp',Math.floor(podstawowe[4]));
 			    document.getElementById("srtemval").innerHTML=podstawowe[4]+"°C";
 				wind(2, podstawowe[5]); 
-				document.getElementById("wPSpeed").innerHTML="Podmuch <br/>"+podstawowe[5]+"m/s";
+				if(pod_kmph) document.getElementById("wPSpeed").innerHTML="Podmuch <br/>"+pkmph+"km/h";
+				else document.getElementById("wPSpeed").innerHTML="Podmuch <br/>"+podstawowe[5]+"m/s";
 			    wind(1, podstawowe[6]); 
-				document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+podstawowe[6]+"m/s";
+				if(ak_kmph) document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+akmph+"km/h";
+				else document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+podstawowe[6]+"m/s";
 				compass(1, parseInt(podstawowe[7])); 
 					var jaki=" ";
 					if(podstawowe[7]<20 || podstawowe[7]>=315) jaki="z północy";
@@ -319,4 +325,11 @@ function refresh() {
 	    document.getElementById("rainDay").innerHTML=" "+dzien[6];
 	}
 
+	
+function akt_wind_click() {
+ak_kmph = !ak_kmph;
+}
 
+function pod_wind_click() {
+pod_kmph = !pod_kmph;
+}
