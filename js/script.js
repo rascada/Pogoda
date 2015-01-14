@@ -104,7 +104,7 @@ function bottomPanel(){
 function tenTempCol(tend){
     var col;
     
-    if(tend.toLowerCase.charAt(0) == 'r') col='#5f0, #8f0 )'          
+    if(tend.toLowerCase().charAt(0) == 'r') col='#5f0, #8f0 )'          
     else                                            col='lightgrey, #00aeee )'    
     $('#tempPanel h3').css('background','linear-gradient(to bottom left,'+col);    
 }
