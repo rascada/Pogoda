@@ -91,15 +91,23 @@ body{
 
 #buttonWykresCont{
     padding: 1em 0;
+    min-width: 14em;
     
 }
 
 #buttonWykres{
+    cursor:pointer;
+    font-size: 1.4em;
+    color: #777;
     width: 100%;
-    padding: 1em 0;
+    padding: .5em 0;
     border: 0;
+    transition: background-color 500ms ease-in-out, color 250ms ease-out 250ms;
 }
-
+#buttonWykres:hover{
+    background-color: lightblue;
+    color: #fff;
+}
 header{ background: linear-gradient(lightblue,#eee);
 }
 header h1, header h2, header h3
