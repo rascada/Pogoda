@@ -313,7 +313,6 @@ footer{
 
 .licznikKomp{ 
     position: relative;
-    cursor: pointer;
     z-index: 1;
     position: absolute;
   border:.5em double transparent;
