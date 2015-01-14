@@ -86,39 +86,42 @@ mysql_select_db($database);
         <h3><span id="tentemp">Tendencja</span></h3><br/>
         <!----------------temp1------------------>
         <div class='termometr'>
-            <div class="termMeter">
-                <div id='aTemp' class='termC'></div>
+            <div class="tempBody">
+                    <div class="termMeter">
+                        <div id='aTemp' class='termC'></div>
+                    </div>
+                    <div class="termMeter2">
+                        <span id="atemval">°C</span>
+                    </div>
+                <div class='tempMiarka' id='tempMiarka1'></div>
             </div>
-            <div class="termMeter2">
-                <span id="atemval">°C</span>
-            </div>
-            <img height='500px' width="100px" src="img/termometer.png">
-                <p>Aktualna</p>
-            </img>
+            <p>Aktualna</p>
         </div>
         <!-----------------temp2----------------->
         <div class='termometr'>
-            <div class="termMeter">
-                <div id='oTemp' class='termC'></div>
-            </div>
-            <div class="termMeter2">
-                <span id="otemval">°C</span>
-            </div>
-            <img height='500px' width="100px" src="img/termometer.png">
-                <p>Odczuwalna</p>
-            </img>
+            <div class="tempBody">
+                <div class="termMeter">
+                    <div id='oTemp' class='termC'></div>
+                </div>
+                <div class="termMeter2">
+                    <span id="otemval">°C</span>
+                </div>
+                <div class='tempMiarka' id='tempMiarka2'></div>
+        </div>
+            <p>Odczuwalna</p>
         </div>
         <!----------------temp3------------------>
         <div class='termometr'>
-            <div class="termMeter">
-                <div id='srTemp' class='termC'></div>
+            <div class="tempBody">
+                <div class="termMeter">
+                    <div id='srTemp' class='termC'></div>
+                </div>
+                <div class="termMeter2">
+                    <span id="srtemval">°C</span>
+                </div>
+                <div class='tempMiarka' id='tempMiarka3'></div>
             </div>
-            <div class="termMeter2">
-                <span id="srtemval">°C</span>
-            </div>
-            <img height='500px' width="100px" src="img/termometer.png">
-                <p>Średnia</p>
-            </img>
+            <p>Średnia</p>
         </div>
         <!------------------------coTera------------------------------------>
         <div id='dew' class="ramka bigHeader">
@@ -287,7 +290,7 @@ $cisL = $cisLt[0].":".$cisLt[1];
 $mPow = $powiewMtt[0].":".$powiewMtt[1];
 $mOpa = $opadMtt[0].":".$opadMtt[1];
 
-echo "<b>".$dat['tempmax']."°C</b> (".$tmpH.") | <b>".$dat['hummax']."%</b> (".$wilH.") | <b>".$dat['pressmax']."hPa</b> (".$cisH.") |".$oth['domdir']."|".$mPow." <b>".$oth['mspeed']."m/s</b>| <b>".$oth['mpowiew']."m/s</b> (".$mPow.") |<b>".$oth['mopad']."</b> (".$mOpa.") |".$blue['sunrise']."|".$blue['sunset']."|".$blue['daylen']."|".$blue['moonrise']."|".$blue['moonset']."|".$blue['moonph']."| <b>".$dat['tempmin']."°C</b> (".$tmpL.") | <b>".$dat['hummin']."%</b> (".$wilL.") |<b>".$dat['pressmin']."hPa</b> (".$cisL.")";
+echo $tmpH." <b>".$dat['tempmax']."</b>|".$wilH." <b>".$dat['hummax']."</b>|".$cisH." <b>".$dat['pressmax']."</b>|".$oth['domdir']."|".$mPow." <b>".$oth['mspeed']."</b>|".$mPow." <b>".$oth['mpowiew']."</b>|".$mOpa." <b>".$oth['mopad']."</b>|".$blue['sunrise']."|".$blue['sunset']."|".$blue['daylen']."|".$blue['moonrise']."|".$blue['moonset']."|".$blue['moonph']."|".$tmpL." <b>".$dat['tempmin']."</b>|".$wilL." <b>".$dat['hummin']."</b>|".$cisL." <b>".$dat['pressmin']."</b>";
 ?>
 </div>
 </div>
