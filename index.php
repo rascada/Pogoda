@@ -219,7 +219,7 @@ mysql_select_db($database);
         </div>
     
     
-<footer class="bigPanel">&copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina</footer>    
+<footer class="bigPanel">SP Skałągi &copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina</footer>    
     
 </div>
 <!--all-->
