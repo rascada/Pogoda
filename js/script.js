@@ -268,8 +268,13 @@ function refresh() {
 					document.getElementById("forecast").innerHTML="Pogoda: "+podstawowe[15]+"</br>Prognoza: "+podstawowe[16];
 					document.getElementById("forecast").innerHTML="Pogoda: "+podstawowe[15]+"</br>Prognoza: "+podstawowe[16];
 					document.getElementById("dewDeg").innerHTML=podstawowe[17];
-					document.getElementById("cmL1").innerHTML = podstawowe[7]+'°';
-					document.getElementById("cmL2").innerHTML = podstawowe[8]+'°';
+					
+					var cmlA = parseInt(podstawowe[7])+180;
+					if(cmlA>360) cmlA -= 360;
+					var cmlB = parseInt(podstawowe[8])+180;
+					if(cmlB>360) cmlB -= 360;
+					document.getElementById("cmL1").innerHTML = cmlA+'°';
+					document.getElementById("cmL2").innerHTML = cmlB +'°';
 			
 		document.getElementById("sunWsch").innerHTML=dzien[7];
 		document.getElementById("sunZch").innerHTML=dzien[8];
