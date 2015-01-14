@@ -194,21 +194,22 @@ footer{
 }
 .termC{
     margin: 0px 0;
-    width: 10px;
-    background: linear-gradient(to top,lightblue 35%,#F44);
+    width: .6em;
+    background: linear-gradient(to right,#ccc,#ddd);
     position: absolute;
-    border-radius: 10px;
-    height: 100%;
+    border-radius:1em 1em 0em 0em;
+    height: 0%;
     z-index: 2;
 }
 .termMeter{
     height: 55%;
     width: .6em;
     margin-left: -.3em;
-    background: linear-gradient(to right,grey,#FFF);
+    background: linear-gradient(to top,lightblue 35%,#F44);
     position: absolute;
     border-radius: 10px;
     margin-top: .5em;
+    z-index: 2;
     
 }
 .termMeter2{

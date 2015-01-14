@@ -162,8 +162,7 @@ function temp(id, C){
     C+=25;var c=C+15;var start=395;
     for(var i=0;i<C ;i++){start-=6.5; c+=6}
     
-	 $('#'+id).animate({ top: start+'px',});  
-     $('#'+id).css('height',c+'px' );     
+	 $('#'+id).animate({ height: c+'%',});  
 }
 
 var podstawowe = new Array();
