@@ -71,10 +71,37 @@ function compassDirScale(num){
     
 }
 
+function animCompas(from,to){
+    
+    
+}
+
+function createTempMiar(id,precise,skok){
+    var mH = new Array();
+    var m = new Array();
+    
+    var temp = 40;
+
+    for(var i=precise;i>0;i--){   
+		m[i]=document.createElement('div');
+        document.getElementById(id).appendChild(m[i]); 
+        if(i%skok==0){    
+          m[i].style.backgroundColor='grey';
+          m[i].style.width="3em";
+          mH[i] =(m[i]).appendChild(document.createElement('h4'));
+          mH[i].innerHTML=temp;
+            temp-=5;
+        }
+    }
+}
+
 compassDirScale(1);
 compassDirScale(2);
 createMScale('miarka12',30,5,1);
 createMScale('miarka2',30,5,2);
+createTempMiar('tempMiarka1',70,5); 
+createTempMiar('tempMiarka2',70,5);
+createTempMiar('tempMiarka3',70,5);
 stworzMiarkeLicznik(1,2);
 stworzMiarkeLicznik(2,2);
 stworzMiarkeLicznik(3,1);

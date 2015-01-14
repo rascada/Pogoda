@@ -184,6 +184,14 @@ footer{
     padding: 0 10px;
     text-align: center;
 }
+.tempBody{
+    display: flex;
+    justify-content: center;
+    height: 31em;
+    width: 6em;
+    border: .1em solid #ddd;
+    border-radius: .3em;
+}
 .termC{
     margin: 0px 0;
     width: 10px;
@@ -191,23 +199,27 @@ footer{
     position: absolute;
     border-radius: 10px;
     height: 100%;
+    z-index: 2;
 }
 .termMeter{
-    margin: 20px 45px;
-    height: 415px;
-    width: 10px;
+    height: 55%;
+    width: .6em;
+    margin-left: -.3em;
     background: linear-gradient(to right,grey,#FFF);
     position: absolute;
     border-radius: 10px;
+    margin-top: .5em;
     
 }
 .termMeter2{
-    margin: 425px 20px;
-    height: 60px;
-    width: 60px;
+    height: 4em;
+    width: 4em;
+    margin-left: -2em;
+    margin-top: 26.5em;
     background: linear-gradient(to bottom,lightblue 15%, #00e0ff );
     position: absolute;
-    border-radius: 50px;
+    border-radius: 100%;
+    z-index: 10;
 }
 .termMeter2 span{
     font-size: 25px;
@@ -220,8 +232,29 @@ footer{
     background: linear-gradient(to bottom left,lightblue, #00e0ff );
     border-radius: 5px;
     border: 3px double white;   
-    
 }
+.tempMiarka{
+    margin-top: .5em;
+    margin-left: -3em;
+    display: flex;
+    flex-direction: column;    
+    position: absolute;
+    height: 60%;    
+}
+
+.tempMiarka div{
+    background-color: black;
+    width: 1em;
+    margin-left: 2.8em;
+    margin-top: .25em;
+    height: .11em;
+}
+
+.tempMiarka h4{
+    font-size: .8em;
+    margin: 0em -2.5em 0 0;
+}
+
 /**************compass******************/
 .compassCont {
     text-align: center;
