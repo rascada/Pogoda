@@ -1,7 +1,6 @@
 function stworzMiarkeLicznik(id,licznik){    
     var zakres;
     var divide=true;
-    var skok;    
     var war =0;       
     var dz = 1;
     var num = 0;  
@@ -10,9 +9,9 @@ function stworzMiarkeLicznik(id,licznik){
     var m = new Array();  
     var numA = new Array();
     
-    if(licznik==1){zakres=960;skok=5; precise=55;}//960 - 1015
-    if(licznik==2){zakres=0;skok=5; precise=55;war=35;dz=2;}//0-27
-    if(licznik==3){zakres=0;skok=5;precise=50; war=45; dz=2;divide=false;}//0-100
+    if(licznik==1){zakres=960; precise=55;}//960 - 1015
+    if(licznik==2){zakres=0; precise=55;war=35;dz=2;}//0-27
+    if(licznik==3){zakres=0;precise=50; war=45; dz=2;divide=false;}//0-100
         
     for(var i=zakres;i<=precise+zakres;i++){ 
 		num+=4; if(licznik==3) num+=.35; 
@@ -21,7 +20,7 @@ function stworzMiarkeLicznik(id,licznik){
         mH[i] = m[i].appendChild(document.createElement('div'));                                          
 		m[i].style.transform = 'rotate('+ num +'deg)';                                     
                                             
-        if(i%skok==0){ 
+        if(i%5==0){ 
             numA[i] =(mH[i]).appendChild(document.createElement('h3'));
             mH[i].style.height ="1.5em";            
 			  if(divide)numA[i].innerHTML=Math.floor(i /dz);    
