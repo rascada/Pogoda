@@ -326,12 +326,12 @@ function refresh() {
 	}
 
 	
-function akt_wind_click() {
+function aktwindclick() {
 ak_kmph = !ak_kmph;
 refresh();
 }
 
-function pod_wind_click() {
+function podwindclick() {
 pod_kmph = !pod_kmph;
 refresh();
 }

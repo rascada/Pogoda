@@ -145,7 +145,7 @@ mysql_select_db($database);
                 <span class='liczCyf' id='wSpeed'>Aktulany<br/>1 m/s</span>
             </div>  
         </div><br/>  
-        <span class="compassSpan"  id="aktDirVal" onclick="akt_wind_click()">Aktualny</span>
+        <span class="compassSpan"  id="aktDirVal" onclick="aktwindclick()">Aktualny</span>
     </div>  
     <!-----------------------compass2---------------------------------->
     <div class='compassCont'>
@@ -160,7 +160,7 @@ mysql_select_db($database);
                 <span class='liczCyf' id='wPSpeed'>Aktulany<br/>0 m/s</span>
             </div>
         </div><br/>
-        <span class="compassSpan"  id="domDirVal" onclick="pod_wind_click()">Dominujący</span>
+        <span class="compassSpan"  id="domDirVal" onclick="podwindclick()">Dominujący</span>
     </div> <br/>
 </div><br/>
     <!----------------------------ciśnienie-------------------------------------------->
