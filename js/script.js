@@ -95,17 +95,6 @@ function createTempMiar(id,precise,skok){
     }
 }
 
-compassDirScale(1);
-compassDirScale(2);
-createMScale('miarka12',30,5,1);
-createMScale('miarka2',30,5,2);
-createTempMiar('tempMiarka1',70,5); 
-createTempMiar('tempMiarka2',70,5);
-createTempMiar('tempMiarka3',70,5);
-stworzMiarkeLicznik(1,2);
-stworzMiarkeLicznik(2,2);
-stworzMiarkeLicznik(3,1);
-stworzMiarkeLicznik(4,3);
 
 
 var width= $(window).width();
@@ -127,14 +116,14 @@ function bottomPanel(){
 }
 
 
-function tenTempCol(tend){
-    var col;
+function tenCol(tend,id){
+    var col;    
+    if(tend.toLowerCase().charAt(0) == 'r')       col='#5f0, #8f0 )';    
+    else if(tend.toLowerCase().charAt(1) == 't')  col='#777, #333 )';  
+    else                                          col='lightgrey, #00aeee )';                                 
     
-    if(tend.toLowerCase().charAt(0) == 'r') col='#5f0, #8f0 )'          
-    else                                            col='lightgrey, #00aeee )'    
-    $('#tempPanel h3').css('background','linear-gradient(to bottom left,'+col);    
+    $('#'+id).css('background','linear-gradient(to bottom left,'+col);   
 }
-
 function compass(num,procent) {    
     if(procent>=90 && procent<=270 ) pRotate=135;
     else pRotate=-45;    
@@ -160,6 +149,18 @@ function miarka(id,water,p){
 
 function temp(id, C){$('#'+id).css('height',52-C+'%' );}
 
+compassDirScale(1);
+compassDirScale(2);
+createMScale('miarka12',30,5,1);
+createMScale('miarka2',30,5,2);
+createTempMiar('tempMiarka1',70,5); 
+createTempMiar('tempMiarka2',70,5);
+createTempMiar('tempMiarka3',70,5);
+stworzMiarkeLicznik(1,2);
+stworzMiarkeLicznik(2,2);
+stworzMiarkeLicznik(3,1);
+stworzMiarkeLicznik(4,3);
+///PHP
 var podstawowe = new Array();
 var dzien = new Array();
 
@@ -288,9 +289,12 @@ function refresh() {
 					miarka('water12', podstawowe[12], 30); 
 					document.getElementById("aktopad").innerHTML=podstawowe[12]+"<br/>mm/h";
 					wind(3, podstawowe[3]);
-					document.getElementById("pressval").innerHTML = podstawowe[13]+"<br/>"+podstawowe[3]+"hPa";
+					
+                    document.getElementById("pressval").innerHTML = podstawowe[13]+"<br/>"+podstawowe[3]+"hPa";                    
+                    tenCol(podstawowe[13],'cisLicznik');
+    
 					document.getElementById("tentemp").innerHTML=podstawowe[14];
-                    tenTempCol(podstawowe[14]);
+                    tenCol(podstawowe[14],'tempPanel h3');
                 
 					document.getElementById("forecast").innerHTML="Pogoda: "+podstawowe[15]+"</br>Prognoza: "+podstawowe[16];
 					document.getElementById("forecast").innerHTML="Pogoda: "+podstawowe[15]+"</br>Prognoza: "+podstawowe[16];
@@ -313,7 +317,7 @@ function refresh() {
 		document.getElementById("tempDayMax").innerHTML=" "+dzien[0];
 	    document.getElementById("wilDayMax").innerHTML=" "+dzien[1];
 		document.getElementById("cisDayMax").innerHTML=" "+dzien[2];
-		document.getElementById("tempDayMin").innerHTML=" "+dzien[13];
+		document.getElementById("tempDayMin").innerHTML=" "+dzien[13];    
 	    document.getElementById("wilDayMin").innerHTML=" "+dzien[14];
 		document.getElementById("cisDayMin").innerHTML=" "+dzien[15];
 		

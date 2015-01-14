@@ -171,7 +171,7 @@ mysql_select_db($database);
         <h1 class='bigPanelH'>Ciśnienie</h1>
         <div id='cisnienieCont'>
             <div class='licznikCont'>
-                <div class='licznik'>
+                <div id='cisLicznik' class='licznik'>
                     <div id='strz3' class='strz'></div>
                     <div class='dot'></div>
                     <div class='liczPods' id='liczPods3'></div>  
