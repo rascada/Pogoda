@@ -232,17 +232,16 @@ $dzisiaj = date("Y-m-d");
 $zILE = mysql_query("SELECT id FROM podstawowe WHERE date='$dzisiaj'");
 $iledzis = mysql_num_rows($zILE);
 
-$online = "Stacja jest offline!";
-$nowdate = date("H:i");
-$ostatni = str_replace(":", "", $dir['time']);
-$now = str_replace (":", "", $nowdate);
-
-if($now<$ostatni+8) $online="Stacja jest online!";
-
-
 $zap = mysql_query("SELECT * FROM podstawowe ORDER BY id DESC LIMIT 1");
 $dir = mysql_fetch_array($zap); 
-echo $dir['date']." ".$dir['time']."|".$dir['atemp']."|".$dir['wilgo']."|".$dir['cisnie']."|".$dir['srtemp']."|".$dir['podmuch']."|".$dir['swind']."|".$dir['dirwind']."|".$dir['domdirwind']."|".$dir['otemp']."|".$dir['bfw']."|".$dir['dobopad']."|".$dir['deszcz']."|".$dir['tencisn']."  ".$dir['tencisnval']."hPa/h |".$dir['tentemp']." ".$dir['tentempval']."°C/h |".$dir['progno']."|".$dir['zamb']."|".$dir['dew']."°C"."|".$iledzis."|".$online;
+
+$online = "Stacja jest offline!";
+$nowdate = date("H:i:s");
+$ostatni = (int)str_replace(":", "", $dir['time']);
+$now = (int)str_replace (":", "", $nowdate);
+
+if($ostatni>$now-8) $online="Stacja jest online!";
+echo $dir['date']." ".$dir['time']."|".$dir['atemp']."|".$dir['wilgo']."|".$dir['cisnie']."|".$dir['srtemp']."|".$dir['podmuch']."|".$dir['swind']."|".$dir['dirwind']."|".$dir['domdirwind']."|".$dir['otemp']."|".$dir['bfw']."|".$dir['dobopad']."|".$dir['deszcz']."|".$dir['tencisn']."  ".$dir['tencisnval']."hPa/h |".$dir['tentemp']." ".$dir['tentempval']."Â°C/h |".$dir['progno']."|".$dir['zamb']."|".$dir['dew']."Â°C"."|".$iledzis."|".$online;
 ?>
 </div>
 </div>
