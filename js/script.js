@@ -233,26 +233,26 @@ function refresh() {
 				compass(1, parseInt(podstawowe[7])); 
 					var jaki=" ";
 					if(podstawowe[7]<20 || podstawowe[7]>=315) jaki="z północy";
-					if(podstawowe[7]>=20 && podstawowe[7]<70) jaki="z północnego wschodu";
-					if(podstawowe[7]>=70 && podstawowe[7]<110) jaki="ze wschodu";
-					if(podstawowe[7]>=110 && podstawowe[7]<160) jaki="z południowego wschodu";
-					if(podstawowe[7]>=160 && podstawowe[7]<215) jaki="z południa";
-					if(podstawowe[7]>=215 && podstawowe[7]<240) jaki="z południowego zachodu"
-					if(podstawowe[7]>=240 && podstawowe[7]<285) jaki="z zachodu";
-					if(podstawowe[7]>=285 && podstawowe[7]<315) jaki="z północego zachodu";
+					else if(podstawowe[7]>=20 && podstawowe[7]<70) jaki="z północnego wschodu";
+					else if(podstawowe[7]>=70 && podstawowe[7]<110) jaki="ze wschodu";
+					else if(podstawowe[7]>=110 && podstawowe[7]<160) jaki="z południowego wschodu";
+					else if(podstawowe[7]>=160 && podstawowe[7]<215) jaki="z południa";
+					else if(podstawowe[7]>=215 && podstawowe[7]<240) jaki="z południowego zachodu"
+					else if(podstawowe[7]>=240 && podstawowe[7]<285) jaki="z zachodu";
+					else if(podstawowe[7]>=285 && podstawowe[7]<315) jaki="z północego zachodu";
 				
 					document.getElementById("aktDirVal").innerHTML="Akualny: <br/>"+jaki;
 
 					compass(2, parseInt(podstawowe[8]));
 					var jaki_=" ";
 						if(podstawowe[8]<20 || podstawowe[8]>=315) jaki_="z północy";
-						if(podstawowe[8]>=20 && podstawowe[8]<70) jaki_="z północnego wschodu";
-						if(podstawowe[8]>=70 && podstawowe[8]<110) jaki_="ze wschodu";
-						if(podstawowe[8]>=110 && podstawowe[8]<160) jaki_="z południowego wschodu";
-						if(podstawowe[8]>=160 && podstawowe[8]<215) jaki_="z południa";
-						if(podstawowe[8]>=215 && podstawowe[8]<240) jaki_="z południowego zachodu"
-						if(podstawowe[8]>=240 && podstawowe[8]<285) jaki_="z zachodu";
-						if(podstawowe[8]>=285 && podstawowe[8]<315) jaki_="z północego zachodu";
+						else if(podstawowe[8]>=20 && podstawowe[8]<70) jaki_="z północnego wschodu";
+						else if(podstawowe[8]>=70 && podstawowe[8]<110) jaki_="ze wschodu";
+						else if(podstawowe[8]>=110 && podstawowe[8]<160) jaki_="z południowego wschodu";
+						else if(podstawowe[8]>=160 && podstawowe[8]<215) jaki_="z południa";
+						else if(podstawowe[8]>=215 && podstawowe[8]<240) jaki_="z południowego zachodu"
+						else if(podstawowe[8]>=240 && podstawowe[8]<285) jaki_="z zachodu";
+						else if(podstawowe[8]>=285 && podstawowe[8]<315) jaki_="z północego zachodu";
 					document.getElementById("domDirVal").innerHTML="Dominujący: <br/>"+jaki_;
 					temp('oTemp',Math.floor(podstawowe[9])); 
 					document.getElementById("otemval").innerHTML=podstawowe[9]+"°C";
