@@ -10,7 +10,7 @@
 <link rel="icon" href="img/cloud.ico" type="image/x-icon">
 </head>
 
-<body>
+<body onload="ref_imgs()">
 <div id="list" onClick="showhide()">
 <div id="navi">M<br/>E<br/>N<br/>U<br/></div>
 <a href="index.php" style="color: blue;"><b>Powrót do LIVE</b></a>
@@ -27,40 +27,40 @@
 </div>
 
 <div class="selGrap"><span id="title_big"><a name="temp">Temperatura: <span class="smalq" style="background: yellow;"></span> &nbsp;|&nbsp; Odczuwalna: <span class="smalq" style="background: darkviolet;"></span><br/>Wiatru: <span class="smalq" style="background: darkgreen;"></span> &nbsp;|&nbsp; Punkt rosy: <span class="smalq" style="background:  darkred;"></span></a></span><br/>
-<img src="http://www.pogoda-skalagi.ugu.pl/cumulus/temp.png" />
+<img src="http://www.pogoda-skalagi.ugu.pl/cumulus/temp.png" name='tmp'/>
 </div>
 
 <div class="selGrap"><span class="title"><a name="hum">Wilgotność: Niebieska</a></span><br/>
-<img src="http://www.pogoda-skalagi.ugu.pl/cumulus/hum.png"/>
+<img src="http://www.pogoda-skalagi.ugu.pl/cumulus/hum.png" name='humim'/>
 </div>
 
 
 <div class="selGrap"><span class="title"><a name="press">Ciśnienie</a></span><br/>
-<img src="http://www.pogoda-skalagi.ugu.pl/cumulus/press.png" />
+<img src="http://www.pogoda-skalagi.ugu.pl/cumulus/press.png" name='pressim'/>
 </div>
 
 <div class="selGrap"><span class="title"><a name="rain">Deszcz</a></span><br/>
-<img src="http://www.pogoda-skalagi.ugu.pl/cumulus/rain.png" />
+<img src="http://www.pogoda-skalagi.ugu.pl/cumulus/rain.png" name='rainim'/>
 </div>
 
 
 <div class="selGrap"><span class="title"><a name="raint">Suma opadów</a></span><br/>
-<img src="http://www.pogoda-skalagi.ugu.pl/cumulus/raint.png" />
+<img src="http://www.pogoda-skalagi.ugu.pl/cumulus/raint.png" name='rain_s'/>
 </div>
 
 
 <div class="selGrap"><span class="title"><a name="raind">Codzienna suma opadów</a></span><br/>
-<img src="http://pogoda-skalagi.ugu.pl/cumulus/raind.png" />
+<img src="http://pogoda-skalagi.ugu.pl/cumulus/raind.png" name='rain_d'/>
 </div>
 
 
 <div class="selGrap"><span class="title"><a name="wind">Prędkość wiatru:  <span class="smalq" style="background: yellow;"></span> &nbsp;|&nbsp; Wiatru w porywach: <span class="smalq" style="background: darkgreen;"></span></a></span><br/>
-<img src="http://pogoda-skalagi.ugu.pl/cumulus/wind.png" />
+<img src="http://pogoda-skalagi.ugu.pl/cumulus/wind.png" name='wind_s'/>
 </div>
 
 
 <div class="selGrap"><span class="title"><a name="winddir">Kierunki wiatru</a></span><br/>
-<img src="http://pogoda-skalagi.ugu.pl/cumulus/windd.png" />
+<img src="http://pogoda-skalagi.ugu.pl/cumulus/windd.png" name='wind_d'/>
 </div>
 
 </body>
@@ -71,6 +71,18 @@
  
  if(widac) $('#list').animate({left: '97.5%'});
  else $('#list').animate({left: '87%'});
+ }
+ 
+ function ref_imgs() {
+ document.images['tmp'].src = 'cumulus/temp.png?' + Math.random();
+ document.images['humim'].src = 'cumulus/hum.png?' + Math.random();
+ document.images['pressim'].src = 'cumulus/press.png?' + Math.random();
+ document.images['rainim'].src = 'cumulus/rain.png?' + Math.random();
+ document.images['rain_s'].src = 'cumulus/raint.png?' + Math.random();
+ document.images['rain_d'].src = 'cumulus/raind.png?' + Math.random();
+ document.images['wind_s'].src = 'cumulus/wind.png?' + Math.random();
+ document.images['wind_d'].src = 'cumulus/windd.png?' + Math.random();
+setTimeout('ref_imgs()',5000);
  }
 </script>
 </html>
