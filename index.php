@@ -18,6 +18,8 @@
   ga('create', 'UA-58565456-1', 'auto');
   ga('send', 'pageview');
 </script>
+<meta name="description" content="Stacja pogodowa - meteo Skałągi w gminie Wołczyn, powiat Kluczborski, woj. opolskie. Aktualna pogoda, aktualizacja co 5min.">
+<meta name="keywords" content="stacja, meteo, pogodowa, pogoda, skałągi, temperatura, wiatr, kluczbork, wołczyn, prognoza, wilgotność, meteorologiczna, szkoła, podstawowa, rcre, opolskie">
 </head>
 <?php
 ini_set( "display_errors", 0);
