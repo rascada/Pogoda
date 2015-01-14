@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pogoda Skałągi</title>
+<meta charset="utf-8" />
+<link type="text/css" rel="stylesheet" href="css/graph.css"/>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link href="http://fonts.googleapis.com/css?family=Rajdhani:400,600&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
+<link rel="icon" href="img/cloud.ico" type="image/x-icon">
+</head>
+
+<body>
+<div id="list" onClick="showhide()">
+<div id="navi">M<br/>E<br/>N<br/>U<br/></div>
+<a href="index.php" style="color: blue;"><b>Powrót do LIVE</b></a>
+<ul>
+<li><a href="#temp">Temperatura</a></li>
+<li><a href="#hum">Wilgotność</a></li>
+<li><a href="#press">Ciśnienie</a></li>
+<li><a href="#rain">Deszcz</a></li>
+<li><a href="#raint">Suma opadów</a></li>
+<li><a href="#raind">Codzienne opady</a></li>
+<li><a href="#wind">Prędkość wiatru</a></li>
+<li><a href="#winddir">Kierunek wiatru</a></li>
+</ul>
+</div>
+
+<div class="selGrap"><span id="title_big"><a name="temp">Temperatura: <span class="smalq" style="background: yellow;"></span> &nbsp;|&nbsp; Odczuwalna: <span class="smalq" style="background: darkviolet;"></span><br/>Wiatru: <span class="smalq" style="background: darkgreen;"></span> &nbsp;|&nbsp; Punkt rosy: <span class="smalq" style="background:  darkred;"></span></a></span><br/>
+<img src="http://www.pogoda-skalagi.ugu.pl/cumulus/temp.png" />
+</div>
+
+<div class="selGrap"><span class="title"><a name="hum">Wilgotność: Niebieska</a></span><br/>
+<img src="http://www.pogoda-skalagi.ugu.pl/cumulus/hum.png"/>
+</div>
+
+
+<div class="selGrap"><span class="title"><a name="press">Ciśnienie</a></span><br/>
+<img src="http://www.pogoda-skalagi.ugu.pl/cumulus/press.png" />
+</div>
+
+<div class="selGrap"><span class="title"><a name="rain">Deszcz</a></span><br/>
+<img src="http://www.pogoda-skalagi.ugu.pl/cumulus/rain.png" />
+</div>
+
+
+<div class="selGrap"><span class="title"><a name="raint">Suma opadów</a></span><br/>
+<img src="http://www.pogoda-skalagi.ugu.pl/cumulus/raint.png" />
+</div>
+
+
+<div class="selGrap"><span class="title"><a name="raind">Codzienna suma opadów</a></span><br/>
+<img src="http://pogoda-skalagi.ugu.pl/cumulus/raind.png" />
+</div>
+
+
+<div class="selGrap"><span class="title"><a name="wind">Prędkość wiatru:  <span class="smalq" style="background: yellow;"></span> &nbsp;|&nbsp; Wiatru w porywach: <span class="smalq" style="background: darkgreen;"></span></a></span><br/>
+<img src="http://pogoda-skalagi.ugu.pl/cumulus/wind.png" />
+</div>
+
+
+<div class="selGrap"><span class="title"><a name="winddir">Kierunki wiatru</a></span><br/>
+<img src="http://pogoda-skalagi.ugu.pl/cumulus/windd.png" />
+</div>
+
+</body>
+<script>
+  var widac=true;
+ function showhide() {
+ widac = !widac;
+ 
+ if(widac) $('#list').animate({left: '97.5%'});
+ else $('#list').animate({left: '87%'});
+ }
+</script>
+</html>
