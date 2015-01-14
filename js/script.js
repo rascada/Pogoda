@@ -158,11 +158,7 @@ function miarka(id,water,p){
     $('#'+id).animate({ height: waterP+'px'});
 }
 
-function temp(id, C){
-    C= C+25;
-    for(var i=C;i>0 ;i--){C+=1.05;}    
-     $('#'+id).css('height',C+'%' );     
-}
+function temp(id, C){$('#'+id).css('height',52-C+'%' );}
 
 var podstawowe = new Array();
 var dzien = new Array();
