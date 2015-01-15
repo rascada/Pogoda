@@ -2,7 +2,7 @@
 body{ 
     font-family: 'Rajdhani', bold, sans-serif;   
     overflow-x: hidden;
-	background: #eee;
+	background: linear-gradient(lightblue 10em,#eee 25em);
 }
 #all{ 
     
@@ -113,8 +113,6 @@ body{
     border: .2em double white;
     background-color: lightblue;
     color: #fff;
-}
-header{ background: linear-gradient(lightblue,#eee);
 }
 header h1, header h2, header h3
 {
@@ -340,7 +338,7 @@ footer{
     border-radius:100%;
     transform: rotate(180deg);
     z-index: 10;
-    opacity: 0.5;
+    opacity: 0.2;
 }
 .liczCyf{
     font-size: 1.25em;
