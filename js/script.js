@@ -132,6 +132,10 @@ animCache[0]=225;
 animCache[2]=225;
 animCache[1]=135;
 animCache[3]=135;
+animCache[4]=-113;
+animCache[5]=-113;
+animCache[6]=-113;
+animCache[7]=-113;
 
 function rotate(what,from,to,additionalTransform){
     $({deg: from}).animate({deg: to}, {
@@ -162,7 +166,7 @@ function compass(num,procent) {
     
     if(animCache[chosen1] != procent){
         rotate('cm'+num,animCache[chosen1],procent,"scale(0.85)");
-        rotate('cmL'+num,animCache[chosen2],pRotate,''); // tutaj coś musi się dziać
+        rotate('cmL'+num,animCache[chosen2],pRotate,'');
         animCache[chosen1]=procent;
         animCache[chosen2]=pRotate;
     }

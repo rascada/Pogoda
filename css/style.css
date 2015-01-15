@@ -371,6 +371,7 @@ footer{
   z-index:2;
   margin:19.6% 0 0 49.4%;
   transform-origin: bottom center;
+    transform: rotate(-113deg);
 }
 .dot{
   position:absolute;
