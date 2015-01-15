@@ -287,7 +287,9 @@ function refresh() {
 			    
 				if(ak_kmph) { document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+akmph+"km/h"; wind(1, akmph);  }
 				else { document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+podstawowe[6]+"m/s"; wind(1, podstawowe[6]); }
-                  compass(1, parseInt(podstawowe[7])); 
+                    
+                    if(podstawowe[7]>=360)podstawowe[7]-=360;    
+                    compass(1, parseInt(podstawowe[7])); 
 					var jaki=" ";
 					if(podstawowe[7]<20 || podstawowe[7]>=315) jaki="z północy";
 					else if(podstawowe[7]>=20 && podstawowe[7]<70) jaki="z północnego wschodu";
@@ -299,7 +301,8 @@ function refresh() {
 					else if(podstawowe[7]>=285 && podstawowe[7]<315) jaki="z północego zachodu";
 				
 					document.getElementById("aktDirVal").innerHTML="Akualny: <br/>"+jaki;
-
+    
+                    if(podstawowe[8]>=360)podstawowe[8]-=360;
 					compass(2, parseInt(podstawowe[8]));
 					var jaki_=" ";
 						if(podstawowe[8]<20 || podstawowe[8]>=315) jaki_="z północy";
