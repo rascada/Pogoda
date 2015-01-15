@@ -190,7 +190,7 @@ function wind(num,speed){
     }
     
     rotate('strz'+num,animCache[chosen],start,'');
-    chosen=start;
+    animCache[chosen]=start;
 }
 
 function miarka(id,water,p){
