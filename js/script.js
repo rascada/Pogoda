@@ -125,7 +125,7 @@ function bottomPanel(){
 */
 
 var animCache = {};
-for(var i=0;i<8;i++){
+for(var i=0;i<9;i++){
     animCache[i] =0;
 }
 animCache[0]=225;
@@ -176,16 +176,16 @@ function wind(num,speed){
     var chosen;    
     switch(num){
     case 1:
-    chosen=animCache[4];
+    chosen=4;
     break;
     case 2:
-    chosen=animCache[5];            
+    chosen=5;            
     break;
     case 3:
-    chosen=animCache[6];            
+    chosen=6;            
     break;
     case 4:
-    chosen=animCache[7];            
+    chosen=7;            
     break;
     }
     
