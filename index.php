@@ -263,8 +263,7 @@ echo $dir['date']." ".$dir['time']."|".$dir['atemp']."|".$dir['wilgo']."|".$dir[
 <div id="dayrep_p" style="z-index: -10; position: absolute; visibility: hidden;">
 <div id="dayrep_k">
 <?php
-$dzis = date("Y-m-d");
-$Ztimes = mysql_query("SELECT * FROM daytime WHERE ddata='$dzis' ");
+$Ztimes = mysql_query("SELECT * FROM daytime ORDER BY id DESC LIMIT 1");
 $timer = mysql_fetch_array($Ztimes); $id = $timer['id'];
 $Zdat = mysql_query("SELECT * FROM daydata WHERE id='$id'");
 $dat = mysql_fetch_array($Zdat); 
