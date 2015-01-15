@@ -155,7 +155,7 @@ function compass(num,procent) {
     
     if(animCache[chosen1] != procent){
         rotate('cm'+num,animCache[chosen1],procent,"scale(0.85)");
-        rotate('cmL'+num,animCache[chosen2],pRotate,'');
+        rotate('cmL'+num,animCache[chosen2],pRotate,''); // tutaj coś musi się dziać
         animCache[chosen1]=procent;
         animCache[chosen2]=pRotate;
     }
