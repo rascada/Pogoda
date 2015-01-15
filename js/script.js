@@ -120,9 +120,11 @@ function tenCol(tend,id){
     var col;    
     if(tend.toLowerCase().charAt(0) == 'r')       col='#5f0, #8f0 )';    
     else if(tend.toLowerCase().charAt(1) == 't')  col='#777, #333 )';  
-    else                                          col='lightgrey, #00aeee )';                                 
-    
+    else                                          col='lightgrey, #00aeee )';
     $('#'+id).css('background','linear-gradient(to bottom left,'+col);   
+}
+function fillWithWater(perc){
+    document.getElementById('humPercWater').style.background='linear-gradient(#07f '+perc+'%,transparent 10%);';    
 }
 function compass(num,procent) {    
     if(procent>=90 && procent<=270 ) pRotate=135;
@@ -248,6 +250,7 @@ function refresh() {
 				temp('aTemp',Math.floor(podstawowe[1]));
 				document.getElementById("wilval").innerHTML = podstawowe[2]+"%";
 				wind(4, podstawowe[2]);
+                fillWithWater(podstawowe[2]);
 			    document.getElementById("pressval").innerHTML = podstawowe[13]+"<br/>"+
 				podstawowe[3]+"hPa";
 			    temp('srTemp',Math.floor(podstawowe[4]));

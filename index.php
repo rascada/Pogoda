@@ -187,6 +187,7 @@ mysql_select_db($database);
         <div id='wilgCont'>
             <div class='licznikCont'>
                 <div class='licznik'>
+                    <div id='humPercWater'></div>
                     <div id='strz4' class='strz'></div>
                     <div class='dot'></div>
                     <div class='liczPods' id='liczPods4'></div>  

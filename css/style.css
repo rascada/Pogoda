@@ -333,6 +333,16 @@ footer{
   border-radius:100%;
   transform:rotate(0deg);
  }
+#humPercWater{
+    position: absolute;
+    background: linear-gradient(#07f 0%,transparent 10%);
+    height: 100%;
+    width: 100%;
+    border-radius:100%;
+    transform: rotate(180deg);
+    z-index: 10;
+    opacity: 0.5;
+}
 .liczCyf{
     font-size: 1.25em;
     text-align: center;
