@@ -110,15 +110,22 @@ function bottomPanel(){
 }
 
 /*
+    //kompas
     0 - compassArr1
     1 - compassArrSpan1
     2 - compassArr2
     3 - compassArrSpan1
+
+    //wiatr
+    4 - aktualny 
+    5 - podmuch
     
+    6 - cis
+    7 - wilg
 */
 
 var animCache = {};
-for(var i=0;i<4;i++){
+for(var i=0;i<8;i++){
     animCache[i] =0;
 }
 animCache[0]=225;
@@ -164,8 +171,26 @@ function wind(num,speed){
     var start=-113;    
     if(num==3)for(var i=0;i<speed-960;i++)start+= 112/27.5;   
     else if(num==4)for(var i=0;i<speed;i++)start+=111/50;    
-    else for(var i=0;i<speed;i++)start+=112/13.5;           
-   $('#strz'+num).css('transform','rotate('+start+'deg)' ); 
+    else for(var i=0;i<speed;i++)start+=112/13.5;   
+    
+    var chosen;    
+    switch(num){
+    case 1:
+    chosen=animCache[4];
+    break;
+    case 2:
+    chosen=animCache[5];            
+    break;
+    case 3:
+    chosen=animCache[6];            
+    break;
+    case 4:
+    chosen=animCache[7];            
+    break;
+    }
+    
+    rotate('strz'+num,animCache[chosen],start,'');
+    chosen=start;
 }
 
 function miarka(id,water,p){
@@ -326,13 +351,12 @@ function refresh() {
                 
 					document.getElementById("forecast").innerHTML="Pogoda: "+podstawowe[15]+"</br>Prognoza: "+podstawowe[16];
 					document.getElementById("forecast").innerHTML="Pogoda: "+podstawowe[15]+"</br>Prognoza: "+podstawowe[16];
-					document.getElementById("dewDeg").innerHTML=podstawowe[17];
-					
+					document.getElementById("dewDeg").innerHTML=podstawowe[17];					
+					if(cmlA==360) cmlA=0; if(cmlB==360) cmlB=0;
 					var cmlA = parseInt(podstawowe[7])+180;
 					if(cmlA>360) cmlA -= 360;
 					var cmlB = parseInt(podstawowe[8])+180;
 					if(cmlB>360) cmlB -= 360;
-					if(cmlA==360) cmlA=0; if(cmlB==360) cmlB=0;
 					document.getElementById("cmL1").innerHTML = cmlA+'°';
 					document.getElementById("cmL2").innerHTML = cmlB +'°';
 			
