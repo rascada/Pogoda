@@ -177,7 +177,6 @@ mysql_select_db($database);
                     <div class='liczPods' id='liczPods3'></div>  
                     <span  class='liczCyf' id='pressval'>0 m/s</span>
                 </div>
-                <span class='liczPod'>Aktualna</span>
             </div>
         </div>
     </div>
@@ -193,7 +192,6 @@ mysql_select_db($database);
                     <div class='liczPods' id='liczPods4'></div>  
                     <span  class='liczCyf' id='wilval'>0 m/s</span>
                 </div>
-                <span class='liczPod'>Aktualna</span>
             </div>            
         </div>
     </div>
