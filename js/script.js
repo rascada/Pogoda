@@ -114,7 +114,16 @@ function bottomPanel(){
         $('#panel1').css('flex-grow','1');        
     }   
 }
-
+function rotate(what,from,to){
+    $({deg: from}).animate({deg: to}, {
+        duration: 2000,
+        step: function(now){
+            $('#'+what).css({
+                 transform: "rotate(" + now + "deg)"
+            });
+        }
+    });
+}
 
 function tenCol(tend,id){
     var col;    
