@@ -70,12 +70,6 @@ function compassDirScale(num){
     }
     
 }
-
-function animCompas(from,to){
-    
-    
-}
-
 function createTempMiar(id,precise,skok){
     var mH = new Array();
     var m = new Array();
@@ -114,14 +108,28 @@ function bottomPanel(){
         $('#panel1').css('flex-grow','1');        
     }   
 }
-function rotate(what,from,to){
+
+/*
+    0 - compassArr1
+    1 - compassArrSpan1
+    2 - compassArr2
+    3 - compassArrSpan1
+    
+*/
+
+var animCache = {};
+for(var i=0;i<4;i++){
+    animCache[i] =0;
+}
+animCache[0]=225;
+animCache[2]=225;
+animCache[1]=135;
+animCache[3]=135;
+
+function rotate(what,from,to,additionalTransform){
     $({deg: from}).animate({deg: to}, {
         duration: 2000,
-        step: function(now){
-            $('#'+what).css({
-                 transform: "rotate(" + now + "deg)"
-            });
-        }
+        step: function(now){$('#'+what).css('transform',additionalTransform+ " rotate(" + now + "deg)");}
     });
 }
 
@@ -138,10 +146,19 @@ function fillWithWater(perc){
 function compass(num,procent) {    
     if(procent>=90 && procent<=270 ) pRotate=135;
     else pRotate=-45;    
-    procent += 45;
+    procent += 45;    
+
+    var chosen1 = 0;
+    var chosen2 = 1;
     
-    $('#cm'+num).css('transform','scale(.85) rotate('+procent+'deg)');    
-    $('#cmL'+num).css('transform',' rotate('+pRotate+'deg)');    
+    if(num==2){chosen1=2;chosen2=3;}
+    
+    if(animCache[chosen1] != procent){
+        rotate('cm'+num,animCache[chosen1],procent,"scale(0.85)");
+        rotate('cmL'+num,animCache[chosen2],pRotate,'');
+        animCache[chosen1]=procent;
+        animCache[chosen2]=pRotate;
+    }
 }
 function wind(num,speed){    
     var start=-113;    
