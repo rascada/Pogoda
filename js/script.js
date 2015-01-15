@@ -332,6 +332,7 @@ function refresh() {
 					if(cmlA>360) cmlA -= 360;
 					var cmlB = parseInt(podstawowe[8])+180;
 					if(cmlB>360) cmlB -= 360;
+					if(cmlA==360) cmlA=0; if(cmlB==360) cmlB=0;
 					document.getElementById("cmL1").innerHTML = cmlA+'°';
 					document.getElementById("cmL2").innerHTML = cmlB +'°';
 			
