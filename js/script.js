@@ -124,7 +124,7 @@ function tenCol(tend,id){
     $('#'+id).css('background','linear-gradient(to bottom left,'+col);   
 }
 function fillWithWater(perc){
-    document.getElementById('humPercWater').style.background='linear-gradient(#07f '+perc+'%,transparent 10%);';    
+    document.getElementById('humPercWater').style.background='linear-gradient(#07f '+perc+'%,transparent 10%)';    
 }
 function compass(num,procent) {    
     if(procent>=90 && procent<=270 ) pRotate=135;
