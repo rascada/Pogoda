@@ -119,13 +119,14 @@ header h1, header h2, header h3
     background-color: lightblue;
     display: inline-block;
     color: white;
+    box-shadow: .01em .01em .9em #eee;
 }
 header h1{ 
     border: 4px double white;
-    box-shadow: 3px 5px 20px #eee;
     margin: 30px 0 50px -15px;
     font-size: 50px;   
     padding: 10px 20px 10px 100px;
+    box-shadow: .2em .1em .9em #eee;
 }
 header h2{
     border: 3px double white;
