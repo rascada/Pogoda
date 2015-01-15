@@ -94,8 +94,7 @@ body{
     min-width: 14em;
     display: flex;
     align-items:center;
-    justify-content: center;
-    
+    justify-content: center;    
 }
 
 #buttonWykres{
@@ -106,9 +105,9 @@ body{
     margin-left: -47.5%;
     padding: .5em 0;
     border: .2em double white;
-    transition: background-color 500ms ease-in-out,
-                border 500ms ease-out,
-                color 250ms ease-out 250ms;
+    transition: background-color 400ms ease-in-out 250ms,
+                border 400ms ease-out 250ms,
+                color 250ms ease-out;
 }
 #buttonWykres:hover{
     border: .2em double white;
