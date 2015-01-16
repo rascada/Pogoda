@@ -139,7 +139,7 @@ animCache[7]=-113;
 
 function rotate(what,from,to,additionalTransform){
     $({deg: from}).animate({deg: to}, {
-        duration: 2000,
+        duration: 3500,
         step: function(now){$('#'+what).css('transform',additionalTransform+ " rotate(" + now + "deg)");}
     });
 }
