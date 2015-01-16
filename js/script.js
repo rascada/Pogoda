@@ -176,25 +176,9 @@ function wind(num,speed){
     if(num==3)for(var i=0;i<speed-960;i++)start+= 112/27.5;   
     else if(num==4)for(var i=0;i<speed;i++)start+=111/50;    
     else for(var i=0;i<speed;i++)start+=112/13.5;   
-    
-    var chosen;    
-    switch(num){
-    case 1:
-    chosen=4;
-    break;
-    case 2:
-    chosen=5;            
-    break;
-    case 3:
-    chosen=6;            
-    break;
-    case 4:
-    chosen=7;            
-    break;
-    }
-    
-    rotate('strz'+num,animCache[chosen],start,'');
-    animCache[chosen]=start;
+   
+    rotate('strz'+num,animCache[num+3],start,'');
+    animCache[num+3]=start;
 }
 
 function miarka(id,water,p){
