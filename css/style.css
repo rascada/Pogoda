@@ -362,16 +362,21 @@ footer{
 	cursor: pointer;
 }
 .liczCyf:hover #hint{    
-    display: block;    
-}
-#hint{
+    display: block;
     font: .3em;
+    -webkit-animation: hint 5s ease;
+}
+#hint{    
+    font: .01em;
     position: absolute;
     margin-top:-3em;
     margin-left: 7em;
     background:red;
-    display: none;
-       
+    opacity: 0;
+}
+@-webkit-keyframes hint{
+    from{opacity: 0;}
+    to{opacity: 1;}    
 }
 
 .licznikCont{
