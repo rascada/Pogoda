@@ -100,7 +100,7 @@ $(window).resize(function() {
 });
 
 function bottomPanel(){
-    if(width>1435){       
+    if(width>1500){       
         $('#panel1').css('flex-direction','column');        
         $('#panel1').css('flex-grow','0');
     }else{
