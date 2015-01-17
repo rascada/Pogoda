@@ -361,6 +361,19 @@ footer{
     margin: 63% 0 0 -50%;
 	cursor: pointer;
 }
+.liczCyf:hover #hint{    
+    display: block;    
+}
+#hint{
+    font: .3em;
+    position: absolute;
+    margin-top:-3em;
+    margin-left: 7em;
+    background:red;
+    display: none;
+       
+}
+
 .licznikCont{
     display: inline-block;   
     text-align: center;

@@ -170,7 +170,9 @@ $myid = $_SESSION['myid'];
               <div id='strz1' class='strz'></div>
               <div class='dot'></div>
               <div class='liczPods' id='liczPods1'></div>  
-                <span class='liczCyf' id='wSpeed' onclick="aktwindclick()">Aktulany<br/>1 m/s</span>
+                <span class='liczCyf' id='wSpeed' onclick="aktwindclick()">Aktulany<br/>1 m/s
+                    <div id='hint'>Kliknij aby zmienić jednostki</div>
+                </span>
             </div>  
         </div><br/>  
         <span class="compassSpan"  id="aktDirVal">Aktualny</span>
@@ -373,6 +375,7 @@ echo "<b>".$dat['tempmax']."°C</b> (".$tmpH.") | <b>".$dat['hummax']."%</b> (".
 ?>
 </div>
 </div>
+
 <script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
