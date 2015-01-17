@@ -21,7 +21,13 @@ body{
     
 }
 .grey{
-    background-color: #ccc;   
+    background-color: #eee;   
+    border-bottom: .25em solid #fff;
+}
+.minMaxBG{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 #windPanel{flex-grow: 1; }

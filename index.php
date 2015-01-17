@@ -72,17 +72,37 @@ mysql_select_db($database);
     <h3>Raport dnia</h3>
         <p>
             <div class="grey">
-            <b>Wiatr</b> <br/>
-            <b>Podmuch</b> -<span id="windDayBlow"> 0 m/s</span><br/>
-            <b>Dominujący kierunek</b> - <span id="windDayDom"> </span><br/>
+                <b>Wiatr</b> <br/>
+                <b>Podmuch</b> -<span id="windDayBlow"> 0 m/s</span><br/>
+                <b>Dominujący kierunek</b> - <span id="windDayDom"> </span><br/>
             </div>
-            <b>Opady (mm/h)</b> -<span id="rainDay">0 mm</span><br/>
-            <b>Temperatura: </b>  
-                <b>min:</b> <span id='tempDayMin'>0</span> <b>max:</b><span id='tempDayMax'>0</span><br/>
-            <b>Wilgotność: </b>  
-                <b>min:</b> <span id='wilDayMin'>0%</span> <b>max:</b><span id='wilDayMax'>0%</span><br/>
-            <b>Ciśnienie: </b>  
-                <b>min: </b> <span id='cisDayMin'>0 hPa</span> <b>max:</b><span id='cisDayMax'>0 hPa</span><br/>
+            <div class="grey">
+                <b>Opady (mm/h)</b> -<span id="rainDay">0 mm</span><br/>
+            </div>
+            <div class='minMaxBG grey'>
+                <div class='minMax'>
+                    <b>Temperatura </b>  
+                </div><div class='minMax '>
+                    <b>min:</b> <span id='tempDayMin'>0</span><br/>
+                    <b>max:</b><span id='tempDayMax'>0</span><br/>
+                </div>
+            </div>
+            <div class='minMaxBG grey'>
+                <div class='minMax '>
+                    <b>Wilgotność </b>  
+                </div><div class='minMax '>
+                    <b>min:</b> <span id='wilDayMin'>0%</span><br/>
+                    <b>max:</b><span id='wilDayMax'>0%</span><br/>
+                </div>
+            </div>
+            <div class='minMaxBG grey'>
+                <div class='minMax '>
+                  <b>Ciśnienie </b>
+                </div><div class='minMax '>
+                    <b>min: </b> <span id='cisDayMin'>0 hPa</span><br/>
+                    <b>max:</b><span id='cisDayMax'>0 hPa</span><br/>
+                </div>
+            </div>
         </p>
 </div>
 </div>
