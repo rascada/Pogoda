@@ -69,9 +69,13 @@ mysql_select_db($database);
 </div>
     
 <div id='fore' class="ramka bigPanel">
-    <h3>Rekordy dnia</h3>
+    <h3>Raport dnia</h3>
         <p>
-            <b>Podmuch wiatru</b> -<span id="windDayBlow"> 0 m/s</span><br/>
+            <div class="grey">
+            <b>Wiatr</b> <br/>
+            <b>Podmuch</b> -<span id="windDayBlow"> 0 m/s</span><br/>
+            <b>Dominujący kierunek</b> -<span id="windDayDom"> </span><br/>
+            </div>
             <b>Opady (mm/h)</b> -<span id="rainDay">0 mm</span><br/>
             <b>Temperatura: </b>  
                 <b>min:</b> <span id='tempDayMin'>0</span> <b>max:</b><span id='tempDayMax'>0</span><br/>

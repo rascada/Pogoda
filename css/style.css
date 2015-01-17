@@ -20,6 +20,9 @@ body{
     margin-top: -2em;
     
 }
+.grey{
+    background-color: #ccc;   
+}
 
 #windPanel{flex-grow: 1; }
 #cisPanel{flex-grow: 1;padding-bottom: 2.6em;}
