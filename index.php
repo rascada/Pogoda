@@ -254,7 +254,23 @@ $now = str_replace(":", "", $nowdate);
 $ostatni = $dir['time'];
 $ostatni = str_replace(":", "", $ostatni);
 
-if($ostatni>$now-660 && $iledzis>0) $online="<span style='color: darkgreen;'>Stacja jest online!</span>";
+$osH = $ostatni[0].$ostatni[1];
+$osM = $ostatni[2].$ostatni[3];
+$osS = $ostatni[4].$ostatni[5];
+$noH = $now[0].$now[1];
+$noM = $now[2].$now[3];
+$noS = $now[4].$now[5];
+
+$osH *= 3600;
+$osM *= 60;
+$noH *= 3600;
+$noM *= 60;
+
+$ostSec = $osH+$osM+$osS;
+$nowSec = $noH+$noM+$noS;
+
+
+if($ostSec>$nowSec-315 && $iledzis>0) $online="<span style='color: darkgreen;'>Stacja jest online!</span>";
 
 echo $dir['date']." ".$dir['time']."|".$dir['atemp']."|".$dir['wilgo']."|".$dir['cisnie']."|".$dir['srtemp']."|".$dir['podmuch']."|".$dir['swind']."|".$dir['dirwind']."|".$dir['domdirwind']."|".$dir['otemp']."|".$dir['bfw']."|".$dir['dobopad']."|".$dir['deszcz']."|".$dir['tencisn']."  ".$dir['tencisnval']."hPa/h |".$dir['tentemp']." ".$dir['tentempval']."°C/h |".$dir['progno']."|".$dir['zamb']."|".$dir['dew']."°C"."|".$iledzis."|".$online;
 ?>
