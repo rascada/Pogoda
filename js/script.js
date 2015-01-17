@@ -365,6 +365,18 @@ function refresh() {
 		
 		document.getElementById("windDayBlow").innerHTML=" "+dzien[5];
 	    document.getElementById("rainDay").innerHTML=" "+dzien[6];
+		
+		var jaki_dzien;
+		if(dzien[3]<20 || dzien[3]>=315) jaki_dzien="z północy";
+		else if(dzien[3]>=20 && dzien[3]<70) jaki_dzien="z północnego wschodu";
+		else if(dzien[3]>=70 && dzien[3]<110) jaki_dzien="ze wschodu";
+		else if(dzien[3]>=110 && dzien[3]<160) jaki_dzien="z południowego wschodu";
+		else if(dzien[3]>=160 && dzien[3]<215) jaki_dzien="z południa";
+		else if(dzien[3]>=215 && dzien[3]<240) jaki_dzien="z południowego zachodu"
+		else if(dzien[3]>=240 && dzien[3]<285) jaki_dzien="z zachodu";
+		else if(dzien[3]>=285 && dzien[3]<315) jaki_dzien="z północego zachodu";
+		document.getElementById("windDayDom").innerHTML=jaki_dzien;
+		
 	}
 
 	
