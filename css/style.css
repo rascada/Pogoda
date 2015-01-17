@@ -111,15 +111,17 @@ body{
     cursor:pointer;
     font-size: 1em;
     color: #777;
-    width: 75%;
+    width: 100%;
     padding: .5em 0;
-    border: .2em double white;
+    border: 0 double white;
+    border-top: .25em double white;
     transition: background-color 400ms ease-in-out 250ms,
                 border 400ms ease-out 250ms,
                 color 250ms ease-out;
 }
 #buttonWykres:hover{
-    border: .2em double white;
+    border-left: 1em double white;
+    border-right: 1em double white;
     background-color: lightblue;
     color: #fff;
 }

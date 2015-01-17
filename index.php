@@ -221,27 +221,9 @@ mysql_select_db($database);
     </div>
 </div>
 </div>
-    <!------------------------slon------------------------------------>
 <div class='panel' id='panel1'>
-        <div class="ramka bigPanel" id='slon'>
-            <h3>Słońce</h3>
-                <p>
-                    <b>Wschód: </b><span id='sunWsch'>0:00</span><br/>
-                    <b>Zachód: </b><span id='sunZch'>0:00</span><hr/>
-                    <b>Długość dnia</b> - <span id='dayLen'>0:00</span>
-                </p>
-        </div>    
     
-        <div id='buttonWykresCont' class="ramka bigPanel">
-            <a href="graph.html"><button id='buttonWykres'>Wykresy</button></a>    
-            <br/><br/>     
-            <a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>Stacje w okolicy</button></a>
-            
-        </div>
         
-        
-        
-    
         <div id='fore' class="ramka bigPanel">
             <h3>Prognoza</h3>
             <p>
@@ -249,6 +231,16 @@ mysql_select_db($database);
                 <b>Prognoza: </b><br/><span id='forecast'></span>
             </p>
         </div>
+    
+        <!------------------------slon------------------------------------>
+        <div class="ramka bigPanel" id='slon'>
+            <h3>Słońce</h3>
+                <p>
+                    <b>Wschód: </b><span id='sunWsch'>0:00</span><br/>
+                    <b>Zachód: </b><span id='sunZch'>0:00</span><hr/>
+                    <b>Długość dnia</b> - <span id='dayLen'>0:00</span>
+                </p>
+        </div>            
         <!------------------------ksiezyc------------------------------------>
         <div class="ramka bigPanel" id='ksi'>
             <h3>Księżyc</h3>
@@ -263,10 +255,15 @@ mysql_select_db($database);
             <img src='#'/>
             </div>
         </div>
-    
-    
-<footer class="bigPanel">SP Skałągi &copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina</footer>    
-    
+        
+        <div id='buttonWykresCont' class="ramka bigPanel">
+            <a href="graph.html"><button id='buttonWykres'>Wykresy</button></a>    
+            <br/>
+            <a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>Stacje w okolicy</button></a>
+            
+
+        <footer><hr/><br/>SP Skałągi &copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina</footer>    
+            </div>
 </div>
 <!--all-->
 </div>
