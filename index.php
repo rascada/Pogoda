@@ -22,12 +22,14 @@
 <meta name="keywords" content="stacja, meteo, pogodowa, pogoda, skałągi, temperatura, wiatr, kluczbork, wołczyn, prognoza, wilgotność, meteorologiczna, szkoła, podstawowa, rcre, opolskie">
 </head>
 <?php
+session_start();
 ini_set( "display_errors", 0);
 require_once "dbconnect.php";
 $polaczenie = mysql_connect($host,$user,$password);
 mysql_query("SET CHARSET utf8");
 mysql_query("SET NAMES 'utf8' COLLATE 'utf8_polish_ci'"); 
 mysql_select_db($database);
+$myid = $_SESSION['myid'];
 ?>
 <body onload="refresh()">    
     <!------------------------HEADER------------------------------------>
@@ -244,7 +246,16 @@ mysql_select_db($database);
 </div>
 <!--all-->
 </div>
+
 <!--------------------------------------------------niewidzialne divy-------------------------->
+<div id="busy" style="z-index: -10; position: absolute; visibility: hidden;">
+<div id="flag">
+<?php
+$Zbusy = mysql_query("SELECT busy FROM sesje WHERE id='$myid'");
+$flag = mysql_fetch_array($Zbusy);
+echo $flag['busy'];
+?>
+</div></div>
 <div id="podstawowe_p" style="z-index: -10; position: absolute; visibility: hidden;">
 <div id="podstawowe_k">
 <?php
