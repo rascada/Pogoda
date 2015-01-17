@@ -8,7 +8,10 @@ function stworzMiarkeLicznik(id,licznik){
     var mH = new Array();
     var m = new Array();  
     var numA = new Array();
-    
+/*
+    var a= 1;
+    var b= (var) a;
+                    */
     if(licznik==1){zakres=960; precise=55;}//960 - 1015
     if(licznik==2){zakres=0; precise=55;war=35;dz=2;}//0-27
     if(licznik==3){zakres=0;precise=50; war=45; dz=2;divide=false;}//0-100
