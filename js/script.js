@@ -144,12 +144,33 @@ function rotate(what,from,to,additionalTransform){
     });
 }
 
-function tenCol(tend,id){
-    var col;    
-    if(tend.toLowerCase().charAt(0) == 'r')       col='#5f0, #8f0 )';    
-    else if(tend.toLowerCase().charAt(1) == 't')  col='#777, #333 )';  
-    else                                          col='lightgrey, #00aeee )';
-    $('#'+id).css('background','linear-gradient(to bottom left,'+col);   
+function tenCol(tend,id,gradient){
+    var col;
+    var col1;  
+    var col2;
+    var per1 ='';
+    var per2 ='';
+
+    if(tend.toLowerCase().charAt(0) == 'r'){
+        col1='#5f0 '
+        col2 = '#8f0 )';
+    }else if(tend.toLowerCase().charAt(1) == 't'){
+        col1='#777 ';
+        col2 = '#333 )';
+    }else{
+        col1='lightgrey ';
+        col2 = '#00aeee )';
+    }    
+    if(gradient){
+        per1='5%';        
+        per2='50%';
+        col2='#444 ';
+    }
+    col=col1+per1 +','+col2+per2;
+    if(gradient)
+    $('#'+id).css('background','radial-gradient('+col); 
+    else 
+    $('#'+id).css('background','linear-gradient(to bottom left,'+col);  
 }
 function fillWithWater(perc){
     document.getElementById('humPercWater').style.background='linear-gradient(#07f '+perc+'%,transparent 10%)';    
@@ -332,10 +353,10 @@ function refresh() {
 					wind(3, podstawowe[3]);
 					
                     document.getElementById("pressval").innerHTML = podstawowe[13]+"<br/>"+podstawowe[3]+"hPa";                    
-                    tenCol(podstawowe[13],'cisLicznik');
+                    tenCol(podstawowe[13],'cisLicznik',true);
     
 					document.getElementById("tentemp").innerHTML=podstawowe[14];
-                    tenCol(podstawowe[14],'tempPanel h3');
+                    tenCol(podstawowe[14],'tempPanel h3',false);
                 
 					document.getElementById("forecast").innerHTML="Pogoda: "+podstawowe[15]+"</br>Prognoza: "+podstawowe[16];
 					document.getElementById("forecast").innerHTML="Pogoda: "+podstawowe[15]+"</br>Prognoza: "+podstawowe[16];
