@@ -99,20 +99,15 @@ $(window).resize(function() {
     bottomPanel();
 });
 
-$(window).unload(function() {
-    
-});
-$(window).load(function() {
-    
-});
-
 function bottomPanel(){
     if(width>1500){       
         $('#panel1').css('flex-direction','column');        
-        $('#panel1').css('flex-grow','0');
+        $('#panel1').css('flex-grow','0');        
+        $('#panel1').css('order','4');
     }else{
         $('#panel1').css('flex-direction','row');
-        $('#panel1').css('flex-grow','1');        
+        $('#panel1').css('flex-grow','1');
+        $('#panel1').css('order','-2');
     }   
 }
 
