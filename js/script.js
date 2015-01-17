@@ -88,9 +88,6 @@ function createTempMiar(id,precise,skok){
         }
     }
 }
-
-
-
 var width= $(window).width();
 bottomPanel();
 
@@ -101,10 +98,10 @@ $(window).resize(function() {
 
 $(window).unload(function() {
     
-}
+});
 $(window).load(function() {
     
-}
+});
 
 function bottomPanel(){
     if(width>1500){       

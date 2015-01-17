@@ -74,11 +74,11 @@ body{
     margin: inherit -1em;
 }
 .ramka h3{   
-    padding: .2em;
+    padding: .1em;
     color: white;   
     text-align: left;
     background: linear-gradient(to bottom left,#ddd, #ccc );
-    margin-left: 1em;
+    margin-left: 1.1em;
 }
 #dew h3{
     text-align: center;  
