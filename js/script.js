@@ -357,9 +357,10 @@ function refresh() {
     
 					document.getElementById("tentemp").innerHTML=podstawowe[14];
                     tenCol(podstawowe[14],'tempPanel h3',false);
-                
-					document.getElementById("forecast").innerHTML="Pogoda: "+podstawowe[15]+"</br>Prognoza: "+podstawowe[16];
-					document.getElementById("forecast").innerHTML="Pogoda: "+podstawowe[15]+"</br>Prognoza: "+podstawowe[16];
+    
+                    document.getElementById("weather").innerHTML=podstawowe[15];    
+                    document.getElementById("forecast").innerHTML=podstawowe[16];
+    
 					document.getElementById("dewDeg").innerHTML=podstawowe[17];					
 					
 					var cmlA = parseInt(podstawowe[7])+180;

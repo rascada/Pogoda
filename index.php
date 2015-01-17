@@ -206,8 +206,8 @@ mysql_select_db($database);
         <div class="ramka bigPanel" id='slon'>
             <h3>Słońce</h3>
                 <p>
-                    <b>Wschód: </b><span id='sunWsch'>0:00</span>
-                    <b>Zachód: </b><span id='sunZch'>0:00</span><br/>
+                    <b>Wschód: </b><span id='sunWsch'>0:00</span><br/>
+                    <b>Zachód: </b><span id='sunZch'>0:00</span><hr/>
                     <b>Długość dnia</b> - <span id='dayLen'>0:00</span>
                 </p>
         </div>    
@@ -218,7 +218,10 @@ mysql_select_db($database);
     
         <div id='fore' class="ramka bigPanel">
             <h3>Prognoza</h3>
-            <p><b><span id='forecast'>Przewiduje</span></b></p>
+            <p>
+                <b>Pogoda: </b><br/><span id='weather'></span><br/><hr/>
+                <b>Prognoza: </b><br/><span id='forecast'></span>
+            </p>
         </div>
         <!------------------------ksiezyc------------------------------------>
         <div class="ramka bigPanel" id='ksi'>
@@ -226,8 +229,8 @@ mysql_select_db($database);
             <div id='ksik'>
             <div>
                 <p>
-                    <b>Wschód: </b><span id='moonWsch'>0:00</span>
-                    <b>Zachód: </b><span id='moonZch'>0:00</span><br/>
+                    <b>Wschód: </b><span id='moonWsch'>0:00</span><br/>
+                    <b>Zachód: </b><span id='moonZch'>0:00</span><hr/>
                     <b>Faza księżyca</b> - <span id='moonPhase'>Sprawdzanie</span>
                 </p>
             </div>
