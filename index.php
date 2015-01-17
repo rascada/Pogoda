@@ -245,6 +245,16 @@ $dzisiaj = date("Y-m-d");
 $zILE = mysql_query("SELECT id FROM podstawowe WHERE date='$dzisiaj'");
 $iledzis = mysql_num_rows($zILE);
 
+$dzisSec = $iledzis*300;
+$dzisH = (int)($dzisSec/3600);
+$dzisM = (int)($dzisSec-$dzisH*3600)/60;
+$dzisS = (int)($dzisSec-$dzisH*3600-$dzisM*60);
+if($dzisH<10) $dzisH = '0'.$dzisH;
+if($dzisM<10) $dzisM = '0'.$dzisM;
+if($dzisS<10) $dzisS = '0'.$dzisS;
+
+$iledzis = $dzisH.":".$dzisM.":".$dzisS;
+
 $zap = mysql_query("SELECT * FROM podstawowe ORDER BY id DESC LIMIT 1");
 $dir = mysql_fetch_array($zap); 
 

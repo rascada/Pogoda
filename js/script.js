@@ -284,7 +284,7 @@ function refresh() {
 	var pkmph = Math.floor( ((3600*podstawowe[5])/1000) * 100)/100;
 
 	
-				document.getElementById("last").innerHTML=podstawowe[0]+"<br/>Liczba dzisiejszych odczytów stacji: "+podstawowe[18]+"<br/>"+podstawowe[19]; 
+				document.getElementById("last").innerHTML=podstawowe[0]+"<br/>Dzisiejszy czas działania: "+podstawowe[18]+"<br/>"+podstawowe[19]; 
 				document.getElementById("atemval").innerHTML=podstawowe[1]+"°C";
 				temp('aTemp',Math.floor(podstawowe[1]));
 				document.getElementById("wilval").innerHTML = podstawowe[2]+"%";
