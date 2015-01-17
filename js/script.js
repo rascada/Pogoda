@@ -99,7 +99,6 @@ $(window).resize(function() {
     bottomPanel();
 });
 
-<<<<<<< HEAD
 $(window).unload(function() {
    $.ajax({
   type: "POST",
@@ -117,8 +116,8 @@ $(window).load(function() {
 });
 });
 
-=======
->>>>>>> origin/master
+
+
 function bottomPanel(){
     if(width>1500){       
         $('#panel1').css('flex-direction','column');        
