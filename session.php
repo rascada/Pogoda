@@ -21,6 +21,9 @@ if( isset($_POST['log']) ) {
 	} else if($_POST['log']=="ok") {
 	$sesid=$_SESSION['myid'];
 	mysql_query("UPDATE sesje SET busy=0 WHERE id='$sesid'");
+	} else if($_POST['log']=="jedn") {
+	$sesid=$_SESSION['myid'];
+	mysql_query("UPDATE sesje SET busy=1 WHERE id='$sesid'");
 	}
 } 
 ?>

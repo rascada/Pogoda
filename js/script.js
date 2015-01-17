@@ -316,7 +316,7 @@ cmL2 - dominujący kierunek wiatru
 var ak_kmph=false;
 var pod_kmph = false;
 
-setInterval("refresh();", 1500);
+setInterval("refresh();", 1000);
 function refresh() {
 $('#busy').load(location.href + ' #flag');
 var flagb = document.getElementById("flag").innerHTML.trim();
@@ -326,6 +326,8 @@ if(flagb=="1") {
 	var podst = document.getElementById("podstawowe_k").innerHTML;
 	var dn = document.getElementById("dayrep_k").innerHTML;
 	podstawowe = podst.split("|"); dzien = dn.split("|");
+	
+
 	
 	var akmph = Math.floor( ((3600*podstawowe[6])/1000) * 100)/100;
 	var pkmph = Math.floor( ((3600*podstawowe[5])/1000) * 100)/100;
@@ -424,8 +426,8 @@ if(flagb=="1") {
 		else if(dzien[3]>=240 && dzien[3]<285) jaki_dzien="z zachodu";
 		else if(dzien[3]>=285 && dzien[3]<315) jaki_dzien="z północego zachodu";
 		document.getElementById("windDayDom").innerHTML=jaki_dzien;
-  
-  $.ajax({
+ 
+ 	  $.ajax({
   type: "POST",
   url: "session.php",
   data: { log: "ok", }
@@ -438,10 +440,20 @@ if(flagb=="1") {
 	
 function aktwindclick() {
 ak_kmph = !ak_kmph;
+  $.ajax({
+  type: "POST",
+  url: "session.php",
+  data: { log: "jedn", }
+});
 refresh();
 }
 
 function podwindclick() {
 pod_kmph = !pod_kmph;
+  $.ajax({
+  type: "POST",
+  url: "session.php",
+  data: { log: "jedn", }
+});
 refresh();
 }
