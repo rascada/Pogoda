@@ -74,7 +74,7 @@ mysql_select_db($database);
             <div class="grey">
             <b>Wiatr</b> <br/>
             <b>Podmuch</b> -<span id="windDayBlow"> 0 m/s</span><br/>
-            <b>Dominujący kierunek</b> -<span id="windDayDom"> </span><br/>
+            <b>Dominujący kierunek</b> - <span id="windDayDom"> </span><br/>
             </div>
             <b>Opady (mm/h)</b> -<span id="rainDay">0 mm</span><br/>
             <b>Temperatura: </b>  
