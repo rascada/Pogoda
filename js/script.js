@@ -99,6 +99,13 @@ $(window).resize(function() {
     bottomPanel();
 });
 
+$(window).unload(function() {
+    
+}
+$(window).load(function() {
+    
+}
+
 function bottomPanel(){
     if(width>1500){       
         $('#panel1').css('flex-direction','column');        
