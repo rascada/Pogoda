@@ -83,24 +83,24 @@ mysql_select_db($database);
                 <div class='minMax'>
                     <b>Temperatura </b>  
                 </div><div class='minMax '>
-                    <b>min:</b> <span id='tempDayMin'>0</span><br/>
                     <b>max:</b><span id='tempDayMax'>0</span><br/>
+                    <b>min:</b> <span id='tempDayMin'>0</span><br/>
                 </div>
             </div>
             <div class='minMaxBG grey'>
                 <div class='minMax '>
                     <b>Wilgotność </b>  
                 </div><div class='minMax '>
-                    <b>min:</b> <span id='wilDayMin'>0%</span><br/>
                     <b>max:</b><span id='wilDayMax'>0%</span><br/>
+                    <b>min:</b> <span id='wilDayMin'>0%</span><br/>
                 </div>
             </div>
             <div class='minMaxBG grey'>
                 <div class='minMax '>
                   <b>Ciśnienie </b>
                 </div><div class='minMax '>
-                    <b>min: </b> <span id='cisDayMin'>0 hPa</span><br/>
                     <b>max:</b><span id='cisDayMax'>0 hPa</span><br/>
+                    <b>min: </b> <span id='cisDayMin'>0 hPa</span><br/>
                 </div>
             </div>
         </p>
