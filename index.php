@@ -213,8 +213,14 @@ mysql_select_db($database);
         </div>    
     
         <div id='buttonWykresCont' class="ramka bigPanel">
-            <a href="graph.html"><button id='buttonWykres'>Wykresy</button></a>
+            <a href="graph.html"><button id='buttonWykres'>Wykresy</button></a>    
+            <br/><br/>     
+            <a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>Stacje w okolicy</button></a>
+            
         </div>
+        
+        
+        
     
         <div id='fore' class="ramka bigPanel">
             <h3>Prognoza</h3>
