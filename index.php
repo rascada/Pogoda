@@ -74,17 +74,37 @@ $myid = $_SESSION['myid'];
     <h3>Raport dnia</h3>
         <p>
             <div class="grey">
-            <b>Wiatr</b> <br/>
-            <b>Podmuch</b> -<span id="windDayBlow"> 0 m/s</span><br/>
-            <b>Dominujący kierunek</b> - <span id="windDayDom"> </span><br/>
+                <b>Wiatr</b> <br/>
+                <b>Podmuch</b> -<span id="windDayBlow"> 0 m/s</span><br/>
+                <b>Dominujący kierunek</b> - <span id="windDayDom"> </span><br/>
             </div>
-            <b>Opady (mm/h)</b> -<span id="rainDay">0 mm</span><br/>
-            <b>Temperatura: </b>  
-                <b>min:</b> <span id='tempDayMin'>0</span> <b>max:</b><span id='tempDayMax'>0</span><br/>
-            <b>Wilgotność: </b>  
-                <b>min:</b> <span id='wilDayMin'>0%</span> <b>max:</b><span id='wilDayMax'>0%</span><br/>
-            <b>Ciśnienie: </b>  
-                <b>min: </b> <span id='cisDayMin'>0 hPa</span> <b>max:</b><span id='cisDayMax'>0 hPa</span><br/>
+            <div class="grey">
+                <b>Opady (mm/h)</b> -<span id="rainDay">0 mm</span><br/>
+            </div>
+            <div class='minMaxBG grey'>
+                <div class='minMax'>
+                    <b>Temperatura </b>  
+                </div><div class='minMax '>
+                    <b>max:</b><span id='tempDayMax'>0</span><br/>
+                    <b>min:</b> <span id='tempDayMin'>0</span><br/>
+                </div>
+            </div>
+            <div class='minMaxBG grey'>
+                <div class='minMax '>
+                    <b>Wilgotność </b>  
+                </div><div class='minMax '>
+                    <b>max:</b><span id='wilDayMax'>0%</span><br/>
+                    <b>min:</b> <span id='wilDayMin'>0%</span><br/>
+                </div>
+            </div>
+            <div class='minMaxBG grey'>
+                <div class='minMax '>
+                  <b>Ciśnienie </b>
+                </div><div class='minMax '>
+                    <b>max:</b><span id='cisDayMax'>0 hPa</span><br/>
+                    <b>min: </b> <span id='cisDayMin'>0 hPa</span><br/>
+                </div>
+            </div>
         </p>
 </div>
 </div>
@@ -203,21 +223,9 @@ $myid = $_SESSION['myid'];
     </div>
 </div>
 </div>
-    <!------------------------slon------------------------------------>
 <div class='panel' id='panel1'>
-        <div class="ramka bigPanel" id='slon'>
-            <h3>Słońce</h3>
-                <p>
-                    <b>Wschód: </b><span id='sunWsch'>0:00</span><br/>
-                    <b>Zachód: </b><span id='sunZch'>0:00</span><hr/>
-                    <b>Długość dnia</b> - <span id='dayLen'>0:00</span>
-                </p>
-        </div>    
     
-        <div id='buttonWykresCont' class="ramka bigPanel">
-            <a href="graph.html"><button id='buttonWykres'>Wykresy</button></a>
-        </div>
-    
+        
         <div id='fore' class="ramka bigPanel">
             <h3>Prognoza</h3>
             <p>
@@ -225,6 +233,16 @@ $myid = $_SESSION['myid'];
                 <b>Prognoza: </b><br/><span id='forecast'></span>
             </p>
         </div>
+    
+        <!------------------------slon------------------------------------>
+        <div class="ramka bigPanel" id='slon'>
+            <h3>Słońce</h3>
+                <p>
+                    <b>Wschód: </b><span id='sunWsch'>0:00</span><br/>
+                    <b>Zachód: </b><span id='sunZch'>0:00</span><hr/>
+                    <b>Długość dnia</b> - <span id='dayLen'>0:00</span>
+                </p>
+        </div>            
         <!------------------------ksiezyc------------------------------------>
         <div class="ramka bigPanel" id='ksi'>
             <h3>Księżyc</h3>
@@ -239,10 +257,15 @@ $myid = $_SESSION['myid'];
             <img src='#'/>
             </div>
         </div>
-    
-    
-<footer class="bigPanel">SP Skałągi &copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina</footer>    
-    
+        
+        <div id='buttonWykresCont' class="ramka bigPanel">
+            <a href="graph.html"><button id='buttonWykres'>Wykresy</button></a>    
+            <br/>
+            <a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>Stacje w okolicy</button></a>
+            
+
+        <footer><hr/><br/>SP Skałągi &copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina</footer>    
+            </div>
 </div>
 <!--all-->
 </div>

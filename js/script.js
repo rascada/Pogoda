@@ -8,7 +8,10 @@ function stworzMiarkeLicznik(id,licznik){
     var mH = new Array();
     var m = new Array();  
     var numA = new Array();
-    
+/*
+    var a= 1;
+    var b= (var) a;
+                    */
     if(licznik==1){zakres=960; precise=55;}//960 - 1015
     if(licznik==2){zakres=0; precise=55;war=35;dz=2;}//0-27
     if(licznik==3){zakres=0;precise=50; war=45; dz=2;divide=false;}//0-100
@@ -96,6 +99,7 @@ $(window).resize(function() {
     bottomPanel();
 });
 
+<<<<<<< HEAD
 $(window).unload(function() {
    $.ajax({
   type: "POST",
@@ -113,13 +117,19 @@ $(window).load(function() {
 });
 });
 
+=======
+>>>>>>> origin/master
 function bottomPanel(){
     if(width>1500){       
         $('#panel1').css('flex-direction','column');        
-        $('#panel1').css('flex-grow','0');
+        $('#panel1').css('flex-grow','0');        
+        $('#panel1').css('order','4');
+        $('#panel1').css('min-width','0');
     }else{
         $('#panel1').css('flex-direction','row');
-        $('#panel1').css('flex-grow','1');        
+        $('#panel1').css('flex-grow','1');
+        $('#panel1').css('order','-2');
+        $('#panel1').css('min-width','90%');
     }   
 }
 
