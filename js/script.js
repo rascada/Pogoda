@@ -164,9 +164,6 @@ $('.labelek').mouseover(function(){
 */
 
 var animCache = {};
-for(var i=0;i<9;i++){
-    animCache[i] =0;
-}
 animCache[0]=225;
 animCache[2]=225;
 animCache[1]=135;
