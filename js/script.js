@@ -329,19 +329,44 @@ cmL2 - dominujący kierunek wiatru
 
 var ak_kmph=false;
 var pod_kmph = false;
-
+var dzien = document.getElementById("dayrep_k").innerHTML.split("|");
+		document.getElementById("sunWsch").innerHTML=dzien[7];
+		document.getElementById("sunZch").innerHTML=dzien[8];
+		document.getElementById("dayLen").innerHTML=dzien[9];
+		document.getElementById("moonWsch").innerHTML=dzien[10];
+		document.getElementById("moonZch").innerHTML=dzien[11];
+		document.getElementById("moonPhase").innerHTML=dzien[12];
+		
+		document.getElementById("tempDayMax").innerHTML=" "+dzien[0];
+	    document.getElementById("wilDayMax").innerHTML=" "+dzien[1];
+		document.getElementById("cisDayMax").innerHTML=" "+dzien[2];
+		document.getElementById("tempDayMin").innerHTML=" "+dzien[13];    
+	    document.getElementById("wilDayMin").innerHTML=" "+dzien[14];
+		document.getElementById("cisDayMin").innerHTML=" "+dzien[15];
+		
+		document.getElementById("windDayBlow").innerHTML=" "+dzien[5];
+	    document.getElementById("rainDay").innerHTML=" "+dzien[6];
+		
+		var jaki_dzien;
+		if(dzien[3]<20 || dzien[3]>=315) jaki_dzien="z północy";
+		else if(dzien[3]>=20 && dzien[3]<70) jaki_dzien="z północnego wschodu";
+		else if(dzien[3]>=70 && dzien[3]<110) jaki_dzien="ze wschodu";
+		else if(dzien[3]>=110 && dzien[3]<160) jaki_dzien="z południowego wschodu";
+		else if(dzien[3]>=160 && dzien[3]<215) jaki_dzien="z południa";
+		else if(dzien[3]>=215 && dzien[3]<240) jaki_dzien="z południowego zachodu"
+		else if(dzien[3]>=240 && dzien[3]<285) jaki_dzien="z zachodu";
+		else if(dzien[3]>=285 && dzien[3]<315) jaki_dzien="z północego zachodu";
+		document.getElementById("windDayDom").innerHTML=jaki_dzien;
+		
 setInterval("refresh();", 1000);
 function refresh() {
 $('#busy').load(location.href + ' #flag');
 var flagb = document.getElementById("flag").innerHTML.trim();
 if(flagb=="1") {
 	$('#podstawowe_p').load(location.href + ' #podstawowe_k');
-	$('#dayrep_p').load(location.href + ' #dayrep_k');
-	var podst = document.getElementById("podstawowe_k").innerHTML;
-	var dn = document.getElementById("dayrep_k").innerHTML;
-	podstawowe = podst.split("|"); dzien = dn.split("|");
-	
 
+	var podst = document.getElementById("podstawowe_k").innerHTML;
+	podstawowe = podst.split("|");
 	
 	var akmph = Math.floor( ((3600*podstawowe[6])/1000) * 100)/100;
 	var pkmph = Math.floor( ((3600*podstawowe[5])/1000) * 100)/100;
@@ -412,34 +437,6 @@ if(flagb=="1") {
 					if(cmlA==360) cmlA=0; if(cmlB==360) cmlB=0;
 					document.getElementById("cmL1").innerHTML = cmlA+'°';
 					document.getElementById("cmL2").innerHTML = cmlB +'°';
-			
-		document.getElementById("sunWsch").innerHTML=dzien[7];
-		document.getElementById("sunZch").innerHTML=dzien[8];
-		document.getElementById("dayLen").innerHTML=dzien[9];
-		document.getElementById("moonWsch").innerHTML=dzien[10];
-		document.getElementById("moonZch").innerHTML=dzien[11];
-		document.getElementById("moonPhase").innerHTML=dzien[12];
-		
-		document.getElementById("tempDayMax").innerHTML=" "+dzien[0];
-	    document.getElementById("wilDayMax").innerHTML=" "+dzien[1];
-		document.getElementById("cisDayMax").innerHTML=" "+dzien[2];
-		document.getElementById("tempDayMin").innerHTML=" "+dzien[13];    
-	    document.getElementById("wilDayMin").innerHTML=" "+dzien[14];
-		document.getElementById("cisDayMin").innerHTML=" "+dzien[15];
-		
-		document.getElementById("windDayBlow").innerHTML=" "+dzien[5];
-	    document.getElementById("rainDay").innerHTML=" "+dzien[6];
-		
-		var jaki_dzien;
-		if(dzien[3]<20 || dzien[3]>=315) jaki_dzien="z północy";
-		else if(dzien[3]>=20 && dzien[3]<70) jaki_dzien="z północnego wschodu";
-		else if(dzien[3]>=70 && dzien[3]<110) jaki_dzien="ze wschodu";
-		else if(dzien[3]>=110 && dzien[3]<160) jaki_dzien="z południowego wschodu";
-		else if(dzien[3]>=160 && dzien[3]<215) jaki_dzien="z południa";
-		else if(dzien[3]>=215 && dzien[3]<240) jaki_dzien="z południowego zachodu"
-		else if(dzien[3]>=240 && dzien[3]<285) jaki_dzien="z zachodu";
-		else if(dzien[3]>=285 && dzien[3]<315) jaki_dzien="z północego zachodu";
-		document.getElementById("windDayDom").innerHTML=jaki_dzien;
  
  	  $.ajax({
   type: "POST",
