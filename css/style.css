@@ -359,26 +359,21 @@ footer{
     color: #fff;
     width: 100%;
     margin: 63% 0 0 -50%;
-	cursor: pointer;
 }
-.liczCyf:hover #hint{    
-    display: block;
-    font: .3em;
-    -webkit-animation: hint 5s ease;
+.labelek{
+	cursor: pointer;    
 }
-#hint{    
-    font: .01em;
+#hint{
+    pointer-events: none;
     position: absolute;
-    margin-top:-3em;
-    margin-left: 7em;
-    background:red;
-    opacity: 0;
+    top:0;
+    left:0;
+    background:black;
+    color: white;
+    z-index: 10;
+    display: none;
+    opacity: 0.7;
 }
-@-webkit-keyframes hint{
-    from{opacity: 0;}
-    to{opacity: 1;}    
-}
-
 .licznikCont{
     display: inline-block;   
     text-align: center;

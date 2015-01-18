@@ -170,9 +170,7 @@ $myid = $_SESSION['myid'];
               <div id='strz1' class='strz'></div>
               <div class='dot'></div>
               <div class='liczPods' id='liczPods1'></div>  
-                <span class='liczCyf' id='wSpeed' onclick="aktwindclick()">Aktulany<br/>1 m/s
-                    <div id='hint'>Kliknij aby zmienić jednostki</div>
-                </span>
+                <span class='liczCyf labelek' id='wSpeed' onclick="aktwindclick()">Aktulany<br/>1 m/s</span>
             </div>  
         </div><br/>  
         <span class="compassSpan"  id="aktDirVal">Aktualny</span>
@@ -187,7 +185,7 @@ $myid = $_SESSION['myid'];
               <div id='strz2' class='strz'></div>
               <div class='dot'></div>
               <div class='liczPods' id='liczPods2'></div>  
-                <span class='liczCyf' id='wPSpeed' onclick="podwindclick()">Aktulany<br/>0 m/s</span>
+                <span class='liczCyf labelek' id='wPSpeed' onclick="podwindclick()">Podmuch<br/>0 m/s</span>
             </div>
         </div><br/>
         <span class="compassSpan"  id="domDirVal">Dominujący</span>
@@ -372,6 +370,8 @@ echo "<b>".$dat['tempmax']."°C</b> (".$tmpH.") | <b>".$dat['hummax']."%</b> (".
 ?>
 </div>
 </div>
+
+<div id='hint'>Zmień jednostki</div>
 
 <script type="text/javascript" src="js/script.js"></script>
 </body>

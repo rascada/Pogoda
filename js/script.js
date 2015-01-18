@@ -131,7 +131,23 @@ function bottomPanel(){
         $('#panel1').css('min-width','90%');
     }   
 }
-
+var hint=false;
+$(document).mousemove(function(event) {
+    if(hint)
+        $('#hint').css('left',event.pageX).css('top',event.pageY-$('#hint').height());
+});
+$('.labelek').mouseover(function(){
+    if(!hint){
+        hint=true;
+        $('#hint').fadeIn(1000,function(){
+            $('.labelek').mouseout(function(){                
+                $('#hint').fadeOut(1000,function(){  
+                hint=false;
+                });    
+            }); 
+        });   
+    } 
+});
 /*
     //kompas
     0 - compassArr1
