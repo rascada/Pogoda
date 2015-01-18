@@ -283,7 +283,8 @@ podstawowe:
 16 - [prognoza 2]
 17 - [punkt rosy] [°C]
 18 - Liczba odczytów stacji
-18 - Stacja online/offline
+19 - Stacja online/offline
+20 - Użytkowników online
 
 dzien: 
 0 - [czas max temp] [wartość max temp] 
@@ -346,7 +347,7 @@ if(flagb=="1") {
 	var pkmph = Math.floor( ((3600*podstawowe[5])/1000) * 100)/100;
 
 	
-				document.getElementById("last").innerHTML=podstawowe[0]+"<br/>Dzisiejszy czas działania: "+podstawowe[18]+"<br/>"+podstawowe[19]; 
+				document.getElementById("last").innerHTML=podstawowe[0]+"<br/>Dzisiejszy czas działania: "+podstawowe[18]+"<br/>"+podstawowe[19]+"<br/>Obecnych na stronie: "+podstawowe[20]; 
 				document.getElementById("atemval").innerHTML=podstawowe[1]+"°C";
 				temp('aTemp',Math.floor(podstawowe[1]));
 				document.getElementById("wilval").innerHTML = podstawowe[2]+"%";

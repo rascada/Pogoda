@@ -11,7 +11,8 @@ $_SESSION['myid'];
 if( isset($_POST['log']) ) {
 
 	if($_POST['log']=="in") { 
-		mysql_query("INSERT INTO sesje SET busy=1");
+		$time = date("Y-m-d H:i:s");
+		mysql_query("INSERT INTO sesje SET busy=1, kiedy='$time' ");
 		$Zja = mysql_query("SELECT id FROM sesje ORDER BY id DESC LIMIT 1");
 		$ja = mysql_fetch_array($Zja);
 		$_SESSION['myid']=$ja['id'];
