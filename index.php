@@ -303,28 +303,25 @@ $dir = mysql_fetch_array($zap);
 
 $online = "<span style='color: red;'>Stacja jest offline!</span>";
 $nowdate = date("H:i:s");
-$now = str_replace(":", "", $nowdate);
 $ostatni = $dir['time'];
-$ostatni = str_replace(":", "", $ostatni);
+$os = explode(":", $ostatni); 
+$no = explode(":", $nowdate);
 
-$osH = $ostatni[0].$ostatni[1];
-$osM = $ostatni[2].$ostatni[3];
-$osS = $ostatni[4].$ostatni[5];
-$noH = $now[0].$now[1];
-$noM = $now[2].$now[3];
-$noS = $now[4].$now[5];
+$os[0] = (int)$os[0]; $os[1] = (int)$os[1]; $os[2] = (int)$os[2];
+$no[0] = (int)$no[0]; $no[1] = (int)$no[1]; $no[2] = (int)$no[2];
 
-$osH *= 3600;
-$osM *= 60;
-$noH *= 3600;
-$noM *= 60;
+$os[0] *= 3600;
+$os[1] *= 60;
+$no[0] *= 3600;
+$no[1] *= 60;
 
-$ostSec = $osH+$osM+$osS;
-$nowSec = $noH+$noM+$noS;
+$ostSec = $os[0]+$os[1]+$os[2];
+$nowSec = $no[0]+$no[1]+$noS[2];
 
 
 if($ostSec>$nowSec-360 && $iledzis>0) $online="<span style='color: darkgreen;'>Stacja jest online!</span>";
 
+echo $ostSec."  ".$nowSec;
 echo $dir['date']." ".$dir['time']."|".$dir['atemp']."|".$dir['wilgo']."|".$dir['cisnie']."|".$dir['srtemp']."|".$dir['podmuch']."|".$dir['swind']."|".$dir['dirwind']."|".$dir['domdirwind']."|".$dir['otemp']."|".$dir['bfw']."|".$dir['dobopad']."|".$dir['deszcz']."|".$dir['tencisn']."  ".$dir['tencisnval']."hPa/h |".$dir['tentemp']." ".$dir['tentempval']."°C/h |".$dir['progno']."|".$dir['zamb']."|".$dir['dew']."°C"."|".$iledzis."|".$online;
 ?>
 </div>
