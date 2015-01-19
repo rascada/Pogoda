@@ -41,7 +41,7 @@ $myid = $_SESSION['myid'];
         </ul>
             <h3>Ostatnia aktualiazacja: <span id="last">Łącze..</span></h3>
             <h1>Stacja pogodowa Skałągi</h1><br/>            
-            <h2>Szkoła Podstawowa - 51°03′N 18°07′E</h2>  
+            <h2>Szkoła Podstawowa - 51°05′N 18°12′E</h2>  
     </header><br/> 
 
 <div id='all'>
