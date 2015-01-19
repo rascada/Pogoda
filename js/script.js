@@ -451,20 +451,12 @@ if(flagb=="1") {
 	
 function aktwindclick() {
 ak_kmph = !ak_kmph;
-  $.ajax({
-  type: "POST",
-  url: "session.php",
-  data: { log: "jedn", }
-});
+document.getElementById("flag").innerHTML='1';
 refresh();
 }
 
 function podwindclick() {
 pod_kmph = !pod_kmph;
-  $.ajax({
-  type: "POST",
-  url: "session.php",
-  data: { log: "jedn", }
-});
+document.getElementById("flag").innerHTML='1';
 refresh();
 }
