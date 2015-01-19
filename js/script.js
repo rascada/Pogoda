@@ -359,7 +359,7 @@ var dzien = document.getElementById("dayrep_k").innerHTML.split("|");
 		else if(dzien[3]>=285 && dzien[3]<315) jaki_dzien="z północego zachodu";
 		document.getElementById("windDayDom").innerHTML=jaki_dzien;
 		
-		if(dzien[16].indexOf("Trident")!=-1) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome lub Firefox w najnowszej wersji.');
+		if( (dzien[16].indexOf("Mozilla")==-1 && dzien[16].indexOf("Chrome")==-1) || dzien[16].indexOf("Trident")!=-1) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome lub Firefox w najnowszej wersji.');
 		
 setInterval("refresh();", 1000);
 function refresh() {
