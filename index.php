@@ -264,7 +264,7 @@ $myid = $_SESSION['myid'];
             <a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>Stacje w okolicy</button></a>
             
 
-        <footer><hr/><br/>SP Skałągi &copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina <div style="font-size: .83em; color: black;">Wsperane przeglądarki: Chrome i Firefox w najnowszych wersjach.<br/>Niedługo też najnowszy IE.</span></footer>    
+        <footer><hr/><br/>SP Skałągi &copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina <div style="font-size: .83em; color: black;">Wsperane przeglądarki: <br/>Chrome i Firefox w najnowszych wersjach.<br/>Niedługo też najnowszy IE.</span></footer>    
             </div>
 </div>
 <!--all-->
