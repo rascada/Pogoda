@@ -320,7 +320,7 @@ $Zlogged = mysql_query("SELECT id FROM sesje");
 $logged = mysql_num_rows($Zlogged);
 
 
-if($ostSec>$nowSec-460 && $iledzis>0) $online="<span style='color: darkgreen;'>Stacja jest online!</span>";
+if($ostSec>$nowSec-460) $online="<span style='color: darkgreen;'>Stacja jest online!</span>";
 echo $dir['date']." ".$dir['time']."|".$dir['atemp']."|".$dir['wilgo']."|".$dir['cisnie']."|".$dir['srtemp']."|".$dir['podmuch']."|".$dir['swind']."|".$dir['dirwind']."|".$dir['domdirwind']."|".$dir['otemp']."|".$dir['bfw']."|".$dir['dobopad']."|".$dir['deszcz']."|".$dir['tencisn']."  ".$dir['tencisnval']."hPa/h |".$dir['tentemp']." ".$dir['tentempval']."°C/h |".$dir['progno']."|".$dir['zamb']."|".$dir['dew']."°C"."|".$iledzis."|".$online."|".$logged;
 ?>
 </div>
