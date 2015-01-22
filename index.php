@@ -4,7 +4,7 @@
     <!-- liniks -->
     <link href="http://fonts.googleapis.com/css?family=Rajdhani:400,600&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <!-- scripts -->
-<script type="text/javascript" src="js/jquery-2.1.3.js"></script>
+<script type="application/javascript" src="js/jquery-2.1.3.js"></script>
 <title>Pogoda Skałągi</title>
 <link rel="icon" href="img/cloud.ico" type="image/x-icon">
 <link type="text/css" rel="stylesheet" href="css/style.css"/>
@@ -366,13 +366,13 @@ $dlugdzien = $dlugdzient[0].":".$dlugdzient[1];
 $wschk = $wschkt[0].":".$wschkt[1];
 $zachk = $zachkt[0].":".$zachkt[1];
 
-echo "<b>".$dat['tempmax']."°C</b> (".$tmpH.") | <b>".$dat['hummax']."%</b> (".$wilH.") | <b>".$dat['pressmax']."hPa</b> (".$cisH.") |".$oth['domdir']."|".$mPow." <b>".$oth['mspeed']."m/s</b>| <b>".$oth['mpowiew']."m/s</b> (".$mPow.") |<b>".$oth['mopad']."</b> (".$mOpa.") |".$wschs."|".$zachs ."|".$dlugdzien."|".$wschk."|".$zachk."|".$blue['moonph']."| <b>".$dat['tempmin']."°C</b> (".$tmpL.") | <b>".$dat['hummin']."%</b> (".$wilL.") |<b>".$dat['pressmin']."hPa</b> (".$cisL.")|".$_SERVER['HTTP_USER_AGENT'];
+echo "<b>".$dat['tempmax']."°C</b> (".$tmpH.") | <b>".$dat['hummax']."%</b> (".$wilH.") | <b>".$dat['pressmax']."hPa</b> (".$cisH.") |".$oth['domdir']."|".$mPow." <b>".$oth['mspeed']."m/s</b>| <b>".$oth['mpowiew']."m/s</b> (".$mPow.") |<b>".$oth['mopad']."</b> (".$mOpa.") |".$wschs."|".$zachs ."|".$dlugdzien."|".$wschk."|".$zachk."|".$blue['moonph']."| <b>".$dat['tempmin']."°C</b> (".$tmpL.") | <b>".$dat['hummin']."%</b> (".$wilL.") |<b>".$dat['pressmin']."hPa</b> (".$cisL.")|".$_SERVER['HTTP_USER_AGENT']."|".$oth['chmury'];
 ?>
 </div>
 </div>
 
 <div id='hint'>Zmień jednostki</div>
 
-<script type="text/javascript" src="js/script.js"></script>
+<script type="application/javascript" src="js/script.js"></script>
 </body>
 </html>

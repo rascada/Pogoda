@@ -304,6 +304,7 @@ dzien:
 14 - [czas min wilgotnosci] [wartość min wilgotnosci] 
 15 - [czas min cisnienia] [wartość min cisnienia] 
 16 - Info o przeglądarce
+17 - Wysokość chmur
 
 id in html
 
