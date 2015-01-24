@@ -348,6 +348,7 @@ var dzien = document.getElementById("dayrep_k").innerHTML.split("|");
 		
 		document.getElementById("windDayBlow").innerHTML=" "+dzien[5];
 	    document.getElementById("rainDay").innerHTML=" "+dzien[6];
+		document.getElementById("clouds").innerHTML=dzien[17]+"m";
 		
 		var jaki_dzien;
 		if(dzien[3]<20 || dzien[3]>=315) jaki_dzien="z północy";

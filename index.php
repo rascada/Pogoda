@@ -157,8 +157,8 @@ $myid = $_SESSION['myid'];
         </div>
     </div>  
 <!------------------------Wiatr------------------------------------>
-<div id='contL'>
-<div id='windPanel' class="bigPanel">    
+<div id='contL' style="border: 0; margin-top: 2em;">
+<div id='windPanel' class="bigPanel" style="margin-top: 0;">    
     <h1 class="bigPanelH">Wiatr</h1>
     <!-----------------------compass1---------------------------------->
     <div class='compassCont'>
@@ -222,6 +222,11 @@ $myid = $_SESSION['myid'];
         </div>
     </div>
 </div>
+	<div class="bigPanel" style="width: 100%; margin-top: 0;">
+        <div id="dew" class="ramka bigHeader">
+            <h4 class="bigPanelH"><b>Wysokość podstawy chmur: </b><span id='clouds'>0</span> </h4>
+        </div>
+	</div>
 </div>
 <div class='panel' id='panel1'>
     
@@ -260,8 +265,7 @@ $myid = $_SESSION['myid'];
         
         <div id='buttonWykresCont' class="ramka bigPanel">
             <a href="graph.html"><button id='buttonWykres'>Wykresy</button></a>    
-            <br/>
-            <a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>Stacje w okolicy</button></a>
+            <br/><a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>Stacje w okolicy</button></a>
             
 
         <footer><hr/><br/>SP Skałągi &copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina <div style="font-size: .83em; color: black;">Wsperane przeglądarki: <br/>Chrome i Firefox w najnowszych wersjach.<br/>Niedługo też najnowszy IE.</span></footer>    
