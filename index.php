@@ -30,6 +30,9 @@ mysql_query("SET CHARSET utf8");
 mysql_query("SET NAMES 'utf8' COLLATE 'utf8_polish_ci'"); 
 mysql_select_db($database);
 $myid = $_SESSION['myid'];
+
+if( isset($_GET['drep']) ) $dziennyto=$_GET['drep'];
+else $dziennyto=date("Y-m-d");
 ?>
 <body onload="refresh()">    
     <!------------------------HEADER------------------------------------>
@@ -41,7 +44,7 @@ $myid = $_SESSION['myid'];
         </ul>
             <h3>Ostatnia aktualiazacja: <span id="last">Łącze..</span></h3>
             <h1>Stacja pogodowa Skałągi</h1><br/>            
-            <h2>Szkoła Podstawowa - 51°05′N 18°12′E</h2>  
+            <h2>Szkoła Podstawowa - 51.051290N 18.11788E</h2>  
     </header><br/> 
 
 <div id='all'>
@@ -333,7 +336,7 @@ echo $dir['date']." ".$dir['time']."|".$dir['atemp']."|".$dir['wilgo']."|".$dir[
 <div id="dayrep_p" style="z-index: -10; position: absolute; visibility: hidden;">
 <div id="dayrep_k">
 <?php
-$Ztimes = mysql_query("SELECT * FROM daytime ORDER BY id DESC LIMIT 1");
+$Ztimes = mysql_query("SELECT * FROM daytime WHERE ddata='$dziennyto'");
 $timer = mysql_fetch_array($Ztimes); $id = $timer['id'];
 $Zdat = mysql_query("SELECT * FROM daydata WHERE id='$id'");
 $dat = mysql_fetch_array($Zdat); 
