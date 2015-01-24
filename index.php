@@ -170,7 +170,7 @@ $myid = $_SESSION['myid'];
               <div id='strz1' class='strz'></div>
               <div class='dot'></div>
               <div class='liczPods' id='liczPods1'></div>  
-                <span class='liczCyf labelek' id='wSpeed' onclick="aktwindclick()">Aktulany<br/>1 m/s</span>
+                <span class='liczCyf labelek' id='wSpeed' onclick="aktwindclick()">Ładuje..</span>
             </div>  
         </div><br/>  
         <span class="compassSpan"  id="aktDirVal">Aktualny</span>
@@ -185,7 +185,7 @@ $myid = $_SESSION['myid'];
               <div id='strz2' class='strz'></div>
               <div class='dot'></div>
               <div class='liczPods' id='liczPods2'></div>  
-                <span class='liczCyf labelek' id='wPSpeed' onclick="podwindclick()">Podmuch<br/>0 m/s</span>
+                <span class='liczCyf labelek' id='wPSpeed' onclick="podwindclick()">Ładuje..</span>
             </div>
         </div><br/>
         <span class="compassSpan"  id="domDirVal">Dominujący</span>
@@ -201,7 +201,7 @@ $myid = $_SESSION['myid'];
                     <div id='strz3' class='strz'></div>
                     <div class='dot'></div>
                     <div class='liczPods' id='liczPods3'></div>  
-                    <span  class='liczCyf' id='pressval'>0 m/s</span>
+                    <span  class='liczCyf' id='pressval'>Ładuje..</span>
                 </div>
             </div>
         </div>
@@ -216,7 +216,7 @@ $myid = $_SESSION['myid'];
                     <div id='strz4' class='strz'></div>
                     <div class='dot'></div>
                     <div class='liczPods' id='liczPods4'></div>  
-                    <span  class='liczCyf' id='wilval'>0 m/s</span>
+                    <span  class='liczCyf' id='wilval'>Ładuje..</span>
                 </div>
             </div>            
         </div>
