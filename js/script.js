@@ -263,6 +263,10 @@ stworzMiarkeLicznik(2,2);
 stworzMiarkeLicznik(3,1);
 stworzMiarkeLicznik(4,3);
 ///PHP
+setInterval("refresh();", 1000);
+refdayrep(false);
+var ak_kmph=false;
+var pod_kmph = false;
 var podstawowe = new Array();
 var dzien = new Array();
 
@@ -309,6 +313,7 @@ dzien:
 15 - [czas min cisnienia] [wartość min cisnienia] 
 16 - Info o przeglądarce
 17 - Wysokość chmur
+18 - Z kiedy dzienny raport
 
 id in html
 
@@ -333,9 +338,51 @@ cmL2 - dominujący kierunek wiatru
 
 */
 
-var ak_kmph=false;
-var pod_kmph = false;
-var dzien = document.getElementById("dayrep_k").innerHTML.split("|");
+
+function jschangeday(day) {
+	if(day) {
+	 	 $.ajax({
+			type: "POST",
+			url: "session.php",
+			dataType: "html",
+			async: false,
+			data: { changedayrep: "right", },
+			success: function(response){                    
+				$("#dayrep_k").html(response); 
+				refdayrep(true);
+			}
+		});
+	} else {
+	 	 $.ajax({
+			type: "POST",
+			url: "session.php",
+			dataType: "html",
+			async: false,
+			data: { changedayrep: "left", },
+			success: function(response){                    
+				$("#dayrep_k").html(response); 
+				refdayrep(true);
+			}
+		});
+	}
+
+} 
+
+	
+function refdayrep(auto) {
+ if(!auto) {
+		$.ajax({
+			type: "POST",
+			url: "session.php",
+			dataType: "html",
+			async: false,
+			data: { changedayrep: "false", },
+			success: function(response) { $("#dayrep_k").html(response); }
+		});
+}
+dzien = document.getElementById("dayrep_k").innerHTML.split("|");
+	
+		document.getElementById("daydate").innerHTML=dzien[18];
 		document.getElementById("sunWsch").innerHTML=dzien[7];
 		document.getElementById("sunZch").innerHTML=dzien[8];
 		document.getElementById("dayLen").innerHTML=dzien[9];
@@ -366,8 +413,9 @@ var dzien = document.getElementById("dayrep_k").innerHTML.split("|");
 		document.getElementById("windDayDom").innerHTML=jaki_dzien;
 		
 		if( (dzien[16].indexOf("Mozilla")==-1 && dzien[16].indexOf("Chrome")==-1) || dzien[16].indexOf("Trident")!=-1) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome lub Firefox w najnowszej wersji.');
-		
-setInterval("refresh();", 1000);
+        }
+
+
 function refresh() {
 $('#busy').load(location.href + ' #flag');
 var flagb = document.getElementById("flag").innerHTML.trim();
@@ -454,6 +502,7 @@ if(flagb=="1") {
 });
 		
 }
+
 
 }
 

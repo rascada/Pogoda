@@ -30,11 +30,8 @@ mysql_query("SET CHARSET utf8");
 mysql_query("SET NAMES 'utf8' COLLATE 'utf8_polish_ci'"); 
 mysql_select_db($database);
 $myid = $_SESSION['myid'];
-
-if( isset($_GET['drep']) ) $dziennyto=$_GET['drep'];
-else $dziennyto=date("Y-m-d");
 ?>
-<body onload="refresh()">    
+<body>    
     <!------------------------HEADER------------------------------------>
     <header>      
         <ul id='logoSun'>
@@ -213,29 +210,10 @@ else $dziennyto=date("Y-m-d");
         </div>
     
 <div id='fore' class="ramka bigPanel">
-    <?php
-	$tabdzienny = explode("-", $dziennyto);
-	$tabdzienny[2] = (int)$tabdzienny[2];
-	$dzisjest = date("d");
-	$nast=$tabdzienny[2]+1;
-	if($nast>$dzisjest) $nast=$dzisjest;
-	$nastepny = $tabdzienny[0]."-".$tabdzienny[1]."-".$nast;
-	echo "<a href='?drep=$nastepny'>";
-	?>
-	<div id='RRArrow'><div class='RaportArrow'></div></div>
-	</a>
+	<div id='RRArrow' onclick="jschangeday(true)"><div class='RaportArrow'></div></div>
+    <div id='RLArrow' onclick="jschangeday(false)"><div class='RaportArrow'></div></div>
 
-	<?php
-	$tabdzienny = explode("-", $dziennyto);
-	$tabdzienny[2] = (int)$tabdzienny[2];
-	$dzisjest = date("d");
-	$poprz=$tabdzienny[2]-1;
-	$poprzedni = $tabdzienny[0]."-".$tabdzienny[1]."-".$poprz;
-	echo "<a href='?drep=$poprzedni'>";
-	?>
-    <div id='RLArrow'><div class='RaportArrow'></div></div>
-	</a>
-    <h3>Raport dnia - <?php  echo $dziennyto; ?></h3>
+    <h3>Raport dnia - <span id="daydate">Ładuje...</span></h3>
         <div id='raportDnia'>  
             <div id='raportDniaA'>
                 <div class='minMaxBG grey'>
@@ -367,50 +345,8 @@ echo $dir['date']." ".$dir['time']."|".$dir['atemp']."|".$dir['wilgo']."|".$dir[
 </div>
 </div>
 <!-----------------------------niewidzialne dzielenie divów-------------------------->
-<div id="dayrep_p" style="z-index: -10; position: absolute; visibility: hidden;">
-<div id="dayrep_k">
-<?php
-$Ztimes = mysql_query("SELECT * FROM daytime WHERE ddata='$dziennyto'");
-$timer = mysql_fetch_array($Ztimes); $id = $timer['id'];
-$Zdat = mysql_query("SELECT * FROM daydata WHERE id='$id'");
-$dat = mysql_fetch_array($Zdat); 
-$Zother = mysql_query("SELECT * FROM dayother WHERE id='$id'");
-$oth = mysql_fetch_array($Zother); 
-$Zblue = mysql_query("SELECT * FROM dayblue WHERE id='$id'");
-$blue = mysql_fetch_array($Zblue); 
+<div id="dayrep_k" style="z-index: -10; position: absolute; visibility: hidden;"></div>
 
-$tmpHt = explode(":", $timer['tempmax']);
-$tmpLt = explode(":", $timer['tempmin']);
-$wilHt = explode(":", $timer['hummax']);
-$wilLt = explode(":", $timer['hummin']);
-$cisHt = explode(":", $timer['pressmax']);
-$cisLt = explode(":", $timer['pressmin']);
-$powiewMtt = explode(":", $oth['timempowiew']);
-$opadMtt = explode(":", $oth['timemopad']);
-$wschst = explode(":", $blue['sunrise']);
-$zachst = explode(":", $blue['sunset']);
-$dlugdzient = explode(":", $blue['daylen']);
-$wschkt = explode(":", $blue['moonrise']);
-$zachkt = explode(":", $blue['moonset']);
-
-$tmpH = $tmpHt[0].":".$tmpHt[1];
-$tmpL = $tmpLt[0].":".$tmpLt[1];
-$wilH = $wilHt[0].":".$wilHt[1];
-$wilL = $wilLt[0].":".$wilLt[1];
-$cisH = $cisHt[0].":".$cisHt[1];
-$cisL = $cisLt[0].":".$cisLt[1];
-$mPow = $powiewMtt[0].":".$powiewMtt[1];
-$mOpa = $opadMtt[0].":".$opadMtt[1];
-$wschs = $wschst[0].":".$wschst[1];
-$zachs = $zachst[0].":".$zachst[1];
-$dlugdzien = $dlugdzient[0].":".$dlugdzient[1];
-$wschk = $wschkt[0].":".$wschkt[1];
-$zachk = $zachkt[0].":".$zachkt[1];
-
-echo "<b>".$dat['tempmax']."°C</b> (".$tmpH.") | <b>".$dat['hummax']."%</b> (".$wilH.") | <b>".$dat['pressmax']."hPa</b> (".$cisH.") |".$oth['domdir']."|".$mPow." <b>".$oth['mspeed']."m/s</b>| <b>".$oth['mpowiew']."m/s</b> (".$mPow.") |<b>".$oth['mopad']."</b> (".$mOpa.") |".$wschs."|".$zachs ."|".$dlugdzien."|".$wschk."|".$zachk."|".$blue['moonph']."| <b>".$dat['tempmin']."°C</b> (".$tmpL.") | <b>".$dat['hummin']."%</b> (".$wilL.") |<b>".$dat['pressmin']."hPa</b> (".$cisL.")|".$_SERVER['HTTP_USER_AGENT']."|".$oth['chmury'];
-?>
-</div>
-</div>
 
 <div id='hint'>Zmień jednostki</div>
 
