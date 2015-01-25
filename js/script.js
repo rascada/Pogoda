@@ -198,8 +198,8 @@ function tenCol(tend,id,gradient){
         col1='#777 ';
         col2 = '#333 )';
     }else{
-        col1='lightgrey ';
-        col2 = '#00aeee )';
+        col1='#00aeee ';
+        col2 = 'lightgrey )';
     }    
     if(gradient){
         per1='5%';        
