@@ -213,9 +213,29 @@ else $dziennyto=date("Y-m-d");
         </div>
     
 <div id='fore' class="ramka bigPanel">
-    <div id='RRArrow'><div class='RaportArrow'></div></div>
+    <?php
+	$tabdzienny = explode("-", $dziennyto);
+	$tabdzienny[2] = (int)$tabdzienny[2];
+	$dzisjest = date("d");
+	$nast=$tabdzienny[2]+1;
+	if($nast>$dzisjest) $nast=$dzisjest;
+	$nastepny = $tabdzienny[0]."-".$tabdzienny[1]."-".$nast;
+	echo "<a href='?drep=$nastepny'>";
+	?>
+	<div id='RRArrow'><div class='RaportArrow'></div></div>
+	</a>
+
+	<?php
+	$tabdzienny = explode("-", $dziennyto);
+	$tabdzienny[2] = (int)$tabdzienny[2];
+	$dzisjest = date("d");
+	$poprz=$tabdzienny[2]-1;
+	$poprzedni = $tabdzienny[0]."-".$tabdzienny[1]."-".$poprz;
+	echo "<a href='?drep=$poprzedni'>";
+	?>
     <div id='RLArrow'><div class='RaportArrow'></div></div>
-    <h3>Raport dnia</h3>
+	</a>
+    <h3>Raport dnia - <?php  echo $dziennyto; ?></h3>
         <div id='raportDnia'>  
             <div id='raportDniaA'>
                 <div class='minMaxBG grey'>
