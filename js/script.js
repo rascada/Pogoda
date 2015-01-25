@@ -124,11 +124,15 @@ function bottomPanel(){
         $('#panel1').css('flex-grow','0');        
         $('#panel1').css('order','4');
         $('#panel1').css('min-width','0');
+        $('#raportDnia').css('flex-direction','column');  
+        $('.RaportArrow').css('top','44%'); 
     }else{
         $('#panel1').css('flex-direction','row');
         $('#panel1').css('flex-grow','1');
         $('#panel1').css('order','-2');
         $('#panel1').css('min-width','90%');
+        $('#raportDnia').css('flex-direction','row');
+        $('.RaportArrow').css('top','41%'); 
     }   
 }
 var hint=false;
