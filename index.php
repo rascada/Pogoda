@@ -301,8 +301,8 @@ else $dziennyto=date("Y-m-d");
 </div>
     
         <div id='buttonWykresCont' class="ramka bigPanel">
-            <a href="graph.html"><button id='buttonWykres'>Wykresy</button></a>    
-            <br/><a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>Stacje w okolicy</button></a>
+            <a href="graph.html"><button id='buttonWykres'>Wykresy</button></a><!--     
+            --><br/><a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>Stacje w okolicy</button></a>
             
 
         <footer><hr/><br/>SP Skałągi &copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina<hr/> <div style="font-size: .83em; color: black;">Wsperane przeglądarki: <br/>Chrome i Firefox w najnowszych wersjach.<br/>Wkrótce też najnowszy IE.</span></footer>    
