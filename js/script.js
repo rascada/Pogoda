@@ -115,7 +115,7 @@ $(window).load(function() {
   async: false,
   data: { log: "in", }
 });
-refdayrep(false);
+setTimeout(function() {refdayrep(false);}, 1000);
 });
 
 
