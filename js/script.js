@@ -112,8 +112,10 @@ $(window).load(function() {
    $.ajax({
   type: "POST",
   url: "session.php",
+  async: false,
   data: { log: "in", }
 });
+refdayrep(false);
 });
 
 
@@ -264,7 +266,6 @@ stworzMiarkeLicznik(3,1);
 stworzMiarkeLicznik(4,3);
 ///PHP
 setInterval("refresh();", 1000);
-refdayrep(false);
 var ak_kmph=false;
 var pod_kmph = false;
 var podstawowe = new Array();
