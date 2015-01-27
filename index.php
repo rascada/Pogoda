@@ -215,6 +215,7 @@ $myid = $_SESSION['myid'];
                     <div class='eye eye1'></div>
                 </div>
                 <div id='mouth'></div>                
+                <span id='biomet'>Biomet</span>
                 <span id='biometOdczyt'>Ładuje..</span>
             </div>
     
@@ -231,8 +232,10 @@ $myid = $_SESSION['myid'];
                     <div class='minMax '>
                       <b>Słońce </b>
                     </div>
-                    <div class='minMax '>                    
-                        <b>Wschód: </b><span id='sunWsch'>0:00</span><br/>
+                    <div class='minMax '>                                
+                        <b>Brzask: </b><span id='sunBrz'>0:00</span><br/>
+                        <b>Wschód: </b><span id='sunWsch'>0:00</span><br/>            
+                        <b>Zmierzch: </b><span id='sunZm'>0:00</span><br/>
                         <b>Zachód: </b><span id='sunZch'>0:00</span><br/>
                     </div>
                 </div>  
@@ -253,8 +256,7 @@ $myid = $_SESSION['myid'];
                         <b>Faza księżyca</b><br/> <span id='moonPhase'>Sprawdzanie</span>
                     </div>
                     <div class='minMax '>  
-                        <div id='moonDiv'>
-                            <img id='moon' src="http://pogoda-skalagi.ugu.pl/cumulus/moon.bmp"/>      
+                        <div id='moonDiv'>  
                         </div>              
                     </div>
                 </div>  

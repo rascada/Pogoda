@@ -395,7 +395,9 @@ dzien = document.getElementById("dayrep_k").innerHTML.split("|");
 	
 		document.getElementById("daydate").innerHTML=dzien[18];
 		document.getElementById("sunWsch").innerHTML=dzien[7];
+		document.getElementById("sunBrz").innerHTML=dzien[19];
 		document.getElementById("sunZch").innerHTML=dzien[8];
+		document.getElementById("sunZm").innerHTML=dzien[20];
 		document.getElementById("dayLen").innerHTML=dzien[9];
 		document.getElementById("moonWsch").innerHTML=dzien[10];
 		document.getElementById("moonZch").innerHTML=dzien[11];

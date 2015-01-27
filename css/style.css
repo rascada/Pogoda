@@ -94,6 +94,7 @@ body{
 }
 
 #raportDnia{
+    font-size: 1.1em;
     padding: 1em 0;
     display: flex;
     flex-direction: column;
@@ -623,6 +624,7 @@ footer{
 *{box-sizing:border-box;}
 
 #smileyFace{
+    font-size:.8em;
     positon:relative;
     display: inline-block;
     width:10em;
@@ -718,5 +720,16 @@ footer{
     margin-top: 80%;
     font-size:1.15em;
     font-weight: 600;
+}
+#biomet{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to left,#444,#555);
+    display: inline-block;
+    margin-top: -1.25em;
+    font-size:1.5em;
+    font-weight: 600;
+    color: #Fd2;
     
 }
