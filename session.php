@@ -46,7 +46,7 @@ if( isset($_POST['changedayrep']) ) {
 	$Zrozmiar = mysql_query("SELECT id FROM daytime");
 	$rozmiar = mysql_num_rows($Zrozmiar);
 	
-	if($_SESSION['dziennyto'] < $rozmiar) $_SESSION['dziennyto']++;
+	if($_SESSION['dziennyto'] <= $rozmiar) $_SESSION['dziennyto']++;
 	
 	if($_SESSION['dziennyto']==4) $_SESSION['dziennyto']=5;
 	
