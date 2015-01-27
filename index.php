@@ -209,7 +209,7 @@ $myid = $_SESSION['myid'];
             </p>
         </div>
     
-<div id='fore' class="ramka bigPanel">
+<div id='raportDniaRamka' class="ramka bigPanel">
 	<div id='RRArrow' onclick="jschangeday(true)"><div class='RaportArrow'></div></div>
     <div id='RLArrow' onclick="jschangeday(false)"><div class='RaportArrow'></div></div>
 

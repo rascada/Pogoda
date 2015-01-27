@@ -121,19 +121,11 @@ setTimeout(function() {refdayrep(false);}, 1000);
 
 
 function bottomPanel(){
-    if(width>1700){       
-        $('#panel1').css('flex-direction','column');        
-        $('#panel1').css('flex-grow','0');        
-        $('#panel1').css('order','4');
-        $('#panel1').css('min-width','0');
-        $('#raportDnia').css('flex-direction','column');  
-    }else{
-        $('#panel1').css('flex-direction','row');
-        $('#panel1').css('flex-grow','1');
-        $('#panel1').css('order','-2');
-        $('#panel1').css('min-width','90%');
-        $('#raportDnia').css('flex-direction','row');
-    }   
+    $('#panel1').css('flex-direction','row');
+    $('#panel1').css('flex-grow','1');
+    $('#panel1').css('order','-2');
+    $('#panel1').css('min-width','90%');
+    $('#raportDnia').css('flex-direction','row');
 }
 var hint=false;
 $(document).mousemove(function(event) {

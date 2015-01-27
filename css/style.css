@@ -63,7 +63,6 @@ body{
 #panel2{
     order: 4;   
 }
-
 .panel{
     order: -1;
     display: flex;
@@ -89,12 +88,17 @@ body{
     z-index: 2;
 }
 
+#raportDniaRamka{
+    min-width: 52vw;
+    max-width: 60em;
+}
+
 #raportDnia{
-    min-width: 50vw;
     padding: 1em 0;
     display: flex;
     flex-direction: column;
     align-items: center; 
+    justify-content: center;
 }
 
 #raportDniaA{
