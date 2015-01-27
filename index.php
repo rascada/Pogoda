@@ -234,9 +234,9 @@ $myid = $_SESSION['myid'];
                     </div>
                     <div class='minMax '>                                
                         <b>Brzask: </b><span id='sunBrz'>0:00</span><br/>
-                        <b>Wschód: </b><span id='sunWsch'>0:00</span><br/>            
+                        <b>Wschód: </b><span id='sunWsch'>0:00</span><br/>   
+                        <b>Zachód: </b><span id='sunZch'>0:00</span><br/>         
                         <b>Zmierzch: </b><span id='sunZm'>0:00</span><br/>
-                        <b>Zachód: </b><span id='sunZch'>0:00</span><br/>
                     </div>
                 </div>  
                 <div class="grey">
