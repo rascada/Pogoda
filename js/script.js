@@ -301,6 +301,7 @@ podstawowe:
 18 - Liczba odczytów stacji
 19 - Stacja online/offline
 20 - Użytkowników online
+21 - Biomet
 
 dzien: 
 0 - [czas max temp] [wartość max temp] 
