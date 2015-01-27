@@ -75,6 +75,8 @@ $zachst = explode(":", $blue['sunset']);
 $dlugdzient = explode(":", $blue['daylen']);
 $wschkt = explode(":", $blue['moonrise']);
 $zachkt = explode(":", $blue['moonset']);
+$switt = explode(":", $blue['swit']);
+$zmierzcht = explode(":", $blue['zmierzch']);
 
 $tmpH = $tmpHt[0].":".$tmpHt[1];
 $tmpL = $tmpLt[0].":".$tmpLt[1];
@@ -89,9 +91,11 @@ $zachs = $zachst[0].":".$zachst[1];
 $dlugdzien = $dlugdzient[0].":".$dlugdzient[1];
 $wschk = $wschkt[0].":".$wschkt[1];
 $zachk = $zachkt[0].":".$zachkt[1];
+$swit = $switt[0].":".$switt[1];
+$zmier = $zmierzcht[0].":".$zmierzcht[1];
 $dbdata = $timer['ddata'];
 
-echo "<b>".$dat['tempmax']."°C</b> (".$tmpH.") | <b>".$dat['hummax']."%</b> (".$wilH.") | <b>".$dat['pressmax']."hPa</b> (".$cisH.") |".$oth['domdir']."|".$mPow." <b>".$oth['mspeed']."m/s</b>| <b>".$oth['mpowiew']."m/s</b> (".$mPow.") |<b>".$oth['mopad']."</b> (".$mOpa.") |".$wschs."|".$zachs ."|".$dlugdzien."|".$wschk."|".$zachk."|".$blue['moonph']."| <b>".$dat['tempmin']."°C</b> (".$tmpL.") | <b>".$dat['hummin']."%</b> (".$wilL.") |<b>".$dat['pressmin']."hPa</b> (".$cisL.")|".$_SERVER['HTTP_USER_AGENT']."|".$oth['chmury']."|".$dbdata;
+echo "<b>".$dat['tempmax']."°C</b> (".$tmpH.") | <b>".$dat['hummax']."%</b> (".$wilH.") | <b>".$dat['pressmax']."hPa</b> (".$cisH.") |".$oth['domdir']."|".$mPow." <b>".$oth['mspeed']."m/s</b>| <b>".$oth['mpowiew']."m/s</b> (".$mPow.") |<b>".$oth['mopad']."</b> (".$mOpa.") |".$wschs."|".$zachs ."|".$dlugdzien."|".$wschk."|".$zachk."|".$blue['moonph']."| <b>".$dat['tempmin']."°C</b> (".$tmpL.") | <b>".$dat['hummin']."%</b> (".$wilL.") |<b>".$dat['pressmin']."hPa</b> (".$cisL.")|".$_SERVER['HTTP_USER_AGENT']."|".$oth['chmury']."|".$dbdata."|".$swit."|".$zmier;
 }	
  
 ?>

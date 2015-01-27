@@ -323,6 +323,8 @@ dzien:
 16 - Info o przeglądarce
 17 - Wysokość chmur
 18 - Z kiedy dzienny raport
+19 - Świt
+20 - Zmierzch
 
 id in html
 
