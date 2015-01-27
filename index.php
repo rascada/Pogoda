@@ -197,7 +197,7 @@ $myid = $_SESSION['myid'];
 <div class='panel' id='panel1'>
     
         
-        <div id='fore' class="ramka bigPanel">
+        <div id='prognoza' class="ramka bigPanel">
             <h3>Prognoza</h3>
             <p>            
                 <div class='grey '>                    
@@ -207,6 +207,17 @@ $myid = $_SESSION['myid'];
                     <b>na 6 godz.</b><br/><span id='forecast'>Ładuje..</span>
                 </div>         
             </p>
+            <div id='smileyFace'>
+                <div id='smileyFaceDarken'></div>
+                <div id='smileyFaceLighten'></div>
+                <div id='eyesCont'>
+                    <div class='eye'></div>
+                    <div class='eye eye1'></div>
+                </div>
+                <div id='mouth'></div>                
+                <span id='biometOdczyt'>Ładuje..</span>
+            </div>
+    
         </div>
     
 <div id='raportDniaRamka' class="ramka bigPanel">
@@ -237,9 +248,16 @@ $myid = $_SESSION['myid'];
                         <b>Zachód: </b><span id='moonZch'>0:00</span><br/>
                     </div>
                 </div>
-                <div class="grey">
-                    <b>Faza księżyca</b> - <span id='moonPhase'>Sprawdzanie</span>
-                </div>
+                <div class='minMaxBG grey'>
+                    <div class='minMax '>                        
+                        <b>Faza księżyca</b><br/> <span id='moonPhase'>Sprawdzanie</span>
+                    </div>
+                    <div class='minMax '>  
+                        <div id='moonDiv'>
+                            <img id='moon' src="http://pogoda-skalagi.ugu.pl/cumulus/moon.bmp"/>      
+                        </div>              
+                    </div>
+                </div>  
             </div>
             <div id='raportDniaA'>            
                 <div class="grey">

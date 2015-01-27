@@ -176,6 +176,23 @@ function rotate(what,from,to,additionalTransform){
     });
 }
 
+function ludek(){
+    var mouth = document.getElementById('mouth');
+    if(podstawowe[21].charAt(0) == 'K'){
+      mouth.style.transform = 'scale(.5) rotate(0deg)';
+      mouth.style.borderRadius = '50%';   
+      mouth.style.marginTop = '3%';   
+    }else if(podstawowe[21].charAt(0) == 'N'){
+      mouth.style.transform = 'scale(.5) rotate(180deg)';
+      mouth.style.borderRadius = '50%';   
+      mouth.style.marginTop = '8%';      
+    }else{      
+      mouth.style.transform = 'scale(.5) rotate(0deg)';
+      mouth.style.borderRadius = '0%';   
+      mouth.style.marginTop = '-2%';         
+    }  
+    $('#biometOdczyt').text(podstawowe[21]);
+}
 function tenCol(tend,id,gradient){
     var col;
     var col1;  
@@ -417,7 +434,9 @@ if(flagb=="1") {
 	podstawowe = podst.split("|");
 	
 	var akmph = Math.floor( ((3600*podstawowe[6])/1000) * 100)/100;
-	var pkmph = Math.floor( ((3600*podstawowe[5])/1000) * 100)/100;
+	var pkmph = Math.floor( ((3600*podstawowe[5])/1000) * 100)/100;    
+    
+    ludek();
 
 	
 				document.getElementById("last").innerHTML=podstawowe[0]+"<br/>Dzisiejszy czas działania: "+podstawowe[18]+"<br/>"+podstawowe[19]+"<br/>Obecnych na stronie: "+podstawowe[20]; 

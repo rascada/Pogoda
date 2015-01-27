@@ -90,7 +90,7 @@ body{
 
 #raportDniaRamka{
     min-width: 52vw;
-    max-width: 60em;
+    flex-grow: none;
 }
 
 #raportDnia{
@@ -102,8 +102,19 @@ body{
 }
 
 #raportDniaA{
-    padding:0 1em;
-    
+    padding:0 1em;    
+}
+#moon{
+    margin-top: -.1em;
+    width: 5em;
+    height: 5em;
+}
+#moonDiv{
+    margin-left: 1em;
+    width: 4.4em;
+    height: 4.4em;
+    border-radius: 50%;
+    overflow: hidden;
 }
 .RaportArrow, .RaportArrow:before{
     position: absolute;
@@ -598,4 +609,114 @@ footer{
   height:.1em;
   background-color:white;
   margin:0.3em 0;
+}
+/**************LUDEK********************************************/
+#prognoza{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#prognoza .grey{ 
+    width: 100%;
+}
+*{box-sizing:border-box;}
+
+#smileyFace{
+    positon:relative;
+    display: inline-block;
+    width:10em;
+    height:10em;
+    background:#Fd2;
+    border-radius:50%;
+    margin-bottom: 1em;
+}
+#smileyFaceDarken{
+  position:absolute;
+  width:10em;
+  height:10em;
+  border-radius:50%;
+  border:.2em solid #EC0;
+  border-width:0em 0em 1.5em 1em;
+  
+}
+#smileyFaceLighten{
+  position:absolute;
+  width:5.5em;
+  height:3.5em;
+  margin-top:.7em;
+  margin-left:3.75em;
+  border-radius:50%;
+  background:linear-gradient(white,transparent);
+  transform:rotate(31deg);
+}
+#mouth{
+    position:absolute;
+    width:10em;
+    height:10em;
+    margin-top: -2%;
+    border-bottom:.1em solid #000;
+    border-radius:0%;
+    transform:scale(.5);      
+}
+#eyesCont{
+  position:relative;
+  top:25%;
+  left:25%;
+  
+}
+.eye{
+    position:absolute;
+    width:1.5em;
+    height:1.5em;
+    background:#222;
+    border-radius:50%;
+    -webkit-animation:eyeBlink 8s ease-in-out infinite;
+}
+
+@-webkit-keyframes eyeBlink{
+    0%{
+        height: 1.5em;
+        margin-top:0em;
+    }     
+    10%{
+        height: 1.5em;
+        margin-top:0em;
+    }   
+    15%{
+        height: 0em;
+        margin-top:.75em;
+    }
+    20%{
+        height: 1.5em;
+        margin-top:0em;
+    }
+    100%{
+        height: 1.5em;
+        margin-top:0em;
+    }    
+}
+
+.eye:before{
+  content:'';
+  position:absolute;
+  top:10%;
+  left:40%;
+  width:50%;
+  height:50%;
+  border-radius:50%;
+  background:linear-gradient(to bottom left,#fff,transparent);
+  
+}
+.eye1{
+  left:35%;
+}
+#biometOdczyt{
+    position: relative;
+    display: block;
+    color:#444;
+    margin-top: 80%;
+    font-size:1.15em;
+    font-weight: 600;
+    
 }
