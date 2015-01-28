@@ -185,7 +185,7 @@ function ludek(){
     }else if(podstawowe[21].charAt(0) == 'N'){
       mouth.style.transform = 'scale(.5) rotate(180deg)';
       mouth.style.borderRadius = '50%';   
-      mouth.style.marginTop = '8%';      
+      mouth.style.marginTop = '15%';      
     }else{      
       mouth.style.transform = 'scale(.5) rotate(0deg)';
       mouth.style.borderRadius = '0%';   
