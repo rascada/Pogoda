@@ -474,14 +474,14 @@ if(flagb=="1") {
 					document.getElementById("aktDirVal").innerHTML="Akualny: <br/>"+jaki;
 					compass(2, parseInt(podstawowe[8]));
 					var jaki_=" ";
-					if(podstawowe[8]<20 || podstawowe[8]>=315) jaki="na północ";
-					else if(podstawowe[8]>=20 && podstawowe[8]<70) jaki="na północnego wschodu";
-					else if(podstawowe[8]>=70 && podstawowe[8]<110) jaki="na wschód";
-					else if(podstawowe[8]>=110 && podstawowe[8]<160) jaki="na południowy wschód";
-					else if(podstawowe[8]>=160 && podstawowe[8]<215) jaki="na południe";
-					else if(podstawowe[8]>=215 && podstawowe[8]<240) jaki="na południowy zachód"
-					else if(podstawowe[8]>=240 && podstawowe[8]<285) jaki="na zachód";
-					else if(podstawowe[8]>=285 && podstawowe[8]<315) jaki="na północny zachód";
+					if(podstawowe[8]<20 || podstawowe[8]>=315) jaki_="na północ";
+					else if(podstawowe[8]>=20 && podstawowe[8]<70) jaki_="na północnego wschodu";
+					else if(podstawowe[8]>=70 && podstawowe[8]<110) jaki_="na wschód";
+					else if(podstawowe[8]>=110 && podstawowe[8]<160) jaki_="na południowy wschód";
+					else if(podstawowe[8]>=160 && podstawowe[8]<215) jaki_="na południe";
+					else if(podstawowe[8]>=215 && podstawowe[8]<240) jaki_="na południowy zachód"
+					else if(podstawowe[8]>=240 && podstawowe[8]<285) jaki_="na zachód";
+					else if(podstawowe[8]>=285 && podstawowe[8]<315) jaki_="na północny zachód";
 					document.getElementById("domDirVal").innerHTML="Dominujący: <br/>"+jaki_;
 					temp('oTemp',Math.floor(podstawowe[9])); 
 					document.getElementById("otemval").innerHTML=podstawowe[9]+"°C";
