@@ -443,6 +443,11 @@ if(flagb=="1") {
     
     ludek();
 
+					var cmlA = parseInt(podstawowe[7])+180;
+					if(cmlA>360) cmlA -= 360;
+					var cmlB = parseInt(podstawowe[8])+180;
+					if(cmlB>360) cmlB -= 360;
+					if(cmlA==360) cmlA=0; if(cmlB==360) cmlB=0;
 	
 				document.getElementById("last").innerHTML=podstawowe[0]+"<br/>Dzisiejszy czas działania: "+podstawowe[18]+"<br/>"+podstawowe[19]+"<br/>Obecnych na stronie: "+podstawowe[20]; 
 				document.getElementById("atemval").innerHTML=podstawowe[1]+"°C";
@@ -460,7 +465,7 @@ if(flagb=="1") {
 			    
 				if(ak_kmph) { document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+akmph+"km/h"; wind(1, akmph);  }
 				else { document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+podstawowe[6]+"m/s"; wind(1, podstawowe[6]); }
-                    compass(1, parseInt(podstawowe[7])); 
+                    compass(1, cmlA); 
 					var jaki=" ";
 					if(podstawowe[7]<20 || podstawowe[7]>=315) jaki="na północ";
 					else if(podstawowe[7]>=20 && podstawowe[7]<70) jaki="na północnego wschodu";
@@ -472,7 +477,7 @@ if(flagb=="1") {
 					else if(podstawowe[7]>=285 && podstawowe[7]<315) jaki="na północny zachód";
 				
 					document.getElementById("aktDirVal").innerHTML="Akualny: <br/>"+jaki;
-					compass(2, parseInt(podstawowe[8]));
+					compass(2, cmlB);
 					var jaki_=" ";
 					if(podstawowe[8]<20 || podstawowe[8]>=315) jaki_="na północ";
 					else if(podstawowe[8]>=20 && podstawowe[8]<70) jaki_="na północnego wschodu";
@@ -502,13 +507,9 @@ if(flagb=="1") {
     
 					document.getElementById("dewDeg").innerHTML=podstawowe[17];					
 					
-					var cmlA = parseInt(podstawowe[7])+180;
-					if(cmlA>360) cmlA -= 360;
-					var cmlB = parseInt(podstawowe[8])+180;
-					if(cmlB>360) cmlB -= 360;
-					if(cmlA==360) cmlA=0; if(cmlB==360) cmlB=0;
-					document.getElementById("cmL1").innerHTML = cmlA+'°';
-					document.getElementById("cmL2").innerHTML = cmlB +'°';
+
+					document.getElementById("cmL1").innerHTML = podstawowe[7]+'°';
+					document.getElementById("cmL2").innerHTML =  podstawowe[8] +'°';
  
  	  $.ajax({
   type: "POST",
