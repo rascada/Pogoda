@@ -383,7 +383,7 @@ footer{
     color: white;
     background: linear-gradient(to bottom left,grey, lightgrey );
     border-radius: 5px;
-    border: 3px double white;     
+    border: 3px double white;    
 }
 
 .compass {
@@ -411,6 +411,9 @@ footer{
     margin-top: 87.5%;
     margin-left: -6.5%;
     transform: rotate(-45deg);   
+}
+#cm1{
+    -webkit-animation: oscylacjaComp 5s ease-in-out infinite;
 }
 .jsCompassDiv{
     margin-top:-101.5%;
@@ -707,6 +710,7 @@ footer{
   width:50%;
   height:50%;
   border-radius:50%;
+    opacity: .8;
   background:linear-gradient(to bottom left,#fff,transparent);
   
 }

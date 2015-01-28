@@ -5,6 +5,7 @@
     <link href="http://fonts.googleapis.com/css?family=Rajdhani:400,600&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <!-- scripts -->
 <script type="application/javascript" src="js/jquery-2.1.3.js"></script>
+<script type="application/javascript" src='js/jquery.keyframes.min.js'></script>
 <title>Pogoda Skałągi</title>
 <link rel="icon" href="img/cloud.ico" type="image/x-icon">
 <link type="text/css" rel="stylesheet" href="css/style.css"/>

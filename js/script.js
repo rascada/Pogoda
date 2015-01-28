@@ -156,7 +156,10 @@ $('.labelek').mouseover(function(){
     5 - podmuch
     
     6 - cis
-    7 - wilg
+    7 - wilg 
+
+    8 - skrajny lewy punkt oscylacji kompasu
+    9 - skrajny prawy punkt oscylacji kompasu
 */
 
 var animCache = {};
@@ -168,6 +171,7 @@ animCache[4]=-113;
 animCache[5]=-113;
 animCache[6]=-113;
 animCache[7]=-113;
+
 
 function rotate(what,from,to,additionalTransform){
     $({deg: from}).animate({deg: to}, {
@@ -224,11 +228,29 @@ function tenCol(tend,id,gradient){
 function fillWithWater(perc){
     document.getElementById('humPercWater').style.background='linear-gradient(#07f '+perc+'%,transparent 10%)';    
 }
+
+function compassTimer(){          
+    start=podstawowe[7]-rand(2,6);
+    
+    $.keyframe.define([{
+        name: 'oscylacjaComp',
+        '0%': {'transform': 'rotate('+start+'deg) scale(0.85)'},
+        '50%': {'transform': 'rotate('+(podstawowe[7]+rand(2,6))/10+'deg) scale(0.85)'},
+        '100%': {'transform': 'rotate('+start+'deg) scale(0.85)'}
+    }]);
+    $('#cm1').playKeyframe('oscylacjaComp 5s ease-in-out infinite');
+    alert('podstawowe[7] '+podstawowe[7]+'| start: '+start+'| end: '+(podstawowe[7]+rand(2,6))/10);
+}
+
+function rand(od,to){return (Math.floor(Math.random()*to*10)+od*10)/10;}
+
 function compass(num,procent) {    
     if(procent>=90 && procent<=270 ) pRotate=135;
     else pRotate=-45;    
     procent += 45;    
+    
 
+    
     var chosen1 = 0;
     var chosen2 = 1;
     
@@ -428,10 +450,12 @@ dzien = document.getElementById("dayrep_k").innerHTML.split("|");
 		if( (dzien[16].indexOf("Mozilla")==-1 && dzien[16].indexOf("Chrome")==-1) || dzien[16].indexOf("Trident")!=-1) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome lub Firefox w najnowszej wersji.');
         }
 
-
+var compassTimerInt=0;
 function refresh() {
 $('#busy').load(location.href + ' #flag');
 var flagb = document.getElementById("flag").innerHTML.trim();
+    compassTimerInt++;
+    if(compassTimerInt >5){compassTimerInt=0;compassTimer();}
 if(flagb=="1") {
 	$('#podstawowe_p').load(location.href + ' #podstawowe_k');
 
@@ -442,7 +466,6 @@ if(flagb=="1") {
 	var pkmph = Math.floor( ((3600*podstawowe[5])/1000) * 100)/100;    
     
     ludek();
-
 	
 				document.getElementById("last").innerHTML=podstawowe[0]+"<br/>Dzisiejszy czas działania: "+podstawowe[18]+"<br/>"+podstawowe[19]+"<br/>Obecnych na stronie: "+podstawowe[20]; 
 				document.getElementById("atemval").innerHTML=podstawowe[1]+"°C";
