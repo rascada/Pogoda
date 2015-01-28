@@ -468,7 +468,7 @@ if(flagb=="1") {
                     compass(1, cmlA); 
 					var jaki=" ";
 					if(podstawowe[7]<20 || podstawowe[7]>=315) jaki="na północ";
-					else if(podstawowe[7]>=20 && podstawowe[7]<70) jaki="na północnego wschodu";
+					else if(podstawowe[7]>=20 && podstawowe[7]<70) jaki="na północny wschód";
 					else if(podstawowe[7]>=70 && podstawowe[7]<110) jaki="na wschód";
 					else if(podstawowe[7]>=110 && podstawowe[7]<160) jaki="na południowy wschód";
 					else if(podstawowe[7]>=160 && podstawowe[7]<215) jaki="na południe";
@@ -480,7 +480,7 @@ if(flagb=="1") {
 					compass(2, cmlB);
 					var jaki_=" ";
 					if(podstawowe[8]<20 || podstawowe[8]>=315) jaki_="na północ";
-					else if(podstawowe[8]>=20 && podstawowe[8]<70) jaki_="na północnego wschodu";
+					else if(podstawowe[8]>=20 && podstawowe[8]<70) jaki_="na północny wschód";
 					else if(podstawowe[8]>=70 && podstawowe[8]<110) jaki_="na wschód";
 					else if(podstawowe[8]>=110 && podstawowe[8]<160) jaki_="na południowy wschód";
 					else if(podstawowe[8]>=160 && podstawowe[8]<215) jaki_="na południe";
@@ -488,6 +488,9 @@ if(flagb=="1") {
 					else if(podstawowe[8]>=240 && podstawowe[8]<285) jaki_="na zachód";
 					else if(podstawowe[8]>=285 && podstawowe[8]<315) jaki_="na północny zachód";
 					document.getElementById("domDirVal").innerHTML="Dominujący: <br/>"+jaki_;
+					
+					document.getElementById("windBfw").innerHTML="Wiatr: "+bfwInt_str(parseInt(podstawowe[10]));
+					
 					temp('oTemp',Math.floor(podstawowe[9])); 
 					document.getElementById("otemval").innerHTML=podstawowe[9]+"°C";
 					miarka('water2', podstawowe[11], 60);
@@ -533,4 +536,22 @@ function podwindclick() {
 pod_kmph = !pod_kmph;
 document.getElementById("flag").innerHTML='1';
 refresh();
+}
+
+function bfwInt_str(bNumb) {
+	switch(bNumb) {
+		case 0: return 'Cisza'; break;
+		case 1: return 'Powiew'; break;
+		case 2: return 'Słaby'; break;
+		case 3: return 'Łagodny'; break;
+		case 4: return 'Umiarkowany'; break;
+		case 5: return 'Dość silny'; break;
+		case 6: return 'Silny'; break;
+		case 7: return 'Bardzo silny'; break;
+		case 8: return 'Sztorm'; break;
+		case 9: return 'Silny sztorm'; break;
+		case 10: return 'Bardzo silny sztorm'; break;
+		case 11: return 'Wczesny huragan'; break;
+		case 12: return 'Huragan'; break;
+	}
 }
