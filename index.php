@@ -70,7 +70,11 @@ $myid = $_SESSION['myid'];
     </div>    
 </div>
     
-    <!-- swego czasu tu był raport dnia -->
+	<div class="bigPanel" style="width: 100%; margin-top: 0;">
+        <div id="dew" class="ramka bigHeader">
+            <h4 class="bigPanelH"><b>Wysokość podstawy chmur: </b><span id='clouds'>0</span> </h4>
+        </div>
+	</div>
     
 </div>
 <!------------------------Temperatura------------------------------------>
@@ -188,11 +192,6 @@ $myid = $_SESSION['myid'];
     </div>
     
 </div>
-	<div class="bigPanel" style="width: 100%; margin-top: 0;">
-        <div id="dew" class="ramka bigHeader">
-            <h4 class="bigPanelH"><b>Wysokość podstawy chmur: </b><span id='clouds'>0</span> </h4>
-        </div>
-	</div>
 </div>
 <div class='panel' id='panel1'>
     
