@@ -412,9 +412,6 @@ footer{
     margin-left: -6.5%;
     transform: rotate(-45deg);   
 }
-#cm1{
-    -webkit-animation: oscylacjaComp 5s ease-in-out infinite;
-}
 .jsCompassDiv{
     margin-top:-101.5%;
     height: 101.5%;
