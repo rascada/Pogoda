@@ -51,6 +51,7 @@ function createMScale(id,precise,skok,dodac){
         }
     }
 }
+/***********************************//*Zmienne globalne*//*************************************/
 
 function compassDirScale(num){
     var compass= document.getElementById('compass'+num); 
@@ -73,6 +74,7 @@ function compassDirScale(num){
     }
     
 }
+
 function createTempMiar(id,precise,skok){
     var mH = new Array();
     var m = new Array();
@@ -417,6 +419,12 @@ dzien = document.getElementById("dayrep_k").innerHTML.split("|");
 		document.getElementById("windDayDom").innerHTML=jaki_dzien;
 		
 		if( (dzien[16].indexOf("Mozilla")==-1 && dzien[16].indexOf("Chrome")==-1) || dzien[16].indexOf("Trident")!=-1) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome lub Firefox w najnowszej wersji.');
+    
+    var data = new Date();
+    var tabTime_s = dzien[19].trim().split(":");
+    var tabTime_z = dzien[20].trim().split(":");
+    var HourRise = parseInt(tabTime_s[0]);
+    var HourSet = parseInt(tabTime_z[0]);
         }
 
 
