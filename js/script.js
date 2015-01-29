@@ -312,6 +312,9 @@ dzien:
 18 - Z kiedy dzienny raport
 19 - Świt
 20 - Zmierzch
+21 - Prognoza str
+22 - Prognoza dzien tyg
+23 - Prognoza img url
 
 id in html
 
@@ -400,7 +403,9 @@ dzien = document.getElementById("dayrep_k").innerHTML.split("|");
 		document.getElementById("windDayBlow").innerHTML=" "+dzien[5];
 	    document.getElementById("rainDay").innerHTML=" "+dzien[6];
 		document.getElementById("clouds").innerHTML=dzien[17]+"m";
-		
+		document.getElementById("forecast").innerHTML=dzien[21];
+		document.getElementById("weather").innerHTML=dzien[22];
+		document.images['forecast'].src = dzien[23]+'?' + Math.random();
 		var jaki_dzien;
 		if(dzien[3]<20 || dzien[3]>=315) jaki_dzien="S->N";
 		else if(dzien[3]>=20 && dzien[3]<70) jaki_dzien="WS->NE";

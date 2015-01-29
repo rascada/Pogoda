@@ -8,6 +8,7 @@ mysql_query("SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
 mysql_select_db($database);
 $_SESSION['myid'];
 $_SESSION['dziennyto'];
+$_SESSION['foreto'];
 if( isset($_POST['log']) ) {
 
 	if($_POST['log']=="in") { 
@@ -20,6 +21,7 @@ if( isset($_POST['log']) ) {
 		$Ziddzis=mysql_query("SELECT id FROM daytime WHERE ddata='$dzisiajdata'");
 		$iddzis = mysql_fetch_array($Ziddzis);
 		$_SESSION['dziennyto']=$iddzis['id'];
+		$_SESSION['foreto']='2';
 	} else if($_POST['log']=="out") {
 		$sesid=$_SESSION['myid'];
 		mysql_query("DELETE FROM sesje WHERE id='$sesid'");
@@ -27,6 +29,7 @@ if( isset($_POST['log']) ) {
 		$Ziddzis=mysql_query("SELECT id FROM daytime WHERE ddata='$dzisiajdata'");
 		$iddzis = mysql_fetch_array($Ziddzis);
 		$_SESSION['dziennyto']=$iddzis['id'];
+		$_SESSION['foreto']='2';
 	} else if($_POST['log']=="ok") {
 		$sesid=$_SESSION['myid'];
 		mysql_query("UPDATE sesje SET busy=0 WHERE id='$sesid'");
@@ -95,7 +98,13 @@ $swit = $switt[0].":".$switt[1];
 $zmier = $zmierzcht[0].":".$zmierzcht[1];
 $dbdata = $timer['ddata'];
 
-echo "<b>".$dat['tempmax']."°C</b> (".$tmpH.") | <b>".$dat['hummax']."%</b> (".$wilH.") | <b>".$dat['pressmax']."hPa</b> (".$cisH.") |".$oth['domdir']."|".$mPow." <b>".$oth['mspeed']."m/s</b>| <b>".$oth['mpowiew']."m/s</b> (".$mPow.") |<b>".$oth['mopad']."</b> (".$mOpa.") |".$wschs."|".$zachs ."|".$dlugdzien."|".$wschk."|".$zachk."|".$blue['moonph']."| <b>".$dat['tempmin']."°C</b> (".$tmpL.") | <b>".$dat['hummin']."%</b> (".$wilL.") |<b>".$dat['pressmin']."hPa</b> (".$cisL.")|".$_SERVER['HTTP_USER_AGENT']."|".$oth['chmury']."|".$dbdata."|".$swit."|".$zmier;
+$selId = $_SESSION['foreto'];
+$Qprognozy = mysql_query("SELECT * FROM prognozy WHERE id='$selId'");
+$prognoza = mysql_fetch_array($Qprognozy);
+
+
+
+echo "<b>".$dat['tempmax']."°C</b> (".$tmpH.") | <b>".$dat['hummax']."%</b> (".$wilH.") | <b>".$dat['pressmax']."hPa</b> (".$cisH.") |".$oth['domdir']."|".$mPow." <b>".$oth['mspeed']."m/s</b>| <b>".$oth['mpowiew']."m/s</b> (".$mPow.") |<b>".$oth['mopad']."</b> (".$mOpa.") |".$wschs."|".$zachs ."|".$dlugdzien."|".$wschk."|".$zachk."|".$blue['moonph']."| <b>".$dat['tempmin']."°C</b> (".$tmpL.") | <b>".$dat['hummin']."%</b> (".$wilL.") |<b>".$dat['pressmin']."hPa</b> (".$cisL.")|".$_SERVER['HTTP_USER_AGENT']."|".$oth['chmury']."|".$dbdata."|".$swit."|".$zmier."|".$prognoza['strprog']."|".$prognoza['dzientyg']."|".$prognoza['imgurl'];
 }	
  
 ?>

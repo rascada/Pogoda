@@ -233,9 +233,9 @@ echo '<iframe src="getfore.php?wezpogodezwundergrounda=napewno" width="0" height
         <div id='prognoza' class="ramka bigPanel">
             <h3>Prognoza - trzydniowa</h3>
             <div id='weatherUndergroundCont'>
-                   <span id='weather'>Poniedziałek po południu</span>
-                    <img name='forecast'src="http://icons.wxug.com/i/c/k/cloudy.gif"/>
-                   <span id='forecast'>Rano przelotne opady śniegu. Min. temp. -2 °C. Wiatr zach.pn.-zach. z prędkością 10 do 15 km/h. Możliwe op. śniegu 60%. Opady śniegu poniżej &lt; 2 cm.</span>
+                   <span id='weather'>Ładuje...</span>
+                    <img name='forecast' src="http://icons.wxug.com/i/c/k/cloudy.gif"/>
+                   <span id='forecast'>Ładuje...</span>
             </div>    
         </div>
 <div id='raportDniaRamka' class="ramka bigPanel">
