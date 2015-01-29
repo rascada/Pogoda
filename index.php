@@ -318,6 +318,7 @@ echo '<iframe src="getfore.php?wezpogodezwundergrounda=napewno" width="0" height
         <div id='buttonWykresCont' class="ramka bigPanel">            
             <h3>Menu</h3>
             <a href="graph.html"><button id='buttonWykres'>Wykresy</button></a><!--     
+            --><a href="#"><button id='buttonWykres'>Statystyki</button></a><!--     
             --><br/><a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>Stacje w okolicy</button></a>
             
 
