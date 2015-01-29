@@ -64,6 +64,19 @@ echo '<iframe src="getfore.php?wezpogodezwundergrounda=napewno" width="0" height
             <h3>Ostatnia aktualiazacja: <span id="last">Łącze..</span></h3>
             <h1>Stacja pogodowa Skałągi</h1><br/>            
             <h2>Szkoła Podstawowa - 51.051290N 18.11788E</h2>  
+        <div id='smileyFaceCont' class="ramka bigPanel">
+            <div id='smileyFace'>
+                <div id='smileyFaceDarken'></div>
+                <div id='smileyFaceLighten'></div>
+                <div id='eyesCont'>
+                    <div class='eye'></div>
+                    <div class='eye eye1'></div>
+                </div>
+                <div id='mouth'></div>                
+                <span id='biomet'>Biomet</span>
+                <span id='biometOdczyt'>Ładuje..</span>
+            </div>
+        </div>
     </header><br/> 
 
 <div id='all'>
@@ -216,32 +229,15 @@ echo '<iframe src="getfore.php?wezpogodezwundergrounda=napewno" width="0" height
 </div>
 </div>
 <div class='panel' id='panel1'>
-    
-        
+
         <div id='prognoza' class="ramka bigPanel">
-            <h3>Prognoza</h3>
-            <p>            
-                <div class='grey '>                    
-                    <b>na 3 godz.</b><br/><span id='weather'>Ładuje..</span><br/>
-                </div>               
-                <div class='grey'>                 
-                    <b>na 6 godz.</b><br/><span id='forecast'>Ładuje..</span>
-                </div>         
-            </p>
-            <div id='smileyFace'>
-                <div id='smileyFaceDarken'></div>
-                <div id='smileyFaceLighten'></div>
-                <div id='eyesCont'>
-                    <div class='eye'></div>
-                    <div class='eye eye1'></div>
-                </div>
-                <div id='mouth'></div>                
-                <span id='biomet'>Biomet</span>
-                <span id='biometOdczyt'>Ładuje..</span>
-            </div>
-    
+            <h3>Prognoza - trzydniowa</h3>
+            <div id='weatherUndergroundCont'>
+                   <span id='weather'>Poniedziałek po południu</span>
+                    <img name='forecast'src="http://icons.wxug.com/i/c/k/cloudy.gif"/>
+                   <span id='forecast'>Rano przelotne opady śniegu. Min. temp. -2 °C. Wiatr zach.pn.-zach. z prędkością 10 do 15 km/h. Możliwe op. śniegu 60%. Opady śniegu poniżej &lt; 2 cm.</span>
+            </div>    
         </div>
-    
 <div id='raportDniaRamka' class="ramka bigPanel">
 	<div id='RRArrow' onclick="jschangeday(true)"><div class='RaportArrow'></div></div>
     <div id='RLArrow' onclick="jschangeday(false)"><div class='RaportArrow'></div></div>
@@ -324,7 +320,7 @@ echo '<iframe src="getfore.php?wezpogodezwundergrounda=napewno" width="0" height
             --><br/><a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>Stacje w okolicy</button></a>
             
 
-        <footer><hr/><br/>SP Skałągi &copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina<hr/> <div style="font-size: .83em; color: black;">Wsperane przeglądarki: <br/>Chrome i Firefox w najnowszych wersjach.<br/>Wkrótce też najnowszy IE.</span></footer>    
+        <footer><hr/><br/>SP Skałągi &copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina<hr/> <div style="font-size: .83em; color: black;">Wspierane przeglądarki: <br/>Chrome i Firefox w najnowszych wersjach.<br/>Wkrótce też najnowszy IE.</span></footer>
             </div>
 </div>
 <!--all-->

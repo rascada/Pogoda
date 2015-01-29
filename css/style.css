@@ -1,5 +1,6 @@
 *{box-sizing:border-box;}
 body{ 
+    
     font-family: 'Rajdhani', bold, sans-serif;   
     overflow-x: hidden;
 	background: linear-gradient(lightblue 10em,#eee 25em);
@@ -66,7 +67,7 @@ body{
 .panel{
     order: -1;
     display: flex;
-    align-items: stretch;
+    align-items: flex-start;
     flex-direction: column;
 }
 #panel1{    
@@ -81,6 +82,7 @@ body{
     overflow: hidden;
 }
 .ramka h3{   
+    font-size: 1.2em;
     position: relative;
     border-bottom: .2em double #ddd;
     color: #777;   
@@ -383,7 +385,7 @@ footer{
     color: white;
     background: linear-gradient(to bottom left,grey, lightgrey );
     border-radius: 5px;
-    border: 3px double white;     
+    border: 3px double white;    
 }
 
 .compass {
@@ -614,24 +616,54 @@ footer{
 /**************LUDEK********************************************/
 #prognoza{
     display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#weather{
+    font-size: 1.2em;
+    color: #444;
+    margin-bottom:.5em;
+}
+#forecast{
+    
+}
+#weatherUndergroundCont img{
+    position: absolute;
+    top:0;
+    right:.5em;
+}
+
+#weatherUndergroundCont{
+    text-align: justify;
+    display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center;  
+    max-width: 30vh;
+    margin:1em 2em;
 }
 #prognoza .grey{ 
     width: 100%;
 }
-*{box-sizing:border-box;}
-
+#smileyFaceCont{
+    position: absolute;
+    top:0;
+    right:33%;
+    background: none;
+}
 #smileyFace{
     font-size:.8em;
-    positon:relative;
+    positon:absolute;
+    top:4em;
+    left:10em;
     display: inline-block;
     width:10em;
     height:10em;
     background:#Fd2;
     border-radius:50%;
-    margin-bottom: 1em;
+    margin-top: 3em;
+    margin-bottom: 1em; 
 }
 #smileyFaceDarken{
   position:absolute;
@@ -707,6 +739,7 @@ footer{
   width:50%;
   height:50%;
   border-radius:50%;
+    opacity: .8;
   background:linear-gradient(to bottom left,#fff,transparent);
   
 }
@@ -727,9 +760,8 @@ footer{
     width: 100%;
     background: linear-gradient(to left,#444,#555);
     display: inline-block;
-    margin-top: -1.25em;
+    margin-top: -2em;
     font-size:1.5em;
     font-weight: 600;
-    color: #Fd2;
-    
+    color: #Fd2;    
 }

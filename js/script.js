@@ -492,9 +492,6 @@ if(flagb=="1") {
 					document.getElementById("tentemp").innerHTML=podstawowe[14];
                     tenCol(podstawowe[14],'tempPanel h3',false);
     
-                    document.getElementById("weather").innerHTML=podstawowe[15];    
-                    document.getElementById("forecast").innerHTML=podstawowe[16];
-    
 					document.getElementById("dewDeg").innerHTML=podstawowe[17];					
 					
 
@@ -542,3 +539,6 @@ function bfwInt_str(bNumb) {
 		case 12: return 'Huragan'; break;
 	}
 }
+setTimeout(function(){
+    document.body.style.marginTop='-6em';    
+},2000);
