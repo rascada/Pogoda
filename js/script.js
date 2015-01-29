@@ -336,7 +336,6 @@ dewDeg - punkt rosy
 
 cmL1 - aktualny kierunek wiatru
 cmL2 - dominujący kierunek wiatru
-
 */
 
 

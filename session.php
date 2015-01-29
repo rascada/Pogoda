@@ -22,6 +22,7 @@ if( isset($_POST['log']) ) {
 		$iddzis = mysql_fetch_array($Ziddzis);
 		$_SESSION['dziennyto']=$iddzis['id'];
 		$_SESSION['foreto']='2';
+		if((int)date("H")>20) $_SESSION['foreto']='3';
 	} else if($_POST['log']=="out") {
 		$sesid=$_SESSION['myid'];
 		mysql_query("DELETE FROM sesje WHERE id='$sesid'");
@@ -30,6 +31,7 @@ if( isset($_POST['log']) ) {
 		$iddzis = mysql_fetch_array($Ziddzis);
 		$_SESSION['dziennyto']=$iddzis['id'];
 		$_SESSION['foreto']='2';
+		if((int)date("H")>20) $_SESSION['foreto']='3';
 	} else if($_POST['log']=="ok") {
 		$sesid=$_SESSION['myid'];
 		mysql_query("UPDATE sesje SET busy=0 WHERE id='$sesid'");
