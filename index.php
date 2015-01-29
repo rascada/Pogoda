@@ -390,6 +390,7 @@ echo $dir['date']." ".$dir['time']."|".$dir['atemp']."|".$dir['wilgo']."|".$dir[
 
 
 <div id='hint'>Zmień jednostki</div>
+<div id='hint2'>Zmień jednostki</div>
 
 <script type="application/javascript" src="js/script.js"></script>
 </body>
