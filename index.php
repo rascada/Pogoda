@@ -5,7 +5,6 @@
     <link href="http://fonts.googleapis.com/css?family=Rajdhani:400,600&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <!-- scripts -->
 <script type="application/javascript" src="js/jquery-2.1.3.js"></script>
-<script type="application/javascript" src='js/jquery.keyframes.min.js'></script>
 <title>Pogoda Skałągi</title>
 <link rel="icon" href="img/cloud.ico" type="image/x-icon">
 <link type="text/css" rel="stylesheet" href="css/style.css"/>
@@ -31,6 +30,28 @@ mysql_query("SET CHARSET utf8");
 mysql_query("SET NAMES 'utf8' COLLATE 'utf8_polish_ci'"); 
 mysql_select_db($database);
 $myid = $_SESSION['myid'];
+
+
+//*** getfore ***
+$queryOst = mysql_query("SELECT strprog FROM prognozy WHERE id='1'");
+$OstAr = mysql_fetch_array($queryOst);
+$lastLine = $OstAr['strprog'];
+$terazGetf=date("H:i:s");
+$czasLast = explode(":", trim($lastLine));
+$czasTeraz = explode(":", $terazGetf);
+$czasLast[0] = (int)$czasLast[0]; $czasTeraz[0] = (int)$czasTeraz[0];
+$czasLast[1] = (int)$czasLast[1]; $czasTeraz[1] = (int)$czasTeraz[1];
+$czasLast[2] = (int)$czasLast[2]; $czasTeraz[2] = (int)$czasTeraz[2];
+
+$roznicaS[0] = ($czasTeraz[0]*3600) - ($czasLast[0]*3600);
+$roznicaS[1] = ($czasTeraz[1]*60) - ($czasLast[1]*60);
+$roznicaS[2] = $czasTeraz[2]-$czasLast[2];
+$difSecL = $roznicaS[0]+$roznicaS[1]+$roznicaS[2];
+
+if($difSecL>23600 || $difSecL<0) {
+echo '<iframe src="getfore.php?wezpogodezwundergrounda=napewno" width="0" height="0" tabindex="-1" title="empty" class="hidden"></iframe>';
+}
+
 ?>
 <body>    
     <!------------------------HEADER------------------------------------>

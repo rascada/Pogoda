@@ -156,10 +156,7 @@ $('.labelek').mouseover(function(){
     5 - podmuch
     
     6 - cis
-    7 - wilg 
-
-    8 - skrajny lewy punkt oscylacji kompasu
-    9 - skrajny prawy punkt oscylacji kompasu
+    7 - wilg
 */
 
 var animCache = {};
@@ -171,7 +168,6 @@ animCache[4]=-113;
 animCache[5]=-113;
 animCache[6]=-113;
 animCache[7]=-113;
-
 
 function rotate(what,from,to,additionalTransform){
     $({deg: from}).animate({deg: to}, {
@@ -189,7 +185,7 @@ function ludek(){
     }else if(podstawowe[21].charAt(0) == 'N'){
       mouth.style.transform = 'scale(.5) rotate(180deg)';
       mouth.style.borderRadius = '50%';   
-      mouth.style.marginTop = '8%';      
+      mouth.style.marginTop = '15%';      
     }else{      
       mouth.style.transform = 'scale(.5) rotate(0deg)';
       mouth.style.borderRadius = '0%';   
@@ -228,29 +224,11 @@ function tenCol(tend,id,gradient){
 function fillWithWater(perc){
     document.getElementById('humPercWater').style.background='linear-gradient(#07f '+perc+'%,transparent 10%)';    
 }
-
-function compassTimer(){          
-    start=podstawowe[7]-rand(2,6);
-    
-    $.keyframe.define([{
-        name: 'oscylacjaComp',
-        '0%': {'transform': 'rotate('+start+'deg) scale(0.85)'},
-        '50%': {'transform': 'rotate('+(podstawowe[7]+rand(2,6))/10+'deg) scale(0.85)'},
-        '100%': {'transform': 'rotate('+start+'deg) scale(0.85)'}
-    }]);
-    $('#cm1').playKeyframe('oscylacjaComp 5s ease-in-out infinite');
-    alert('podstawowe[7] '+podstawowe[7]+'| start: '+start+'| end: '+(podstawowe[7]+rand(2,6))/10);
-}
-
-function rand(od,to){return (Math.floor(Math.random()*to*10)+od*10)/10;}
-
 function compass(num,procent) {    
     if(procent>=90 && procent<=270 ) pRotate=135;
     else pRotate=-45;    
     procent += 45;    
-    
 
-    
     var chosen1 = 0;
     var chosen2 = 1;
     
@@ -437,25 +415,23 @@ dzien = document.getElementById("dayrep_k").innerHTML.split("|");
 		document.getElementById("clouds").innerHTML=dzien[17]+"m";
 		
 		var jaki_dzien;
-		if(dzien[3]<20 || dzien[3]>=315) jaki_dzien="z północy";
-		else if(dzien[3]>=20 && dzien[3]<70) jaki_dzien="z północnego wschodu";
-		else if(dzien[3]>=70 && dzien[3]<110) jaki_dzien="ze wschodu";
-		else if(dzien[3]>=110 && dzien[3]<160) jaki_dzien="z południowego wschodu";
-		else if(dzien[3]>=160 && dzien[3]<215) jaki_dzien="z południa";
-		else if(dzien[3]>=215 && dzien[3]<240) jaki_dzien="z południowego zachodu"
-		else if(dzien[3]>=240 && dzien[3]<285) jaki_dzien="z zachodu";
-		else if(dzien[3]>=285 && dzien[3]<315) jaki_dzien="z północego zachodu";
+		if(dzien[3]<20 || dzien[3]>=315) jaki_dzien="S->N";
+		else if(dzien[3]>=20 && dzien[3]<70) jaki_dzien="WS->NE";
+		else if(dzien[3]>=70 && dzien[3]<110) jaki_dzien="W->E";
+		else if(dzien[3]>=110 && dzien[3]<160) jaki_dzien="WE->SE";
+		else if(dzien[3]>=160 && dzien[3]<215) jaki_dzien="N->S";
+		else if(dzien[3]>=215 && dzien[3]<240) jaki_dzien="NE->WS"
+		else if(dzien[3]>=240 && dzien[3]<285) jaki_dzien="E->W";
+		else if(dzien[3]>=285 && dzien[3]<315) jaki_dzien="SE->WE";
 		document.getElementById("windDayDom").innerHTML=jaki_dzien;
 		
 		if( (dzien[16].indexOf("Mozilla")==-1 && dzien[16].indexOf("Chrome")==-1) || dzien[16].indexOf("Trident")!=-1) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome lub Firefox w najnowszej wersji.');
         }
 
-var compassTimerInt=0;
+
 function refresh() {
 $('#busy').load(location.href + ' #flag');
 var flagb = document.getElementById("flag").innerHTML.trim();
-    compassTimerInt++;
-    if(compassTimerInt >5){compassTimerInt=0;compassTimer();}
 if(flagb=="1") {
 	$('#podstawowe_p').load(location.href + ' #podstawowe_k');
 
@@ -466,6 +442,12 @@ if(flagb=="1") {
 	var pkmph = Math.floor( ((3600*podstawowe[5])/1000) * 100)/100;    
     
     ludek();
+
+					var cmlA = parseInt(podstawowe[7])+180;
+					if(cmlA>360) cmlA -= 360;
+					var cmlB = parseInt(podstawowe[8])+180;
+					if(cmlB>360) cmlB -= 360;
+					if(cmlA==360) cmlA=0; if(cmlB==360) cmlB=0;
 	
 				document.getElementById("last").innerHTML=podstawowe[0]+"<br/>Dzisiejszy czas działania: "+podstawowe[18]+"<br/>"+podstawowe[19]+"<br/>Obecnych na stronie: "+podstawowe[20]; 
 				document.getElementById("atemval").innerHTML=podstawowe[1]+"°C";
@@ -483,29 +465,32 @@ if(flagb=="1") {
 			    
 				if(ak_kmph) { document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+akmph+"km/h"; wind(1, akmph);  }
 				else { document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+podstawowe[6]+"m/s"; wind(1, podstawowe[6]); }
-                    compass(1, parseInt(podstawowe[7])); 
+                    compass(1, cmlA); 
 					var jaki=" ";
-					if(podstawowe[7]<20 || podstawowe[7]>=315) jaki="z północy";
-					else if(podstawowe[7]>=20 && podstawowe[7]<70) jaki="z północnego wschodu";
-					else if(podstawowe[7]>=70 && podstawowe[7]<110) jaki="ze wschodu";
-					else if(podstawowe[7]>=110 && podstawowe[7]<160) jaki="z południowego wschodu";
-					else if(podstawowe[7]>=160 && podstawowe[7]<215) jaki="z południa";
-					else if(podstawowe[7]>=215 && podstawowe[7]<240) jaki="z południowego zachodu"
-					else if(podstawowe[7]>=240 && podstawowe[7]<285) jaki="z zachodu";
-					else if(podstawowe[7]>=285 && podstawowe[7]<315) jaki="z północego zachodu";
+					if(podstawowe[7]<20 || podstawowe[7]>=315) jaki="na północ";
+					else if(podstawowe[7]>=20 && podstawowe[7]<70) jaki="na północny wschód";
+					else if(podstawowe[7]>=70 && podstawowe[7]<110) jaki="na wschód";
+					else if(podstawowe[7]>=110 && podstawowe[7]<160) jaki="na południowy wschód";
+					else if(podstawowe[7]>=160 && podstawowe[7]<215) jaki="na południe";
+					else if(podstawowe[7]>=215 && podstawowe[7]<240) jaki="na południowy zachód"
+					else if(podstawowe[7]>=240 && podstawowe[7]<285) jaki="na zachód";
+					else if(podstawowe[7]>=285 && podstawowe[7]<315) jaki="na północny zachód";
 				
 					document.getElementById("aktDirVal").innerHTML="Akualny: <br/>"+jaki;
-					compass(2, parseInt(podstawowe[8]));
+					compass(2, cmlB);
 					var jaki_=" ";
-						if(podstawowe[8]<20 || podstawowe[8]>=315) jaki_="z północy";
-						else if(podstawowe[8]>=20 && podstawowe[8]<70) jaki_="z północnego wschodu";
-						else if(podstawowe[8]>=70 && podstawowe[8]<110) jaki_="ze wschodu";
-						else if(podstawowe[8]>=110 && podstawowe[8]<160) jaki_="z południowego wschodu";
-						else if(podstawowe[8]>=160 && podstawowe[8]<215) jaki_="z południa";
-						else if(podstawowe[8]>=215 && podstawowe[8]<240) jaki_="z południowego zachodu"
-						else if(podstawowe[8]>=240 && podstawowe[8]<285) jaki_="z zachodu";
-						else if(podstawowe[8]>=285 && podstawowe[8]<315) jaki_="z północego zachodu";
+					if(podstawowe[8]<20 || podstawowe[8]>=315) jaki_="na północ";
+					else if(podstawowe[8]>=20 && podstawowe[8]<70) jaki_="na północny wschód";
+					else if(podstawowe[8]>=70 && podstawowe[8]<110) jaki_="na wschód";
+					else if(podstawowe[8]>=110 && podstawowe[8]<160) jaki_="na południowy wschód";
+					else if(podstawowe[8]>=160 && podstawowe[8]<215) jaki_="na południe";
+					else if(podstawowe[8]>=215 && podstawowe[8]<240) jaki_="na południowy zachód"
+					else if(podstawowe[8]>=240 && podstawowe[8]<285) jaki_="na zachód";
+					else if(podstawowe[8]>=285 && podstawowe[8]<315) jaki_="na północny zachód";
 					document.getElementById("domDirVal").innerHTML="Dominujący: <br/>"+jaki_;
+					
+					document.getElementById("windBfw").innerHTML="Wiatr: "+bfwInt_str(parseInt(podstawowe[10]));
+					
 					temp('oTemp',Math.floor(podstawowe[9])); 
 					document.getElementById("otemval").innerHTML=podstawowe[9]+"°C";
 					miarka('water2', podstawowe[11], 60);
@@ -525,13 +510,9 @@ if(flagb=="1") {
     
 					document.getElementById("dewDeg").innerHTML=podstawowe[17];					
 					
-					var cmlA = parseInt(podstawowe[7])+180;
-					if(cmlA>360) cmlA -= 360;
-					var cmlB = parseInt(podstawowe[8])+180;
-					if(cmlB>360) cmlB -= 360;
-					if(cmlA==360) cmlA=0; if(cmlB==360) cmlB=0;
-					document.getElementById("cmL1").innerHTML = cmlA+'°';
-					document.getElementById("cmL2").innerHTML = cmlB +'°';
+
+					document.getElementById("cmL1").innerHTML = podstawowe[7]+'°';
+					document.getElementById("cmL2").innerHTML =  podstawowe[8] +'°';
  
  	  $.ajax({
   type: "POST",
@@ -555,4 +536,22 @@ function podwindclick() {
 pod_kmph = !pod_kmph;
 document.getElementById("flag").innerHTML='1';
 refresh();
+}
+
+function bfwInt_str(bNumb) {
+	switch(bNumb) {
+		case 0: return 'Cisza'; break;
+		case 1: return 'Powiew'; break;
+		case 2: return 'Słaby'; break;
+		case 3: return 'Łagodny'; break;
+		case 4: return 'Umiarkowany'; break;
+		case 5: return 'Dość silny'; break;
+		case 6: return 'Silny'; break;
+		case 7: return 'Bardzo silny'; break;
+		case 8: return 'Sztorm'; break;
+		case 9: return 'Silny sztorm'; break;
+		case 10: return 'Bardzo silny sztorm'; break;
+		case 11: return 'Wczesny huragan'; break;
+		case 12: return 'Huragan'; break;
+	}
 }
