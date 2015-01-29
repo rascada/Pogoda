@@ -234,7 +234,7 @@ echo '<iframe src="getfore.php?wezpogodezwundergrounda=napewno" width="0" height
             <h3>Prognoza - trzydniowa</h3>
             <div id='weatherUndergroundCont'>
                    <span id='weather'>Ładuje...</span>
-                    <img name='forecast' src="http://icons.wxug.com/i/c/k/cloudy.gif"/>
+                    <img name='forecast' />
                    <span id='forecast'>Ładuje...</span>
             </div>    
         </div>
@@ -315,7 +315,8 @@ echo '<iframe src="getfore.php?wezpogodezwundergrounda=napewno" width="0" height
         </div>
 </div>
     
-        <div id='buttonWykresCont' class="ramka bigPanel">
+        <div id='buttonWykresCont' class="ramka bigPanel">            
+            <h3>Menu</h3>
             <a href="graph.html"><button id='buttonWykres'>Wykresy</button></a><!--     
             --><br/><a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>Stacje w okolicy</button></a>
             
