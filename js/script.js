@@ -10,7 +10,7 @@ function stworzMiarkeLicznik(id,licznik){
     var numA = new Array();
 /*
     /* */              /* */
-    /* */              /* */
+    /* */              /* *
         var a= 1;      
         var b= (var) a;
     /* */              /* */
