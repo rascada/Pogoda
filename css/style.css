@@ -383,7 +383,7 @@ footer{
     color: white;
     background: linear-gradient(to bottom left,grey, lightgrey );
     border-radius: 5px;
-    border: 3px double white;    
+    border: 3px double white;     
 }
 
 .compass {
@@ -707,7 +707,6 @@ footer{
   width:50%;
   height:50%;
   border-radius:50%;
-    opacity: .8;
   background:linear-gradient(to bottom left,#fff,transparent);
   
 }

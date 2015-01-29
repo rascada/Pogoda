@@ -48,7 +48,7 @@ $roznicaS[1] = ($czasTeraz[1]*60) - ($czasLast[1]*60);
 $roznicaS[2] = $czasTeraz[2]-$czasLast[2];
 $difSecL = $roznicaS[0]+$roznicaS[1]+$roznicaS[2];
 
-if($difSecL>23600 || $difSecL<0) {
+if($difSecL>23600) {
 echo '<iframe src="getfore.php?wezpogodezwundergrounda=napewno" width="0" height="0" tabindex="-1" title="empty" class="hidden"></iframe>';
 }
 
@@ -390,7 +390,6 @@ echo $dir['date']." ".$dir['time']."|".$dir['atemp']."|".$dir['wilgo']."|".$dir[
 
 
 <div id='hint'>Zmień jednostki</div>
-<div id='hint2'>Zmień jednostki</div>
 
 <script type="application/javascript" src="js/script.js"></script>
 </body>
