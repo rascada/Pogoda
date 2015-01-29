@@ -425,6 +425,20 @@ dzien = document.getElementById("dayrep_k").innerHTML.split("|");
     var tabTime_z = dzien[20].trim().split(":");
     var HourRise = parseInt(tabTime_s[0]);
     var HourSet = parseInt(tabTime_z[0]);
+
+    if(data.getHours() <HourRise || data.getHours() >HourSet){
+        $('#logoSun li').css('background','#57b7df');
+        $('#logoSun li').css('border','.1em solid #57b7df');     
+        document.body.style.background='linear-gradient(#001848 10em,#444 25em)';
+        $('header h1, header h2, header h3').css('box-shadow','.01em .01em .9em #001848');        
+        $('header h1, header h2, header h3').css('border-color','#57b7df');     
+        $('#smileyFaceDarken').css('border-color','#47a7bf');
+        $('#smileyFace').css('background','#57b7df');
+        $('#smileyFaceLighten').css('background','linear-gradient(#87d7ff ,transparent )');
+        $('#smileyFaceCont').css('background','transparent');
+        $('.bigPanel').css('background','#eee');
+        $('#biomet').css('color','#57b7df');
+   }
         }
 
 
