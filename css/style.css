@@ -626,7 +626,7 @@ footer{
     margin-bottom:.5em;
 }
 #forecast{
-    
+    text-align: justify;
 }
 #weatherUndergroundCont img{
     position: absolute;
