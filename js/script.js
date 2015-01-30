@@ -566,5 +566,5 @@ function bfwInt_str(bNumb) {
 	}
 }
 setTimeout(function(){
-    document.body.style.marginTop='-6em';    
+    document.body.style.marginTop='-7.5em';    
 },2000);
