@@ -37,7 +37,7 @@ $queryOst = mysql_query("SELECT strprog FROM prognozy WHERE id='1'");
 $OstAr = mysql_fetch_array($queryOst);
 
 $queryOstDay = mysql_query("SELECT dzientyg FROM prognozy WHERE id='1'");
-$OstArDay = mysql_fetch_array($queryOst);
+$OstArDay = mysql_fetch_array($queryOstDay);
 
 $terazGetf=date("H:i:s");
 $dzisiajGetf = date("Y-m-d");
@@ -45,20 +45,23 @@ $lastLine = $OstAr['strprog'];
 $lastDateAll = $OstArDay['dzientyg'];
 $czasLast = explode(":", $lastLine);
 $czasTeraz = explode(":", $terazGetf);
-$dataTeraz = explode("-", $dzisiajGetf);
-$dataLast = explode("-",$lastDateAll);
+$dataTeraz =(int)date("d");
+$dataLast = explode("-", $lastDateAll);
 
 $czasLast[0] = (int)$czasLast[0]; $czasTeraz[0] = (int)$czasTeraz[0];
 $czasLast[1] = (int)$czasLast[1]; $czasTeraz[1] = (int)$czasTeraz[1];
 $czasLast[2] = (int)$czasLast[2]; $czasTeraz[2] = (int)$czasTeraz[2];
-$dataTeraz[0] = (int)$dataTeraz[0]; $dataLast[0] = (int)$dataLast[0];
+$dataTeraz = (int)$dataTeraz; $dataLast[2] = (int)$dataLast[2];
 
 $roznicaS[0] = ($czasTeraz[0]*3600) - ($czasLast[0]*3600);
 $roznicaS[1] = ($czasTeraz[1]*60) - ($czasLast[1]*60);
 $roznicaS[2] = $czasTeraz[2]-$czasLast[2];
+if($roznicaS[0]<0) $roznicaS[0] *= -1;
+if($roznicaS[1]<0) $roznicaS[1] *= -1;
+if($roznicaS[2]<0) $roznicaS[2] *= -1;
 $difSecL = $roznicaS[0]+$roznicaS[1]+$roznicaS[2];
 
-if($difSecL>10800 || $dataTeraz[0]!=$dataLast[0]) {
+if($difSecL>10800 || $dataTeraz!=$dataLast[2]) {
 echo '<iframe src="getfore.php?wezpogodezwundergrounda=napewno" width="0" height="0" tabindex="-1" title="empty" class="hidden"></iframe>';
 }
 
@@ -255,7 +258,7 @@ echo '<iframe src="gethour.php?weztrzyszesczwundergrounda=napewno" width="0" hei
             <h3>Prognoza - trzydniowa</h3>
             <div id='weatherUndergroundCont'>
                    <span id='weather'>Ładuje...</span>
-                    <img name='forecast' />
+                    <img name='forecast' id="foreIcon"/>
                    <span id='forecast'>Ładuje...</span>
             </div>
 			<div style="width: 100%; text-align: right; position: relative; top: -3.3em; right: 1em;">
