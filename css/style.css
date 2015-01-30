@@ -650,10 +650,10 @@ footer{
 #weather{
     font-size: 1.2em;
     color: #444;
-    margin-bottom:.5em;
 }
 #forecast{
     text-align: justify;
+    border-top: .1em solid #777;
 }
 #foreIcon{
     position: absolute;
@@ -668,7 +668,7 @@ footer{
     justify-content: center;
     align-items: center;  
     max-width: 30vh;
-    margin:1em 2em;
+    margin:.5em 2em;
 }
 #wuIcon{
     position: absolute;
