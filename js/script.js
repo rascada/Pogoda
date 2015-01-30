@@ -396,7 +396,50 @@ function jschangefore(right) {
 				}
 			});
 	}
-} 
+}
+
+function refhourly(type) {
+var tabhourly="";
+
+if(type==0) {
+		$.ajax({
+			type: "POST",
+			url: "session.php",
+			dataType: "html",
+			async: false,
+			data: { gethourlyforecast: "false", },
+			success: function(response) { tabhourly = response.split("|"); }
+		});
+} else if(type==1) {
+		$.ajax({
+			type: "POST",
+			url: "session.php",
+			dataType: "html",
+			async: false,
+			data: { gethourlyforecast: "left", },
+			success: function(response) { tabhourly = response.split("|"); }
+		});
+} else if(type==2) {
+		$.ajax({
+			type: "POST",
+			url: "session.php",
+			dataType: "html",
+			async: false,
+			data: { gethourlyforecast: "right", },
+			success: function(response) { tabhourly = response.split("|"); }
+		});
+}
+			document.images['bigforeimg'].src = tabhourly[10]+'?' + Math.random();
+			document.getElementById("bigforetime").innerHTML=tabhourly[0];
+			document.getElementById("bigforedate").innerHTML=tabhourly[2];
+			document.getElementById("bigforetext").innerHTML=tabhourly[3];
+			document.getElementById("bigforetemp").innerHTML=tabhourly[4]+"°C";
+			document.getElementById("bigforedew").innerHTML=tabhourly[5]+"°C";
+			document.getElementById("bigforewdir").innerHTML=tabhourly[6];
+			document.getElementById("bigforewspd").innerHTML=tabhourly[7]+"km/h";
+			document.getElementById("bigforerain").innerHTML=tabhourly[8]+"mm";
+			document.getElementById("bigforesnow").innerHTML=tabhourly[9]+"cm";
+}  
 
 	
 function refdayrep(auto) {
@@ -408,7 +451,8 @@ function refdayrep(auto) {
 			async: false,
 			data: { changedayrep: "false", },
 			success: function(response) { $("#dayrep_k").html(response); }
-		});
+		});		
+		refhourly(0);
 }
 dzien = document.getElementById("dayrep_k").innerHTML.split("|");
 	

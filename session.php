@@ -9,6 +9,7 @@ mysql_select_db($database);
 $_SESSION['myid'];
 $_SESSION['dziennyto'];
 $_SESSION['foreto'];
+$_SESSION['godzto'];
 if( isset($_POST['log']) ) {
 
 	if($_POST['log']=="in") { 
@@ -22,6 +23,7 @@ if( isset($_POST['log']) ) {
 		$iddzis = mysql_fetch_array($Ziddzis);
 		$_SESSION['dziennyto']=$iddzis['id'];
 		$_SESSION['foreto']='2';
+		$_SESSION['godzto']='2';
 		if((int)date("H")>20) $_SESSION['foreto']='3';
 	} else if($_POST['log']=="out") {
 		$sesid=$_SESSION['myid'];
@@ -31,6 +33,7 @@ if( isset($_POST['log']) ) {
 		$iddzis = mysql_fetch_array($Ziddzis);
 		$_SESSION['dziennyto']=$iddzis['id'];
 		$_SESSION['foreto']='2';
+		$_SESSION['godzto']='2';
 		if((int)date("H")>20) $_SESSION['foreto']='3';
 	} else if($_POST['log']=="ok") {
 		$sesid=$_SESSION['myid'];
@@ -113,6 +116,20 @@ $prognoza = mysql_fetch_array($Qprognozy);
 
 
 echo "<b>".$dat['tempmax']."°C</b> (".$tmpH.") | <b>".$dat['hummax']."%</b> (".$wilH.") | <b>".$dat['pressmax']."hPa</b> (".$cisH.") |".$oth['domdir']."|".$mPow." <b>".$oth['mspeed']."m/s</b>| <b>".$oth['mpowiew']."m/s</b> (".$mPow.") |<b>".$oth['mopad']."</b> (".$mOpa.") |".$wschs."|".$zachs ."|".$dlugdzien."|".$wschk."|".$zachk."|".$blue['moonph']."| <b>".$dat['tempmin']."°C</b> (".$tmpL.") | <b>".$dat['hummin']."%</b> (".$wilL.") |<b>".$dat['pressmin']."hPa</b> (".$cisL.")|".$_SERVER['HTTP_USER_AGENT']."|".$oth['chmury']."|".$dbdata."|".$swit."|".$zmier."|".$prognoza['strprog']."|".$prognoza['dzientyg']."|".$prognoza['imgurl'];
+}
+
+if( isset($_POST['gethourlyforecast']) ) {
+	if($_POST['gethourlyforecast']=="left") {
+		if($_SESSION['godzto']>1) $_SESSION['godzto']--;
+	} else if($_POST['gethourlyforecast']=="right") {
+		if($_SESSION['godzto']<37) $_SESSION['godzto']++;
+	}
+	
+	$hourid = $_SESSION['godzto'];
+	$queryHourly = mysql_query("SELECT * FROM godzinna WHERE id='$hourid'");
+	$godzinna = mysql_fetch_array($queryHourly);
+	$miesrok = date("Y-m-");
+	echo $godzinna['godz'].":00|".$godzinna['dtyg']."|".$miesrok.$godzinna['dmon']."|".$godzinna['napis']."|".$godzinna['temp']."|".$godzinna['dewp']."|".$godzinna['wdir']."|".$godzinna['wspd']."|".$godzinna['rain']."|".$godzinna['snow']."|".$godzinna['imgurl'];
 }	
  
 ?>

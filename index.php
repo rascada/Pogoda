@@ -272,20 +272,20 @@ echo '<iframe src="gethour.php?weztrzyszesczwundergrounda=napewno" width="0" hei
         
         <div class="ramka bigPanel">
             <div class='arrowContainer'>
-                <div id='RRArrow' style='transform: scale(.7)rotate(180deg);' onclick=""><div class='RaportArrow'></div></div>
-                <div id='RLArrow' style='transform: scale(.7);' class="weatherArrowsL" onclick=""><div class='RaportArrow'></div></div>
+                <div id='RRArrow' style='transform: scale(.7)rotate(180deg);' onclick="refhourly(2)"><div class='RaportArrow'></div></div>
+                <div id='RLArrow' style='transform: scale(.7);' class="weatherArrowsL" onclick="refhourly(1)"><div class='RaportArrow'></div></div>
             </div>
             
-            <img />
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+            <img name="bigforeimg"/>
+            <span id="bigforedate"></span>
+            <span id="bigforetime"></span>
+            <span id="bigforetext"></span>
+            <span id="bigforetemp"></span>
+            <span id="bigforedew"></span>
+            <span id="bigforewdir"></span>
+            <span id="bigforewspd"></span>
+            <span id="bigforerain"></span>
+            <span id="bigforesnow"></span>
             
         </div>
         
