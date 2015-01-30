@@ -64,15 +64,18 @@ echo '<iframe src="getfore.php?wezpogodezwundergrounda=napewno" width="0" height
 ?>
 <body>    
     <!------------------------HEADER------------------------------------>
-    <header>      
-        <ul id='logoSun'>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-            <h3>Ostatnia aktualiazacja: <span id="last">Łącze..</span></h3>
-            <h1>Stacja pogodowa Skałągi</h1><br/>            
-            <h2>Szkoła Podstawowa - 51.051290N 18.11788E</h2>  
+    <header>
+        <div id='logo'>
+            <div id="logoSunBox">
+                <ul id='logoSun'>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <h1>Stacja pogodowa Skałągi</h1>      
+            <h3>Ostatnia aktualiazacja: <span id="last">Łącze..</span></h3><br/>
+        </div>      
         <div id='smileyFaceCont' class="ramka bigPanel">
             <div id='smileyFace'>
                 <div id='smileyFaceDarken'></div>
@@ -86,7 +89,7 @@ echo '<iframe src="getfore.php?wezpogodezwundergrounda=napewno" width="0" height
                 <span id='biometOdczyt'>Ładuje..</span>
             </div>
         </div>
-    </header><br/> 
+    </header>
 
 <div id='all'>
 
