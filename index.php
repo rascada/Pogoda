@@ -61,6 +61,15 @@ $difSecL = $roznicaS[0]+$roznicaS[1]+$roznicaS[2];
 if($difSecL>10800 || $dataTeraz[0]!=$dataLast[0]) {
 echo '<iframe src="getfore.php?wezpogodezwundergrounda=napewno" width="0" height="0" tabindex="-1" title="empty" class="hidden"></iframe>';
 }
+
+//*** gethourly ***
+$queryOstH = mysql_query("SELECT wdir FROM godzinna WHERE id='1'");
+$ostHouFetch = mysql_fetch_array($queryOstH); 
+$ostHou = (int)$ostHouFetch['wdir'];
+$nowHou = date("H"); $nowHou = (int)$nowHou; 
+if($nowHou!=$ostHou) {
+echo '<iframe src="gethour.php?weztrzyszesczwundergrounda=napewno" width="0" height="0" tabindex="-1" title="empty" class="hidden"></iframe>';
+}
 ?>
 <body>    
     <!------------------------HEADER------------------------------------>
