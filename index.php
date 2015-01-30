@@ -253,7 +253,7 @@ echo '<iframe src="gethour.php?weztrzyszesczwundergrounda=napewno" width="0" hei
 </div>
 </div>
 <div class='panel' id='panel1'>
-
+    <div>
         <div id='prognoza' class="ramka bigPanel">
             <h3>Prognoza - trzydniowa</h3>
             <div id='weatherUndergroundCont'>
@@ -269,6 +269,28 @@ echo '<iframe src="gethour.php?weztrzyszesczwundergrounda=napewno" width="0" hei
             </div>
 
         </div>
+        
+        <div class="ramka bigPanel">
+            <div class='arrowContainer'>
+                <div id='RRArrow' style='transform: scale(.7)rotate(180deg);' onclick=""><div class='RaportArrow'></div></div>
+                <div id='RLArrow' style='transform: scale(.7);' class="weatherArrowsL" onclick=""><div class='RaportArrow'></div></div>
+            </div>
+            
+            <img />
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            
+        </div>
+        
+        
+    </div>
 <div id='raportDniaRamka' class="ramka bigPanel">
     <div class='arrowContainer'>
         <div id='RRArrow' onclick="jschangeday(true)"><div class='RaportArrow'></div></div>
