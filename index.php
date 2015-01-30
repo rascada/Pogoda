@@ -35,23 +35,32 @@ $myid = $_SESSION['myid'];
 //*** getfore ***
 $queryOst = mysql_query("SELECT strprog FROM prognozy WHERE id='1'");
 $OstAr = mysql_fetch_array($queryOst);
-$lastLine = $OstAr['strprog'];
+
+$queryOstDay = mysql_query("SELECT dzientyg FROM prognozy WHERE id='1'");
+$OstArDay = mysql_fetch_array($queryOst);
+
 $terazGetf=date("H:i:s");
+$dzisiajGetf = date("Y-m-d");
+$lastLine = $OstAr['strprog'];
+$lastDateAll = $OstArDay['dzientyg'];
 $czasLast = explode(":", trim($lastLine));
 $czasTeraz = explode(":", $terazGetf);
+$dataTeraz = explode("-", $dzisiajGetf);
+$dataLast = explode("-",trim($lastDateAll));
+
 $czasLast[0] = (int)$czasLast[0]; $czasTeraz[0] = (int)$czasTeraz[0];
 $czasLast[1] = (int)$czasLast[1]; $czasTeraz[1] = (int)$czasTeraz[1];
 $czasLast[2] = (int)$czasLast[2]; $czasTeraz[2] = (int)$czasTeraz[2];
+$dataTeraz[0] = (int)$dataTeraz[0]; $dataLast[0] = (int)$dataLast[0];
 
 $roznicaS[0] = ($czasTeraz[0]*3600) - ($czasLast[0]*3600);
 $roznicaS[1] = ($czasTeraz[1]*60) - ($czasLast[1]*60);
 $roznicaS[2] = $czasTeraz[2]-$czasLast[2];
 $difSecL = $roznicaS[0]+$roznicaS[1]+$roznicaS[2];
 
-if($difSecL>23600) {
+if($difSecL>10800 || $dataTeraz[0]!=$dataLast[0]) {
 echo '<iframe src="getfore.php?wezpogodezwundergrounda=napewno" width="0" height="0" tabindex="-1" title="empty" class="hidden"></iframe>';
 }
-
 ?>
 <body>    
     <!------------------------HEADER------------------------------------>
@@ -379,7 +388,7 @@ $logged = mysql_num_rows($Zlogged);
 
 
 if($ostSec>$nowSec-460) $online="<span style='color: darkgreen;'>Stacja jest online!</span>";
-echo $dir['date']." ".$dir['time']."|".$dir['atemp']."|".$dir['wilgo']."|".$dir['cisnie']."|".$dir['srtemp']."|".$dir['podmuch']."|".$dir['swind']."|".$dir['dirwind']."|".$dir['domdirwind']."|".$dir['otemp']."|".$dir['bfw']."|".$dir['dobopad']."|".$dir['deszcz']."|".$dir['tencisn']."  ".$dir['tencisnval']."hPa/h |".$dir['tentemp']." ".$dir['tentempval']."°C/h |".$dir['progno']."|".$dir['zamb']."|".$dir['dew']."°C"."|".$iledzis."|".$online."|".$logged."|".$dir['biomet'];
+echo $dir['date']." ".$dir['time']."|".$dir['atemp']."|".$dir['wilgo']."|".$dir['cisnie']."|".$dir['srtemp']."|".$dir['podmuch']."|".$dir['swind']."|".$dir['dirwind']."|".$dir['domdirwind']."|".$dir['otemp']."|".$dir['bfw']."|".$dir['dobopad']."|".$dir['deszcz']."|".$dir['tencisn']."  ".$dir['tencisnval']."hPa/h |".$dir['tentemp']." ".$dir['tentempval']."°C/h |NULL|NULL|".$dir['dew']."°C"."|".$iledzis."|".$online."|".$logged."|".$dir['biomet'];
 ?>
 </div>
 </div>
