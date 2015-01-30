@@ -248,13 +248,19 @@ echo '<iframe src="getfore.php?wezpogodezwundergrounda=napewno" width="0" height
                    <span id='weather'>Ładuje...</span>
                     <img name='forecast' id='foreIcon' />
                    <span id='forecast'>Ładuje...</span>
-			         <a href="http://www.wunderground.com/personal-weather-station/dashboard?ID=IOPOLSKI10" target="_blank"><img id='wuIcon' src="img/wu.png"/></a>
+			         <a href="http://www.wunderground.com/personal-weather-station/dashboard?ID=IOPOLSKI10" target="_blank"><img id='wuIcon' src="img/wu.png"/></a>        
+            <div class='arrowContainer'>
+                <div id='RRArrow' style='transform: scale(.7)rotate(180deg);' onclick=""><div class='RaportArrow'></div></div>
+                <div id='RLArrow' style='transform: scale(.7);' class="weatherArrowsL" onclick=""><div class='RaportArrow'></div></div>
             </div>
+            </div>
+
         </div>
 <div id='raportDniaRamka' class="ramka bigPanel">
-	<div id='RRArrow' onclick="jschangeday(true)"><div class='RaportArrow'></div></div>
-    <div id='RLArrow' onclick="jschangeday(false)"><div class='RaportArrow'></div></div>
-
+    <div class='arrowContainer'>
+        <div id='RRArrow' onclick="jschangeday(true)"><div class='RaportArrow'></div></div>
+        <div id='RLArrow' onclick="jschangeday(false)"><div class='RaportArrow'></div></div>
+    </div>
     <h3>Raport dnia - <span id="daydate">Ładuje...</span></h3>
         <div id='raportDnia'>  
             <div id='raportDniaA'>

@@ -425,7 +425,7 @@ dzien = document.getElementById("dayrep_k").innerHTML.split("|");
     var tabTime_z = dzien[20].trim().split(":");
     var HourRise = parseInt(tabTime_s[0]);
     var HourSet = parseInt(tabTime_z[0]);
-
+/*
     if(data.getHours() <HourRise || data.getHours() >HourSet){
         $('#logoSun li').css('background','#57b7df');
         $('#logoSun li').css('border','.1em solid #57b7df');     
@@ -438,7 +438,7 @@ dzien = document.getElementById("dayrep_k").innerHTML.split("|");
         $('#smileyFaceCont').css('background','transparent');
         $('.bigPanel').css('background','#eee');
         $('#biomet').css('color','#57b7df');
-   }
+   }*/
         }
 
 

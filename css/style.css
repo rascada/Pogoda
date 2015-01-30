@@ -122,55 +122,83 @@ body{
 .RaportArrow, .RaportArrow:before{
     position: absolute;
     width: .2em;
-    background: #fff;    
+    background: #777;    
     transition: all 1s ease;
 }
-
+.arrowContainer{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top:50%;
+    margin-top: -1em;
+    
+}
 .RaportArrow{
-    top:3%;
     height: 1em;
-    left: 41%;
-    transform: rotate(45deg);  
+    left: 50%;
+    transform:skew(145deg);
+    transition: all .2s ease;
 }
 .RaportArrow:before{
     content: '';
-    height: 100%;
-    top:.5em;
-    left: .5em;
-    transform: rotate(90deg);      
+    height: 1em;
+    top:100%;
+    left: 350%;      
+    transform: skew(55deg);
+    transition: all .2s ease;
 }
-#RLArrow,#RRArrow {    
-    position: absolute;
+#RLArrow,#RRArrow {  
+    overflow: hidden;
+    position: relative;
     width: 2em;
     height: 2em;
     border-radius: 50%;
-    background: #aaa;
-    opacity: .3;
+    background: transparent;
+    opacity: .7;
     cursor: pointer;
-    top: 45%;
-    left: 0;    
-    transition: all .2s ease;
-    box-shadow: 0 0 1em #111;
+    transition: all .2s ease;}
+
+#RLArrow:hover{  
+    background: #ddd;
+    transform: scale(1.25);
+}#RRArrow:hover {  
+    background: #ddd;
+    transform: scale(1.25) rotate(180deg);}
+#RLArrow:active{  
+    background: #ccc;
+    transform: scale(.9);
+}#RRArrow:active {  
+    background: #ccc;
+    transform: scale(.9) rotate(180deg);}
+
+#RLArrow:hover .RaportArrow{
+    left:50%;    
+    transform: skew(135deg);
 }
-#RLArrow:hover{
-    box-shadow: 0 0 .5em  #111;    
-    transform: scale(.95);
-}#RRArrow:hover {
-    box-shadow: 0 0 .5em  #111;    
-    transform: scale(.95) rotate(180deg);    
-}
-#RRArrow {
-    top: 44.5%;
-    left: 94%;
-    transform: rotate(180deg);
-}
-#dew h3{
-    text-align: center;  
+#RLArrow:hover .RaportArrow:before{
+    left:550%;    
+    transform: skew(65deg);
 }
 
-#dew{ 
-    background: linear-gradient(to bottom left,lightblue, #00e0ff );     
+#RRArrow:hover .RaportArrow{
+    left:50%;    
+    transform:skew(135deg);
 }
+#RRArrow:hover .RaportArrow:before{
+    left:550%;    
+    transform: skew(65deg);
+}
+    
+#RLArrow{
+    position: absolute;
+    left: .25em;}
+#RRArrow {
+    position: absolute;
+    right: .25em;
+    transform:rotate(180deg)}
+
+#dew h3{text-align: center;}
+#dew{background: linear-gradient(to bottom left,lightblue, #00e0ff );}
 #tempPanel h1{background: linear-gradient(to bottom left,#F44, #E40 );margin-bottom: -.6em;}
 #tempPanel h3{background: linear-gradient(to bottom left,#F44, #E40 );}
 #windPanel h1{background: linear-gradient(to bottom left,grey, lightgrey);}
