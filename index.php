@@ -258,11 +258,8 @@ echo '<iframe src="gethour.php?weztrzyszesczwundergrounda=napewno" width="0" hei
             <h3>Prognoza - trzydniowa</h3>
             <div id='weatherUndergroundCont'>
                    <span id='weather'>Ładuje...</span>
-<<<<<<< HEAD
                     <img name='forecast' id='foreIcon' />
-=======
                     <img name='forecast' id="foreIcon"/>
->>>>>>> origin/master
                    <span id='forecast'>Ładuje...</span>
 			         <a href="http://www.wunderground.com/personal-weather-station/dashboard?ID=IOPOLSKI10" target="_blank"><img id='wuIcon' src="img/wu.png"/></a>        
             <div class='arrowContainer'>
