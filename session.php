@@ -120,7 +120,7 @@ echo "<b>".$dat['tempmax']."°C</b> (".$tmpH.") | <b>".$dat['hummax']."%</b> (".
 
 if( isset($_POST['gethourlyforecast']) ) {
 	if($_POST['gethourlyforecast']=="left") {
-		if($_SESSION['godzto']>1) $_SESSION['godzto']--;
+		if($_SESSION['godzto']>2) $_SESSION['godzto']--;
 	} else if($_POST['gethourlyforecast']=="right") {
 		if($_SESSION['godzto']<37) $_SESSION['godzto']++;
 	}
