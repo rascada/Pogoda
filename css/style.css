@@ -654,6 +654,8 @@ footer{
     top:0;
     right:33%;
     background: none;
+    border-color: #fff;
+    border-width: .3em;
 }
 #smileyFace{
     font-size:.8em;
@@ -752,7 +754,7 @@ footer{
 #biometOdczyt{
     position: relative;
     display: block;
-    color:#444;
+    color:#000;
     margin-top: 80%;
     font-size:1.15em;
     font-weight: 600;
@@ -761,7 +763,7 @@ footer{
     position: absolute;
     left: 0;
     width: 100%;
-    background: linear-gradient(to left,#444,#555);
+    background: linear-gradient(to left,#444,#777);
     display: inline-block;
     margin-top: -2em;
     font-size:1.5em;
