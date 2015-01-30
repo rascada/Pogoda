@@ -668,11 +668,13 @@ footer{
   background-color:white;
   margin:0.3em 0;
 }
-/**************LUDEK********************************************/
 #prognoza{
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+#prognoza h3{
+    padding-right: 3em;
 }
 
 #weather{
@@ -681,7 +683,7 @@ footer{
 }
 #forecast{
     text-align: justify;
-    border-top: .1em solid #777;
+    border-top: .3em double #777;
 }
 #foreIcon{
     position: absolute;
@@ -707,6 +709,64 @@ footer{
 #prognoza .grey{ 
     width: 100%;
 }
+
+#fore36Cont h3{
+    padding-right: 3em;
+}
+#fore36Cont {
+    padding-bottom: .5em;
+}
+
+#bigforeimg{
+    position: absolute;
+    right: .5em;
+    top:0;
+}
+#bigforetime{
+    display: block;
+    font-size: 1.4em;
+}
+#bigforedate{
+    position: relative;
+    margin-top: -.5em;
+    font-size: .9em;
+    border-top: .1em solid #444;
+}
+.fore36Heading{
+    padding-bottom: .5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;   
+    margin-bottom: -1em;
+}
+.fore36Data{
+    border-top: .3em double #444;
+    margin: .5em 2em;
+    
+}
+.fore36Text:nth-child(1){
+    display: block;    
+}
+.fore36Text:nth-child(2){
+}
+.fore36Text:nth-child(3){
+}
+.fore36Text:nth-child(4){
+    display: block;    
+}
+.fore36Text:nth-child(5){
+}
+.fore36Text:nth-child(6){
+}
+#bigforetext{}
+#bigforetemp{}
+#bigforedew{}
+#bigforewdir{}
+#bigforewspd{}
+#bigforerain{}
+#bigforesnow{}
+/**************LUDEK********************************************/
 #smileyFaceCont{
     position: absolute;
     top:-3em;
@@ -716,6 +776,7 @@ footer{
     border-width: .3em;
     transform: scale(.7);
 }
+
 #smileyFace{
     font-size:.8em;
     positon:absolute;

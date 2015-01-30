@@ -259,7 +259,6 @@ echo '<iframe src="gethour.php?weztrzyszesczwundergrounda=napewno" width="0" hei
             <div id='weatherUndergroundCont'>
                    <span id='weather'>Ładuje...</span>
                     <img name='forecast' id='foreIcon' />
-                    <img name='forecast' id="foreIcon"/>
                    <span id='forecast'>Ładuje...</span>
 			         <a href="http://www.wunderground.com/personal-weather-station/dashboard?ID=IOPOLSKI10" target="_blank"><img id='wuIcon' src="img/wu.png"/></a>        
             <div class='arrowContainer'>
@@ -270,23 +269,27 @@ echo '<iframe src="gethour.php?weztrzyszesczwundergrounda=napewno" width="0" hei
 
         </div>
         
-        <div class="ramka bigPanel">
-            <div class='arrowContainer'>
-                <div id='RRArrow' style='transform: scale(.7)rotate(180deg);' onclick="refhourly(2)"><div class='RaportArrow'></div></div>
-                <div id='RLArrow' style='transform: scale(.7);' class="weatherArrowsL" onclick="refhourly(1)"><div class='RaportArrow'></div></div>
+        <div id='fore36Cont'class="ramka bigPanel ">
+            <h3>Prognoza - 36 godzinna</h3>
+            
+            <img id='bigforeimg' name="bigforeimg"/>
+            <div class="fore36Heading">
+                <div class='arrowContainer'>
+                    <div id='RRArrow' style='transform: scale(.7)rotate(180deg);' onclick="refhourly(2)"><div class='RaportArrow'></div></div>
+                    <div id='RLArrow' style='transform: scale(.7);' class="weatherArrowsL" onclick="refhourly(1)"><div class='RaportArrow'></div></div>
+                </div>
+                <span id="bigforetime"></span>
+                <span id="bigforedate"></span>
             </div>
-            
-            <img name="bigforeimg"/>
-            <span id="bigforedate"></span>
-            <span id="bigforetime"></span>
-            <span id="bigforetext"></span>
-            <span id="bigforetemp"></span>
-            <span id="bigforedew"></span>
-            <span id="bigforewdir"></span>
-            <span id="bigforewspd"></span>
-            <span id="bigforerain"></span>
-            <span id="bigforesnow"></span>
-            
+            <div class="fore36Data">
+                <span class="fore36Text" id="bigforetext"></span>
+                <span class="fore36Text">Temp: <span id="bigforetemp"></span></span>
+                <span class="fore36Text">Pkt. rosy: <span id="bigforedew"></span></span>
+                <span class="fore36Text">Wiatr: <span id="bigforewdir"></span>
+                <span id="bigforewspd"></span></span>
+                <span class="fore36Text">Deszcz: <span id="bigforerain"></span></span>
+                <span class="fore36Text">Śnieg: <span id="bigforesnow"></span></span>
+            </div>
         </div>
         
         
