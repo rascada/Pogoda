@@ -655,7 +655,7 @@ footer{
 #forecast{
     text-align: justify;
 }
-#weatherUndergroundCont img{
+#foreIcon{
     position: absolute;
     top:0;
     right:.5em;
@@ -669,6 +669,12 @@ footer{
     align-items: center;  
     max-width: 30vh;
     margin:1em 2em;
+}
+#wuIcon{
+    position: absolute;
+    right: .5em;
+    bottom: .5em;
+    width: 2em;
 }
 #prognoza .grey{ 
     width: 100%;

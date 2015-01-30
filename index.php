@@ -246,12 +246,10 @@ echo '<iframe src="getfore.php?wezpogodezwundergrounda=napewno" width="0" height
             <h3>Prognoza - trzydniowa</h3>
             <div id='weatherUndergroundCont'>
                    <span id='weather'>Ładuje...</span>
-                    <img name='forecast' />
+                    <img name='forecast' id='foreIcon' />
                    <span id='forecast'>Ładuje...</span>
+			         <a href="http://www.wunderground.com/personal-weather-station/dashboard?ID=IOPOLSKI10" target="_blank"><img id='wuIcon' src="img/wu.png"/></a>
             </div>
-			<div style="width: 100%; text-align: right; position: relative; top: -3.3em; right: 1em;">
-			 <a href="http://www.wunderground.com/personal-weather-station/dashboard?ID=IOPOLSKI10" target="_blank"><img src="img/wu.png" style="top: 10em;" width="52px" /></a>
-			</div>
         </div>
 <div id='raportDniaRamka' class="ramka bigPanel">
 	<div id='RRArrow' onclick="jschangeday(true)"><div class='RaportArrow'></div></div>
