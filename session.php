@@ -39,7 +39,7 @@ if( isset($_POST['log']) ) {
 }
 
 
-if( isset($_POST['changedayrep']) ) {
+if( isset($_POST['changedayrep']) || isset($_POST['changeforecast']) ) {
 	
 	if($_POST['changedayrep']=="left") {
 		if((int)$_SESSION['dziennyto']>1) $_SESSION['dziennyto']--;
@@ -55,6 +55,12 @@ if( isset($_POST['changedayrep']) ) {
 	
 	if($_SESSION['dziennyto']==4) $_SESSION['dziennyto']=5;
 	
+	}
+	
+	if($_POST['changeforecast']=="left") {
+		if((int)$_SESSION['foreto']>2) $_SESSION['foreto']--;
+	} else if($_POST['changeforecast']=="right") {
+		if($_SESSION['foreto'] < 9) $_SESSION['foreto']++;
 	}
 
 $dziennytolocal = $_SESSION['dziennyto'];

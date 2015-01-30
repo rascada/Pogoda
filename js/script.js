@@ -368,6 +368,34 @@ function jschangeday(day) {
 		});
 	}
 
+}
+
+function jschangefore(right) {
+	if(right) {
+		$.ajax({
+				type: "POST",
+				url: "session.php",
+				dataType: "html",
+				async: false,
+				data: { changeforecast: "right", },
+				success: function(response){                    
+					$("#dayrep_k").html(response); 
+					refdayrep(true);
+				}
+			});
+	} else {
+		$.ajax({
+				type: "POST",
+				url: "session.php",
+				dataType: "html",
+				async: false,
+				data: { changeforecast: "left", },
+				success: function(response){                    
+					$("#dayrep_k").html(response); 
+					refdayrep(true);
+				}
+			});
+	}
 } 
 
 	

@@ -263,8 +263,8 @@ echo '<iframe src="gethour.php?weztrzyszesczwundergrounda=napewno" width="0" hei
                    <span id='forecast'>Ładuje...</span>
 			         <a href="http://www.wunderground.com/personal-weather-station/dashboard?ID=IOPOLSKI10" target="_blank"><img id='wuIcon' src="img/wu.png"/></a>        
             <div class='arrowContainer'>
-                <div id='RRArrow' style='transform: scale(.7)rotate(180deg);' onclick=""><div class='RaportArrow'></div></div>
-                <div id='RLArrow' style='transform: scale(.7);' class="weatherArrowsL" onclick=""><div class='RaportArrow'></div></div>
+                <div id='RRArrow' style='transform: scale(.7)rotate(180deg);' onclick="jschangefore(true)"><div class='RaportArrow'></div></div>
+                <div id='RLArrow' style='transform: scale(.7);' class="weatherArrowsL" onclick="jschangefore(false)"><div class='RaportArrow'></div></div>
             </div>
             </div>
 
