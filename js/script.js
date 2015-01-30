@@ -431,7 +431,7 @@ if(type==0) {
 }
 			document.images['bigforeimg'].src = tabhourly[10]+'?' + Math.random();
 			document.getElementById("bigforetime").innerHTML=tabhourly[0];
-			document.getElementById("bigforedate").innerHTML=tabhourly[2];
+			document.getElementById("bigforedate").innerHTML=tabhourly[1]+" "+tabhourly[2];
 			document.getElementById("bigforetext").innerHTML=tabhourly[3];
 			document.getElementById("bigforetemp").innerHTML=tabhourly[4]+"°C";
 			document.getElementById("bigforedew").innerHTML=tabhourly[5]+"°C";
@@ -552,26 +552,26 @@ if(flagb=="1") {
 				else { document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+podstawowe[6]+"m/s"; wind(1, podstawowe[6]); }
                     compass(1, cmlA); 
 					var jaki=" ";
-					if(podstawowe[7]<20 || podstawowe[7]>=315) jaki="od północy";
-					else if(podstawowe[7]>=20 && podstawowe[7]<70) jaki="od północnego wschodu";
-					else if(podstawowe[7]>=70 && podstawowe[7]<110) jaki="od wschodu";
-					else if(podstawowe[7]>=110 && podstawowe[7]<160) jaki="od południowego wschodu";
-					else if(podstawowe[7]>=160 && podstawowe[7]<215) jaki="od południa";
-					else if(podstawowe[7]>=215 && podstawowe[7]<240) jaki="od południowego zachodu"
-					else if(podstawowe[7]>=240 && podstawowe[7]<285) jaki="od zachodu";
-					else if(podstawowe[7]>=285 && podstawowe[7]<315) jaki="od północnego zachodu";
+					if(podstawowe[7]<20 || podstawowe[7]>=315) jaki="z północy";
+					else if(podstawowe[7]>=20 && podstawowe[7]<70) jaki="z północnego wschodu";
+					else if(podstawowe[7]>=70 && podstawowe[7]<110) jaki="ze wschodu";
+					else if(podstawowe[7]>=110 && podstawowe[7]<160) jaki="z południowego wschodu";
+					else if(podstawowe[7]>=160 && podstawowe[7]<215) jaki="z południa";
+					else if(podstawowe[7]>=215 && podstawowe[7]<240) jaki="z południowego zachodu"
+					else if(podstawowe[7]>=240 && podstawowe[7]<285) jaki="z zachodu";
+					else if(podstawowe[7]>=285 && podstawowe[7]<315) jaki="z północnego zachodu";
 				
 					document.getElementById("aktDirVal").innerHTML="Akualny: <br/>"+jaki;
 					compass(2, cmlB);
 					var jaki_=" ";
-					if(podstawowe[8]<20 || podstawowe[8]>=315) jaki_="od północy";
-					else if(podstawowe[8]>=20 && podstawowe[8]<70) jaki_="od północnego wschodu";
-					else if(podstawowe[8]>=70 && podstawowe[8]<110) jaki_="od wschodu";
-					else if(podstawowe[8]>=110 && podstawowe[8]<160) jaki_="od południowego wschodu";
-					else if(podstawowe[8]>=160 && podstawowe[8]<215) jaki_="od południa";
-					else if(podstawowe[8]>=215 && podstawowe[8]<240) jaki_="od południowego zachodu"
-					else if(podstawowe[8]>=240 && podstawowe[8]<285) jaki_="od zachodu";
-					else if(podstawowe[8]>=285 && podstawowe[8]<315) jaki_="od północnego zachodu";
+					if(podstawowe[8]<20 || podstawowe[8]>=315) jaki_="z północy";
+					else if(podstawowe[8]>=20 && podstawowe[8]<70) jaki_="z północnego wschodu";
+					else if(podstawowe[8]>=70 && podstawowe[8]<110) jaki_="ze wschodu";
+					else if(podstawowe[8]>=110 && podstawowe[8]<160) jaki_="z południowego wschodu";
+					else if(podstawowe[8]>=160 && podstawowe[8]<215) jaki_="z południa";
+					else if(podstawowe[8]>=215 && podstawowe[8]<240) jaki_="z południowego zachodu"
+					else if(podstawowe[8]>=240 && podstawowe[8]<285) jaki_="z zachodu";
+					else if(podstawowe[8]>=285 && podstawowe[8]<315) jaki_="z północnego zachodu";
 					document.getElementById("domDirVal").innerHTML="Dominujący: <br/>"+jaki_;
 					
 					document.getElementById("windBfw").innerHTML="Wiatr: "+bfwInt_str(parseInt(podstawowe[10]));
