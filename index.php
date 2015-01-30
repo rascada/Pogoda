@@ -43,10 +43,10 @@ $terazGetf=date("H:i:s");
 $dzisiajGetf = date("Y-m-d");
 $lastLine = $OstAr['strprog'];
 $lastDateAll = $OstArDay['dzientyg'];
-$czasLast = explode(":", trim($lastLine));
+$czasLast = explode(":", $lastLine);
 $czasTeraz = explode(":", $terazGetf);
 $dataTeraz = explode("-", $dzisiajGetf);
-$dataLast = explode("-",trim($lastDateAll));
+$dataLast = explode("-",$lastDateAll);
 
 $czasLast[0] = (int)$czasLast[0]; $czasTeraz[0] = (int)$czasTeraz[0];
 $czasLast[1] = (int)$czasLast[1]; $czasTeraz[1] = (int)$czasTeraz[1];
