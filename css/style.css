@@ -676,7 +676,7 @@ footer{
   margin:0.3em 0;
 }
 #allFore{
-    max-width: 30%;
+    max-width: 25%;
 }
 #prognoza{
     display: flex;
@@ -698,7 +698,7 @@ footer{
     color: #444;
 }
 #forecast{
-    text-align: justify;
+    text-align: left;
     border-top: .3em double #777;
 }
 #foreIcon{
@@ -708,7 +708,7 @@ footer{
 }
 
 #weatherUndergroundCont{
-    text-align: justify;
+    text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: center;
