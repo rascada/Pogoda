@@ -253,7 +253,7 @@ echo '<iframe src="gethour.php?weztrzyszesczwundergrounda=napewno" width="0" hei
 </div>
 </div>
 <div class='panel' id='panel1'>
-    <div>
+    <div id='allFore'>
         <div id='prognoza' class="ramka bigPanel">
             <h3>Prognoza - trzydniowa</h3>
             <div id='weatherUndergroundCont'>

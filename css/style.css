@@ -675,10 +675,18 @@ footer{
   background-color:white;
   margin:0.3em 0;
 }
+#allFore{
+    max-width: 30%;
+}
 #prognoza{
     display: flex;
     justify-content: center;
     flex-direction: column;
+    width: 100%;
+}
+#fore36Cont {
+    padding-bottom: .5em;
+    width: 100%;
 }
 #prognoza h3{
     color: #444;
@@ -721,9 +729,6 @@ footer{
 #fore36Cont h3{
     padding-right: 3em;
     color: #444;
-}
-#fore36Cont {
-    padding-bottom: .5em;
 }
 
 #bigforeimg{
