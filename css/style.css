@@ -22,8 +22,10 @@ body{
     
 }
 .grey{
-    background-color: #eee;   
-    border-bottom: .25em solid #fff;
+    color: #eee;
+    background:rgba(0,0,0,0.4);;   
+    margin-bottom: .5em;
+    border-radius:.1em;
 }
 .minMaxBG{
     display: flex;
@@ -85,7 +87,7 @@ body{
     font-size: 1.2em;
     position: relative;
     border-bottom: .2em double #ddd;
-    color: #777;   
+    color: #eee;   
     text-align: left;
     z-index: 2;
 }
@@ -93,6 +95,9 @@ body{
 #raportDniaRamka{
     min-width: 52vw;
     flex-grow: none;
+    background-image: url("../../img/zima.jpg");
+    background-size: cover;
+    
 }
 
 #raportDnia{
@@ -105,7 +110,8 @@ body{
 }
 
 #raportDniaA{
-    padding:0 1em;    
+    padding:0 1em;   
+    background: none;
 }
 #moon{
     margin-top: -.1em;
@@ -212,6 +218,7 @@ body{
     text-align: center;    
 }
 #buttonWykresCont h3{
+    color: #444;
     margin-left: 1em;
     margin-bottom: 1em;
 }
@@ -674,6 +681,7 @@ footer{
     flex-direction: column;
 }
 #prognoza h3{
+    color: #444;
     padding-right: 3em;
 }
 
@@ -712,6 +720,7 @@ footer{
 
 #fore36Cont h3{
     padding-right: 3em;
+    color: #444;
 }
 #fore36Cont {
     padding-bottom: .5em;
