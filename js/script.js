@@ -266,7 +266,7 @@ var ak_kmph=false;
 var pod_kmph = false;
 var podstawowe = new Array();
 var dzien = new Array();
-
+var flagb;
 /*
 podstawowe: 
 0 - [data] [czas]
@@ -513,9 +513,17 @@ function refdayrep(auto) {
 
 
 function refresh() {
-$('#busy').load(location.href + ' #flag');
-var flagb = document.getElementById("flag").innerHTML.trim();
-if(flagb=="1") {
+var flag='0';
+	$.ajax({
+		type: "POST",
+		url: "session.php",
+		dataType: "html",
+		async: false,
+		data: { wezpodstawowe: "busyflag", },
+		success: function(response) { flag = response.trim(); }
+	});
+
+if(flag=="1" || flagb=="1") {
 	$.ajax({
 		type: "POST",
 		url: "session.php",
@@ -598,12 +606,14 @@ if(flagb=="1") {
 					document.getElementById("cmL1").innerHTML = podstawowe[7]+'°';
 					document.getElementById("cmL2").innerHTML =  podstawowe[8] +'°';
  
- 	  $.ajax({
-  type: "POST",
-  url: "session.php",
-  data: { log: "ok", }
-});
-		
+if(flag=="1") {
+	$.ajax({
+	  type: "POST",
+	  url: "session.php",
+	  data: { log: "ok", }
+	});
+} 
+if(flagb=="1") flagb="0";		
 }
 
 
@@ -611,14 +621,12 @@ if(flagb=="1") {
 
 	
 function aktwindclick() {
-ak_kmph = !ak_kmph;
-document.getElementById("flag").innerHTML='1';
+ak_kmph = !ak_kmph; flagb='1';
 refresh();
 }
 
 function podwindclick() {
-pod_kmph = !pod_kmph;
-document.getElementById("flag").innerHTML='1';
+pod_kmph = !pod_kmph; flagb='1';
 refresh();
 }
 

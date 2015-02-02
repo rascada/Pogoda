@@ -385,15 +385,6 @@ echo '<iframe src="gethour.php?weztrzyszesczwundergrounda=napewno" width="0" hei
 <!--all-->
 </div>
 
-<!--------------------------------------------------niewidzialne divy-------------------------->
-<div id="busy" style="z-index: -10; position: absolute; visibility: hidden;">
-<div id="flag">
-<?php
-$Zbusy = mysql_query("SELECT busy FROM sesje WHERE id='$myid'");
-$flag = mysql_fetch_array($Zbusy);
-echo $flag['busy'];
-?>
-</div></div>
 <div id='hint'>Zmień jednostki</div>
 
 <script type="application/javascript" src="js/script.js"></script>
