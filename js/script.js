@@ -350,7 +350,7 @@ function jschangeday(day) {
 			async: false,
 			data: { changedayrep: "right", },
 			success: function(response){                    
-				$("#dayrep_k").html(response); 
+				dzien = response.split("|"); 
 				refdayrep(true);
 			}
 		});
@@ -362,7 +362,7 @@ function jschangeday(day) {
 			async: false,
 			data: { changedayrep: "left", },
 			success: function(response){                    
-				$("#dayrep_k").html(response); 
+				dzien = response.split("|"); 
 				refdayrep(true);
 			}
 		});
@@ -379,7 +379,7 @@ function jschangefore(right) {
 				async: false,
 				data: { changeforecast: "right", },
 				success: function(response){                    
-					$("#dayrep_k").html(response); 
+					dzien = response.split("|"); 
 					refdayrep(true);
 				}
 			});
@@ -391,7 +391,7 @@ function jschangefore(right) {
 				async: false,
 				data: { changeforecast: "left", },
 				success: function(response){                    
-					$("#dayrep_k").html(response); 
+					dzien = response.split("|");  
 					refdayrep(true);
 				}
 			});
@@ -450,12 +450,10 @@ function refdayrep(auto) {
 			dataType: "html",
 			async: false,
 			data: { changedayrep: "false", },
-			success: function(response) { $("#dayrep_k").html(response); }
+			success: function(response) { dzien = response.split("|"); }
 		});		
 		refhourly(0);
 }
-dzien = document.getElementById("dayrep_k").innerHTML.split("|");
-	
 		document.getElementById("daydate").innerHTML=dzien[18];
 		document.getElementById("sunWsch").innerHTML=dzien[7];
 		document.getElementById("sunBrz").innerHTML=dzien[19];
@@ -518,10 +516,14 @@ function refresh() {
 $('#busy').load(location.href + ' #flag');
 var flagb = document.getElementById("flag").innerHTML.trim();
 if(flagb=="1") {
-	$('#podstawowe_p').load(location.href + ' #podstawowe_k');
-
-	var podst = document.getElementById("podstawowe_k").innerHTML;
-	podstawowe = podst.split("|");
+	$.ajax({
+		type: "POST",
+		url: "session.php",
+		dataType: "html",
+		async: false,
+		data: { wezpodstawowe: "nml", },
+		success: function(response) { podstawowe = response.split("|"); }
+	});	
 	
 	var akmph = Math.floor( ((3600*podstawowe[6])/1000) * 100)/100;
 	var pkmph = Math.floor( ((3600*podstawowe[5])/1000) * 100)/100;    
@@ -619,6 +621,7 @@ pod_kmph = !pod_kmph;
 document.getElementById("flag").innerHTML='1';
 refresh();
 }
+
 
 function bfwInt_str(bNumb) {
 	switch(bNumb) {

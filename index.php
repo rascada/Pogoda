@@ -269,7 +269,7 @@ echo '<iframe src="gethour.php?weztrzyszesczwundergrounda=napewno" width="0" hei
 
         </div>
         
-        <div id='fore36Cont'class="ramka bigPanel ">
+        <div id='fore36Cont'class="ramka bigPanel">
             <h3>Prognoza - 36 godzinna</h3>
             
             <img id='bigforeimg' name="bigforeimg"/>
@@ -394,56 +394,6 @@ $flag = mysql_fetch_array($Zbusy);
 echo $flag['busy'];
 ?>
 </div></div>
-<div id="podstawowe_p" style="z-index: -10; position: absolute; visibility: hidden;">
-<div id="podstawowe_k">
-<?php
-$dzisiaj = date("Y-m-d");
-$zILE = mysql_query("SELECT id FROM podstawowe WHERE date='$dzisiaj'");
-$iledzis = mysql_num_rows($zILE);
-
-$dzisSec = $iledzis*300;
-$dzisH = (int)($dzisSec/3600);
-$dzisM = (int)($dzisSec-$dzisH*3600)/60;
-$dzisS = (int)($dzisSec-$dzisH*3600-$dzisM*60);
-if($dzisH<10) $dzisH = '0'.$dzisH;
-if($dzisM<10) $dzisM = '0'.$dzisM;
-if($dzisS<10) $dzisS = '0'.$dzisS;
-
-$iledzis = $dzisH.":".$dzisM.":".$dzisS;
-
-$zap = mysql_query("SELECT * FROM podstawowe ORDER BY id DESC LIMIT 1");
-$dir = mysql_fetch_array($zap); 
-
-$online = "<span style='color: red;'>Stacja jest offline!</span>";
-$nowdate = date("H:i:s");
-$ostatni = $dir['time'];
-$os = explode(":", $ostatni); 
-$no = explode(":", $nowdate);
-
-$os[0] = (int)$os[0]; $os[1] = (int)$os[1]; $os[2] = (int)$os[2];
-$no[0] = (int)$no[0]; $no[1] = (int)$no[1]; $no[2] = (int)$no[2];
-
-$os[0] *= 3600;
-$os[1] *= 60;
-$no[0] *= 3600;
-$no[1] *= 60;
-
-$ostSec = $os[0]+$os[1]+$os[2];
-$nowSec = $no[0]+$no[1]+$noS[2];
-
-$Zlogged = mysql_query("SELECT id FROM sesje");
-$logged = mysql_num_rows($Zlogged);
-
-
-if($ostSec>$nowSec-460) $online="<span style='color: darkgreen;'>Stacja jest online!</span>";
-echo $dir['date']." ".$dir['time']."|".$dir['atemp']."|".$dir['wilgo']."|".$dir['cisnie']."|".$dir['srtemp']."|".$dir['podmuch']."|".$dir['swind']."|".$dir['dirwind']."|".$dir['domdirwind']."|".$dir['otemp']."|".$dir['bfw']."|".$dir['dobopad']."|".$dir['deszcz']."|".$dir['tencisn']."  ".$dir['tencisnval']."hPa/h |".$dir['tentemp']." ".$dir['tentempval']."°C/h |NULL|NULL|".$dir['dew']."°C"."|".$iledzis."|".$online."|".$logged."|".$dir['biomet'];
-?>
-</div>
-</div>
-<!-----------------------------niewidzialne dzielenie divów-------------------------->
-<div id="dayrep_k" style="z-index: -10; position: absolute; visibility: hidden;"></div>
-
-
 <div id='hint'>Zmień jednostki</div>
 
 <script type="application/javascript" src="js/script.js"></script>
