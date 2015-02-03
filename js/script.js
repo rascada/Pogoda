@@ -648,6 +648,3 @@ function bfwInt_str(bNumb) {
 		case 12: return 'Huragan'; break;
 	}
 }
-setTimeout(function(){
-    document.body.style.marginTop='-6em';    
-},2000);

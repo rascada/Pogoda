@@ -6,7 +6,7 @@
     <!-- scripts -->
 <script type="application/javascript" src="js/jquery-2.1.3.js"></script>
 <title>Pogoda Skałągi</title>
-<link rel="icon" href="img/cloud.ico" type="image/x-icon">
+<link rel="icon" href="img/cloud.ico" type="image/x-icon"/>
 <link type="text/css" rel="stylesheet" href="css/style.css"/>
 <meta charset="utf-8" />
 <script>
@@ -22,13 +22,13 @@
 <meta name="keywords" content="stacja, meteo, pogodowa, pogoda, skałągi, temperatura, wiatr, kluczbork, wołczyn, prognoza, wilgotność, meteorologiczna, szkoła, podstawowa, rcre, opolskie">
 </head>
 <?php
-session_start();
 ini_set( "display_errors", 0);
 require_once "dbconnect.php";
 $polaczenie = mysql_connect($host,$user,$password);
 mysql_query("SET CHARSET utf8");
 mysql_query("SET NAMES 'utf8' COLLATE 'utf8_polish_ci'"); 
 mysql_select_db($database);
+session_start();
 $myid = $_SESSION['myid'];
 
 

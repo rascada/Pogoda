@@ -783,7 +783,7 @@ footer{
 /**************LUDEK********************************************/
 #smileyFaceCont{
     position: absolute;
-    top:-3em;
+    top: -1em;
     right:33%;
     background: none;
     border-color: #fff;
