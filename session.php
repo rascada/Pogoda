@@ -57,9 +57,8 @@ if( isset($_POST['wezpodstawowe']) ) {
 	$dzisS = (int)($dzisSec-$dzisH*3600-$dzisM*60);
 	if($dzisH<10) $dzisH = '0'.$dzisH;
 	if($dzisM<10) $dzisM = '0'.$dzisM;
-	if($dzisS<10) $dzisS = '0'.$dzisS;
 
-	$iledzis = $dzisH.":".$dzisM.":".$dzisS;
+	$iledzis = $dzisH."godz. ".$dzisM."min.";
 
 	$zap = mysql_query("SELECT * FROM podstawowe ORDER BY id DESC LIMIT 1");
 	$dir = mysql_fetch_array($zap); 

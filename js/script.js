@@ -544,7 +544,7 @@ if(flag=="1" || flagb=="1") {
 					if(cmlB>360) cmlB -= 360;
 					if(cmlA==360) cmlA=0; if(cmlB==360) cmlB=0;
 	
-				document.getElementById("last").innerHTML=podstawowe[0]+"<br/>Dzisiejszy czas działania: "+podstawowe[18]+"<br/>"+podstawowe[19]+"<br/>Obecnych na stronie: "+podstawowe[20]; 
+				document.getElementById("last").innerHTML=podstawowe[0]+"<br/>"+podstawowe[19]+" &nbsp;Dzisiaj: "+podstawowe[18]+"<br/>Obecnych na stronie: "+podstawowe[20]; 
 				document.getElementById("atemval").innerHTML=podstawowe[1]+"°C";
 				temp('aTemp',Math.floor(podstawowe[1]));
 				document.getElementById("wilval").innerHTML = podstawowe[2]+"%";
