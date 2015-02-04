@@ -346,7 +346,7 @@ function jschangeday(day) {
 	 	 $.ajax({
 			type: "POST",
 			url: "session.php",
-			dataType: "html",
+			dataType: "text",
 			async: false,
 			data: { changedayrep: "right", },
 			success: function(response){                    
@@ -358,7 +358,7 @@ function jschangeday(day) {
 	 	 $.ajax({
 			type: "POST",
 			url: "session.php",
-			dataType: "html",
+			dataType: "text",
 			async: false,
 			data: { changedayrep: "left", },
 			success: function(response){                    
@@ -375,7 +375,7 @@ function jschangefore(right) {
 		$.ajax({
 				type: "POST",
 				url: "session.php",
-				dataType: "html",
+				dataType: "text",
 				async: false,
 				data: { changeforecast: "right", },
 				success: function(response){                    
@@ -387,7 +387,7 @@ function jschangefore(right) {
 		$.ajax({
 				type: "POST",
 				url: "session.php",
-				dataType: "html",
+				dataType: "text",
 				async: false,
 				data: { changeforecast: "left", },
 				success: function(response){                    
@@ -405,7 +405,7 @@ if(type==0) {
 		$.ajax({
 			type: "POST",
 			url: "session.php",
-			dataType: "html",
+			dataType: "text",
 			async: false,
 			data: { gethourlyforecast: "false", },
 			success: function(response) { tabhourly = response.split("|"); }
@@ -414,7 +414,7 @@ if(type==0) {
 		$.ajax({
 			type: "POST",
 			url: "session.php",
-			dataType: "html",
+			dataType: "text",
 			async: false,
 			data: { gethourlyforecast: "left", },
 			success: function(response) { tabhourly = response.split("|"); }
@@ -423,7 +423,7 @@ if(type==0) {
 		$.ajax({
 			type: "POST",
 			url: "session.php",
-			dataType: "html",
+			dataType: "text",
 			async: false,
 			data: { gethourlyforecast: "right", },
 			success: function(response) { tabhourly = response.split("|"); }
@@ -447,7 +447,7 @@ function refdayrep(auto) {
 		$.ajax({
 			type: "POST",
 			url: "session.php",
-			dataType: "html",
+			dataType: "text",
 			async: false,
 			data: { changedayrep: "false", },
 			success: function(response) { dzien = response.split("|"); }
@@ -517,7 +517,7 @@ var flag='0';
 	$.ajax({
 		type: "POST",
 		url: "session.php",
-		dataType: "html",
+		dataType: "text",
 		async: false,
 		data: { wezpodstawowe: "busyflag", },
 		success: function(response) { flag = response.trim(); }
@@ -527,7 +527,7 @@ if(flag=="1" || flagb=="1") {
 	$.ajax({
 		type: "POST",
 		url: "session.php",
-		dataType: "html",
+		dataType: "text",
 		async: false,
 		data: { wezpodstawowe: "nml", },
 		success: function(response) { podstawowe = response.split("|"); }
