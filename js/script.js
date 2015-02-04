@@ -261,9 +261,9 @@ stworzMiarkeLicznik(2,2);
 stworzMiarkeLicznik(3,1);
 stworzMiarkeLicznik(4,3);
 ///PHP
-setInterval("refresh();", 1000);
-var ak_kmph=false;
-var pod_kmph = false;
+setInterval("refresh();", 3000);
+var ak_kmph=true;
+var pod_kmph=true;
 var podstawowe = new Array();
 var dzien = new Array();
 var flagb;
