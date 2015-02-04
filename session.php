@@ -20,8 +20,7 @@ if( isset($_POST['log']) ) {
 		$Zja = mysql_query("SELECT id FROM sesje ORDER BY id DESC LIMIT 1");
 		$ja = mysql_fetch_array($Zja);
 		$_SESSION['myid']=$ja['id'];
-		$dzisiajdata=date("Y-m-d");
-		$Ziddzis=mysql_query("SELECT id FROM daytime WHERE ddata='$dzisiajdata'");
+		$Ziddzis=mysql_query("SELECT id FROM daytime ORDER BY id DESC LIMIT 1");
 		$iddzis = mysql_fetch_array($Ziddzis);
 		$_SESSION['dziennyto']=$iddzis['id'];
 		$_SESSION['foreto']='2';
@@ -30,8 +29,7 @@ if( isset($_POST['log']) ) {
 	} else if($_POST['log']=="out") {
 		$sesid=$_SESSION['myid'];
 		mysql_query("DELETE FROM sesje WHERE id='$sesid'");
-		$dzisiajdata=date("Y-m-d");
-		$Ziddzis=mysql_query("SELECT id FROM daytime WHERE ddata='$dzisiajdata'");
+		$Ziddzis=mysql_query("SELECT id FROM daytime ORDER BY id DESC LIMIT 1");
 		$iddzis = mysql_fetch_array($Ziddzis);
 		$_SESSION['dziennyto']=$iddzis['id'];
 		$_SESSION['foreto']='2';
@@ -182,7 +180,7 @@ if( isset($_POST['gethourlyforecast']) ) {
 	$hourid = $_SESSION['godzto'];
 	$queryHourly = mysql_query("SELECT * FROM godzinna WHERE id='$hourid'");
 	$godzinna = mysql_fetch_array($queryHourly);
-	$miesrok = date("Y-m-");
+	$miesrok = date("Y-m-"); if($godzinna['dmon']<10) $godzinna['dmon'] = '0'.$godzinna['dmon'];
 	echo $godzinna['godz'].":00|".$godzinna['dtyg']."|".$miesrok.$godzinna['dmon']."|".$godzinna['napis']."|".$godzinna['temp']."|".$godzinna['dewp']."|".$godzinna['wdir']."|".$godzinna['wspd']."|".$godzinna['rain']."|".$godzinna['snow']."|".$godzinna['imgurl'];
 }	
  
