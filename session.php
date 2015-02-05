@@ -20,8 +20,7 @@ if( isset($_POST['log']) ) {
 		$Zja = mysql_query("SELECT id FROM sesje ORDER BY id DESC LIMIT 1");
 		$ja = mysql_fetch_array($Zja);
 		$_SESSION['myid']=$ja['id'];
-		$dzisiajdata=date("Y-m-d");
-		$Ziddzis=mysql_query("SELECT id FROM daytime WHERE ddata='$dzisiajdata'");
+		$Ziddzis=mysql_query("SELECT id FROM daytime ORDER BY id DESC LIMIT 1");
 		$iddzis = mysql_fetch_array($Ziddzis);
 		$_SESSION['dziennyto']=$iddzis['id'];
 		$_SESSION['foreto']='2';
@@ -30,8 +29,7 @@ if( isset($_POST['log']) ) {
 	} else if($_POST['log']=="out") {
 		$sesid=$_SESSION['myid'];
 		mysql_query("DELETE FROM sesje WHERE id='$sesid'");
-		$dzisiajdata=date("Y-m-d");
-		$Ziddzis=mysql_query("SELECT id FROM daytime WHERE ddata='$dzisiajdata'");
+		$Ziddzis=mysql_query("SELECT id FROM daytime ORDER BY id DESC LIMIT 1");
 		$iddzis = mysql_fetch_array($Ziddzis);
 		$_SESSION['dziennyto']=$iddzis['id'];
 		$_SESSION['foreto']='2';
@@ -58,6 +56,7 @@ if( isset($_POST['wezpodstawowe']) ) {
 	if($dzisH<10) $dzisH = '0'.$dzisH;
 	if($dzisM<10) $dzisM = '0'.$dzisM;
 
+	$dzisbufif = $iledzis;
 	$iledzis = $dzisH."godz. ".$dzisM."min.";
 
 	$zap = mysql_query("SELECT * FROM podstawowe ORDER BY id DESC LIMIT 1");
@@ -84,7 +83,7 @@ if( isset($_POST['wezpodstawowe']) ) {
 	$logged = mysql_num_rows($Zlogged);
 
 
-	if($ostSec>$nowSec-460) $online="<span style='color: darkgreen;'>Stacja jest online!</span>";
+	if($ostSec>$nowSec-460 && $dzisbufif>0) $online="<span style='color: darkgreen;'>Stacja jest online!</span>";
 	echo $dir['date']." ".$dir['time']."|".$dir['atemp']."|".$dir['wilgo']."|".$dir['cisnie']."|".$dir['srtemp']."|".$dir['podmuch']."|".$dir['swind']."|".$dir['dirwind']."|".$dir['domdirwind']."|".$dir['otemp']."|".$dir['bfw']."|".$dir['dobopad']."|".$dir['deszcz']."|".$dir['tencisn']."  ".$dir['tencisnval']."hPa/h |".$dir['tentemp']." ".$dir['tentempval']."°C/h |NULL|NULL|".$dir['dew']."°C"."|".$iledzis."|".$online."|".$logged."|".$dir['biomet'];
 
 	}
@@ -182,7 +181,7 @@ if( isset($_POST['gethourlyforecast']) ) {
 	$hourid = $_SESSION['godzto'];
 	$queryHourly = mysql_query("SELECT * FROM godzinna WHERE id='$hourid'");
 	$godzinna = mysql_fetch_array($queryHourly);
-	$miesrok = date("Y-m-");
+	$miesrok = date("Y-m-"); if($godzinna['dmon']<10) $godzinna['dmon'] = '0'.$godzinna['dmon'];
 	echo $godzinna['godz'].":00|".$godzinna['dtyg']."|".$miesrok.$godzinna['dmon']."|".$godzinna['napis']."|".$godzinna['temp']."|".$godzinna['dewp']."|".$godzinna['wdir']."|".$godzinna['wspd']."|".$godzinna['rain']."|".$godzinna['snow']."|".$godzinna['imgurl'];
 }	
  
