@@ -205,6 +205,7 @@ body{
 
 #dew h3{text-align: center;}
 #dew{padding: 0;}
+#trueDew{background: linear-gradient(to bottom left,#00aeee, lightgrey );}
 #tempPanel h1{background: linear-gradient(to bottom left,#F44, #E40 );margin-bottom: -.6em;}
 #tempPanel h3{background: linear-gradient(to bottom left,#F44, #E40 );}
 #windPanel h1{background: linear-gradient(to bottom left,grey, lightgrey);}
