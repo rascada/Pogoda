@@ -56,6 +56,7 @@ if( isset($_POST['wezpodstawowe']) ) {
 	if($dzisH<10) $dzisH = '0'.$dzisH;
 	if($dzisM<10) $dzisM = '0'.$dzisM;
 
+	$dzisbufif = $iledzis;
 	$iledzis = $dzisH."godz. ".$dzisM."min.";
 
 	$zap = mysql_query("SELECT * FROM podstawowe ORDER BY id DESC LIMIT 1");
@@ -82,7 +83,7 @@ if( isset($_POST['wezpodstawowe']) ) {
 	$logged = mysql_num_rows($Zlogged);
 
 
-	if($ostSec>$nowSec-460) $online="<span style='color: darkgreen;'>Stacja jest online!</span>";
+	if($ostSec>$nowSec-460 && $dzisbufif>0) $online="<span style='color: darkgreen;'>Stacja jest online!</span>";
 	echo $dir['date']." ".$dir['time']."|".$dir['atemp']."|".$dir['wilgo']."|".$dir['cisnie']."|".$dir['srtemp']."|".$dir['podmuch']."|".$dir['swind']."|".$dir['dirwind']."|".$dir['domdirwind']."|".$dir['otemp']."|".$dir['bfw']."|".$dir['dobopad']."|".$dir['deszcz']."|".$dir['tencisn']."  ".$dir['tencisnval']."hPa/h |".$dir['tentemp']." ".$dir['tentempval']."°C/h |NULL|NULL|".$dir['dew']."°C"."|".$iledzis."|".$online."|".$logged."|".$dir['biomet'];
 
 	}

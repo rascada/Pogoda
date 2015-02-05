@@ -483,9 +483,9 @@ function refdayrep(auto) {
 		else if(dzien[3]>=70 && dzien[3]<110) jaki_dzien="E->W";
 		else if(dzien[3]>=110 && dzien[3]<160) jaki_dzien="SE->WE";
 		else if(dzien[3]>=160 && dzien[3]<215) jaki_dzien="S->N";
-		else if(dzien[3]>=215 && dzien[3]<240) jaki_dzien="WE->NS"
+		else if(dzien[3]>=215 && dzien[3]<240) jaki_dzien="SE->NW"
 		else if(dzien[3]>=240 && dzien[3]<285) jaki_dzien="W->E";
-		else if(dzien[3]>=285 && dzien[3]<315) jaki_dzien="WE->SE";
+		else if(dzien[3]>=285 && dzien[3]<315) jaki_dzien="NW->SE";
 		document.getElementById("windDayDom").innerHTML=jaki_dzien;
 		
 		if( (dzien[16].indexOf("Mozilla")==-1 && dzien[16].indexOf("Chrome")==-1) || dzien[16].indexOf("Trident")!=-1) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome lub Firefox w najnowszej wersji.');
@@ -562,26 +562,26 @@ if(flag=="1" || flagb=="1") {
 				else { document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+podstawowe[6]+"m/s"; wind(1, podstawowe[6]); }
                     compass(1, cmlA); 
 					var jaki=" ";
-					if(podstawowe[7]<20 || podstawowe[7]>=315) jaki="z północy";
+					if(podstawowe[7]<20 || podstawowe[7]>=320) jaki="z północy";
 					else if(podstawowe[7]>=20 && podstawowe[7]<70) jaki="z północnego wschodu";
 					else if(podstawowe[7]>=70 && podstawowe[7]<110) jaki="ze wschodu";
 					else if(podstawowe[7]>=110 && podstawowe[7]<160) jaki="z południowego wschodu";
 					else if(podstawowe[7]>=160 && podstawowe[7]<215) jaki="z południa";
 					else if(podstawowe[7]>=215 && podstawowe[7]<240) jaki="z południowego zachodu"
 					else if(podstawowe[7]>=240 && podstawowe[7]<285) jaki="z zachodu";
-					else if(podstawowe[7]>=285 && podstawowe[7]<315) jaki="z północnego zachodu";
+					else if(podstawowe[7]>=285 && podstawowe[7]<320) jaki="z północnego zachodu";
 				
 					document.getElementById("aktDirVal").innerHTML="Akualny: <br/>"+jaki;
 					compass(2, cmlB);
 					var jaki_=" ";
-					if(podstawowe[8]<20 || podstawowe[8]>=315) jaki_="z północy";
+					if(podstawowe[8]<20 || podstawowe[8]>=320) jaki_="z północy";
 					else if(podstawowe[8]>=20 && podstawowe[8]<70) jaki_="z północnego wschodu";
 					else if(podstawowe[8]>=70 && podstawowe[8]<110) jaki_="ze wschodu";
 					else if(podstawowe[8]>=110 && podstawowe[8]<160) jaki_="z południowego wschodu";
 					else if(podstawowe[8]>=160 && podstawowe[8]<215) jaki_="z południa";
 					else if(podstawowe[8]>=215 && podstawowe[8]<240) jaki_="z południowego zachodu"
 					else if(podstawowe[8]>=240 && podstawowe[8]<285) jaki_="z zachodu";
-					else if(podstawowe[8]>=285 && podstawowe[8]<315) jaki_="z północnego zachodu";
+					else if(podstawowe[8]>=285 && podstawowe[8]<320) jaki_="z północnego zachodu";
 					document.getElementById("domDirVal").innerHTML="Dominujący: <br/>"+jaki_;
 					
 					document.getElementById("windBfw").innerHTML="Wiatr: "+bfwInt_str(parseInt(podstawowe[10]));
