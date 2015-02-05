@@ -21,7 +21,7 @@
 <meta name="description" content="Stacja pogodowa - meteo Skałągi w gminie Wołczyn, powiat Kluczborski, woj. opolskie. Aktualna pogoda, aktualizacja co 5min.">
 <meta name="keywords" content="stacja, meteo, pogodowa, pogoda, skałągi, temperatura, wiatr, kluczbork, wołczyn, prognoza, wilgotność, meteorologiczna, szkoła, podstawowa, rcre, opolskie">
 </head>
-<body>    
+<body>
     <!------------------------HEADER------------------------------------>
     <header>
         <div id='logo'>
@@ -32,9 +32,9 @@
                     <li></li>
                 </ul>
             </div>
-            <h1>Stacja pogodowa Skałągi</h1>      
+            <h1>Stacja pogodowa Skałągi</h1>
             <h3>Ostatnia aktualiazacja: <span id="last">Łącze..</span></h3><br/>
-        </div>      
+        </div>
         <div id='smileyFaceCont' class="ramka bigPanel">
             <div id='smileyFace'>
                 <div id='smileyFaceDarken'></div>
@@ -43,7 +43,7 @@
                     <div class='eye'></div>
                     <div class='eye eye1'></div>
                 </div>
-                <div id='mouth'></div>                
+                <div id='mouth'></div>
                 <span id='biomet'>Biomet</span>
                 <span id='biometOdczyt'>Ładuje..</span>
             </div>
@@ -54,7 +54,7 @@
 
 <div id="panel2" class="panel">
     <!------------------------WaterPanel---------------------------------->
-<div id='waterPanel' class="bigPanel">  
+<div id='waterPanel' class="bigPanel">
     <h1 class="bigPanelH">Opady</h1>
     <!-----------------------miarka1----------------------------------->
     <div class='waterTogether'>
@@ -64,8 +64,8 @@
                 <div id='miarka12' class='miarka1'></div>
             </div>
         </div><p>Aktualne</p>
-    </div>    
-    <!-----------------------miarka2----------------------------------->
+    </div>
+    <!-miarka2-->
     <div class='waterTogether'>
         <div id='f2' class="f">
             <div class="fluid"><span id="opadd">0<br/>mm</span>
@@ -73,15 +73,9 @@
                 <div id='miarka2' class='miarka1'></div>
             </div>
         </div><p>24h</p>
-    </div>    
+    </div>
 </div>
-    
-	<div class="bigPanel" style="width: 100%; margin-top: 0;">
-        <div id="dew" class="ramka bigHeader">
-            <h4 class="bigPanelH"><b>Wysokość podstawy chmur: </b><span id='clouds'>0</span> </h4>
-        </div>
-	</div>
-    
+
 </div>
 <!------------------------Temperatura------------------------------------>
     <div id='tempPanel' class="bigPanel">
@@ -130,36 +124,36 @@
         <div id='dew' class="ramka bigHeader">
             <h4 class="bigPanelH"><b>Punkt rosy: </b><span id='dewDeg'>0</span> </h4>
         </div>
-    </div>  
+    </div>
 <!------------------------Wiatr------------------------------------>
 <div id='contL' style="border: 0; margin-top: 2em;">
-<div id='windPanel' class="bigPanel" style="margin-top: 0;">    
+<div id='windPanel' class="bigPanel" style="margin-top: 0;">
     <h1 class="bigPanelH" id="windBfw">Wiatr</h1>
     <!-----------------------compass1---------------------------------->
     <div class='compassCont'>
         <div  id='compass1' class="compass">
             <div class="compArr" id="cm1">
                 <span class="compArrDeg" id="cmL1">0</span>
-            </div>                  
+            </div>
             <div class='licznikKomp'>
               <div id='strz1' class='strz'></div>
               <div class='dot'></div>
-              <div class='liczPods' id='liczPods1'></div>  
+              <div class='liczPods' id='liczPods1'></div>
                 <span class='liczCyf labelek' id='wSpeed' onclick="aktwindclick()">Ładuje..</span>
-            </div>  
-        </div><br/>  
+            </div>
+        </div><br/>
         <span class="compassSpan"  id="aktDirVal">Aktualny</span>
-    </div>  
+    </div>
     <!-----------------------compass2---------------------------------->
     <div class='compassCont'>
         <div  id='compass2' class="compass">
             <div class="compArr" id="cm2">
                 <span class="compArrDeg" id="cmL2">0</span>
-            </div>  
+            </div>
             <div class='licznikKomp'>
               <div id='strz2' class='strz'></div>
               <div class='dot'></div>
-              <div class='liczPods' id='liczPods2'></div>  
+              <div class='liczPods' id='liczPods2'></div>
                 <span class='liczCyf labelek' id='wPSpeed' onclick="podwindclick()">Ładuje..</span>
             </div>
         </div><br/>
@@ -175,13 +169,13 @@
                 <div id='cisLicznik' class='licznik'>
                     <div id='strz3' class='strz'></div>
                     <div class='dot'></div>
-                    <div class='liczPods' id='liczPods3'></div>  
+                    <div class='liczPods' id='liczPods3'></div>
                     <span  class='liczCyf' id='pressval'>Ładuje..</span>
                 </div>
             </div>
         </div>
     </div>
-    <!----------------------------wilgotność-------------------------------------------->
+    <!---wilgotność-->
     <div class="bigPanel" id='wilPanel'>
         <h1 class='bigPanelH'>Wilgotność</h1>
         <div id='wilgCont'>
@@ -190,13 +184,13 @@
                     <div id='humPercWater'></div>
                     <div id='strz4' class='strz'></div>
                     <div class='dot'></div>
-                    <div class='liczPods' id='liczPods4'></div>  
+                    <div class='liczPods' id='liczPods4'></div>
                     <span  class='liczCyf' id='wilval'>Ładuje..</span>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
-    
+
 </div>
 </div>
 <div class='panel' id='panel1'>
@@ -207,7 +201,7 @@
                    <span id='weather'>Ładuje...</span>
                     <img name='forecast' id='foreIcon' />
                    <span id='forecast'>Ładuje...</span>
-			         <a href="http://www.wunderground.com/personal-weather-station/dashboard?ID=IOPOLSKI10" target="_blank"><img id='wuIcon' src="img/wu.png"/></a>        
+			         <a href="http://www.wunderground.com/personal-weather-station/dashboard?ID=IOPOLSKI10" target="_blank"><img id='wuIcon' src="img/wu.png"/></a>
             <div class='arrowContainer'>
                 <div id='RRArrow' style='transform: scale(.7)rotate(180deg);' onclick="jschangefore(true)"><div class='RaportArrow'></div></div>
                 <div id='RLArrow' style='transform: scale(.7);' class="weatherArrowsL" onclick="jschangefore(false)"><div class='RaportArrow'></div></div>
@@ -215,10 +209,10 @@
             </div>
 
         </div>
-        
+
         <div id='fore36Cont'class="ramka bigPanel">
             <h3>Prognoza - 36 godzinna</h3>
-            
+
             <img id='bigforeimg' name="bigforeimg"/>
             <div class="fore36Heading">
                 <div class='arrowContainer'>
@@ -238,8 +232,8 @@
                 <span class="fore36Text">Śnieg: <span id="bigforesnow"></span></span>
             </div>
         </div>
-        
-        
+
+
     </div>
 <div id='raportDniaRamka' class="ramka bigPanel">
     <div class='arrowContainer'>
@@ -247,19 +241,19 @@
         <div id='RLArrow' onclick="jschangeday(false)"><div class='RaportArrow'></div></div>
     </div>
     <h3>Raport dnia - <span id="daydate">Ładuje...</span></h3>
-        <div id='raportDnia'>  
+        <div id='raportDnia'>
             <div id='raportDniaA'>
                 <div class='minMaxBG grey'>
                     <div class='minMax '>
                       <b>Słońce </b>
                     </div>
-                    <div class='minMax '>                                
+                    <div class='minMax '>
                         <b>Brzask: </b><span id='sunBrz'>0:00</span><br/>
-                        <b>Wschód: </b><span id='sunWsch'>0:00</span><br/>   
-                        <b>Zachód: </b><span id='sunZch'>0:00</span><br/>         
+                        <b>Wschód: </b><span id='sunWsch'>0:00</span><br/>
+                        <b>Zachód: </b><span id='sunZch'>0:00</span><br/>
                         <b>Zmierzch: </b><span id='sunZm'>0:00</span><br/>
                     </div>
-                </div>  
+                </div>
                 <div class="grey">
                     <b>Długość dnia</b> - <span id='dayLen'>0:00</span>
                 </div>
@@ -273,16 +267,16 @@
                     </div>
                 </div>
                 <div class='minMaxBG grey'>
-                    <div class='minMax '>                        
+                    <div class='minMax '>
                         <b>Faza księżyca</b><br/> <span id='moonPhase'>Sprawdzanie</span>
                     </div>
-                    <div class='minMax '>  
-                        <div id='moonDiv'>  
-                        </div>              
+                    <div class='minMax '>
+                        <div id='moonDiv'>
+                        </div>
                     </div>
-                </div>  
+                </div>
             </div>
-            <div id='raportDniaA'>            
+            <div id='raportDniaA'>
                 <div class="grey">
                     <b>Wiatr</b> <br/>
                     <b>Podmuch</b> -<span id="windDayBlow"> 0 m/s</span><br/>
@@ -293,7 +287,7 @@
                 </div>
                 <div class='minMaxBG grey'>
                     <div class='minMax'>
-                        <b>Temperatura </b>  
+                        <b>Temperatura </b>
                     </div><div class='minMax '>
                         <b>max:</b><span id='tempDayMax'>0</span><br/>
                         <b>min:</b> <span id='tempDayMin'>0</span><br/>
@@ -301,7 +295,7 @@
                 </div>
                 <div class='minMaxBG grey'>
                     <div class='minMax '>
-                        <b>Wilgotność </b>  
+                        <b>Wilgotność </b>
                     </div><div class='minMax '>
                         <b>max:</b><span id='wilDayMax'>0%</span><br/>
                         <b>min:</b> <span id='wilDayMin'>0%</span><br/>
@@ -315,16 +309,21 @@
                         <b>min: </b> <span id='cisDayMin'>0 hPa</span><br/>
                     </div>
                 </div>
+                <div class="bigPanel" style="width: 100%; margin-top: 0;">
+                      <div id="dew" class="ramka bigHeader">
+                          <h4 class="bigPanelH"><b>Wysokość podstawy chmur: </b><span id='clouds'>0</span> </h4>
+                      </div>
+                </div>
             </div>
         </div>
 </div>
-    
-        <div id='buttonWykresCont' class="ramka bigPanel">            
+
+        <div id='buttonWykresCont' class="ramka bigPanel">
             <h3>Menu</h3>
-            <a href="graph.html"><button id='buttonWykres'>Wykresy</button></a><!--     
-            --><a href="#"><button id='buttonWykres' onclick="javascript: alert('Strona w budowie!');">Statystyki</button></a><!--     
+            <a href="graph.html"><button id='buttonWykres'>Wykresy</button></a><!--
+            --><a href="#"><button id='buttonWykres' onclick="javascript: alert('Strona w budowie!');">Statystyki</button></a><!--
             --><br/><a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>Stacje w okolicy</button></a>
-            
+
 
         <footer><hr/>SP Skałągi &copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina<hr/> <div style="font-size: .83em; color: black;">Wspierane przeglądarki: <br/>Chrome i Firefox w najnowszych wersjach.<br/>Wkrótce też najnowszy IE.</footer>
             </div>

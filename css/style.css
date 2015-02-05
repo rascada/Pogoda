@@ -1,12 +1,12 @@
 *{box-sizing:border-box;}
-body{ 
-    
-    font-family: 'Rajdhani', bold, sans-serif;   
+body{
+
+    font-family: 'Rajdhani', bold, sans-serif;
     overflow-x: hidden;
 	background: linear-gradient(lightblue 10em,#eee 25em);
 }
-#all{ 
-    
+#all{
+
     margin-top: 1em;
     display: flex;
 	justify-content:space-around;
@@ -17,13 +17,13 @@ body{
     flex-wrap: wrap;order:-1;
 }
 #contL2{
-    display: flex;    
+    display: flex;
     margin-top: -2em;
-    
+
 }
 .grey{
     color: #eee;
-    background:rgba(0,0,0,0.4);;   
+    background:rgba(0,0,0,0.4);;
     margin-bottom: .5em;
     border-radius:.1em;
 }
@@ -37,25 +37,25 @@ body{
 #cisPanel{flex-grow: 1;padding-bottom: 2.6em;}
 #wilPanel{flex-grow: 1;}
 
-.bigPanel{ 
+.bigPanel{
     position: relative;
     display: inline-block;
     border-radius: .1em;
     border: .1em solid #d1d1d1;
     text-align: center;
 	background: white;
-	box-shadow:0em .03em .03em .03em;   
+	box-shadow:0em .03em .03em .03em;
     padding-bottom: 1em;
     margin-top: 2em;
-    
+
 }
 .bigPanelH{
     padding: 0.5em 0;
     text-align: center;
     color: white;
-    border-top: 3px double white;       
-    border-bottom: 3px double white;   
-    margin-bottom: 20px;    
+    border-top: 3px double white;
+    border-bottom: 3px double white;
+    margin-bottom: 20px;
 	font-size: 20px;
 }
 .bigPanel h3{
@@ -64,7 +64,7 @@ body{
     margin-bottom: 0;
 }
 #panel2{
-    order: 4;   
+    order: 4;
 }
 .panel{
     order: -1;
@@ -72,22 +72,22 @@ body{
     align-items: flex-start;
     flex-direction: column;
 }
-#panel1{    
+#panel1{
     justify-content:space-around;
     order: 4;
     align-content: center;
 }
-.ramka{   
+.ramka{
     text-align: center;
     padding: 0 1em;
     margin: inherit -1em;
     overflow: hidden;
 }
-.ramka h3{   
+.ramka h3{
     font-size: 1.2em;
     position: relative;
     border-bottom: .2em double #ddd;
-    color: #eee;   
+    color: #eee;
     text-align: left;
     z-index: 2;
 }
@@ -97,7 +97,7 @@ body{
     flex-grow: none;
     background-image: url("../../img/zima.jpg");
     background-size: cover;
-    
+
 }
 
 #raportDnia{
@@ -105,12 +105,12 @@ body{
     padding: 1em 0;
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
 }
 
 #raportDniaA{
-    padding:0 1em;   
+    padding:0 1em;
     background: none;
 }
 #moon{
@@ -128,7 +128,7 @@ body{
 .RaportArrow, .RaportArrow:before{
     position: absolute;
     width: .2em;
-    background: #777;    
+    background: #777;
     transition: all 1s ease;
 }
 .arrowContainer{
@@ -137,7 +137,7 @@ body{
     left: 0;
     top:50%;
     margin-top: -1em;
-    
+
 }
 .RaportArrow{
     height: 1em;
@@ -149,11 +149,11 @@ body{
     content: '';
     height: 1em;
     top:100%;
-    left: 350%;      
+    left: 350%;
     transform: skew(55deg);
     transition: all .2s ease;
 }
-#RLArrow,#RRArrow {  
+#RLArrow,#RRArrow {
     overflow: hidden;
     position: relative;
     width: 2em;
@@ -164,37 +164,37 @@ body{
     cursor: pointer;
     transition: all .2s ease;}
 
-#RLArrow:hover{  
+#RLArrow:hover{
     background: #ddd;
     transform: scale(1.25);
-}#RRArrow:hover {  
+}#RRArrow:hover {
     background: #ddd;
     transform: scale(1.25) rotate(180deg);}
-#RLArrow:active{  
+#RLArrow:active{
     background: #ccc;
     transform: scale(.9);
-}#RRArrow:active {  
+}#RRArrow:active {
     background: #ccc;
     transform: scale(.9) rotate(180deg);}
 
 #RLArrow:hover .RaportArrow{
-    left:50%;    
+    left:50%;
     transform: skew(135deg);
 }
 #RLArrow:hover .RaportArrow:before{
-    left:550%;    
+    left:550%;
     transform: skew(65deg);
 }
 
 #RRArrow:hover .RaportArrow{
-    left:50%;    
+    left:50%;
     transform:skew(135deg);
 }
 #RRArrow:hover .RaportArrow:before{
-    left:550%;    
+    left:550%;
     transform: skew(65deg);
 }
-    
+
 #RLArrow{
     position: absolute;
     left: .25em;}
@@ -214,28 +214,23 @@ body{
 
 #buttonWykresCont{
     padding: 0;
+    border: none;
     min-width: 14em;
-    text-align: center;    
-}
-#buttonWykresCont h3{
-    color: #444;
-    margin-left: 1em;
-    margin-bottom: 1em;
+    text-align: center;
 }
 #buttonWykres{
+    font-size: .8em;
     position: relative;
     overflow: hidden;
     background: none;
     cursor:pointer;
     font-size: 1em;
-    color: #777;
-    width: 70%;
-    padding: .5em 0;
+    color: #eee;
+    height:100%;
+    padding: .5em 1em;
     z-index:1;
     margin-top: .2em;
-    border: .1em solid #ccc;
-    border-right:.15em solid #ccc;
-    border-bottom:.15em solid #ccc;    
+    border: .1em solid #eee;
     transition: border 400ms ease-out 250ms,
                 margin 400ms ease-out 250ms,
                 color 250ms ease-out;
@@ -246,8 +241,8 @@ body{
 #buttonWykres:active,#buttonWykres:focus{
     outline: 0;
     border:.1em solid #ccc;
-    border-left:.15em solid #ccc;
-    border-top:.15em solid #ccc;
+    border:.15em solid #ccc;
+    border:.15em solid #ccc;
 }
 #buttonWykres:after{
     position:absolute;
@@ -262,33 +257,37 @@ body{
     background:#ddd;
     transition:all .5s ease;
 }
-#buttonWykres:hover:after{  
+#buttonWykres:hover:after{
     width:16em;
     height:16em;
     margin-top:-8em;
     margin-left:-8em;
 }
-#logo{   
+#logo{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: .2em .1em .9em #eee;
-    
+
+}
+header{
+    border: .1em solid #eee;
+    border-width: .1em 0 .3em;
+    padding-bottom: .5em;
+  position:relative;
 }
 header h1, header h2, header h3
 {
     background-color: none;
     display: inline-block;
     color: white;
-    box-shadow: .01em .01em .9em #eee;
 }
-header h1{ 
+header h1{
     position: relative;
-    font-size: 3.5em;   
+    font-size: 3.5em;
     box-shadow: .2em .1em .9em transparent;
     padding-left: .5em;
 }
-header h1:before{ 
+header h1:before{
     content:'Szkoła Podstawowa - 51.051290N 18.11788E';
     position: absolute;
     font-size: .4em;
@@ -298,8 +297,11 @@ header h1:before{
 }
 header h3{
     position: absolute;
-    right: 1em;
+    right: 0;
 	text-align: right;
+    border: .1em solid #fff;
+    border-width: .1em .1em 0 0;
+    padding: .5em;
 }
 footer{
     padding: 0.75em;
@@ -324,7 +326,7 @@ footer{
     top:-5%;
     left: 0%;
     right: 0;
-    bottom: 0;    
+    bottom: 0;
     list-style: none;
     -webkit-animation: rotation 10s linear infinite;
     transform: scale(.6);
@@ -350,10 +352,18 @@ footer{
     transform:scale(.6) rotate(0deg);}
 
 @-webkit-keyframes rotation {
-	0%    { 
-        transform:rotate(0deg);}  
-	100%    { 
-        transform:rotate(360deg);}    
+	0%    {
+        transform:rotate(0deg);}
+	100%    {
+        transform:rotate(360deg);}
+}
+
+.menu{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  position:absolute;
+  bottom:0;right:0;
 }
 /***********Termometr************************/
 .termometr{
@@ -387,7 +397,7 @@ footer{
     border-radius: 10px;
     margin-top: .5em;
     z-index: 2;
-    
+
 }
 .termMeter2{
     height: 4em;
@@ -409,15 +419,15 @@ footer{
     color: white;
     background: linear-gradient(to bottom left,lightblue, #00e0ff );
     border-radius: 5px;
-    border: 3px double white;   
+    border: 3px double white;
 }
 .tempMiarka{
     margin-top: .5em;
     margin-left: -3em;
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
     position: absolute;
-    height: 60%;    
+    height: 60%;
 }
 
 .tempMiarka div{
@@ -447,7 +457,7 @@ footer{
     color: white;
     background: linear-gradient(to bottom left,grey, lightgrey );
     border-radius: 5px;
-    border: 3px double white;    
+    border: 3px double white;
 }
 
 .compass {
@@ -474,7 +484,7 @@ footer{
     width: 100%;
     margin-top: 87.5%;
     margin-left: -6.5%;
-    transform: rotate(-45deg);   
+    transform: rotate(-45deg);
 }
 .jsCompassDiv{
     margin-top:-101.5%;
@@ -488,7 +498,7 @@ footer{
     color: black;
 }
 
-.licznikKomp{ 
+.licznikKomp{
     position: relative;
     z-index: 1;
     position: absolute;
@@ -502,7 +512,7 @@ footer{
  }
 
 /****************************************licznik***kompas************************************/
-.licznik{ 
+.licznik{
   border:.5em double #999;
   background-color: #444;
   width:12.5em;
@@ -529,7 +539,7 @@ footer{
     margin: 63% 0 0 -50%;
 }
 .labelek{
-	cursor: pointer;    
+	cursor: pointer;
 }
 #hint{
     pointer-events: none;
@@ -543,7 +553,7 @@ footer{
     opacity: 0.7;
 }
 .licznikCont{
-    display: inline-block;   
+    display: inline-block;
     text-align: center;
 }
 .liczPod{
@@ -570,18 +580,18 @@ footer{
   width:1em;
   height:1em;
   background:black;
-  border-radius:100%;     
+  border-radius:100%;
     transform: translate(525%,525%);
-    
+
 }
 .liczPods{
   position:absolute;
   transform:rotate(-115deg);
-  margin:67% 0 0 14.5%;  
+  margin:67% 0 0 14.5%;
 }
 .liczPods div{
   height:4.5em;
-  position:absolute;  
+  position:absolute;
   transform-origin: bottom left;
 }
 .liczPods div div{
@@ -595,7 +605,7 @@ footer{
   color:white;
   margin-left:-.2em;
   margin-top:-1.3em;
-  transform:rotate(0deg);  
+  transform:rotate(0deg);
 }
 
 #ksi img{
@@ -605,31 +615,31 @@ footer{
     float:right;
     width: 120px;
     height: 120px;
-    
+
 }
 .waterTogether{
-    display: inline-block;    
+    display: inline-block;
 }
 .waterTogether p{
     margin: 0 15px 10px 15px;
     color: white;
     background: linear-gradient(to bottom left,lightblue, #00aeee );
     border-radius: 5px;
-    border: 3px double white;    
+    border: 3px double white;
 }
 .f{
   display:inline-block;
     position: relative;
   width:7.4em;
   height:25em;
-  padding:1em;    
-  border-radius:0 0 5em 5em;  
+  padding:1em;
+  border-radius:0 0 5em 5em;
   background-color: rgba(100,100,100,0.1);
-    margin: 1em;    
+    margin: 1em;
 }
 .fluid{
     border: .1em solid #DFDFDF;
-  width:100%;    
+  width:100%;
     height: 100%;
   border-radius:0 0 5em 5em;
 }
@@ -647,7 +657,7 @@ footer{
   transform:rotate(180deg);
   position:absolute;
   height:92%;
-  width:70%;  
+  width:70%;
 }
 .water{
   position:absolute;
@@ -712,7 +722,7 @@ footer{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;  
+    align-items: center;
     max-width: 30vh;
     margin:.5em 2em;
 }
@@ -722,7 +732,7 @@ footer{
     bottom: .5em;
     width: 2em;
 }
-#prognoza .grey{ 
+#prognoza .grey{
     width: 100%;
 }
 
@@ -751,23 +761,23 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;   
+    flex-direction: column;
     margin-bottom: -1em;
 }
 .fore36Data{
     border-top: .3em double #444;
     margin: .5em 2em;
-    
+
 }
 .fore36Text:nth-child(1){
-    display: block;    
+    display: block;
 }
 .fore36Text:nth-child(2){
 }
 .fore36Text:nth-child(3){
 }
 .fore36Text:nth-child(4){
-    display: block;    
+    display: block;
 }
 .fore36Text:nth-child(5){
 }
@@ -802,7 +812,7 @@ footer{
     background:#Fd2;
     border-radius:50%;
     margin-top: 3em;
-    margin-bottom: 1em; 
+    margin-bottom: 1em;
 }
 #smileyFaceDarken{
   position:absolute;
@@ -811,7 +821,7 @@ footer{
   border-radius:50%;
   border:.2em solid #EC0;
   border-width:0em 0em 1.5em 1em;
-  
+
 }
 #smileyFaceLighten{
   position:absolute;
@@ -830,13 +840,13 @@ footer{
     margin-top: -2%;
     border-bottom:.1em solid #000;
     border-radius:0%;
-    transform:scale(.5);      
+    transform:scale(.5);
 }
 #eyesCont{
   position:relative;
   top:25%;
   left:25%;
-  
+
 }
 .eye{
     position:absolute;
@@ -851,11 +861,11 @@ footer{
     0%{
         height: 1.5em;
         margin-top:0em;
-    }     
+    }
     10%{
         height: 1.5em;
         margin-top:0em;
-    }   
+    }
     15%{
         height: 0em;
         margin-top:.75em;
@@ -867,7 +877,7 @@ footer{
     100%{
         height: 1.5em;
         margin-top:0em;
-    }    
+    }
 }
 
 .eye:before{
@@ -880,7 +890,7 @@ footer{
   border-radius:50%;
     opacity: .8;
   background:linear-gradient(to bottom left,#fff,transparent);
-  
+
 }
 .eye1{
   left:35%;
@@ -902,5 +912,5 @@ footer{
     margin-top: -2em;
     font-size:1.5em;
     font-weight: 600;
-    color: #Fd2;    
+    color: #Fd2;
 }
