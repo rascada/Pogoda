@@ -204,13 +204,17 @@ body{
     transform:rotate(180deg)}
 
 #dew h3{text-align: center;}
-#dew{background: linear-gradient(to bottom left,lightblue, #00e0ff );}
+#dew{padding: 0;}
 #tempPanel h1{background: linear-gradient(to bottom left,#F44, #E40 );margin-bottom: -.6em;}
 #tempPanel h3{background: linear-gradient(to bottom left,#F44, #E40 );}
 #windPanel h1{background: linear-gradient(to bottom left,grey, lightgrey);}
 #waterPanel h1{background: linear-gradient(to bottom left,#00aeee, lightgrey );}
 #wilPanel h1{background: linear-gradient(to bottom left,#0266FF, lightgrey );}
 #cisPanel h1{background: linear-gradient(to bottom left,#CFCFCF, white );}
+
+#tempPanel{
+    padding-bottom: 0;   
+}
 
 #buttonWykresCont{
     padding: 0;
@@ -677,7 +681,6 @@ footer{
   text-align:center;
   color:#888;
   margin-left:-2.3em;
-  margin-top:-0.5em;
 }
 .miarka1 div{
   width:1em;
