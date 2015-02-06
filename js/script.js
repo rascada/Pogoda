@@ -569,13 +569,10 @@ if(flag=="1" || flagb=="1") {
 					else if(podstawowe[7]>=160 && podstawowe[7]<215) jaki="z południa";
 					else if(podstawowe[7]>=215 && podstawowe[7]<240) jaki="z południowego zachodu"
 					else if(podstawowe[7]>=240 && podstawowe[7]<285) jaki="z zachodu";
-<<<<<<< HEAD
 					else if(podstawowe[7]>=285 && podstawowe[7]<315) jaki="z północnego zachodu";
 
-=======
 					else if(podstawowe[7]>=285 && podstawowe[7]<320) jaki="z północnego zachodu";
-				
->>>>>>> FETCH_HEAD
+			
 					document.getElementById("aktDirVal").innerHTML="Akualny: <br/>"+jaki;
 					compass(2, cmlB);
 					var jaki_=" ";
