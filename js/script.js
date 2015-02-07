@@ -117,7 +117,7 @@ $(window).load(function() {
   async: false,
   data: { log: "in", }
 });
-setTimeout(function() {refdayrep(false);}, 1000);
+setTimeout(function() {refdayrep(false); refresh(); }, 1000);
 });
 
 
@@ -261,7 +261,6 @@ stworzMiarkeLicznik(2,2);
 stworzMiarkeLicznik(3,1);
 stworzMiarkeLicznik(4,3);
 ///PHP
-setInterval("refresh();", 3000);
 var ak_kmph=true;
 var pod_kmph=true;
 var podstawowe = new Array();
@@ -317,7 +316,8 @@ dzien:
 21 - Prognoza str
 22 - Prognoza dzien tyg
 23 - Prognoza img url
-
+24 - flaga lewy koniec 
+25 - flaga prawy koniec 
 id in html
 
 sunWsch
@@ -351,6 +351,7 @@ function jschangeday(day) {
 			data: { changedayrep: "right", },
 			success: function(response){                    
 				dzien = response.split("|"); 
+				// if(dzien[25]=='true') schowaj prawą strzałkę raportu
 				refdayrep(true);
 			}
 		});
@@ -363,6 +364,7 @@ function jschangeday(day) {
 			data: { changedayrep: "left", },
 			success: function(response){                    
 				dzien = response.split("|"); 
+				// if(dzien[24]=='true') schowaj lewą strzałkę raportu
 				refdayrep(true);
 			}
 		});
@@ -380,6 +382,7 @@ function jschangefore(right) {
 				data: { changeforecast: "right", },
 				success: function(response){                    
 					dzien = response.split("|"); 
+					// if(dzien[25]=='true') schowaj prawą strzałkę 3dniowej
 					refdayrep(true);
 				}
 			});
@@ -392,6 +395,7 @@ function jschangefore(right) {
 				data: { changeforecast: "left", },
 				success: function(response){                    
 					dzien = response.split("|");  
+					// if(dzien[24]=='true') schowaj lewą strzałkę 3dniowej
 					refdayrep(true);
 				}
 			});
@@ -417,7 +421,10 @@ if(type==0) {
 			dataType: "text",
 			async: false,
 			data: { gethourlyforecast: "left", },
-			success: function(response) { tabhourly = response.split("|"); }
+			success: function(response) { 
+			tabhourly = response.split("|"); 
+			// if(tabhourly[11]=="true") schowaj lewą strzałkę 36godz
+			}
 		});
 } else if(type==2) {
 		$.ajax({
@@ -426,9 +433,13 @@ if(type==0) {
 			dataType: "text",
 			async: false,
 			data: { gethourlyforecast: "right", },
-			success: function(response) { tabhourly = response.split("|"); }
+			success: function(response) { 
+			tabhourly = response.split("|"); 
+			// if(tabhourly[12]=="true") schowaj prawą strzałkę 36godz
+			}
 		});
 }
+
 			document.images['bigforeimg'].src = tabhourly[10]+'?' + Math.random();
 			document.getElementById("bigforetime").innerHTML=tabhourly[0];
 			document.getElementById("bigforedate").innerHTML=tabhourly[1]+" "+tabhourly[2];
@@ -453,6 +464,7 @@ function refdayrep(auto) {
 			success: function(response) { dzien = response.split("|"); }
 		});		
 		refhourly(0);
+		if( (dzien[16].indexOf("Mozilla")==-1 && dzien[16].indexOf("Chrome")==-1) || dzien[16].indexOf("Trident")!=-1) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome lub Firefox w najnowszej wersji.');
 }
 		document.getElementById("daydate").innerHTML=dzien[18];
 		document.getElementById("sunWsch").innerHTML=dzien[7];
@@ -488,14 +500,15 @@ function refdayrep(auto) {
 		else if(dzien[3]>=285 && dzien[3]<315) jaki_dzien="NW->SE";
 		document.getElementById("windDayDom").innerHTML=jaki_dzien;
 		
-		if( (dzien[16].indexOf("Mozilla")==-1 && dzien[16].indexOf("Chrome")==-1) || dzien[16].indexOf("Trident")!=-1) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome lub Firefox w najnowszej wersji.');
-    
+
+ 
+ /*   
     var data = new Date();
     var tabTime_s = dzien[19].trim().split(":");
     var tabTime_z = dzien[20].trim().split(":");
     var HourRise = parseInt(tabTime_s[0]);
     var HourSet = parseInt(tabTime_z[0]);
-/*
+
     if(data.getHours() <HourRise || data.getHours() >HourSet){
         $('#logoSun li').css('background','#57b7df');
         $('#logoSun li').css('border','.1em solid #57b7df');     
@@ -518,25 +531,24 @@ var flag='0';
 		type: "POST",
 		url: "session.php",
 		dataType: "text",
-		async: false,
+		async: true,
 		data: { wezpodstawowe: "busyflag", },
-		success: function(response) { flag = response.trim(); }
-	});
-
-if(flag=="1" || flagb=="1") {
-	$.ajax({
-		type: "POST",
-		url: "session.php",
-		dataType: "text",
-		async: false,
-		data: { wezpodstawowe: "nml", },
-		success: function(response) { podstawowe = response.split("|"); }
-	});	
-	
-	var akmph = Math.floor( ((3600*podstawowe[6])/1000) * 100)/100;
-	var pkmph = Math.floor( ((3600*podstawowe[5])/1000) * 100)/100;    
+		success: function(response) { 
+		flag = response.trim(); 
+		
+		if(flag=="1" || flagb=="1") {
+			$.ajax({
+				type: "POST",
+				url: "session.php",
+				dataType: "text",
+				async: true,
+				data: { wezpodstawowe: "nml", },
+				success: function(response) { 
+					podstawowe = response.split("|"); 
+					var akmph = Math.floor( ((3600*podstawowe[6])/1000) * 100)/100;
+					var pkmph = Math.floor( ((3600*podstawowe[5])/1000) * 100)/100;    
     
-    ludek();
+					ludek();
 
 					var cmlA = parseInt(podstawowe[7])+180;
 					if(cmlA>360) cmlA -= 360;
@@ -544,79 +556,86 @@ if(flag=="1" || flagb=="1") {
 					if(cmlB>360) cmlB -= 360;
 					if(cmlA==360) cmlA=0; if(cmlB==360) cmlB=0;
 	
-				document.getElementById("last").innerHTML=podstawowe[0]+"<br/>"+podstawowe[19]+" "+podstawowe[18]+"<br/>Obecnych na stronie: "+podstawowe[20]; 
-				document.getElementById("atemval").innerHTML=podstawowe[1]+"°C";
-				temp('aTemp',Math.floor(podstawowe[1]));
-				document.getElementById("wilval").innerHTML = podstawowe[2]+"%";
-				wind(4, podstawowe[2]);
-                fillWithWater(podstawowe[2]);
-			    document.getElementById("pressval").innerHTML = podstawowe[13]+"<br/>"+
-				podstawowe[3]+"hPa";
-			    temp('srTemp',Math.floor(podstawowe[4]));
-			    document.getElementById("srtemval").innerHTML=podstawowe[4]+"°C";
-				
-				if(pod_kmph) { document.getElementById("wPSpeed").innerHTML="Podmuch <br/>"+pkmph+"km/h"; wind(2, pkmph);  }
-				else { document.getElementById("wPSpeed").innerHTML="Podmuch <br/>"+podstawowe[5]+"m/s"; wind(2, podstawowe[5]);  }
-			    
-				if(ak_kmph) { document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+akmph+"km/h"; wind(1, akmph);  }
-				else { document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+podstawowe[6]+"m/s"; wind(1, podstawowe[6]); }
-                    compass(1, cmlA); 
-					var jaki=" ";
-					if(podstawowe[7]<20 || podstawowe[7]>=320) jaki="z północy";
-					else if(podstawowe[7]>=20 && podstawowe[7]<70) jaki="z północnego wschodu";
-					else if(podstawowe[7]>=70 && podstawowe[7]<110) jaki="ze wschodu";
-					else if(podstawowe[7]>=110 && podstawowe[7]<160) jaki="z południowego wschodu";
-					else if(podstawowe[7]>=160 && podstawowe[7]<215) jaki="z południa";
-					else if(podstawowe[7]>=215 && podstawowe[7]<240) jaki="z południowego zachodu"
-					else if(podstawowe[7]>=240 && podstawowe[7]<285) jaki="z zachodu";
-					else if(podstawowe[7]>=285 && podstawowe[7]<320) jaki="z północnego zachodu";
-				
-					document.getElementById("aktDirVal").innerHTML="Akualny: <br/>"+jaki;
-					compass(2, cmlB);
-					var jaki_=" ";
-					if(podstawowe[8]<20 || podstawowe[8]>=320) jaki_="z północy";
-					else if(podstawowe[8]>=20 && podstawowe[8]<70) jaki_="z północnego wschodu";
-					else if(podstawowe[8]>=70 && podstawowe[8]<110) jaki_="ze wschodu";
-					else if(podstawowe[8]>=110 && podstawowe[8]<160) jaki_="z południowego wschodu";
-					else if(podstawowe[8]>=160 && podstawowe[8]<215) jaki_="z południa";
-					else if(podstawowe[8]>=215 && podstawowe[8]<240) jaki_="z południowego zachodu"
-					else if(podstawowe[8]>=240 && podstawowe[8]<285) jaki_="z zachodu";
-					else if(podstawowe[8]>=285 && podstawowe[8]<320) jaki_="z północnego zachodu";
-					document.getElementById("domDirVal").innerHTML="Dominujący: <br/>"+jaki_;
+					document.getElementById("last").innerHTML=podstawowe[0]+"<br/>"+podstawowe[19]+" "+podstawowe[18]+"<br/>Obecnych na stronie: "+podstawowe[20]; 
+					document.getElementById("atemval").innerHTML=podstawowe[1]+"°C";
+					temp('aTemp',Math.floor(podstawowe[1]));
+					document.getElementById("wilval").innerHTML = podstawowe[2]+"%";
+					wind(4, podstawowe[2]);
+					fillWithWater(podstawowe[2]);
+					document.getElementById("pressval").innerHTML = podstawowe[13]+"<br/>"+
+					podstawowe[3]+"hPa";
+					temp('srTemp',Math.floor(podstawowe[4]));
+					document.getElementById("srtemval").innerHTML=podstawowe[4]+"°C";
 					
-					document.getElementById("windBfw").innerHTML="Wiatr: "+bfwInt_str(parseInt(podstawowe[10]));
+					if(pod_kmph) { document.getElementById("wPSpeed").innerHTML="Podmuch <br/>"+pkmph+"km/h"; wind(2, pkmph);  }
+					else { document.getElementById("wPSpeed").innerHTML="Podmuch <br/>"+podstawowe[5]+"m/s"; wind(2, podstawowe[5]);  }
 					
-					temp('oTemp',Math.floor(podstawowe[9])); 
-					document.getElementById("otemval").innerHTML=podstawowe[9]+"°C";
-					miarka('water2', podstawowe[11], 60);
-					document.getElementById("opadd").innerHTML=podstawowe[11]+"<br/>mm";
-					miarka('water12', podstawowe[12], 30); 
-					document.getElementById("aktopad").innerHTML=podstawowe[12]+"<br/>mm/h";
-					wind(3, podstawowe[3]);
+					if(ak_kmph) { document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+akmph+"km/h"; wind(1, akmph);  }
+					else { document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+podstawowe[6]+"m/s"; wind(1, podstawowe[6]); }
+						compass(1, cmlA); 
+						var jaki=" ";
+						if(podstawowe[7]<20 || podstawowe[7]>=320) jaki="z północy";
+						else if(podstawowe[7]>=20 && podstawowe[7]<70) jaki="z północnego wschodu";
+						else if(podstawowe[7]>=70 && podstawowe[7]<110) jaki="ze wschodu";
+						else if(podstawowe[7]>=110 && podstawowe[7]<160) jaki="z południowego wschodu";
+						else if(podstawowe[7]>=160 && podstawowe[7]<215) jaki="z południa";
+						else if(podstawowe[7]>=215 && podstawowe[7]<240) jaki="z południowego zachodu"
+						else if(podstawowe[7]>=240 && podstawowe[7]<285) jaki="z zachodu";
+						else if(podstawowe[7]>=285 && podstawowe[7]<320) jaki="z północnego zachodu";
 					
-                    document.getElementById("pressval").innerHTML = podstawowe[13]+"<br/>"+podstawowe[3]+"hPa";                    
-                    tenCol(podstawowe[13],'cisLicznik',true);
-    
-					document.getElementById("tentemp").innerHTML=podstawowe[14];
-                    tenCol(podstawowe[14],'tempPanel h3',false);
-    
-					document.getElementById("dewDeg").innerHTML=podstawowe[17];					
-					
+						document.getElementById("aktDirVal").innerHTML="Akualny: <br/>"+jaki;
+						compass(2, cmlB);
+						var jaki_=" ";
+						if(podstawowe[8]<20 || podstawowe[8]>=320) jaki_="z północy";
+						else if(podstawowe[8]>=20 && podstawowe[8]<70) jaki_="z północnego wschodu";
+						else if(podstawowe[8]>=70 && podstawowe[8]<110) jaki_="ze wschodu";
+						else if(podstawowe[8]>=110 && podstawowe[8]<160) jaki_="z południowego wschodu";
+						else if(podstawowe[8]>=160 && podstawowe[8]<215) jaki_="z południa";
+						else if(podstawowe[8]>=215 && podstawowe[8]<240) jaki_="z południowego zachodu"
+						else if(podstawowe[8]>=240 && podstawowe[8]<285) jaki_="z zachodu";
+						else if(podstawowe[8]>=285 && podstawowe[8]<320) jaki_="z północnego zachodu";
+						document.getElementById("domDirVal").innerHTML="Dominujący: <br/>"+jaki_;
+						
+						document.getElementById("windBfw").innerHTML="Wiatr: "+bfwInt_str(parseInt(podstawowe[10]));
+						
+						temp('oTemp',Math.floor(podstawowe[9])); 
+						document.getElementById("otemval").innerHTML=podstawowe[9]+"°C";
+						miarka('water2', podstawowe[11], 60);
+						document.getElementById("opadd").innerHTML=podstawowe[11]+"<br/>mm";
+						miarka('water12', podstawowe[12], 30); 
+						document.getElementById("aktopad").innerHTML=podstawowe[12]+"<br/>mm/h";
+						wind(3, podstawowe[3]);
+						
+						document.getElementById("pressval").innerHTML = podstawowe[13]+"<br/>"+podstawowe[3]+"hPa";                    
+						tenCol(podstawowe[13],'cisLicznik',true);
+		
+						document.getElementById("tentemp").innerHTML=podstawowe[14];
+						tenCol(podstawowe[14],'tempPanel h3',false);
+		
+						document.getElementById("dewDeg").innerHTML=podstawowe[17];					
+						
 
-					document.getElementById("cmL1").innerHTML = podstawowe[7]+'°';
-					document.getElementById("cmL2").innerHTML =  podstawowe[8] +'°';
+						document.getElementById("cmL1").innerHTML = podstawowe[7]+'°';
+						document.getElementById("cmL2").innerHTML =  podstawowe[8] +'°';
  
-if(flag=="1") {
-	$.ajax({
-	  type: "POST",
-	  url: "session.php",
-	  data: { log: "ok", }
+						if(flag=="1") {
+							$.ajax({
+							  type: "POST",
+							  url: "session.php",
+							  data: { log: "ok", }
+							});
+						} 
+						if(flagb=="1") flagb="0";		
+		
+				}
+			}); // weź podstawowe ajax	
+	
+			} // if flag 1
+		
+		} // succes busy
+	}).then(function() {
+		setTimeout("refresh()", 30000);
 	});
-} 
-if(flagb=="1") flagb="0";		
-}
-
-
 }
 
 	

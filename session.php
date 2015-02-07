@@ -49,10 +49,9 @@ if( isset($_POST['wezpodstawowe']) ) {
 	$zILE = mysql_query("SELECT id FROM podstawowe WHERE date='$dzisiaj'");
 	$iledzis = mysql_num_rows($zILE);
 
-	$dzisSec = $iledzis*300;
-	$dzisH = (int)($dzisSec/3600);
-	$dzisM = (int)($dzisSec-$dzisH*3600)/60;
-	$dzisS = (int)($dzisSec-$dzisH*3600-$dzisM*60);
+	$dzisSec = $iledzis*190;
+	$dzisH = ($dzisSec/3600); $dzisH = (int)$dzisH;
+	$dzisM = ($dzisSec-$dzisH*3600)/60; $dzisM = (int)$dzisM;
 	if($dzisH<10) $dzisH = '0'.$dzisH;
 	if($dzisM<10) $dzisM = '0'.$dzisM;
 
@@ -99,6 +98,7 @@ if( isset($_POST['changedayrep']) || isset($_POST['changeforecast']) ) {
 	
 	if($_POST['changedayrep']=="left") {
 		if((int)$_SESSION['dziennyto']>1) $_SESSION['dziennyto']--;
+		if($_SESSION['dziennyto']==1) $lend = true;
 		
 		if($_SESSION['dziennyto']==4) $_SESSION['dziennyto']=3;
 		
@@ -108,6 +108,7 @@ if( isset($_POST['changedayrep']) || isset($_POST['changeforecast']) ) {
 	$rozmiar = mysql_num_rows($Zrozmiar);
 	
 	if($_SESSION['dziennyto'] <= $rozmiar) $_SESSION['dziennyto']++;
+	if($_SESSION['dziennyto']==$rozmiar+1) $rend = true;
 	
 	if($_SESSION['dziennyto']==4) $_SESSION['dziennyto']=5;
 	
@@ -115,8 +116,10 @@ if( isset($_POST['changedayrep']) || isset($_POST['changeforecast']) ) {
 	
 	if($_POST['changeforecast']=="left") {
 		if((int)$_SESSION['foreto']>2) $_SESSION['foreto']--;
+		if($_SESSION['foreto']==2) $lend = true;
 	} else if($_POST['changeforecast']=="right") {
 		if($_SESSION['foreto'] < 9) $_SESSION['foreto']++;
+		if($_SESSION['foreto']==9) $rend = true;
 	}
 
 $dziennytolocal = $_SESSION['dziennyto'];
@@ -166,23 +169,35 @@ $selId = $_SESSION['foreto'];
 $Qprognozy = mysql_query("SELECT * FROM prognozy WHERE id='$selId'");
 $prognoza = mysql_fetch_array($Qprognozy);
 
+$lendS = 'false';
+if($lend) $lendS='true';
 
+$rendS = 'false';
+if($rend) $rendS='true';
 
-echo "<b>".$dat['tempmax']."°C</b> (".$tmpH.") | <b>".$dat['hummax']."%</b> (".$wilH.") | <b>".$dat['pressmax']."hPa</b> (".$cisH.") |".$oth['domdir']."|".$mPow." <b>".$oth['mspeed']."m/s</b>| <b>".$oth['mpowiew']."m/s</b> (".$mPow.") |<b>".$oth['mopad']."</b> (".$mOpa.") |".$wschs."|".$zachs ."|".$dlugdzien."|".$wschk."|".$zachk."|".$blue['moonph']."| <b>".$dat['tempmin']."°C</b> (".$tmpL.") | <b>".$dat['hummin']."%</b> (".$wilL.") |<b>".$dat['pressmin']."hPa</b> (".$cisL.")|".$_SERVER['HTTP_USER_AGENT']."|".$oth['chmury']."|".$dbdata."|".$swit."|".$zmier."|".$prognoza['strprog']."|".$prognoza['dzientyg']."|".$prognoza['imgurl'];
+echo "<b>".$dat['tempmax']."°C</b> (".$tmpH.") | <b>".$dat['hummax']."%</b> (".$wilH.") | <b>".$dat['pressmax']."hPa</b> (".$cisH.") |".$oth['domdir']."|".$mPow." <b>".$oth['mspeed']."m/s</b>| <b>".$oth['mpowiew']."m/s</b> (".$mPow.") |<b>".$oth['mopad']."</b> (".$mOpa.") |".$wschs."|".$zachs ."|".$dlugdzien."|".$wschk."|".$zachk."|".$blue['moonph']."| <b>".$dat['tempmin']."°C</b> (".$tmpL.") | <b>".$dat['hummin']."%</b> (".$wilL.") |<b>".$dat['pressmin']."hPa</b> (".$cisL.")|".$_SERVER['HTTP_USER_AGENT']."|".$oth['chmury']."|".$dbdata."|".$swit."|".$zmier."|".$prognoza['strprog']."|".$prognoza['dzientyg']."|".$prognoza['imgurl']."|".$lendS."|".$rendS;
 }
 
 if( isset($_POST['gethourlyforecast']) ) {
 	if($_POST['gethourlyforecast']=="left") {
 		if($_SESSION['godzto']>2) $_SESSION['godzto']--;
+		if($_SESSION['godzto']==2) $lend = true;
 	} else if($_POST['gethourlyforecast']=="right") {
 		if($_SESSION['godzto']<37) $_SESSION['godzto']++;
+		if($_SESSION['godzto']==37) $rend = true;
 	}
+
+$lendS = 'false';
+if($lend) $lendS='true';
+
+$rendS = 'false';
+if($rend) $rendS='true';
 	
 	$hourid = $_SESSION['godzto'];
 	$queryHourly = mysql_query("SELECT * FROM godzinna WHERE id='$hourid'");
 	$godzinna = mysql_fetch_array($queryHourly);
 	$miesrok = date("Y-m-"); if($godzinna['dmon']<10) $godzinna['dmon'] = '0'.$godzinna['dmon'];
-	echo $godzinna['godz'].":00|".$godzinna['dtyg']."|".$miesrok.$godzinna['dmon']."|".$godzinna['napis']."|".$godzinna['temp']."|".$godzinna['dewp']."|".$godzinna['wdir']."|".$godzinna['wspd']."|".$godzinna['rain']."|".$godzinna['snow']."|".$godzinna['imgurl'];
+	echo $godzinna['godz'].":00|".$godzinna['dtyg']."|".$miesrok.$godzinna['dmon']."|".$godzinna['napis']."|".$godzinna['temp']."|".$godzinna['dewp']."|".$godzinna['wdir']."|".$godzinna['wspd']."|".$godzinna['rain']."|".$godzinna['snow']."|".$godzinna['imgurl']."|".$lendS."|".$rendS;
 }	
  
 ?>
