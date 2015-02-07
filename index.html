@@ -40,24 +40,13 @@
             --><a href="#"><button id='buttonWykres' onclick="javascript: alert('Strona w budowie!');">Statystyki</button></a><!--
             --><br/><a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>Stacje w okolicy</button></a>
             </div>
-        <div id='smileyFaceCont' class="ramka bigPanel">
-            <div id='smileyFace'>
-                <div id='smileyFaceDarken'></div>
-                <div id='smileyFaceLighten'></div>
-                <div id='eyesCont'>
-                    <div class='eye'></div>
-                    <div class='eye eye1'></div>
-                </div>
-                <div id='mouth'></div>
-                <span id='biomet'>Biomet</span>
-                <span id='biometOdczyt'>Ładuje..</span>
-            </div>
-        </div>
     </header>
 
 <div id='all'>
 
+<div id='bottomPanel'>
 <div id="panel2" class="panel">
+    
     <!------------------------WaterPanel---------------------------------->
 <div id='waterPanel' class="bigPanel">
     <h1 class="bigPanelH">Opady</h1>
@@ -132,7 +121,7 @@
     </div>
 <!------------------------Wiatr------------------------------------>
 <div id='contL' style="border: 0; margin-top: 2em;">
-<div id='windPanel' class="bigPanel" style="margin-top: 0;">
+<div id='windPanel' class="bigPanel">
     <h1 class="bigPanelH" id="windBfw">Wiatr</h1>
     <!-----------------------compass1---------------------------------->
     <div class='compassCont'>
@@ -198,8 +187,9 @@
 
 </div>
 </div>
+    </div>
 <div class='panel' id='panel1'>
-    <div id='allFore'>
+    <div id='allFore'>            
         <div id='prognoza' class="ramka bigPanel">
             <h3>Prognoza - trzydniowa</h3>
             <div id='weatherUndergroundCont'>
@@ -320,17 +310,47 @@
                 </div>
         </div>
 </div>
+    <div id='minPanel3'>
 
-        <div id='buttonWykresCont' class="ramka bigPanel">
-
-        <footer><hr/>SP Skałągi &copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina<hr/> <div style="font-size: .83em; color: black;">Wspierane przeglądarki: <br/>Chrome i Firefox w najnowszych wersjach.<br/>Wkrótce też najnowszy IE.</footer>
-            </div>
+        <div id='buttonWykresCont' class="ramka bigPanel">   
+            <img src="http://pogoda-skalagi.pl/img/sat.gif">     
+            </div>               
+            <div  class="ramka bigPanel">
+                <h3 id='biomet'>Biomet - <span id='biometOdczyt'>Ładuje..</span></h3>
+                
+        </div>
 </div>
+        </div>
 <!--all-->
 </div>
+    
+    <!--         
+<footer><hr/>
+    SP Skałągi &copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina<hr/> 
+    <div style="font-size: .83em; color: black;">Wspierane przeglądarki: <br/>
+    Chrome i Firefox w najnowszych wersjach.<br/>Wkrótce też najnowszy IE.
+</footer>
+-->
+    
+<!--
+            <div id='smileyFaceCont' class="ramka bigPanel">
+                <div id='smileyFace'>
+                     <div id='smileyFaceDarken'></div>
+                     <div id='smileyFaceLighten'></div>
+                     <div id='eyesCont'>
+                         <div class='eye'></div>
+                         <div class='eye eye1'></div>
+                    </div>
+                    <div id='mouth'></div>
+                    <span id='biomet'>Biomet</span>
+                    <span id='biometOdczyt'>Ładuje..</span>
+                </div>
+        </div>
+-->
 
 <div id='hint'>Zmień jednostki</div>
 
 <script type="application/javascript" src="js/script.js"></script>
 </body>
 </html>
+

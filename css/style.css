@@ -3,8 +3,9 @@ body{
 
     font-family: 'Rajdhani', bold, sans-serif;
     overflow-x: hidden;
-	background: linear-gradient(lightblue 10em,#eee 25em);
+	background: linear-gradient(to bottom right, #fad335,#8DB6CD 15%,#539DC2,#eee,#ddd,#B2DFEE);
 }
+
 #all{
 
     margin-top: 1em;
@@ -12,6 +13,9 @@ body{
 	justify-content:space-around;
     align-items:  flex-start;
     flex-wrap: wrap;
+}
+#windPanel{
+    margin-top: 0;
 }
 #contL{
     flex-wrap: wrap;order:-1;
@@ -25,7 +29,7 @@ body{
     color: #eee;
     background:rgba(0,0,0,0.4);;
     margin-bottom: .5em;
-    border-radius:.1em;
+    border-radius:.2em;
 }
 .minMaxBG{
     display: flex;
@@ -40,12 +44,13 @@ body{
 .bigPanel{
     position: relative;
     display: inline-block;
-    border-radius: .1em;
+    border-radius: .4em;
     border: .1em solid #d1d1d1;
     text-align: center;
 	background: white;
 	box-shadow:0em .03em .03em .03em;
     padding-bottom: 1em;
+    border-bottom:.15em solid #fad335;
     margin-top: 2em;
 
 }
@@ -75,7 +80,16 @@ body{
 #panel1{
     justify-content:space-around;
     order: 4;
-    align-content: center;
+    align-items: stretch;    
+    flex-direction:row;
+    flex-grow:1;
+    order:-2;
+    min-width:90%;
+}
+#minPanel3{
+    display:flex;
+    flex-direction:column;
+    justify-content: space-around;
 }
 .ramka{
     text-align: center;
@@ -86,7 +100,7 @@ body{
 .ramka h3{
     font-size: 1.2em;
     position: relative;
-    border-bottom: .2em double #ddd;
+    border-bottom: .2em double #777;
     color: #eee;
     text-align: left;
     z-index: 2;
@@ -101,10 +115,10 @@ body{
 }
 
 #raportDnia{
-    font-size: 1.25em;
+    font-size: 1.1em;
     padding: 1em 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
@@ -216,13 +230,31 @@ body{
 #tempPanel{
     padding-bottom: 0;   
 }
+#panel2{
+    order: -14;
+}
 
 #buttonWykresCont{
     padding: 0;
     border: none;
-    min-width: 14em;
-    text-align: center;
+    width: 14em;
+    position: relative;
 }
+#buttonWykresCont img{
+    width: 100%;
+    padding: 1%;
+    margin: .5em 0 .3em;
+    border-radius: 5%;
+}
+
+#buttonWykresCont:before{
+    content: 'Satelita';
+    font-size: 2em;
+    position: absolute;
+    top: .3em;
+    left: .3em;
+}
+
 #buttonWykres{
     font-size: .8em;
     position: relative;
@@ -230,24 +262,27 @@ body{
     background: none;
     cursor:pointer;
     font-size: 1em;
-    color: #eee;
+    color: #fff;
     height:100%;
     padding: .5em 1em;
     z-index:1;
-    margin-top: .2em;
-    border: .1em solid #eee;
+    margin: .2em;
+    margin-left: .1em;
+    border: .1em solid #fff;
+    border-bottom-color: #fad335;
     transition: border 400ms ease-out 250ms,
                 margin 400ms ease-out 250ms,
                 color 250ms ease-out;
 }
 #buttonWykres:hover{
-    color: #fff;
+    color: #444;
+    border-color: #fad335;
+    border-bottom-width: .2em;
 }
 #buttonWykres:active,#buttonWykres:focus{
     outline: 0;
-    border:.1em solid #ccc;
-    border:.15em solid #ccc;
-    border:.15em solid #ccc;
+    border-color: #fad335;
+    border-bottom-width: 0em;
 }
 #buttonWykres:after{
     position:absolute;
@@ -259,8 +294,8 @@ body{
     margin-left:0;
     z-index:-30;
     border-radius:50%;
-    background:#ddd;
-    transition:all .5s ease;
+    background:#fff;
+    transition:all .7s ease;
 }
 #buttonWykres:hover:after{
     width:16em;
@@ -275,8 +310,9 @@ body{
 
 }
 header{
+    background: linear-gradient(to right, #539DC2 65%,#438DC9);
     border: .1em solid #eee;
-    border-width: .1em 0 .3em;
+    border-width: .2em .1em;
     padding-bottom: .5em;
   position:relative;
 }
@@ -302,7 +338,7 @@ header h1:before{
 }
 header h3{
     position: absolute;
-    right: 0;
+    right: .5em;
 	text-align: right;
     border: .1em solid #fff;
     border-width: .1em .1em 0 0;
@@ -365,10 +401,8 @@ footer{
 
 .menu{
   display:flex;
-  justify-content:flex-end;
-  align-items:center;
   position:absolute;
-  bottom:0;right:0;
+  bottom:.1em;right:.5em;;
 }
 /***********Termometr************************/
 .termometr{
@@ -691,6 +725,10 @@ footer{
 }
 #allFore{
     max-width: 25%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
 }
 #prognoza{
     display: flex;
@@ -758,7 +796,7 @@ footer{
     position: relative;
     margin-top: -.5em;
     font-size: .9em;
-    border-top: .1em solid #444;
+    border-top: .1em solid #777;
 }
 .fore36Heading{
     padding-bottom: .5em;
@@ -769,8 +807,8 @@ footer{
     margin-bottom: -1em;
 }
 .fore36Data{
-    border-top: .3em double #444;
-    margin: .5em 2em;
+    border-top: .1em solid #777;
+    margin: .7em 2em;
 
 }
 .fore36Text:nth-child(1){
@@ -796,17 +834,12 @@ footer{
 #bigforesnow{}
 /**************LUDEK********************************************/
 #smileyFaceCont{
-    position: absolute;
-    top: -2.3em;
-    right:33%;
     background: none;
     border-color: #fff;
     border-width: .3em;
-    transform: scale(.7);
 }
 
 #smileyFace{
-    font-size:.8em;
     positon:absolute;
     top:4em;
     left:10em;
@@ -820,8 +853,8 @@ footer{
 }
 #smileyFaceDarken{
   position:absolute;
-  width:10em;
-  height:10em;
+  width:83%;
+  height:75%;
   border-radius:50%;
   border:.2em solid #EC0;
   border-width:0em 0em 1.5em 1em;
@@ -829,12 +862,12 @@ footer{
 }
 #smileyFaceLighten{
   position:absolute;
-  width:5.5em;
-  height:3.5em;
-  margin-top:.7em;
-  margin-left:3.75em;
+  width:40%;
+  height:25%;
+  margin-top:7%;
+  margin-left:36%;
   border-radius:50%;
-  background:linear-gradient(white,transparent);
+  background:linear-gradient(white -20%,transparent 60%);
   transform:rotate(31deg);
 }
 #mouth{
@@ -857,7 +890,7 @@ footer{
     width:1.5em;
     height:1.5em;
     background:#222;
-    border-radius:50%;
+    border-radius:100%;
     -webkit-animation:eyeBlink 8s ease-in-out infinite;
 }
 
@@ -899,12 +932,13 @@ footer{
 .eye1{
   left:35%;
 }
+/*
 #biometOdczyt{
     position: relative;
     display: block;
     color:#000;
     margin-top: 80%;
-    font-size:1.15em;
+    font-size:2em;
     font-weight: 600;
 }
 #biomet{
@@ -913,8 +947,21 @@ footer{
     width: 100%;
     background: linear-gradient(to left,#444,#777);
     display: inline-block;
-    margin-top: -2em;
-    font-size:1.5em;
+    margin-top: -1.5em;
+    font-size:2em;
     font-weight: 600;
     color: #Fd2;
+}*/
+#biomet{
+    text-align: center;
+    border: 0;
+    color: #444;
+    margin:.5em 0;
+}
+
+#bottomPanel{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }

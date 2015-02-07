@@ -101,6 +101,10 @@ $(window).resize(function() {
     bottomPanel();
 });
 
+function bottomPanel(){
+    
+}
+
 $(window).unload(function() {
    $.ajax({
   type: "POST",
@@ -119,16 +123,6 @@ $(window).load(function() {
 });
 setTimeout(function() {refdayrep(false);}, 1000);
 });
-
-
-
-function bottomPanel(){
-    $('#panel1').css('flex-direction','row');
-    $('#panel1').css('flex-grow','1');
-    $('#panel1').css('order','-2');
-    $('#panel1').css('min-width','90%');
-    $('#raportDnia').css('flex-direction','row');
-}
 
 $(document).mousemove(function(event) {
 //      $('#hint').css('left',event.pageX).css('top',event.pageY-$('#hint').height());
@@ -165,7 +159,7 @@ function rotate(what,from,to,additionalTransform){
     });
 }
 
-function ludek(){
+function ludek(){/*
     var mouth = document.getElementById('mouth');
     if(podstawowe[21].charAt(0) == 'K'){
       mouth.style.transform = 'scale(.5) rotate(0deg)';
@@ -179,7 +173,7 @@ function ludek(){
       mouth.style.transform = 'scale(.5) rotate(0deg)';
       mouth.style.borderRadius = '0%';
       mouth.style.marginTop = '-2%';
-    }
+    }*/
     $('#biometOdczyt').text(podstawowe[21]);
 }
 function tenCol(tend,id,gradient){
