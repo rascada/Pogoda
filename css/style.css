@@ -23,8 +23,9 @@ body{
 #contL2{
     display: flex;
     margin-top: -2em;
-
 }
+#contL2 > div:first-child{border-radius: 0 0 0 .5em;}
+#contL2 > div:last-child{border-radius: 0 0 .5em 0;}
 .grey{
     color: #eee;
     background:rgba(0,0,0,0.4);;
@@ -35,9 +36,13 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-around;
-}
+}s
 
-#windPanel{flex-grow: 1; }
+#windPanel{
+    flex-grow: 1; 
+    border-radius: .5em .5em 0 0 ;
+    border-bottom:0;
+}
 #cisPanel{flex-grow: 1;padding-bottom: 2.6em;}
 #wilPanel{flex-grow: 1;}
 
@@ -234,6 +239,47 @@ body{
     order: -14;
 }
 
+.menu{
+    perspective: 0em;
+    perspective-origin: bottom;
+}
+
+.menu a{
+    position: relative;
+}
+
+#buttonWykres{
+    border-radius: .25em;
+    font-size: .8em;
+    position: relative;
+    background: none;
+    overflow: hidden;
+    cursor:pointer;
+    font-size: 1em;
+    color: #fff;
+    height:2.5em;
+    padding: .5em 1em;
+    z-index:1;
+    margin: .2em;
+    margin-left: .1em;
+    border: .1em solid #fff;
+    border-bottom-color: #fad335;
+    transform: rotateX(0);
+    transition: all 200ms ease;
+}
+#buttonWykres:hover{
+    color: #444;
+    border-color: #fad335;
+    border-bottom-width: .2em;
+    transform: rotateX(4deg);
+    background:#FFF;
+}
+#buttonWykres:active,#buttonWykres:focus{
+    outline: 0;
+    border-color: #fad335;
+    border-bottom-width: 0em;
+}
+
 #buttonWykresCont{
     padding: 0;
     border: none;
@@ -255,64 +301,16 @@ body{
     left: .3em;
 }
 
-#buttonWykres{
-    font-size: .8em;
-    position: relative;
-    overflow: hidden;
-    background: none;
-    cursor:pointer;
-    font-size: 1em;
-    color: #fff;
-    height:100%;
-    padding: .5em 1em;
-    z-index:1;
-    margin: .2em;
-    margin-left: .1em;
-    border: .1em solid #fff;
-    border-bottom-color: #fad335;
-    transition: border 400ms ease-out 250ms,
-                margin 400ms ease-out 250ms,
-                color 250ms ease-out;
-}
-#buttonWykres:hover{
-    color: #444;
-    border-color: #fad335;
-    border-bottom-width: .2em;
-}
-#buttonWykres:active,#buttonWykres:focus{
-    outline: 0;
-    border-color: #fad335;
-    border-bottom-width: 0em;
-}
-#buttonWykres:after{
-    position:absolute;
-    content:'';
-    left:50%;
-    top:50%;
-    width:0;
-    height:0;
-    margin-left:0;
-    z-index:-30;
-    border-radius:50%;
-    background:#fff;
-    transition:all .7s ease;
-}
-#buttonWykres:hover:after{
-    width:16em;
-    height:16em;
-    margin-top:-8em;
-    margin-left:-8em;
-}
 #logo{
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 header{
     background: linear-gradient(to right, #539DC2 65%,#438DC9);
     border: .1em solid #eee;
     border-width: .2em .1em;
+    border-style:double solid;
     padding-bottom: .5em;
   position:relative;
 }
