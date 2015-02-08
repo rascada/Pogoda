@@ -241,7 +241,12 @@ function miarka(id,water,p){
     $('#'+id).animate({ height: waterP+'px'});
 }
 
-function temp(id, C){$('#'+id).css('height',52-C+'%' );}
+function temp(id, C){    
+    var temp =14.65;
+    temp-=.35*C;
+    
+    $('#'+id).css('height',temp+'em');                    
+                    }
 
 compassDirScale(1);
 compassDirScale(2);

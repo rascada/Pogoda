@@ -418,7 +418,7 @@ footer{
     border-radius: .3em;
 }
 .termC{
-    margin: 0px 0;
+    margin: 0 0;
     width: .6em;
     background: linear-gradient(to right,#ccc,#ddd);
     position: absolute;
@@ -429,8 +429,8 @@ footer{
 .tempMeter{
     font-size:1.3em;
     position: absolute;
-    bottom:15em;left:0;
-    width: 45%;
+    bottom:-.1em;left:-2em;
+    width: 2em;
     border-bottom: .1em solid #444;
 }
 .tempMeter:after{
