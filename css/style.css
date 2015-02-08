@@ -36,7 +36,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-around;
-}s
+}
 
 #windPanel{
     flex-grow: 1; 
@@ -410,6 +410,7 @@ footer{
 }
 .tempBody{
     display: flex;
+    position: relative;
     justify-content: center;
     height: 31em;
     width: 6em;
@@ -425,6 +426,19 @@ footer{
     height: 0%;
     z-index: 2;
 }
+.tempMeter{
+    font-size:1.3em;
+    position: absolute;
+    bottom:15em;left:0;
+    width: 45%;
+    border-bottom: .1em solid #444;
+}
+.tempMeter:after{
+    content: '°C';
+    width: 100%;
+    position: absolute;
+    bottom: -1.5em;left:0;
+}
 .termMeter{
     height: 27em;
     width: .6em;
@@ -434,7 +448,6 @@ footer{
     border-radius: 10px;
     margin-top: .5em;
     z-index: 2;
-
 }
 .termMeter2{
     height: 4em;
@@ -464,7 +477,7 @@ footer{
     display: flex;
     flex-direction: column;
     position: absolute;
-    height: 60%;
+    height: 100%;
 }
 
 .tempMiarka div{
