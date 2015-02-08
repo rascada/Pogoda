@@ -558,7 +558,7 @@ var flag='0';
 					if(cmlA==360) cmlA=0; if(cmlB==360) cmlB=0;
 	
 					document.getElementById("last").innerHTML=podstawowe[0]+"<br/>"+podstawowe[19]+" "+podstawowe[18]+"<br/>Obecnych na stronie: "+podstawowe[20]; 
-					document.getElementById("atemval").innerHTML=podstawowe[1]+"°C";
+					document.getElementById("atemval").innerHTML=podstawowe[1];
 					temp('aTemp',Math.floor(podstawowe[1]));
 					document.getElementById("wilval").innerHTML = podstawowe[2]+"%";
 					wind(4, podstawowe[2]);
@@ -566,7 +566,7 @@ var flag='0';
 					document.getElementById("pressval").innerHTML = podstawowe[13]+"<br/>"+
 					podstawowe[3]+"hPa";
 					temp('srTemp',Math.floor(podstawowe[4]));
-					document.getElementById("srtemval").innerHTML=podstawowe[4]+"°C";
+					document.getElementById("srtemval").innerHTML=podstawowe[4];
 					
 					if(pod_kmph) { document.getElementById("wPSpeed").innerHTML="Podmuch <br/>"+pkmph+"km/h"; wind(2, pkmph);  }
 					else { document.getElementById("wPSpeed").innerHTML="Podmuch <br/>"+podstawowe[5]+"m/s"; wind(2, podstawowe[5]);  }
@@ -600,7 +600,7 @@ var flag='0';
 						document.getElementById("windBfw").innerHTML="Wiatr: "+bfwInt_str(parseInt(podstawowe[10]));
 						
 						temp('oTemp',Math.floor(podstawowe[9])); 
-						document.getElementById("otemval").innerHTML=podstawowe[9]+"°C";
+						document.getElementById("otemval").innerHTML=podstawowe[9];
 						miarka('water2', podstawowe[11], 60);
 						document.getElementById("opadd").innerHTML=podstawowe[11]+"<br/>mm";
 						miarka('water12', podstawowe[12], 30); 
