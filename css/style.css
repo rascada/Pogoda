@@ -243,7 +243,7 @@ body{
 #buttonWykresCont img{
     width: 100%;
     padding: 1%;
-    margin: .5em 0 .3em;
+    margin: 0 0 -.3em;
     border-radius: 5%;
 }
 
