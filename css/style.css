@@ -80,7 +80,7 @@ body{
 #panel1{
     justify-content:space-around;
     order: 4;
-    align-items: stretch;    
+    align-items: center;    
     flex-direction:row;
     flex-grow:1;
     order:-2;
