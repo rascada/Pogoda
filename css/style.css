@@ -225,7 +225,7 @@ body{
 #windPanel h1{background: linear-gradient(to bottom left,grey, lightgrey);}
 #waterPanel h1{background: linear-gradient(to bottom left,#00aeee, lightgrey );}
 #wilPanel h1{background: linear-gradient(to bottom left,#0266FF, lightgrey );}
-#cisPanel h1{background: linear-gradient(to bottom left,#CFCFCF, white );}
+#cisPanel h1{background: linear-gradient(to bottom left,#444, white );}
 
 #tempPanel{
     padding-bottom: 0;   
