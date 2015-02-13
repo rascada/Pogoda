@@ -109,8 +109,10 @@ $(window).unload(function() {
    $.ajax({
   type: "POST",
   url: "session.php",
-  async: false,
+  async: true,
   data: { log: "out", }
+}).then(function() {
+var a=0;
 });
 });
 
@@ -118,10 +120,24 @@ $(window).load(function() {
    $.ajax({
   type: "POST",
   url: "session.php",
-  async: false,
+  async: true,
   data: { log: "in", }
+}).then(function() {
+setTimeout(function() {
+$.ajax({
+	type: "POST",
+	url: "session.php",
+	dataType: "text",
+	async: true,
+	data: { changedayrep: "false", },
+	success: function(response) { dzien = response.split("|"); }
+	}).then(function() {
+		refhourly(0);
+		if( (dzien[16].indexOf("Mozilla")==-1 && dzien[16].indexOf("Chrome")==-1) || dzien[16].indexOf("Trident")!=-1) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome lub Firefox w najnowszej wersji.');
+		refdayrep(false); refresh(); 
+	});
+}, 1000);
 });
-setTimeout(function() {refdayrep(false); refresh(); }, 1000);
 });
 
 $(document).mousemove(function(event) {
@@ -346,26 +362,28 @@ function jschangeday(day) {
 			type: "POST",
 			url: "session.php",
 			dataType: "text",
-			async: false,
+			async: true,
 			data: { changedayrep: "right", },
 			success: function(response){                    
 				dzien = response.split("|"); 
-				// if(dzien[25]=='true') schowaj prawą strzałkę raportu
-				refdayrep(true);
 			}
-		});
+		}).then(function() {
+			// if(dzien[25]=='true') schowaj prawą strzałkę raportu
+				refdayrep(true);
+		});;
 	} else {
 	 	 $.ajax({
 			type: "POST",
 			url: "session.php",
 			dataType: "text",
-			async: false,
+			async: true,
 			data: { changedayrep: "left", },
 			success: function(response){                    
 				dzien = response.split("|"); 
-				// if(dzien[24]=='true') schowaj lewą strzałkę raportu
-				refdayrep(true);
 			}
+		}).then(function() {
+			// if(dzien[24]=='true') schowaj lewą strzałkę raportu
+				refdayrep(true);
 		});
 	}
 
@@ -377,26 +395,28 @@ function jschangefore(right) {
 				type: "POST",
 				url: "session.php",
 				dataType: "text",
-				async: false,
+				async: true,
 				data: { changeforecast: "right", },
 				success: function(response){                    
 					dzien = response.split("|"); 
+				}
+			}).then(function() {
 					// if(dzien[25]=='true') schowaj prawą strzałkę 3dniowej
 					refdayrep(true);
-				}
 			});
 	} else {
 		$.ajax({
 				type: "POST",
 				url: "session.php",
 				dataType: "text",
-				async: false,
+				async: true,
 				data: { changeforecast: "left", },
 				success: function(response){                    
 					dzien = response.split("|");  
+				}
+			}).then(function() {
 					// if(dzien[24]=='true') schowaj lewą strzałkę 3dniowej
 					refdayrep(true);
-				}
 			});
 	}
 }
@@ -409,36 +429,10 @@ if(type==0) {
 			type: "POST",
 			url: "session.php",
 			dataType: "text",
-			async: false,
+			async: true,
 			data: { gethourlyforecast: "false", },
 			success: function(response) { tabhourly = response.split("|"); }
-		});
-} else if(type==1) {
-		$.ajax({
-			type: "POST",
-			url: "session.php",
-			dataType: "text",
-			async: false,
-			data: { gethourlyforecast: "left", },
-			success: function(response) { 
-			tabhourly = response.split("|"); 
-			// if(tabhourly[11]=="true") schowaj lewą strzałkę 36godz
-			}
-		});
-} else if(type==2) {
-		$.ajax({
-			type: "POST",
-			url: "session.php",
-			dataType: "text",
-			async: false,
-			data: { gethourlyforecast: "right", },
-			success: function(response) { 
-			tabhourly = response.split("|"); 
-			// if(tabhourly[12]=="true") schowaj prawą strzałkę 36godz
-			}
-		});
-}
-
+		}).then(function() {
 			document.images['bigforeimg'].src = tabhourly[10]+'?' + Math.random();
 			document.getElementById("bigforetime").innerHTML=tabhourly[0];
 			document.getElementById("bigforedate").innerHTML=tabhourly[1]+" "+tabhourly[2];
@@ -449,22 +443,59 @@ if(type==0) {
 			document.getElementById("bigforewspd").innerHTML=tabhourly[7]+"km/h";
 			document.getElementById("bigforerain").innerHTML=tabhourly[8]+"mm";
 			document.getElementById("bigforesnow").innerHTML=tabhourly[9]+"cm";
-}
-
-
-function refdayrep(auto) {
- if(!auto) {
+		});
+} else if(type==1) {
 		$.ajax({
 			type: "POST",
 			url: "session.php",
 			dataType: "text",
-			async: false,
-			data: { changedayrep: "false", },
-			success: function(response) { dzien = response.split("|"); }
+			async: true,
+			data: { gethourlyforecast: "left", },
+			success: function(response) { 
+			tabhourly = response.split("|"); 
+			// if(tabhourly[11]=="true") schowaj lewą strzałkę 36godz
+			}
+		}).then(function() {
+			document.images['bigforeimg'].src = tabhourly[10]+'?' + Math.random();
+			document.getElementById("bigforetime").innerHTML=tabhourly[0];
+			document.getElementById("bigforedate").innerHTML=tabhourly[1]+" "+tabhourly[2];
+			document.getElementById("bigforetext").innerHTML=tabhourly[3];
+			document.getElementById("bigforetemp").innerHTML=tabhourly[4]+"°C";
+			document.getElementById("bigforedew").innerHTML=tabhourly[5]+"°C";
+			document.getElementById("bigforewdir").innerHTML=tabhourly[6];
+			document.getElementById("bigforewspd").innerHTML=tabhourly[7]+"km/h";
+			document.getElementById("bigforerain").innerHTML=tabhourly[8]+"mm";
+			document.getElementById("bigforesnow").innerHTML=tabhourly[9]+"cm";
 		});
-		refhourly(0);
-		if( (dzien[16].indexOf("Mozilla")==-1 && dzien[16].indexOf("Chrome")==-1) || dzien[16].indexOf("Trident")!=-1) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome lub Firefox w najnowszej wersji.');
+} else if(type==2) {
+		$.ajax({
+			type: "POST",
+			url: "session.php",
+			dataType: "text",
+			async: true,
+			data: { gethourlyforecast: "right", },
+			success: function(response) { 
+			tabhourly = response.split("|"); 
+			// if(tabhourly[12]=="true") schowaj prawą strzałkę 36godz
+			}
+		}).then(function() {
+			document.images['bigforeimg'].src = tabhourly[10]+'?' + Math.random();
+			document.getElementById("bigforetime").innerHTML=tabhourly[0];
+			document.getElementById("bigforedate").innerHTML=tabhourly[1]+" "+tabhourly[2];
+			document.getElementById("bigforetext").innerHTML=tabhourly[3];
+			document.getElementById("bigforetemp").innerHTML=tabhourly[4]+"°C";
+			document.getElementById("bigforedew").innerHTML=tabhourly[5]+"°C";
+			document.getElementById("bigforewdir").innerHTML=tabhourly[6];
+			document.getElementById("bigforewspd").innerHTML=tabhourly[7]+"km/h";
+			document.getElementById("bigforerain").innerHTML=tabhourly[8]+"mm";
+			document.getElementById("bigforesnow").innerHTML=tabhourly[9]+"cm";
+		});
 }
+
+}
+
+
+function refdayrep(auto) {
 		document.getElementById("daydate").innerHTML=dzien[18];
 		document.getElementById("sunWsch").innerHTML=dzien[7];
 		document.getElementById("sunBrz").innerHTML=dzien[19];
