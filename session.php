@@ -25,16 +25,7 @@ if( isset($_POST['log']) ) {
 		$_SESSION['dziennyto']=$iddzis['id'];
 		$_SESSION['foreto']='2';
 		$_SESSION['godzto']='2';
-		if((int)date("H")>20) $_SESSION['foreto']='3';
-	} else if($_POST['log']=="out") {
-		$sesid=$_SESSION['myid'];
-		mysql_query("DELETE FROM sesje WHERE id='$sesid'");
-		$Ziddzis=mysql_query("SELECT id FROM daytime ORDER BY id DESC LIMIT 1");
-		$iddzis = mysql_fetch_array($Ziddzis);
-		$_SESSION['dziennyto']=$iddzis['id'];
-		$_SESSION['foreto']='2';
-		$_SESSION['godzto']='2';
-		if((int)date("H")>20) $_SESSION['foreto']='3';
+		if((int)date("H")>18) $_SESSION['foreto']='3';
 	} else if($_POST['log']=="ok") {
 		$sesid=$_SESSION['myid'];
 		mysql_query("UPDATE sesje SET busy=0 WHERE id='$sesid'");
@@ -83,8 +74,38 @@ if( isset($_POST['wezpodstawowe']) ) {
 
 
 	if($ostSec>$nowSec-460 && $dzisbufif>0) $online="<span style='color: darkgreen;'>Stacja jest online!</span>";
-	echo $dir['date']." ".$dir['time']."|".$dir['atemp']."|".$dir['wilgo']."|".$dir['cisnie']."|".$dir['srtemp']."|".$dir['podmuch']."|".$dir['swind']."|".$dir['dirwind']."|".$dir['domdirwind']."|".$dir['otemp']."|".$dir['bfw']."|".$dir['dobopad']."|".$dir['deszcz']."|".$dir['tencisn']."  ".$dir['tencisnval']."hPa/h |".$dir['tentemp']." ".$dir['tentempval']."°C/h |NULL|NULL|".$dir['dew']."°C"."|".$iledzis."|".$online."|".$logged."|".$dir['biomet'];
-
+	$jsdate=$dir['date']." ".$dir['time'];
+	$jsatemp=$dir['atemp']; $jsotemp=$dir['otemp']; $jsrtemp=$dir['srtemp']; $jsdew=$dir['dew']."°C";
+	$jspress=$dir['cisnie']; $jshum=$dir['wilgo']; 
+	$jsgust=$dir['podmuch']; $jspeed=$dir['swind']; $jbfw=$dir['bfw']; $jsdom=$dir['domdirwind']; $jsdir=$dir['dirwind'];
+	$jsrain=$dir['deszcz']; $jsraint=$dir['dobopad']; 
+	$jstrendp=$dir['tencisn']."  ".$dir['tencisnval']."hPa/h";
+	$jstrendt=$dir['tentemp']." ".$dir['tentempval']."°C/h";
+	$jsbio = $dir['biomet'];
+echo<<<END
+{
+		"iledziala": "$iledzis",
+		"ilujest": "$logged",
+		"onoff": "$online",
+		"datetime": "$jsdate",
+		"atemp": "$jsatemp",
+		"otemp": "$jsotemp",
+		"srtemp": "$jsrtemp",
+		"trendtemp": "$jstrendt",
+		"dew": "$jsdew",
+		"press": "$jspress",
+		"trendpress": "$jstrendp",
+		"hum": "$jshum",
+		"gust": "$jsgust",
+		"speed": "$jspeed",
+		"bfw": "$jbfw",
+		"domdir": "$jsdom",
+		"dir": "$jsdir",
+		"rain": "$jsrain",
+		"raint": "$jsraint",
+		"biomet": "$jsbio"
+}
+END;
 	}
 	
 	if($_POST['wezpodstawowe']=="busyflag") {
@@ -196,8 +217,7 @@ if($rend) $rendS='true';
 	$hourid = $_SESSION['godzto'];
 	$queryHourly = mysql_query("SELECT * FROM godzinna WHERE id='$hourid'");
 	$godzinna = mysql_fetch_array($queryHourly);
-	$miesrok = date("Y-m-"); if($godzinna['dmon']<10) $godzinna['dmon'] = '0'.$godzinna['dmon'];
-	echo $godzinna['godz'].":00|".$godzinna['dtyg']."|".$miesrok.$godzinna['dmon']."|".$godzinna['napis']."|".$godzinna['temp']."|".$godzinna['dewp']."|".$godzinna['wdir']."|".$godzinna['wspd']."|".$godzinna['rain']."|".$godzinna['snow']."|".$godzinna['imgurl']."|".$lendS."|".$rendS;
+	echo $godzinna['godz'].":00|".$godzinna['dtyg']."|".$godzinna['dmon']."|".$godzinna['napis']."|".$godzinna['temp']."|".$godzinna['dewp']."|".$godzinna['wdir']."|".$godzinna['wspd']."|".$godzinna['rain']."|".$godzinna['snow']."|".$godzinna['imgurl']."|".$lendS."|".$rendS;
 }	
  
 ?>
