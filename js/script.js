@@ -485,11 +485,11 @@ function refdayrep(auto) {
 		document.images['forecast'].src = dzien[23]+'?' + Math.random();
 		var jaki_dzien;
 		if(dzien[3]<20 || dzien[3]>=315) jaki_dzien="N->S";
-		else if(dzien[3]>=20 && dzien[3]<70) jaki_dzien="NE->WS";
+		else if(dzien[3]>=20 && dzien[3]<70) jaki_dzien="NE->SW";
 		else if(dzien[3]>=70 && dzien[3]<110) jaki_dzien="E->W";
-		else if(dzien[3]>=110 && dzien[3]<160) jaki_dzien="SE->WE";
+		else if(dzien[3]>=110 && dzien[3]<160) jaki_dzien="SE->NW";
 		else if(dzien[3]>=160 && dzien[3]<215) jaki_dzien="S->N";
-		else if(dzien[3]>=215 && dzien[3]<240) jaki_dzien="SE->NW"
+		else if(dzien[3]>=215 && dzien[3]<240) jaki_dzien="SW->NE"
 		else if(dzien[3]>=240 && dzien[3]<285) jaki_dzien="W->E";
 		else if(dzien[3]>=285 && dzien[3]<315) jaki_dzien="NW->SE";
 		document.getElementById("windDayDom").innerHTML=jaki_dzien;

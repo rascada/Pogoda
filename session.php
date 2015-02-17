@@ -40,7 +40,7 @@ if( isset($_POST['wezpodstawowe']) ) {
 	$zILE = mysql_query("SELECT id FROM podstawowe WHERE date='$dzisiaj'");
 	$iledzis = mysql_num_rows($zILE);
 
-	$dzisSec = $iledzis*190;
+	$dzisSec = $iledzis*120;
 	$dzisH = ($dzisSec/3600); $dzisH = (int)$dzisH;
 	$dzisM = ($dzisSec-$dzisH*3600)/60; $dzisM = (int)$dzisM;
 	if($dzisH<10) $dzisH = '0'.$dzisH;
