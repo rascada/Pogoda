@@ -146,6 +146,21 @@ $(document).mousemove(function(event) {
     6 - cis
     7 - wilg
 */
+setTab(1);
+
+function setTab(tab){
+    if(tab ==2){        
+        
+        $('#all').fadeOut(500,function(){            
+            $('#wykresy').fadeIn(500);
+        });   
+        
+    }else{
+        $('#wykresy').fadeOut(500,function(){
+            $('#all').fadeIn(500);         
+        });                   
+    }            
+}
 
 var animCache = {};
 animCache[0]=225;

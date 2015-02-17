@@ -6,8 +6,7 @@ body{
 	background: linear-gradient(to bottom right, #fad335,#8DB6CD 15%,#539DC2,#eee,#ddd,#B2DFEE);
 }
 
-#all{
-
+#all{    
     margin-top: 1em;
     display: flex;
 	justify-content:space-around;
@@ -248,10 +247,10 @@ body{
 }
 
 #buttonWykres{
-    border-radius: .25em;
+    border-radius: .1em;
     font-size: .8em;
     position: relative;
-    background: none;
+    background: rgba(255,255,255,.1);
     overflow: hidden;
     cursor:pointer;
     font-size: 1em;
@@ -261,22 +260,35 @@ body{
     z-index:1;
     margin: .2em;
     margin-left: .1em;
-    border: .1em solid #fff;
-    border-bottom-color: #fad335;
+    border: .1em solid rgba(255,255,255,.1);
     transform: rotateX(0);
     transition: all 200ms ease;
 }
 #buttonWykres:hover{
+    border-radius: .25em;
     color: #444;
+    border: .1em solid #fff;
     border-color: #fad335;
     border-bottom-width: .2em;
     transform: rotateX(4deg);
     background:#FFF;
 }
 #buttonWykres:active,#buttonWykres:focus{
+    border-radius: .25em;
     outline: 0;
+    color: #444;
     border-color: #fad335;
-    border-bottom-width: 0em;
+    border-bottom-width: .1em;
+    transform: rotateX(4deg);
+    background:#FFF;
+}
+.buttonWykresActive{
+    border-radius: .25em;
+    color: #444;
+    border-color: #fad335;
+    border-bottom-width: .1em;
+    transform: rotateX(4deg);
+    background:#FFF;    
 }
 
 #buttonWykresCont{
@@ -306,11 +318,9 @@ body{
     align-items: center;
 }
 header{
-    background: linear-gradient(to right, #539DC2 65%,#438DC9);
-    border: .1em solid #eee;
-    border-width: .2em .1em;
-    border-style:double solid;
+    background: linear-gradient(to right, rgba(83,157,194,.3) 65%,rgba(67,141,201,.5));
     padding-bottom: .5em;
+    margin: -.5em;
   position:relative;
 }
 header h1, header h2, header h3
@@ -323,12 +333,12 @@ header h1{
     position: relative;
     font-size: 3.5em;
     box-shadow: .2em .1em .9em transparent;
-    padding-left: .5em;
+    padding-left:1em;
 }
 header h1:before{
     content:'Szkoła Podstawowa - 51.051290N 18.11788E';
     position: absolute;
-    font-size: .4em;
+    font-size: .3em;
     border-top: .1em solid #fff;
     right: 0;
     top:100%;
@@ -351,6 +361,7 @@ footer{
     flex: 1;
     max-width:10em;
     min-width:8em;
+    margin-left: .5em;
 }
 #logoSunBox:before{
     content: '';

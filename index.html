@@ -32,12 +32,12 @@
                     <li></li>
                 </ul>
             </div>
-            <h1>Stacja pogodowa Skałągi</h1>
+            <h1>Pogoda Skałągi</h1>
             <h3>Ostatnia aktualiazacja: <span id="last">Łącze..</span></h3><br/>
         </div>
             <div class="menu">
-        <a href="chart.htm"><button id='buttonWykres'>Wykresy</button></a><!--
-            --><a href="#"><button id='buttonWykres' onclick="javascript: alert('Strona w budowie!');">Statystyki</button></a><!--
+        <a href="#"><button  onclick="setTab(1);" id='buttonWykres'>Pogoda Skałągi</button></a><!--
+            --><a href="#"><button id='buttonWykres' onclick="setTab(2);">Wykresy</button></a><!--
             --><br/><a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>Stacje w okolicy</button></a>
             </div>
     </header>
@@ -330,6 +330,34 @@
         </div>
 <!--all-->
 </div>
+    
+    <div id='wykresy' style='display:none'>
+        <h1>Dane od początku działania stacji</h1>
+        <div class="buttonpanel">
+        <div class="but" onclick="setMonthlyTemp('chart1')">Temperatura Min/Max</div>
+        <div class="but" onclick="setMonthlyHum('chart1')">Wilgotność Min/Max</div>
+        <div class="but" onclick="setMonthlyPress('chart1')">Ciśnienie Min/Max</div> 
+        <div class="but" onclick="setMonthlyWind('chart1')">Wiatr</div>
+        <div class="but" onclick="setMonthlyRain('chart1')">Opady i zachmurzenie</div> 
+        </div> 
+        <hr width="70%" align="right"/><br/>
+        <h1>Dane z ostatnich 8H</h1>
+        <div class="buttonpanel">
+        <div class="but" onclick="setDailyTemp('chart1')">Temperatura</div>
+        <div class="but" onclick="setDailyOther('chart1')">Wilgotność, ciśnienie, opady</div>
+        <div class="but" onclick="setDailyWind('chart1', true)">Wiatr uśredniony</div>
+        <div class="but" onclick="setDailyWind('chart1', false)">Wiatr dokładny</div>
+        </div> 
+        <hr width="50%" align="right"/><br/>
+        <h1>Prognoza na 36H</h1>
+        <div class="buttonpanel">
+        <div class="but" onclick="setForeTemp('chart1')">Temperatura</div>
+        <div class="but" onclick="setForeWind('chart1')">Wiatr</div>
+        <div class="but" onclick="setForePreci('chart1')">Opady</div>
+        </div> 
+        <hr width="38%" align="right"/><br/>
+        <div id="chart1" style="min-width: 310px; height: 400px; margin: 0 auto"></div> 
+    </div>
     
     <!--         
 <footer><hr/>
