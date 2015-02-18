@@ -421,7 +421,9 @@ if(type==0) {
 			document.getElementById("bigforewdir").innerHTML=tabhourly[6];
 			document.getElementById("bigforewspd").innerHTML=tabhourly[7]+"km/h";
 			document.getElementById("bigforerain").innerHTML=tabhourly[8]+"mm";
+			if(tabhourly[8].indexOf("0")!=-1) document.getElementById("bigforerain").innerHTML="--";
 			document.getElementById("bigforesnow").innerHTML=tabhourly[9]+"cm";
+			if(tabhourly[9].indexOf("0")!=-1) document.getElementById("bigforesnow").innerHTML="--";
 		});
 } else if(type==1) {
 		$.ajax({
@@ -444,7 +446,9 @@ if(type==0) {
 			document.getElementById("bigforewdir").innerHTML=tabhourly[6];
 			document.getElementById("bigforewspd").innerHTML=tabhourly[7]+"km/h";
 			document.getElementById("bigforerain").innerHTML=tabhourly[8]+"mm";
+			if(tabhourly[8].indexOf("0")!=-1) document.getElementById("bigforerain").innerHTML="--";
 			document.getElementById("bigforesnow").innerHTML=tabhourly[9]+"cm";
+			if(tabhourly[9].indexOf("0")!=-1) document.getElementById("bigforesnow").innerHTML="--";
 		});
 } else if(type==2) {
 		$.ajax({
@@ -467,9 +471,14 @@ if(type==0) {
 			document.getElementById("bigforewdir").innerHTML=tabhourly[6];
 			document.getElementById("bigforewspd").innerHTML=tabhourly[7]+"km/h";
 			document.getElementById("bigforerain").innerHTML=tabhourly[8]+"mm";
+			if(tabhourly[8].indexOf("0")!=-1) document.getElementById("bigforerain").innerHTML="--";
 			document.getElementById("bigforesnow").innerHTML=tabhourly[9]+"cm";
+			if(tabhourly[9].indexOf("0")!=-1) document.getElementById("bigforesnow").innerHTML="--";
 		});
 }
+
+
+
 
 }
 
@@ -494,6 +503,7 @@ function refdayrep(auto) {
 
 		document.getElementById("windDayBlow").innerHTML=" "+dzien[5];
 	    document.getElementById("rainDay").innerHTML=" "+dzien[6];
+		if(dzien[6].indexOf("0")==3) document.getElementById("rainDay").innerHTML="- (--:--)"; 
 		document.getElementById("clouds").innerHTML=dzien[17]+"m";
 		document.getElementById("forecast").innerHTML=dzien[21];
 		document.getElementById("weather").innerHTML=dzien[22];
