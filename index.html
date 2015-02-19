@@ -10,29 +10,22 @@
 <script src="js/highcharts-more.js"></script>
 <style>
 .buttonpanel {
-width: 100%;
-display: flex;
-justify-content: flex-end;
+float: left;
 }
-
 .but {
 	text-align: center;
 	border: .1em solid lightgrey;
-	background: #bfc910;
+	background: #ffffdd;
 	font-size: 1.3em;
-	float: left;
-	color: white;
-	margin-left: .2em;
-	margin-right: .2em;
+	margin-top: .2em;
+	margin-bottom: .2em;
 	cursor: pointer;
 	padding: .4em;
 	border-radius: .3em .3em;
 }
-
-.but:hover {
-	border-radius: .45em .45em;
-	border: .1em solid black;
-	background: #aeb900;
+#menuChartCont {
+display: flex; 
+justify-content: space-around;
 }
 </style>
 <title>Pogoda Skałągi</title>
@@ -361,31 +354,38 @@ justify-content: flex-end;
 <!--all-->
 </div>
     
-    <div id='wykresy' style='display:none'>
-        <h1>Dane od początku działania stacji</h1>
+    <div id='wykresy' style='display:none;'>
+	<div id="menuChartCont">
         <div class="buttonpanel">
+		<h1>Od początku działania stacji</h1>
         <div class="but" onclick="setMonthlyTemp('chart1')">Temperatura Min/Max</div>
         <div class="but" onclick="setMonthlyHum('chart1')">Wilgotność Min/Max</div>
         <div class="but" onclick="setMonthlyPress('chart1')">Ciśnienie Min/Max</div> 
         <div class="but" onclick="setMonthlyWind('chart1')">Wiatr</div>
         <div class="but" onclick="setMonthlyRain('chart1')">Opady i zachmurzenie</div> 
         </div> 
-        <hr width="70%" align="right"/><br/>
-        <h1>Dane z ostatnich 8H</h1>
+		<div class="buttonpanel">
+		<h1>Ostatni tydzień</h1>
+        <div class="but" onclick="setSevenTemp('chart1')">Temperatura</div>
+        <div class="but" onclick="setSevenOther('chart1')">Wilgotność, ciśnienie, opady</div>
+        <div class="but" onclick="setSevenWind('chart1', true)">Wiatr uśredniony</div>
+        <div class="but" onclick="setSevenWind('chart1', false)">Wiatr dokładny</div>
+        </div> 
         <div class="buttonpanel">
+		<h1>Ostatnie 8 godzin</h1>
         <div class="but" onclick="setDailyTemp('chart1')">Temperatura</div>
         <div class="but" onclick="setDailyOther('chart1')">Wilgotność, ciśnienie, opady</div>
         <div class="but" onclick="setDailyWind('chart1', true)">Wiatr uśredniony</div>
         <div class="but" onclick="setDailyWind('chart1', false)">Wiatr dokładny</div>
         </div> 
-        <hr width="50%" align="right"/><br/>
-        <h1>Prognoza na 36H</h1>
         <div class="buttonpanel">
+		<h1>Następne 36 godzin</h1>
         <div class="but" onclick="setForeTemp('chart1')">Temperatura</div>
         <div class="but" onclick="setForeWind('chart1')">Wiatr</div>
         <div class="but" onclick="setForePreci('chart1')">Opady</div>
         </div> 
-        <hr width="38%" align="right"/><br/>
+		</div>
+        <hr width="75%" style="clear:both;"/><br/>
         <div id="chart1" style="min-width: 98.5%; height: 400px; margin: 0 auto"></div> 
     </div>
     
