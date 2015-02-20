@@ -10,8 +10,6 @@ $_SESSION['myid'];
 $_SESSION['dziennyto'];
 $_SESSION['foreto'];
 $_SESSION['godzto'];
-
-
 if( isset($_POST['log']) ) {
 
 	if($_POST['log']=="in") { 
@@ -218,6 +216,92 @@ if($rend) $rendS='true';
 	$queryHourly = mysql_query("SELECT * FROM godzinna WHERE id='$hourid'");
 	$godzinna = mysql_fetch_array($queryHourly);
 	echo $godzinna['godz'].":00|".$godzinna['dtyg']."|".$godzinna['dmon']."|".$godzinna['napis']."|".$godzinna['temp']."|".$godzinna['dewp']."|".$godzinna['wdir']."|".$godzinna['wspd']."|".$godzinna['rain']."|".$godzinna['snow']."|".$godzinna['imgurl']."|".$lendS."|".$rendS;
-}	
+}
+
+// *** Min/max na miesiąc - sprawdzenie rekordów ***
+if( isset($_GET['checkhighslows']) ) {
+	$tL = "none"; $tH = "none"; $pL = "none"; $pH = "none";
+	$hL = "none"; $hH = "none"; $wN = "none"; $rN = "none";
+	
+	$terazMiesiac = date("Y-m-");
+	$queryRecTime = mysql_query("SELECT id FROM montime WHERE lupdate LIKE '$terazMiesiac%'");
+	if(mysql_num_rows($queryRecTime)>0) {
+		$RecTime = mysql_fetch_assoc($queryRecTime);
+		$queryRecVal = mysql_query("SELECT * FROM mondata WHERE id=".$RecTime['id']);
+		$RecVal = mysql_fetch_assoc($queryRecVal);
+
+		$terazDzien = date("Y-m-d");
+		$queryDayCheckID = mysql_query("SELECT id FROM daytime WHERE ddata='$terazDzien'");
+		$DayCheckID = mysql_fetch_assoc($queryDayCheckID); $DayCheckID = $DayCheckID['id'];
+		$queryDayCheckData = mysql_query("SELECT * FROM daydata WHERE id='$DayCheckID'");
+		$queryDayCheckOther = mysql_query("SELECT * FROM dayother WHERE id='$DayCheckID'");
+		$DayCheckData = mysql_fetch_assoc($queryDayCheckData); $DayCheckOther = mysql_fetch_assoc($queryDayCheckOther);
+
+		if($DayCheckData['tempmin']<$RecVal['templ']) {
+			$queryKiedyTo = mysql_query("SELECT tempmin FROM daytime WHERE ddata='$terazDzien'");
+			$KiedyTo = mysql_fetch_assoc($queryKiedyTo);
+			$tL = "Najniższa temperatura w tym miesiącu ".$DayCheckData['tempmin']."°C zanotowana dzisiaj o ".$KiedyTo['tempmin'];
+		}
+
+		if($DayCheckData['hummin']<$RecVal['huml']) {
+			$queryKiedyTo = mysql_query("SELECT hummin FROM daytime WHERE ddata='$terazDzien'");
+			$KiedyTo = mysql_fetch_assoc($queryKiedyTo);
+			$hL = "Najniższa wilgotność w tym miesiącu ".$DayCheckData['hummin']."% zanotowana dzisiaj o ".$KiedyTo['hummin'];
+		}
+
+		if($DayCheckData['pressmin']<$RecVal['pressl']) {
+			$queryKiedyTo = mysql_query("SELECT pressmin FROM daytime WHERE ddata='$terazDzien'");
+			$KiedyTo = mysql_fetch_assoc($queryKiedyTo);
+			$pL = "Najniższe ciśnienie w tym miesiącu ".$DayCheckData['pressmin']."hPa zanotowane dzisiaj o ".$KiedyTo['pressmin'];
+		}
+
+		if($DayCheckData['tempmax']>$RecVal['temph']) {
+			$queryKiedyTo = mysql_query("SELECT tempmax FROM daytime WHERE ddata='$terazDzien'");
+			$KiedyTo = mysql_fetch_assoc($queryKiedyTo);
+			$tH = "Najwyższa temperatura w tym miesiącu ".$DayCheckData['tempmax']."°C zanotowana dzisiaj o ".$KiedyTo['tempmax'];
+		}
+
+		if($DayCheckData['hummax']>$RecVal['humh']) {
+			$queryKiedyTo = mysql_query("SELECT hummax FROM daytime WHERE ddata='$terazDzien'");
+			$KiedyTo = mysql_fetch_assoc($queryKiedyTo);
+			$hH = "Najwyższa wilgotność w tym miesiącu ".$DayCheckData['hummax']."% zanotowana dzisiaj o ".$KiedyTo['hummax'];
+		}
+
+		if($DayCheckData['pressmax']>$RecVal['pressh']) {
+			$queryKiedyTo = mysql_query("SELECT pressmax FROM daytime WHERE ddata='$terazDzien'");
+			$KiedyTo = mysql_fetch_assoc($queryKiedyTo);
+			$pH = "Najwyższe ciśnienie w tym miesiącu ".$DayCheckData['pressmax']."hPa zanotowane dzisiaj o ".$KiedyTo['pressmax'];
+		}
+
+		if($DayCheckOther['mpowiew']>$RecVal['windh']) {
+			$wN = "Najsilniejszy podmuch w tym miesiącu ".$DayCheckOther['mpowiew']."m/s zanotowany dzisiaj o ".$DayCheckOther['timempowiew'];
+		}
+
+		if($DayCheckOther['mopad']>$RecVal['rainh']) {
+			$rN = "Największy opad deszczu w tym miesiącu ".$DayCheckOther['mopad']."mm zanotowany dzisiaj o ".$DayCheckOther['timemopad'];
+		}
+	}
+
+echo<<<END
+{
+	"temp": {
+		"low": "$tL",
+		"high": "$tH"
+	},
+	"hum": {
+		"low": "$hL",
+		"high": "$hH"
+	},
+	"press": {
+		"low": "$pL",
+		"high": "$pH"
+	},
+	"other": {
+		"wind": "$wN",
+		"rain": "$rN"
+	}
+}
+END;
+	}	
  
 ?>

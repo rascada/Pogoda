@@ -106,27 +106,65 @@ function bottomPanel(){
 }
 
 $(window).load(function() {
-   $.ajax({
-  type: "POST",
-  url: "session.php",
-  async: true,
-  data: { log: "in", }
-}).then(function() {
-setTimeout(function() {
-$.ajax({
-	type: "POST",
-	url: "session.php",
-	dataType: "text",
-	async: true,
-	data: { changedayrep: "false", },
-	success: function(response) { dzien = response.split("|"); }
+	 $.ajax({
+	  type: "POST",
+	  url: "session.php",
+	  async: true,
+	  data: { log: "in", }
 	}).then(function() {
-		refhourly(0);
-		if( (dzien[16].indexOf("Mozilla")==-1 && dzien[16].indexOf("Chrome")==-1) || dzien[16].indexOf("Trident")!=-1) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome lub Firefox w najnowszej wersji.');
-		refdayrep(false); refresh(); 
+		setTimeout(function() {
+			$.ajax({
+				type: "POST",
+				url: "session.php",
+				dataType: "text",
+				async: true,
+				data: { changedayrep: "false", },
+				success: function(response) { dzien = response.split("|"); }
+				}).then(function() {
+					refhourly(0);
+					if( (dzien[16].indexOf("Mozilla")==-1 && dzien[16].indexOf("Chrome")==-1) || dzien[16].indexOf("Trident")!=-1) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome lub Firefox w najnowszej wersji.');
+					refdayrep(false); refresh(); 
+					});
+		}, 1000);
 	});
-}, 1000);
-});
+
+	var rekordy=0;
+$.ajax({
+	type: "GET",
+	url: "session.php",
+	dataType: "json",
+	async: true,
+	data: { checkhighslows: "ok" },
+	success: function(resp) {
+		rekordy=resp;
+	}
+}).then(function() {
+	if(rekordy['temp']['low']!="none") {
+			$("#tempPanel").prop("title", rekordy['temp']['low']);
+		}
+		if(rekordy['temp']['high']!="none") {
+			$("#tempPanel").prop("title", rekordy['temp']['high']);
+		}
+		if(rekordy['hum']['low']!="none") {
+			$("#wilPanel").prop("title", rekordy['hum']['low']);
+		}
+		if(rekordy['hum']['high']!="none") {
+			$("#wilPanel").prop("title", rekordy['hum']['high']);
+		}
+		if(rekordy['press']['low']!="none") {
+			$("#cisPanel").prop("title", rekordy['press']['low']);
+		}
+		if(rekordy['press']['high']!="none") {
+			$("#cisPanel").prop("title", rekordy['press']['high']);
+		}
+		if(rekordy['other']['wind']!="none") {
+			$("#windPanel").prop("title", rekordy['other']['wind']);
+		}
+		if(rekordy['other']['rain']!="none") {
+			$("#waterPanel").prop("title", rekordy['other']['rain']);
+		}	
+	});
+	
 });
 
 $(document).mousemove(function(event) {
@@ -640,7 +678,7 @@ var flag='0';
 
 						document.getElementById("cmL1").innerHTML = podstawowe['dir']+'°';
 						document.getElementById("cmL2").innerHTML =  podstawowe['domdir'] +'°';
- 
+					
 						if(flag=="1") {
 							$.ajax({
 							  type: "POST",
