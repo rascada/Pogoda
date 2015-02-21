@@ -314,8 +314,6 @@ body{
 
 #logo{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 header{
     background: linear-gradient(to right, rgba(83,157,194,.3) 65%,rgba(67,141,201,.5));

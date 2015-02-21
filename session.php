@@ -274,7 +274,7 @@ if( isset($_GET['checkhighslows']) ) {
 		}
 
 		if($DayCheckOther['mpowiew']>$RecVal['windh']) {
-			$wN = "Najsilniejszy podmuch w tym miesiącu ".$DayCheckOther['mpowiew']."m/s zanotowany dzisiaj o ".$DayCheckOther['timempowiew'];
+			$wN = "Najsilniejszy podmuch w tym miesiącu ".($DayCheckOther['mpowiew']*3.6)."km/h zanotowany dzisiaj o ".$DayCheckOther['timempowiew'];
 		}
 
 		if($DayCheckOther['mopad']>$RecVal['rainh']) {
