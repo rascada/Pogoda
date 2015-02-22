@@ -38,15 +38,6 @@ if( isset($_POST['wezpodstawowe']) ) {
 	$zILE = mysql_query("SELECT id FROM podstawowe WHERE date='$dzisiaj'");
 	$iledzis = mysql_num_rows($zILE);
 
-	$dzisSec = $iledzis*120;
-	$dzisH = ($dzisSec/3600); $dzisH = (int)$dzisH;
-	$dzisM = ($dzisSec-$dzisH*3600)/60; $dzisM = (int)$dzisM;
-	if($dzisH<10) $dzisH = '0'.$dzisH;
-	if($dzisM<10) $dzisM = '0'.$dzisM;
-
-	$dzisbufif = $iledzis;
-	$iledzis = $dzisH."godz. ".$dzisM."min.";
-
 	$zap = mysql_query("SELECT * FROM podstawowe ORDER BY id DESC LIMIT 1");
 	$dir = mysql_fetch_array($zap); 
 
@@ -71,7 +62,7 @@ if( isset($_POST['wezpodstawowe']) ) {
 	$logged = mysql_num_rows($Zlogged);
 
 
-	if($ostSec>$nowSec-460 && $dzisbufif>0) $online="<span style='color: darkgreen;'>Stacja jest online!</span>";
+	if($ostSec>$nowSec-460 && $iledzis>0) $online="<span style='color: darkgreen;'>Stacja jest online!</span>";
 	$jsdate=$dir['date']." ".$dir['time'];
 	$jsatemp=$dir['atemp']; $jsotemp=$dir['otemp']; $jsrtemp=$dir['srtemp']; $jsdew=$dir['dew']."°C";
 	$jspress=$dir['cisnie']; $jshum=$dir['wilgo']; 
@@ -82,7 +73,6 @@ if( isset($_POST['wezpodstawowe']) ) {
 	$jsbio = $dir['biomet'];
 echo<<<END
 {
-		"iledziala": "$iledzis",
 		"ilujest": "$logged",
 		"onoff": "$online",
 		"datetime": "$jsdate",

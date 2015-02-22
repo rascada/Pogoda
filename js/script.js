@@ -122,7 +122,7 @@ $(window).load(function() {
 				success: function(response) { dzien = response.split("|"); }
 				}).then(function() {
 					refhourly(0);
-					if( (dzien[16].indexOf("Mozilla")==-1 && dzien[16].indexOf("Chrome")==-1) || dzien[16].indexOf("Trident")!=-1) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome lub Firefox w najnowszej wersji.');
+					if( (dzien[16].indexOf("Mozilla")==-1 && dzien[16].indexOf("Chrome")==-1) || dzien[16].indexOf("Trident")!=-1) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome, Firefox lub Opery w najnowszej wersji.');
 					refdayrep(false); refresh(); 
 					});
 		}, 1000);
@@ -619,7 +619,7 @@ var flag='0';
 					if(cmlB>360) cmlB -= 360;
 					if(cmlA==360) cmlA=0; if(cmlB==360) cmlB=0;
 	
-					document.getElementById("last").innerHTML=podstawowe['datetime']+"<br/>"+podstawowe['onoff']+" "+podstawowe['iledziala']+"<br/>Obecnych na stronie: "+podstawowe['ilujest']; 
+					document.getElementById("last").innerHTML=podstawowe['datetime']+"<br/>"+podstawowe['onoff']+"<br/>Obecnych na stronie: "+podstawowe['ilujest']; 
 					document.getElementById("atemval").innerHTML=podstawowe['atemp'];
 					temp('aTemp',Math.floor(podstawowe['atemp']));
 					document.getElementById("wilval").innerHTML = podstawowe['hum']+"%";
