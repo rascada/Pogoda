@@ -94,16 +94,11 @@ function createTempMiar(id,precise,skok){
     }
 }
 var width= $(window).width();
-bottomPanel();
 
 $(window).resize(function() {
     width=$(window).width();
-    bottomPanel();
 });
 
-function bottomPanel(){
-    
-}
 
 $(window).load(function() {
 	 $.ajax({
@@ -634,28 +629,10 @@ var flag='0';
 					if(ak_kmph) { document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+akmph+"km/h"; wind(1, akmph);  }
 					else { document.getElementById("wSpeed").innerHTML="Aktualny <br/>"+podstawowe['speed']+"m/s"; wind(1, podstawowe['speed']); }
 						compass(1, cmlA); 
-						var jaki=" ";
-						if(podstawowe['dir']<20 || podstawowe['dir']>=320) jaki="z północy";
-						else if(podstawowe['dir']>=20 && podstawowe['dir']<70) jaki="z północnego wschodu";
-						else if(podstawowe['dir']>=70 && podstawowe['dir']<110) jaki="ze wschodu";
-						else if(podstawowe['dir']>=110 && podstawowe['dir']<160) jaki="z południowego wschodu";
-						else if(podstawowe['dir']>=160 && podstawowe['dir']<215) jaki="z południa";
-						else if(podstawowe['dir']>=215 && podstawowe['dir']<240) jaki="z południowego zachodu"
-						else if(podstawowe['dir']>=240 && podstawowe['dir']<285) jaki="z zachodu";
-						else if(podstawowe['dir']>=285 && podstawowe['dir']<320) jaki="z północnego zachodu";
-					
-						document.getElementById("aktDirVal").innerHTML="Akualny: <br/>"+jaki;
+						document.getElementById("aktDirVal").innerHTML="Akualny: <br/>"+wind_dir_str(podstawowe['dir']);
+						
 						compass(2, cmlB);
-						var jaki_=" ";
-						if(podstawowe['domdir']<20 || podstawowe['domdir']>=320) jaki_="z północy";
-						else if(podstawowe['domdir']>=20 && podstawowe['domdir']<70) jaki_="z północnego wschodu";
-						else if(podstawowe['domdir']>=70 && podstawowe['domdir']<110) jaki_="ze wschodu";
-						else if(podstawowe['domdir']>=110 && podstawowe['domdir']<160) jaki_="z południowego wschodu";
-						else if(podstawowe['domdir']>=160 && podstawowe['domdir']<215) jaki_="z południa";
-						else if(podstawowe['domdir']>=215 && podstawowe['domdir']<240) jaki_="z południowego zachodu"
-						else if(podstawowe['domdir']>=240 && podstawowe['domdir']<285) jaki_="z zachodu";
-						else if(podstawowe['domdir']>=285 && podstawowe['domdir']<320) jaki_="z północnego zachodu";
-						document.getElementById("domDirVal").innerHTML="Dominujący: <br/>"+jaki_;
+						document.getElementById("domDirVal").innerHTML="Dominujący: <br/>"+wind_dir_str(podstawowe['domdir']);
 						
 						document.getElementById("windBfw").innerHTML="Wiatr: "+bfwInt_str(parseInt(podstawowe['bfw']));
 						
@@ -728,4 +705,17 @@ function bfwInt_str(bNumb) {
 		case 11: return 'Wczesny huragan'; break;
 		case 12: return 'Huragan'; break;
 	}
+}
+
+function wind_dir_str(a) {
+	var jaki_='';
+	if(a<20 || a>=320) jaki_="z północy";
+	else if(a>=20 && a<70) jaki_="z północnego wschodu";
+	else if(a>=70 && a<110) jaki_="ze wschodu";
+	else if(a>=110 && a<160) jaki_="z południowego wschodu";
+	else if(a>=160 && a<215) jaki_="z południa";
+	else if(a>=215 && a<240) jaki_="z południowego zachodu"
+	else if(a>=240 && a<285) jaki_="z zachodu";
+	else if(a>=285 && a<320) jaki_="z północnego zachodu";
+	return jaki_;
 }
