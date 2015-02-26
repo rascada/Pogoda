@@ -20,7 +20,7 @@ float: left;
 	margin-top: .2em;
 	margin-bottom: .2em;
 	cursor: pointer;
-	padding: .4em;
+	padding: .3em;
 	border-radius: .3em .3em;
 }
 #menuChartCont {
@@ -59,9 +59,10 @@ justify-content: space-around;
             <h3>Ostatnia aktualiazacja: <span id="last">Łącze..</span></h3><br/>
         </div>
             <div class="menu">
-        <a href="#"><button  onclick="setTab(1);" id='buttonWykres'>Pogoda Skałągi</button></a><!--
-            --><a href="#"><button id='buttonWykres' onclick="setTab(2);">Wykresy</button></a><!--
-            --><br/><a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>Stacje w okolicy</button></a>
+        <a><button  onclick="setTab(1);" id='buttonWykres'>Pogoda Skałągi</button></a><!--
+            --><a><button id='buttonWykres' onclick="setTab(2);">Wykresy</button></a><!--
+            --><a><button id='buttonWykres' onclick="setTab(3);">Mapy</button></a><!--
+            --><a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>Stacje w okolicy</button></a>
             </div>
     </header>
 
@@ -385,9 +386,24 @@ justify-content: space-around;
         <div class="but" onclick="setForePreci('chart1')">Opady</div>
         </div> 
 		</div>
-        <hr width="75%" style="clear:both;"/><br/>
+        <hr width="75%" style="clear:both;"/>
         <div id="chart1" style="min-width: 98.5%; height: 400px; margin: 0 auto"></div> 
     </div>
+	
+	<div id="mapki" style="display: none;">
+	<div style="width: 100%; display: flex; justify-content: space-around; margin-top: 1em; margin-bottom: 1em;" id="mapCont">
+	<span class="but" onclick="setMap(0)">Temperatura</span>
+	<span class="but" onclick="setMap(1)">Odczucie gorąca</span>
+	<span class="but" onclick="setMap(2)">Odczucie chłodu</span>
+	<span class="but" onclick="setMap(3)">Punkt rosy</span>
+	<span class="but" onclick="setMap(4)">Wilgotność</span>
+	<span class="but" onclick="setMap(5)">Widzialność</span>
+	<span class="but" onclick="setMap(6)">Wiatr</span>
+	</div>
+	<div style="width: 100%; display: flex; justify-content: space-around; margin-top: .7em;">
+	<img src='http://icons.wxug.com/data/640x480/2xi_pl_st.gif'/ width="70%" height="70%" style="border-radius: .4em;" name="obrazmapy">
+	</div>
+	</div>
     
     <!--         
 <footer><hr/>

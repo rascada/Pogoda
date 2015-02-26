@@ -179,20 +179,29 @@ $(document).mousemove(function(event) {
     6 - cis
     7 - wilg
 */
-setTab(1);
 
+var widoczny="#all";
 function setTab(tab){
-    if(tab ==2){        
-        
-        $('#all').fadeOut(500,function(){            
-            $('#wykresy').fadeIn(500);
-        });   
-        
-    }else{
-        $('#wykresy').fadeOut(500,function(){
-            $('#all').fadeIn(500);         
-        });                   
-    }            
+    switch(tab) {  
+        case 1: {
+			$(widoczny).fadeOut(500,function(){
+				$('#all').fadeIn(500);      
+				widoczny="#all";			
+			});         
+        } break;
+		case 2: {
+			$(widoczny).fadeOut(500,function(){            
+				$('#wykresy').fadeIn(500);
+				widoczny="#wykresy";
+			});             
+		} break;  
+		case 3: {
+			$(widoczny).fadeOut(500,function(){
+				$('#mapki').fadeIn(500);      
+				widoczny="#mapki";			
+			});     			
+		}
+	}
 }
 
 var animCache = {};
@@ -688,6 +697,35 @@ pod_kmph = !pod_kmph; flagb='1';
 refresh();
 }
 
+function setMap(what) {
+	var buf_cont = document.getElementById("mapCont").innerHTML;
+	document.getElementById("mapCont").style.fontSize="1.8em";
+	document.getElementById("mapCont").innerHTML = "Ładuje...";
+	switch(what) {
+		case 0: { 
+		document.images['obrazmapy'].src = 'http://icons.wxug.com/data/640x480/2xi_pl_st.gif?' +  Math.random(); 
+		} break;
+		case 1: { 
+		document.images['obrazmapy'].src = 'http://icons.wxug.com/data/640x480/2xi_pl_hi.gif?' + Math.random(); 
+		} break;
+		case 2: { 
+		document.images['obrazmapy'].src = 'http://icons.wxug.com/data/640x480/2xi_pl_wc.gif?' + Math.random(); 
+		} break;
+		case 3: { 
+		document.images['obrazmapy'].src = 'http://icons.wxug.com/data/640x480/2xi_pl_dp.gif?' + Math.random(); 
+		} break;
+		case 4: { 
+		document.images['obrazmapy'].src = 'http://icons.wxug.com/data/640x480/2xi_pl_rh.gif?' + Math.random(); 
+		} break;
+		case 5: { 
+		document.images['obrazmapy'].src = 'http://icons.wxug.com/data/640x480/2xi_pl_vs.gif?' + Math.random(); 
+		} break;
+		case 6: { 
+		document.images['obrazmapy'].src = 'http://icons.wxug.com/data/640x480/2xi_pl_ws.gif?' + Math.random(); 
+		} break;
+	}
+	setTimeout(function() { 	document.getElementById("mapCont").style.fontSize="1em"; document.getElementById("mapCont").innerHTML=buf_cont; },  1370);
+}
 
 function bfwInt_str(bNumb) {
 	switch(bNumb) {
