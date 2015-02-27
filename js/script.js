@@ -655,7 +655,6 @@ function refresh() {
 						document.getElementById("cmL2").innerHTML =  podstawowe['domdir'] +'°';
 			}	
 		})	.then(function() {
-		setTimeout("refresh()", nextRef*1000); 
 		clearInterval(intNextRef);
 		intNextRef = setInterval("nextMinus()", 1000);
 		}); // weź podstawowe ajax	
@@ -736,4 +735,5 @@ function wind_dir_str(a) {
 function nextMinus() {
 	nextRef--;
 	document.getElementById("nrf").innerHTML=nextRef;
+	if(nextRef<1) refresh();
 }
