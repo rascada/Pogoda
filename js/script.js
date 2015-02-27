@@ -325,6 +325,7 @@ stworzMiarkeLicznik(4,3);
 var ak_kmph=true;
 var pod_kmph=true;
 var nextRef=120;
+var intNextRef;
 var dzien = new Array();
 /*
 dzien:
@@ -602,7 +603,7 @@ function refresh() {
 		success: function(podstawowe) { 
 			var akmph = Math.floor( ((3600*podstawowe['speed'])/1000) * 100)/100;
 			var pkmph = Math.floor( ((3600*podstawowe['gust'])/1000) * 100)/100;
-			nextRef =  parseInt(podstawowe['sectoref'])*1000;
+			nextRef =  parseInt(podstawowe['sectoref']);
 				ludek(podstawowe['biomet']);
 
 					var cmlA = parseInt(podstawowe['dir'])+180;
@@ -611,7 +612,7 @@ function refresh() {
 					if(cmlB>360) cmlB -= 360;
 					if(cmlA==360) cmlA=0; if(cmlB==360) cmlB=0;
 	
-					document.getElementById("last").innerHTML=podstawowe['datetime']+"<div>Następna za ok. "+nextRef/1000+"s</div>"+podstawowe['onoff']; 
+					document.getElementById("last").innerHTML=podstawowe['datetime']+"<div>Następna za ok. <span id='nrf'>"+nextRef+"</span>s</div>"+podstawowe['onoff']; 
 					document.getElementById("atemval").innerHTML=podstawowe['atemp'];
 					temp('aTemp',Math.floor(podstawowe['atemp']));
 					document.getElementById("wilval").innerHTML = podstawowe['hum']+"%";
@@ -652,10 +653,11 @@ function refresh() {
 
 						document.getElementById("cmL1").innerHTML = podstawowe['dir']+'°';
 						document.getElementById("cmL2").innerHTML =  podstawowe['domdir'] +'°';
-		
 			}	
 		})	.then(function() {
-		setTimeout("refresh()", nextRef);
+		setTimeout("refresh()", nextRef*1000); 
+		clearInterval(intNextRef);
+		intNextRef = setInterval("nextMinus()", 1000);
 		}); // weź podstawowe ajax	
 }
 
@@ -729,4 +731,9 @@ function wind_dir_str(a) {
 	else if(a>=240 && a<285) jaki_="z zachodu";
 	else if(a>=285 && a<320) jaki_="z północnego zachodu";
 	return jaki_;
+}
+
+function nextMinus() {
+	nextRef--;
+	document.getElementById("nrf").innerHTML=nextRef;
 }
