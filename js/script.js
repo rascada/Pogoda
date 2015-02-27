@@ -623,7 +623,7 @@ var flag='0';
 					if(cmlB>360) cmlB -= 360;
 					if(cmlA==360) cmlA=0; if(cmlB==360) cmlB=0;
 	
-					document.getElementById("last").innerHTML=podstawowe['datetime']+"<br/>"+podstawowe['onoff']+"<br/>Obecnych na stronie: "+podstawowe['ilujest']; 
+					document.getElementById("last").innerHTML=podstawowe['datetime']+"<div>"+podstawowe['onoff']+"</div>Obecnych na stronie: "+podstawowe['ilujest']; 
 					document.getElementById("atemval").innerHTML=podstawowe['atemp'];
 					temp('aTemp',Math.floor(podstawowe['atemp']));
 					document.getElementById("wilval").innerHTML = podstawowe['hum']+"%";
