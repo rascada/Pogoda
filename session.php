@@ -6,27 +6,18 @@ $polaczenie = mysql_connect($host,$user,$password);
 mysql_query("SET CHARSET utf8");
 mysql_query("SET NAMES 'utf8' COLLATE 'utf8_polish_ci'"); 
 mysql_select_db($database);
-$_SESSION['myid'];
 $_SESSION['dziennyto'];
 $_SESSION['foreto'];
 $_SESSION['godzto'];
 if( isset($_POST['log']) ) {
 
 	if($_POST['log']=="in") { 
-		$time = date("Y-m-d H:i:s");
-		mysql_query("INSERT INTO sesje SET busy=1, kiedy='$time' ");
-		$Zja = mysql_query("SELECT id FROM sesje ORDER BY id DESC LIMIT 1");
-		$ja = mysql_fetch_array($Zja);
-		$_SESSION['myid']=$ja['id'];
 		$Ziddzis=mysql_query("SELECT id FROM daytime ORDER BY id DESC LIMIT 1");
 		$iddzis = mysql_fetch_array($Ziddzis);
 		$_SESSION['dziennyto']=$iddzis['id'];
 		$_SESSION['foreto']='2';
 		$_SESSION['godzto']='2';
 		if((int)date("H")>18) $_SESSION['foreto']='3';
-	} else if($_POST['log']=="ok") {
-		$sesid=$_SESSION['myid'];
-		mysql_query("UPDATE sesje SET busy=0 WHERE id='$sesid'");
 	} 
 }
 
@@ -57,11 +48,7 @@ if( isset($_POST['wezpodstawowe']) ) {
 
 	$ostSec = $os[0]+$os[1]+$os[2];
 	$nowSec = $no[0]+$no[1]+$noS[2];
-
-	$Zlogged = mysql_query("SELECT id FROM sesje");
-	$logged = mysql_num_rows($Zlogged);
-
-
+	
 	if($ostSec>$nowSec-460 && $iledzis>0) $online="<span style='color: darkgreen;'>Stacja jest online!</span>";
 	$jsdate=$dir['date']." ".$dir['time'];
 	$jsatemp=$dir['atemp']; $jsotemp=$dir['otemp']; $jsrtemp=$dir['srtemp']; $jsdew=$dir['dew']."°C";
@@ -71,9 +58,10 @@ if( isset($_POST['wezpodstawowe']) ) {
 	$jstrendp=$dir['tencisn']."  ".$dir['tencisnval']."hPa/h";
 	$jstrendt=$dir['tentemp']." ".$dir['tentempval']."°C/h";
 	$jsbio = $dir['biomet'];
+	$secNextRef = (strtotime($jsdate)+155) - strtotime(date("Y-m-d H:i:s"));
 echo<<<END
 {
-		"ilujest": "$logged",
+		"sectoref": "$secNextRef",
 		"onoff": "$online",
 		"datetime": "$jsdate",
 		"atemp": "$jsatemp",
@@ -94,12 +82,6 @@ echo<<<END
 		"biomet": "$jsbio"
 }
 END;
-	}
-	
-	if($_POST['wezpodstawowe']=="busyflag") {
-	$Zbusy = mysql_query("SELECT busy FROM sesje WHERE id='".$_SESSION['myid']."'");
-	$flag = mysql_fetch_array($Zbusy);
-	echo $flag['busy'];
 	}
 }
 

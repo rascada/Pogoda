@@ -121,9 +121,9 @@ $(window).load(function() {
 					refdayrep(false); refresh(); 
 					});
 		}, 1000);
-	});
+});
 
-	var rekordy=0;
+var rekordy=0;
 $.ajax({
 	type: "GET",
 	url: "session.php",
@@ -324,8 +324,8 @@ stworzMiarkeLicznik(4,3);
 ///PHP
 var ak_kmph=true;
 var pod_kmph=true;
+var nextRef=120;
 var dzien = new Array();
-var flagb;
 /*
 dzien:
 0 - [czas max temp] [wartość max temp]
@@ -593,18 +593,6 @@ function refdayrep(auto) {
 
 
 function refresh() {
-var flag='0';
-	$.ajax({
-		type: "POST",
-		url: "session.php",
-		dataType: "text",
-		async: true,
-		data: { wezpodstawowe: "busyflag", },
-		success: function(response) { 
-		flag = response.trim(); 
-		
-
-	if(flag=="1" || flagb=="1") {
 	$.ajax({
 		type: "POST",
 		url: "session.php",
@@ -614,7 +602,7 @@ var flag='0';
 		success: function(podstawowe) { 
 			var akmph = Math.floor( ((3600*podstawowe['speed'])/1000) * 100)/100;
 			var pkmph = Math.floor( ((3600*podstawowe['gust'])/1000) * 100)/100;
-
+			nextRef =  parseInt(podstawowe['sectoref'])*1000;
 				ludek(podstawowe['biomet']);
 
 					var cmlA = parseInt(podstawowe['dir'])+180;
@@ -623,7 +611,7 @@ var flag='0';
 					if(cmlB>360) cmlB -= 360;
 					if(cmlA==360) cmlA=0; if(cmlB==360) cmlB=0;
 	
-					document.getElementById("last").innerHTML=podstawowe['datetime']+"<div>"+podstawowe['onoff']+"</div>Obecnych na stronie: "+podstawowe['ilujest']; 
+					document.getElementById("last").innerHTML=podstawowe['datetime']+"<div>Następna za ok. "+nextRef/1000+"s</div>"+podstawowe['onoff']; 
 					document.getElementById("atemval").innerHTML=podstawowe['atemp'];
 					temp('aTemp',Math.floor(podstawowe['atemp']));
 					document.getElementById("wilval").innerHTML = podstawowe['hum']+"%";
@@ -664,36 +652,21 @@ var flag='0';
 
 						document.getElementById("cmL1").innerHTML = podstawowe['dir']+'°';
 						document.getElementById("cmL2").innerHTML =  podstawowe['domdir'] +'°';
-					
-						if(flag=="1") {
-							$.ajax({
-							  type: "POST",
-							  url: "session.php",
-							  data: { log: "ok", }
-							});
-						} 
-						if(flagb=="1") flagb="0";		
 		
 			}	
+		})	.then(function() {
+		setTimeout("refresh()", nextRef);
 		}); // weź podstawowe ajax	
-	
-		} // if flag 1
-		
-	} // succes busy 
-	}).then(function() {
-		setTimeout("refresh()", 30000);
-	});
-
 }
 
 
 function aktwindclick() {
-ak_kmph = !ak_kmph; flagb='1';
+ak_kmph = !ak_kmph;
 refresh();
 }
 
 function podwindclick() {
-pod_kmph = !pod_kmph; flagb='1';
+pod_kmph = !pod_kmph;
 refresh();
 }
 
