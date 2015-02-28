@@ -60,7 +60,9 @@ function chartMenu(string){
 //Wykresy
 
 var kierunki_wiatru = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
-
+var miesiace_pl = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
+var mon_display=2;
+var x_size =31;
  // Tablice dla codziennych
 	    var tabAreaRangeT = new Array();
 		var tabAreaRangeP = new Array();
@@ -87,7 +89,8 @@ var kierunki_wiatru = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 		var sevRain = new Array(); var sevRainTot = new Array();
 		var sevGust = new Array(); var sevSpeed = new Array(); 
 		var sevDir = new Array(); var sevDom = new Array();
-		
+
+function judgeMonth() { if(mon_display>2) { alert("Tego jeszcze nie wiemy ;("); mon_display=2; } }	
 		
 jQuery(document).ready(function($) {
 	 getForecastData(); setDailyTemp('chart1');
@@ -132,14 +135,14 @@ $.ajax({
   }); // $.ajax prognozy 36
 }
 
-function setMonthlyHum(where_id, month_sel) {
+function setMonthlyHum(where_id) {
 $.ajax({
-  url : "reportjson2.php?co=dzienne&mies="+month_sel+"&col=hum",
+  url : "reportjson2.php?co=dzienne&mies="+mon_display+"&col=hum",
   dataType : "json",
   async: true,
   success : function(parsed_json) {
-		var odebranych = parseInt(parsed_json['tabSize']);
-		var Dates = new Array();	
+		var odebranych = parseInt(parsed_json['tabSize']); x_size=odebranych;
+		var Dates = new Array();
 		for(var i=0; i<odebranych; i++) tabAreaRangeH[i] = new Array(3);
 
 			for(var i=0; i<odebranych; i++) {
@@ -151,13 +154,15 @@ $.ajax({
 		for(var i=0; i<odebranych; i++) tabAreaRangeH[i][0] = Dates[i];		
   } // success ajax func
   }).then(function() {
+	  var tabhigh = new Array(x_size);
+	  for(var i=0; i<x_size; i++) tabhigh[i] = tabAreaRangeH[i];
 		$("#"+where_id).highcharts({ 
 				chart: {
 					type: 'arearange',
 					 zoomType: 'x'
 				},
 				title: {
-					text: 'Wilgotność - daleka przeszłość'
+					text: 'Wilgotność - '+miesiace_pl[mon_display-1]
 				},
 				subtitle: {
 					text: 'www.pogoda-skalagi.pl'
@@ -186,19 +191,19 @@ $.ajax({
 				},
 				series: [{
 					name: 'Wilgotność',
-					data: tabAreaRangeH,
+					data: tabhigh,
 				}]
 			});	
   }); // $.ajax
 }
 
-function setMonthlyTemp(where_id, month_sel) {
+function setMonthlyTemp(where_id) {
  $.ajax({
-  url : "reportjson2.php?co=dzienne&mies="+month_sel+"&col=temp",
+  url : "reportjson2.php?co=dzienne&mies="+mon_display+"&col=temp",
   dataType : "json",
   async: true,
   success : function(parsed_json) {
-		var odebranych = parseInt(parsed_json['tabSize']);
+		var odebranych = parseInt(parsed_json['tabSize']); x_size=odebranych;
 		var Dates = new Array();	
 		for(var i=0; i<odebranych; i++) tabAreaRangeT[i] = new Array(3);
 		
@@ -210,13 +215,15 @@ function setMonthlyTemp(where_id, month_sel) {
 		for(var i=0; i<odebranych; i++) tabAreaRangeT[i][0] = Dates[i];		
   } // success ajax func
   }).then(function() {
+	 	  var tabhigh = new Array(x_size);
+		  for(var i=0; i<x_size; i++) tabhigh[i] = tabAreaRangeT[i];
 		$("#"+where_id).highcharts({ 
 			chart: {
 				type: 'arearange',
 				 zoomType: 'x'
 			},
 			title: {
-				text: 'Temperatura - daleka przeszłość'
+				text: 'Temperatura - '+miesiace_pl[mon_display-1]
 			},
 			subtitle: {
 				text: 'www.pogoda-skalagi.pl'
@@ -245,20 +252,20 @@ function setMonthlyTemp(where_id, month_sel) {
 			},
 			series: [{
 				name: 'Zakres temperatur',
-				data: tabAreaRangeT,
+				data: tabhigh,
 			}]
 		});	
   }); // $.ajax
 	
 }
 
-function setMonthlyPress(where_id, month_sel) {
+function setMonthlyPress(where_id) {
  $.ajax({
-  url : "reportjson2.php?co=dzienne&mies="+month_sel+"&col=press",
+  url : "reportjson2.php?co=dzienne&mies="+mon_display+"&col=press",
   dataType : "json",
   async: true,
   success : function(parsed_json) {
-		var odebranych = parseInt(parsed_json['tabSize']);
+		var odebranych = parseInt(parsed_json['tabSize']); x_size=odebranych;
 		var Dates = new Array();	
 		for(var i=0; i<odebranych; i++) tabAreaRangeP[i] = new Array(3);
 			for(var i=0; i<odebranych; i++) {
@@ -269,13 +276,15 @@ function setMonthlyPress(where_id, month_sel) {
 		for(var i=0; i<odebranych; i++) tabAreaRangeP[i][0] = Dates[i];
   } // success ajax func
   }).then(function() {
+		  var tabhigh = new Array(x_size);
+		  for(var i=0; i<x_size; i++) tabhigh[i] = tabAreaRangeP[i];
 		$("#"+where_id).highcharts({ 
 			chart: {
 				type: 'arearange',
 				 zoomType: 'x'
 			},
 			title: {
-				text: 'Ciśnienie - daleka przeszłość'
+				text: 'Ciśnienie - '+miesiace_pl[mon_display-1]
 			},
 			subtitle: {
 				text: 'www.pogoda-skalagi.pl'
@@ -304,19 +313,19 @@ function setMonthlyPress(where_id, month_sel) {
 			},
 			series: [{
 				name: 'Zakres ciśnienia',
-				data: tabAreaRangeP,
+				data: tabhigh,
 			}]
 		});
   }); // $.ajax
 }
 
-function setMonthlyWind(where_id, month_sel) {
+function setMonthlyWind(where_id) {
  $.ajax({
-  url : "reportjson2.php?co=dzienne&mies="+month_sel+"&col=wind",
+  url : "reportjson2.php?co=dzienne&mies="+mon_display+"&col=wind",
   dataType : "json",
   async: true,
   success : function(parsed_json) {
-		var odebranych = parseInt(parsed_json['tabSize']);
+		var odebranych = parseInt(parsed_json['tabSize']); x_size=odebranych;
 		var Dates = new Array();	
 		for(var i=0; i<odebranych; i++) {
 		tabWindDouble[i] = new Array(2);
@@ -333,13 +342,15 @@ function setMonthlyWind(where_id, month_sel) {
 		}			
   } // success ajax func
   }).then(function() {
+		  var tabhigh1 = new Array(x_size); var tabhigh2 = new Array(x_size);
+		  for(var i=0; i<x_size; i++) { tabhigh1[i] = tabWindDirDouble[i]; tabhigh2[i] = tabWindDouble[i]; }
 		$('#'+where_id).highcharts({
 				startOnTick: true,
 				chart: {
 					zoomType: 'xy'
 				},
 				title: {
-					text: 'Wiatr - daleka przeszłość'
+					text: 'Wiatr - '+miesiace_pl[mon_display-1]
 				},
 				subtitle: {
 					text: 'www.pogoda-skalagi.pl'
@@ -409,7 +420,7 @@ function setMonthlyWind(where_id, month_sel) {
 				series: [{
 					name: 'Kierunek',
 					type: 'spline',
-					data: tabWindDirDouble,
+					data: tabhigh1,
 					marker: {
 						enabled: false
 					},
@@ -422,7 +433,7 @@ function setMonthlyWind(where_id, month_sel) {
 					name: 'Prędkość',
 					type: 'spline',
 					yAxis: 1,
-					data: tabWindDouble,
+					data: tabhigh2,
 					tooltip: {
 						valueSuffix: "m/s"
 					}
@@ -431,13 +442,13 @@ function setMonthlyWind(where_id, month_sel) {
   });
 }
 
-function setMonthlyRain(where_id, month_sel) {
+function setMonthlyRain(where_id) {
  $.ajax({
-  url : "reportjson2.php?co=dzienne&mies="+month_sel+"&col=rain",
+  url : "reportjson2.php?co=dzienne&mies="+mon_display+"&col=rain",
   dataType : "json",
   async: true,
   success : function(parsed_json) {
-		var odebranych = parseInt(parsed_json['tabSize']);
+		var odebranych = parseInt(parsed_json['tabSize']); x_size=odebranych;
 		var Dates = new Array();	
 		for(var i=0; i<odebranych; i++) {
 		tabRain[i] = new Array(2);
@@ -454,13 +465,15 @@ function setMonthlyRain(where_id, month_sel) {
 		}			
   } // success ajax func
   }).then(function() {
+	  var tabhigh1 = new Array(x_size); var tabhigh2 = new Array(x_size);
+	  for(var i=0; i<x_size; i++) { tabhigh1[i] = tabRain[i]; tabhigh2[i] = tabClouds[i]; }
 	$('#'+where_id).highcharts({
 			startOnTick: true,
 			chart: {
 				zoomType: 'x'
 			},
 			title: {
-				text: 'Opady i zachmurzenie - daleka przeszłość'
+				text: 'Opady i zachmurzenie - '+miesiace_pl[mon_display-1]
 			},
 			subtitle: {
 				text: 'www.pogoda-skalagi.pl'
@@ -514,7 +527,7 @@ function setMonthlyRain(where_id, month_sel) {
 			series: [{
 				name: 'Opad dobowy',
 				type: 'column',
-				data: tabRain,
+				data: tabhigh1,
 				tooltip: {
 					valueSuffix: "mm"
 				}
@@ -523,7 +536,7 @@ function setMonthlyRain(where_id, month_sel) {
 				name: 'Wysokość chmur',
 				type: 'spline',
 				yAxis: 1,
-				data: tabClouds,
+				data: tabhigh2,
 				tooltip: {
 					valueSuffix: "m"
 				},
@@ -1387,7 +1400,7 @@ function setSevenOther(where_id) {
 function setSevenWind(where_id, avg_loc) {
 	avg = avg_loc;
 	$.ajax({
-  url : "reportjson2.php?co=7days",
+  url : "reportjson2.php?co=7days&col=wind",
   dataType : "json",
   async: true,
   success : function(parsed_json) {
@@ -1519,7 +1532,7 @@ function setSevenWind(where_id, avg_loc) {
 
 Highcharts.setOptions({
 		lang: {
-		months: ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"],
+		months: miesiace_pl,
 		shortMonths: ["Sty", "Lut", "Mar", "Kwi", "Maj", "Czer", "Lip", "Sie", "Wrze", "Paź", "Lis", "Gru"],
 		weekdays: ["Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota"]
 		},

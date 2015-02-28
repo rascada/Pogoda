@@ -1010,6 +1010,7 @@ footer{
 }
 
 #chart1{
+margin-bottom: .9em;
     min-width: 98.5%; 
     height: 50%; 
 }

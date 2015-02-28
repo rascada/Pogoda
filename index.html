@@ -357,7 +357,7 @@ justify-content: space-around;
     
     <div id='wykresy'>
         <div id="chart1"></div> 
-        <div class='chartMenu'>
+        <div class='chartMenu' style="margin-bottom: 6em">
             <button class='chartButton'>
                 <div class='specs2'>
                     <p>Miesiąc</p>
@@ -367,52 +367,52 @@ justify-content: space-around;
                 </div>
                 <div class='monthSpecs'>
                     <div class='pora1'>
-                        <p>Styczeń</p>
-                        <p>Luty</p>
-                        <p>Marzec</p>   
+                        <p onclick="mon_display=1; judgeMonth();">Styczeń</p>
+                        <p onclick="mon_display=2; judgeMonth();">Luty</p>
+                        <p onclick="mon_display=3; judgeMonth();">Marzec</p>   
                     </div>
                     <div class='pora2'>
-                        <p>Kwiecień</p>
-                        <p>Maj</p>
-                        <p>Czerwiec</p>   
+                        <p onclick="mon_display=4; judgeMonth();">Kwiecień</p>
+                        <p onclick="mon_display=5; judgeMonth();">Maj</p>
+                        <p onclick="mon_display=6; judgeMonth();">Czerwiec</p>   
                     </div>
                     <div class='pora3'>
-                        <p>Lipiec</p>
-                        <p>Sierpień</p>
-                        <p>Wrzesień</p>   
+                        <p onclick="mon_display=7; judgeMonth();">Lipiec</p>
+                        <p onclick="mon_display=8; judgeMonth();">Sierpień</p>
+                        <p onclick="mon_display=9; judgeMonth();">Wrzesień</p>   
                     </div>
                     <div class='pora4'>
-                        <p>Październik</p>
-                        <p>Listopad</p>
-                        <p>Grudzień</p>   
+                        <p onclick="mon_display=10; judgeMonth();">Październik</p>
+                        <p onclick="mon_display=11; judgeMonth();">Listopad</p>
+                        <p onclick="mon_display=12; judgeMonth();">Grudzień</p>   
                     </div>
                 </div>
                 <div class='specs8h'>
-                    <span>Następne 8h</span>
-                    <p>Temperatura</p>      
-                    <p>Wilgotność, ciśnienie, opady</p>
-                    <p>Wiatr uśredniony</p>
-                    <p>Wiatr dokładny</p>
+                    <span>Ostatnie 8h</span>
+                    <p onclick="setDailyTemp('chart1')">Temperatura</p>      
+                    <p onclick="setDailyOther('chart1')">Wilgotność, ciśnienie, opady</p>
+                    <p onclick="setDailyWind('chart1', true)">Wiatr uśredniony</p>
+                    <p onclick="setDailyWind('chart1', false)">Wiatr dokładny</p>
                 </div>
                 <div class='specs36h'>
                     <span>Następne 36h</span>
-                    <p>Temperatura</p>
-                    <p>Wiatr</p>
-                    <p>Opady</p>
+                    <p onclick="setForeTemp('chart1')">Temperatura</p>
+                    <p onclick="setForeWind('chart1')">Wiatr</p>
+                    <p onclick="setForePreci('chart1')">Opady</p>
                 </div>
                 <div class='weekSpecs'>
                     <span>Ostatni tydzień </span>
-                    <p>Temperatura</p>      
-                    <p>Wilgotność, ciśnienie, opady</p>
-                    <p>Wiatr uśredniony</p>
-                    <p>Wiatr dokładny</p>      
+                    <p onclick="setSevenTemp('chart1')">Temperatura</p>      
+                    <p onclick="setSevenOther('chart1')">Wilgotność, ciśnienie, opady</p>
+                    <p onclick="setSevenWind('chart1', true)">Wiatr uśredniony</p>
+                    <p onclick="setSevenWind('chart1', false)">Wiatr dokładny</p>      
                 </div>    
                 <div class='monthSpecsMonth'>
-                    <p>Temperatura min/max</p>      
-                    <p>Wilgotność Min/Max</p>
-                    <p>Ciśnienie Min/Max</p>
-                    <p>Wiatr</p>   
-                    <p>Opady i zachmurzenie</p>     
+                    <p onclick="setMonthlyTemp('chart1')">Temperatura min/max</p>      
+                    <p onclick="setMonthlyHum('chart1')">Wilgotność Min/Max</p>
+                    <p onclick="setMonthlyPress('chart1')">Ciśnienie Min/Max</p>
+                    <p onclick="setMonthlyWind('chart1')">Wiatr</p>   
+                    <p onclick="setMonthlyRain('chart1')">Opady i zachmurzenie</p>     
                 </div>  
                 <div class='menuBack'></div>    
             </button>  
