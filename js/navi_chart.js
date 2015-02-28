@@ -1087,7 +1087,7 @@ function setForePreci(where_id) {
 
 function setSevenTemp(where_id) {
 	$.ajax({
-  url : "reportjson.php?co=7days&col=temp",
+  url : "reportjson2.php?co=7days&col=temp",
   dataType : "json",
   async: true,
   success : function(parsed_json) {
@@ -1187,7 +1187,7 @@ function setSevenTemp(where_id) {
 
 function setSevenOther(where_id) {
 	$.ajax({
-  url : "reportjson.php?co=7days&col=other",
+  url : "reportjson2.php?co=7days&col=other",
   dataType : "json",
   async: true,
   success : function(parsed_json) {
@@ -1326,7 +1326,7 @@ function setSevenOther(where_id) {
 function setSevenWind(where_id, avg_loc) {
 	avg = avg_loc;
 	$.ajax({
-  url : "reportjson.php?co=7days",
+  url : "reportjson2.php?co=7days",
   dataType : "json",
   async: true,
   success : function(parsed_json) {
