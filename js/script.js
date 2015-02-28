@@ -648,8 +648,10 @@ function refresh() {
 						document.getElementById("cmL2").innerHTML =  podstawowe['domdir'] +'°';
 			}	
 		})	.then(function() {
-		clearInterval(intNextRef);
-		intNextRef = setInterval("nextMinus()", 1000);
+			if(nextRef!=' --') {
+				clearInterval(intNextRef);
+				intNextRef = setInterval("nextMinus()", 1000);
+			}
 		}); // weź podstawowe ajax	
 }
 

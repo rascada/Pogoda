@@ -37,7 +37,6 @@ if( isset($_POST['wezpodstawowe']) ) {
 	$ostSec = $os[0]+$os[1]+$os[2];
 	$nowSec = $no[0]+$no[1]+$noS[2];
 	
-	if($ostSec>$nowSec-460 && $iledzis>0) $online="<span style='color: darkgreen;'>Stacja jest online!</span>";
 	$jsdate=$dir['date']." ".$dir['time'];
 	$jsatemp=$dir['atemp']; $jsotemp=$dir['otemp']; $jsrtemp=$dir['srtemp']; $jsdew=$dir['dew']."°C";
 	$jspress=$dir['cisnie']; $jshum=$dir['wilgo']; 
@@ -46,7 +45,12 @@ if( isset($_POST['wezpodstawowe']) ) {
 	$jstrendp=$dir['tencisn']."  ".$dir['tencisnval']."hPa/h";
 	$jstrendt=$dir['tentemp']." ".$dir['tentempval']."°C/h";
 	$jsbio = $dir['biomet'];
+	
+	if($ostSec>$nowSec-460 && $iledzis>0) { 
+	$online="<span style='color: darkgreen;'>Stacja jest online!</span>";
 	$secNextRef = (strtotime($jsdate)+155) - strtotime(date("Y-m-d H:i:s"));
+	} else $secNextRef=" --";
+	
 echo<<<END
 {
 		"sectoref": "$secNextRef",
