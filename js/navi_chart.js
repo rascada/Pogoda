@@ -34,7 +34,7 @@ jQuery(document).ready(function($) {
 
 function getForecastData() {
 $.ajax({
-  url : "reportjson.php?co=prognozy",
+  url : "reportjson2.php?co=prognozy",
   dataType : "json",
   async: true,
   success : function(parsed_json) {
