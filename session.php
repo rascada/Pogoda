@@ -113,7 +113,6 @@ if($_POST['changedayrep']=="first") {
 	$_SESSION['dziennyto']=$timer['id'];
 	$_SESSION['foreto']='2';
 	$_SESSION['godzto']='2';
-	if(date("H")>18 || date("H")<6) $_SESSION['foreto']='3';
 } else $timer = mysql_fetch_array($Ztimes); 
 $id = $timer['id'];
 $Zdat = mysql_query("SELECT * FROM daydata WHERE id='$id'");
