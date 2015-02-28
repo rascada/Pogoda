@@ -9,18 +9,6 @@ mysql_select_db($database);
 $_SESSION['dziennyto'];
 $_SESSION['foreto'];
 $_SESSION['godzto'];
-if( isset($_POST['log']) ) {
-
-	if($_POST['log']=="in") { 
-		$Ziddzis=mysql_query("SELECT id FROM daytime ORDER BY id DESC LIMIT 1");
-		$iddzis = mysql_fetch_array($Ziddzis);
-		$_SESSION['dziennyto']=$iddzis['id'];
-		$_SESSION['foreto']='2';
-		$_SESSION['godzto']='2';
-		if((int)date("H")>18) $_SESSION['foreto']='3';
-	} 
-}
-
 
 if( isset($_POST['wezpodstawowe']) ) {
 
@@ -115,7 +103,15 @@ if( isset($_POST['changedayrep']) || isset($_POST['changeforecast']) ) {
 
 $dziennytolocal = $_SESSION['dziennyto'];
 $Ztimes = mysql_query("SELECT * FROM daytime WHERE id='$dziennytolocal'");
-$timer = mysql_fetch_array($Ztimes); $id = $timer['id'];
+if($_POST['changedayrep']=="first") {
+	$Ztimes = mysql_query("SELECT * FROM daytime ORDER BY id DESC LIMIT 1");
+	$timer = mysql_fetch_array($Ztimes); 
+	$_SESSION['dziennyto']=$timer['id'];
+	$_SESSION['foreto']='2';
+	$_SESSION['godzto']='2';
+	if(date("H")>18 || date("H")<6) $_SESSION['foreto']='3';
+} else $timer = mysql_fetch_array($Ztimes); 
+$id = $timer['id'];
 $Zdat = mysql_query("SELECT * FROM daydata WHERE id='$id'");
 $dat = mysql_fetch_array($Zdat); 
 $Zother = mysql_query("SELECT * FROM dayother WHERE id='$id'");
@@ -158,6 +154,7 @@ $dbdata = $timer['ddata'];
 
 $selId = $_SESSION['foreto'];
 $Qprognozy = mysql_query("SELECT * FROM prognozy WHERE id='$selId'");
+if($_POST['changedayrep']=="first") $Qprognozy = mysql_query("SELECT * FROM prognozy WHERE id=2");
 $prognoza = mysql_fetch_array($Qprognozy);
 
 $lendS = 'false';
@@ -186,6 +183,7 @@ if($rend) $rendS='true';
 	
 	$hourid = $_SESSION['godzto'];
 	$queryHourly = mysql_query("SELECT * FROM godzinna WHERE id='$hourid'");
+	if($_POST['gethourlyforecast']=='false') $queryHourly = mysql_query("SELECT * FROM godzinna WHERE id=2");
 	$godzinna = mysql_fetch_array($queryHourly);
 	echo $godzinna['godz'].":00|".$godzinna['dtyg']."|".$godzinna['dmon']."|".$godzinna['napis']."|".$godzinna['temp']."|".$godzinna['dewp']."|".$godzinna['wdir']."|".$godzinna['wspd']."|".$godzinna['rain']."|".$godzinna['snow']."|".$godzinna['imgurl']."|".$lendS."|".$rendS;
 }

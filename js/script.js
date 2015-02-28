@@ -99,80 +99,77 @@ $(window).resize(function() {
     width=$(window).width();
 });
 
-
-$(window).load(function() {
-	 $.ajax({
-	  type: "POST",
-	  url: "session.php",
-	  async: true,
-	  data: { log: "in", }
-	}).then(function() {
-		setTimeout(function() {
-			$.ajax({
+function createView(tryb) {
+	if(tryb) {
+		$.ajax({
 				type: "POST",
 				url: "session.php",
 				dataType: "text",
 				async: true,
-				data: { changedayrep: "false", },
+				data: { changedayrep: "first" },
 				success: function(response) { dzien = response.split("|"); }
 				}).then(function() {
 					refhourly(0);
 					if( (dzien[16].indexOf("Mozilla")==-1 && dzien[16].indexOf("Chrome")==-1) || dzien[16].indexOf("Trident")!=-1) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome, Firefox lub Opery w najnowszej wersji.');
 					refdayrep(false); refresh(); 
-					});
-		}, 1000);
-});
-
-var rekordy=0;
-$.ajax({
-	type: "GET",
-	url: "session.php",
-	dataType: "json",
-	async: true,
-	data: { checkhighslows: "ok" },
-	success: function(resp) {
-		rekordy=resp;
+		});
+	} else {
+		var rekordy=0;
+			$.ajax({
+				type: "GET",
+				url: "session.php",
+				dataType: "json",
+				async: true,
+				data: { checkhighslows: "ok" },
+				success: function(resp) {
+					rekordy=resp;
+				}
+			}).then(function() {
+				if(rekordy['temp']['low']!="none") {
+						$("#tempPanel").prop("title", rekordy['temp']['low']);
+					}
+					if(rekordy['temp']['high']!="none") {
+						$("#tempPanel").prop("title", rekordy['temp']['high']);
+					}
+					if(rekordy['hum']['low']!="none") {
+						$("#wilPanel").prop("title", rekordy['hum']['low']);
+					}
+					if(rekordy['hum']['high']!="none") {
+						$("#wilPanel").prop("title", rekordy['hum']['high']);
+					}
+					if(rekordy['press']['low']!="none") {
+						$("#cisPanel").prop("title", rekordy['press']['low']);
+					}
+					if(rekordy['press']['high']!="none") {
+						$("#cisPanel").prop("title", rekordy['press']['high']);
+					}
+					if(rekordy['other']['wind']!="none") {
+						$("#windPanel").prop("title", rekordy['other']['wind']);
+					}
+					if(rekordy['other']['rain']!="none") {
+						$("#waterPanel").prop("title", rekordy['other']['rain']);
+					}	
+			});
 	}
-}).then(function() {
-	if(rekordy['temp']['low']!="none") {
-			$("#tempPanel").prop("title", rekordy['temp']['low']);
-		}
-		if(rekordy['temp']['high']!="none") {
-			$("#tempPanel").prop("title", rekordy['temp']['high']);
-		}
-		if(rekordy['hum']['low']!="none") {
-			$("#wilPanel").prop("title", rekordy['hum']['low']);
-		}
-		if(rekordy['hum']['high']!="none") {
-			$("#wilPanel").prop("title", rekordy['hum']['high']);
-		}
-		if(rekordy['press']['low']!="none") {
-			$("#cisPanel").prop("title", rekordy['press']['low']);
-		}
-		if(rekordy['press']['high']!="none") {
-			$("#cisPanel").prop("title", rekordy['press']['high']);
-		}
-		if(rekordy['other']['wind']!="none") {
-			$("#windPanel").prop("title", rekordy['other']['wind']);
-		}
-		if(rekordy['other']['rain']!="none") {
-			$("#waterPanel").prop("title", rekordy['other']['rain']);
-		}	
-	});
-	
+		
+}
+
+$(window).load(function() {
+		setTimeout(function() { createView(true); }, 1000);
+		setTimeout(function() { createView(false); }, 4000);
 });
 
 $(document).mousemove(function(event) {
 //      $('#hint').css('left',event.pageX).css('top',event.pageY-$('#hint').height());
 });
 /*
-    //kompas
+    kompas
     0 - compassArr1
     1 - compassArrSpan1
     2 - compassArr2
     3 - compassArrSpan1
 
-    //wiatr
+    wiatr
     4 - aktualny
     5 - podmuch
 
@@ -561,10 +558,6 @@ function refdayrep(auto) {
 		else if(dzien[3]>=240 && dzien[3]<285) jaki_dzien="W->E";
 		else if(dzien[3]>=285 && dzien[3]<315) jaki_dzien="NW->SE";
 		document.getElementById("windDayDom").innerHTML=jaki_dzien;
-
-		
-
- 
  /*   
 =======
 
