@@ -355,39 +355,68 @@ justify-content: space-around;
 <!--all-->
 </div>
     
-    <div id='wykresy' style='display:none;'>
-	<div id="menuChartCont">
-        <div class="buttonpanel">
-		<h1>Od początku działania stacji</h1>
-        <div class="but" onclick="setMonthlyTemp('chart1', 2)">Temperatura Min/Max</div>
-        <div class="but" onclick="setMonthlyHum('chart1', 2)">Wilgotność Min/Max</div>
-        <div class="but" onclick="setMonthlyPress('chart1', 2)">Ciśnienie Min/Max</div> 
-        <div class="but" onclick="setMonthlyWind('chart1', 2)">Wiatr</div>
-        <div class="but" onclick="setMonthlyRain('chart1', 2)">Opady i zachmurzenie</div> 
-        </div> 
-		<div class="buttonpanel">
-		<h1>Ostatni tydzień</h1>
-        <div class="but" onclick="setSevenTemp('chart1')">Temperatura</div>
-        <div class="but" onclick="setSevenOther('chart1')">Wilgotność, ciśnienie, opady</div>
-        <div class="but" onclick="setSevenWind('chart1', true)">Wiatr uśredniony</div>
-        <div class="but" onclick="setSevenWind('chart1', false)">Wiatr dokładny</div>
-        </div> 
-        <div class="buttonpanel">
-		<h1>Ostatnie 8 godzin</h1>
-        <div class="but" onclick="setDailyTemp('chart1')">Temperatura</div>
-        <div class="but" onclick="setDailyOther('chart1')">Wilgotność, ciśnienie, opady</div>
-        <div class="but" onclick="setDailyWind('chart1', true)">Wiatr uśredniony</div>
-        <div class="but" onclick="setDailyWind('chart1', false)">Wiatr dokładny</div>
-        </div> 
-        <div class="buttonpanel">
-		<h1>Następne 36 godzin</h1>
-        <div class="but" onclick="setForeTemp('chart1')">Temperatura</div>
-        <div class="but" onclick="setForeWind('chart1')">Wiatr</div>
-        <div class="but" onclick="setForePreci('chart1')">Opady</div>
-        </div> 
-		</div>
-        <hr width="75%" style="clear:both;"/>
-        <div id="chart1" style="min-width: 98.5%; height: 400px; margin: 0 auto"></div> 
+    <div id='wykresy'>
+        <div id="chart1"></div> 
+        <div class='chartMenu'>
+            <button class='chartButton'>
+                <div class='specs2'>
+                    <p>Miesiąc</p>
+                    <p>Ostatni tydzień </p>
+                    <p>Ostatnie 8h</p>
+                    <p>Następne 36h</p>
+                </div>
+                <div class='monthSpecs'>
+                    <div class='pora1'>
+                        <p>Styczeń</p>
+                        <p>Luty</p>
+                        <p>Marzec</p>   
+                    </div>
+                    <div class='pora2'>
+                        <p>Kwiecień</p>
+                        <p>Maj</p>
+                        <p>Czerwiec</p>   
+                    </div>
+                    <div class='pora3'>
+                        <p>Lipiec</p>
+                        <p>Sierpień</p>
+                        <p>Wrzesień</p>   
+                    </div>
+                    <div class='pora4'>
+                        <p>Październik</p>
+                        <p>Listopad</p>
+                        <p>Grudzień</p>   
+                    </div>
+                </div>
+                <div class='specs8h'>
+                    <span>Następne 8h</span>
+                    <p>Temperatura</p>      
+                    <p>Wilgotność, ciśnienie, opady</p>
+                    <p>Wiatr uśredniony</p>
+                    <p>Wiatr dokładny</p>
+                </div>
+                <div class='specs36h'>
+                    <span>Następne 36h</span>
+                    <p>Temperatura</p>
+                    <p>Wiatr</p>
+                    <p>Opady</p>
+                </div>
+                <div class='weekSpecs'>
+                    <span>Ostatni tydzień </span>
+                    <p>Temperatura</p>      
+                    <p>Wilgotność, ciśnienie, opady</p>
+                    <p>Wiatr uśredniony</p>
+                    <p>Wiatr dokładny</p>      
+                </div>    
+                <div class='monthSpecsMonth'>
+                    <p>Temperatura min/max</p>      
+                    <p>Wilgotność Min/Max</p>
+                    <p>Ciśnienie Min/Max</p>
+                    <p>Wiatr</p>   
+                    <p>Opady i zachmurzenie</p>     
+                </div>  
+                <div class='menuBack'></div>    
+            </button>  
+        </div>
     </div>
 	
 	<div id="mapki" style="display: none;">

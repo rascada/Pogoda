@@ -1,3 +1,64 @@
+//menu
+var slideUpSpeed = 750;
+var chartMenuBuffor;
+$('.monthSpecs').css("display","none");
+
+$(".chartButton").mouseleave(function(){chartMenuReset();});
+$(".menuBack").click(function(){chartMenuReset();});
+$(".specs2 p:nth-child(1)").click(function(){chartMenu("monthSpecs");});
+$(".specs2 p:nth-child(2)").click(function(){chartMenu("weekSpecs");});
+$(".specs2 p:nth-child(3)").click(function(){chartMenu("specs8h");});
+$(".specs2 p:nth-child(4)").click(function(){chartMenu("specs36h");});
+$(".monthSpecs p").click(function(){  
+  chartMenu("monthSpecsMonth");  
+  $(".monthSpecsMonth").slideDown(slideUpSpeed);
+  $('.monthSpecs').slideUp(slideUpSpeed);
+});
+chartClickRemember(["specs2","monthSpecs","weekSpecs","specs8h","monthSpecsMonth","specs36h"]);
+
+function chartClickRemember(name){
+  for(var i=0;i<name.length;i++){ 
+    name[i] = "."+name[i]+" p";          
+  }
+$(name[0]).click(function(){  
+  	$(name[0]).removeClass("monthSpecsPActive");
+    $(this).addClass("monthSpecsPActive");
+});
+$(name[1]).click(function(){  
+  	$(name[1]).removeClass("monthSpecsPActive");
+    $(this).addClass("monthSpecsPActive");
+});
+  $(name[2]).click(function(){  
+  	$(name[2]).removeClass("monthSpecsPActive");
+    $(this).addClass("monthSpecsPActive");
+});
+  $(name[3]).click(function(){  
+  	$(name[3]).removeClass("monthSpecsPActive");
+    $(this).addClass("monthSpecsPActive");
+});
+    $(name[4]).click(function(){  
+  	$(name[4]).removeClass("monthSpecsPActive");
+    $(this).addClass("monthSpecsPActive");
+});
+    $(name[5]).click(function(){  
+  	$(name[5]).removeClass("monthSpecsPActive");
+    $(this).addClass("monthSpecsPActive");
+});
+}
+
+function chartMenuReset(){  
+  $(".menuBack").css("width","1em");
+  $(chartMenuBuffor).slideUp(slideUpSpeed);
+  $(".specs2").slideDown(slideUpSpeed);  
+}
+function chartMenu(string){
+  $(".menuBack").css("width","4em");
+  chartMenuBuffor = "."+string;
+  $(chartMenuBuffor).slideDown(slideUpSpeed);
+  $(".specs2").slideUp(slideUpSpeed);    
+}
+//Wykresy
+
 var kierunki_wiatru = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 
  // Tablice dla codziennych
@@ -1476,3 +1537,5 @@ Highcharts.setOptions({
             plotBorderWidth: 1
         }
  });	
+
+

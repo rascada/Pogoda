@@ -1,3 +1,5 @@
+$("#wykresy").css("display","none");
+
 function stworzMiarkeLicznik(id,licznik){
     var zakres;
     var divide=true;
@@ -74,6 +76,8 @@ function compassDirScale(num){
     }
 
 }
+
+
 
 function createTempMiar(id,precise,skok){
     var mH = new Array();

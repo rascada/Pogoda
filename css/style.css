@@ -998,3 +998,121 @@ footer{
     80%{top:-.05em}
     100%{top:0em}
 }
+
+/*Menu wykresy*/
+
+#wykresy{
+    margin-top: 1em;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#chart1{
+    min-width: 98.5%; 
+    height: 50%; 
+}
+
+.chartButton{
+  min-width:28em;
+  min-height:10em;
+  padding:.5em 3em;
+  color:#fff;
+  border:0;
+  background:#2a4;
+  border-radius:.1em;
+  box-shadow: 0 .3em .1em #ddd;
+  font-weight:600;
+  font-size:1.5em;
+  position:relative;
+  overflow:hidden;
+  
+}
+.chartButton:after,.chartButton:before{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  background:#fff;
+  transform:rotate(-45deg);
+  width:40%;
+  height:350%;
+  width:40%;
+  height:350%;  
+}
+.chartButton:after{
+  top:-55%;left:10%;
+  opacity:.075;  
+}
+.chartButton:before{
+  top:-140%;left:100%;
+  opacity:.05;  
+}
+
+.chartButton p:nth-child(odd){
+  background:#193;
+}
+.chartButton p:nth-child(even){
+  background:#3b5;
+}
+.monthSpecsPActive{
+  background:#193;
+  position:relative;
+  z-index:10;
+  
+}
+.monthSpecsPActive:before{
+  content:"";
+  top:0%;
+  right:0%;
+  border:.1em solid;
+border-width: 1em 1.5em 1em 0;
+border-color: transparent #2a4 transparent transparent;
+  position:absolute;  
+}
+.chartButton p{
+  cursor:pointer;
+  position:relative;
+  margin:0;
+  padding:.4em;
+  transition:all .5s ease;
+}
+.chartButton p:hover{
+  background:#2a4;
+  padding:.5em;
+}
+.monthSpecs{
+  display:flex;
+  justify-content:center;
+}
+.monthSpecs p{  
+  padding:1em .5em;
+ }
+.monthSpecs p:hover{  
+  padding:1em .5em;
+ }
+.specs36h,.weekSpecs,.specs8h,.monthSpecsMonth{
+  display:none;
+}
+.specs36h span,.weekSpecs span,.specs8h span,.monthSpecsMonth span{
+  position:relative;
+  font-weight:600;
+  font-size:1.5em;
+  background:#193;
+  display:block;  
+}
+.menuBack{
+  position:absolute;
+  top:50%; left:-1em;
+  width:1em;
+  height:100%;
+  background:#eee;
+  opacity:.3;
+  cursor:pointer;
+  transition:all .5s ease;
+  transform:rotate(-45deg);
+}  
+.menuBack:hover{  
+  opacity:.8;
+  width:5em;
+}
