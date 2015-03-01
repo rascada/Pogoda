@@ -759,13 +759,19 @@ function zdania(tt, tp, at, ot, ws, wd, wg, op, dob, hm, prs) {
 	if(tt.indexOf("stała")==-1) tabString[tabString_idx++]="Aktualna temperatura wynosi "+at+"°C i "+tt;
 	else tabString[tabString_idx++]="Aktualna temperatura wynosi "+at+"°C i utrzymuje się na stałym poziomie";
 	
-	
 	tabString[tabString_idx++] = "Przy wietrze "+wind_dir_str(wd)+" wiejącym "+ws+"m/s odczuwalna temperatura wynosi "+ot+"°C";
 	
 	if(wg>1) tabString[tabString_idx++] = "W ciągu ostatnich 15min odnotowano podmuch wiatru wiejącego z prędkością "+wg+"m/s";
+	tabString[tabString_idx++] = "Dzisiaj najmocniejszy podmuch wiatru wynosił &nbsp;"+dzien[5];
+	
+	tabString[tabString_idx++] = "Dzisiaj najwyższa temperatura wynosiła "+parseHTML('darkgreen', dzien[0]);
+	tabString[tabString_idx++] = "Dzisiaj najniższa temperatura wynosiła "+parseHTML('darkred', dzien[13]);
 	
 	if(tp.indexOf("stałe")==-1) tabString[tabString_idx++] = "Aktualne ciśnienie wynosi "+prs+"hPa i "+tp;
 	else tabString[tabString_idx++] = "Aktualne ciśnienie wynosi "+prs+"hPa i utrzymuje się na stałym poziomie";
+	
+	tabString[tabString_idx++] = "Dzisiaj najwyższe ciśnienie wynosiło "+parseHTML('darkgreen', dzien[2]);
+	tabString[tabString_idx++] = "Dzisiaj najniższe ciśnienie wynosiło "+parseHTML('darkred', dzien[15]);
 	
 	if(at<0) tabString[tabString_idx++]="Aktualna temperatura spadła poniżej 0°C i wynosi"+at+"°C";
 	
@@ -775,18 +781,24 @@ function zdania(tt, tp, at, ot, ws, wd, wg, op, dob, hm, prs) {
 	if(dob>0) tabString[tabString_idx++] = "W ciągu ostatnich 24 godzin spadło "+dob+"mm deszczu";
 	else tabString[tabString_idx++] = "W ciągu ostatnich 24 godzin nie odnotowano żadnych opadów deszczu";
 	
-	if(hm<45) tabString[tabString_idx++] = "Aktualna wilgotność jest zbyt niska i wynosi "+hm+"%";
-	else if(hm>=45 && hm<=75) tabString[tabString_idx++] = "Aktualna wilgotność jest odpowiednia i wynosi "+hm+"%";
-	else if(hm>75) tabString[tabString_idx++] = "Aktualna wilgotność jest zbyt wysoka i wynosi "+hm+"%";
+	if(hm<45) tabString[tabString_idx++] = "Aktualna wilgotność jest zbyt niska i wynosi "+parseHTML('darkred', hm+"%");
+	else if(hm>=45 && hm<=75) tabString[tabString_idx++] = "Aktualna wilgotność jest odpowiednia i wynosi "+parseHTML('darkgreen', hm+"%");
+	else if(hm>75) tabString[tabString_idx++] = "Aktualna wilgotność jest zbyt wysoka i wynosi "+parseHTML('darkred', hm+"%");
+	
+	tabString[tabString_idx++] = "Dzisiaj najwyższa wilgotność wynosiła "+parseHTML('darkred', dzien[1]);
+	tabString[tabString_idx++] = "Dzisiaj najniższa wilgotność wynosiła "+parseHTML('darkgreen', dzien[14]);
+	
 	
 	clearInterval(ZmienInt);
 	pokaz_napis();
 	ZmienInt = setInterval("pokaz_napis()", 7000);
 }
 
+function parseHTML(clr, str) { return "<span style='color: "+clr+"'>&nbsp;"+str+"</span>"; }
+
 var pokaz_idx=0;
 var ZmienInt;
 function pokaz_napis() {
 	if(pokaz_idx<tabString_idx) $("#stringi").html(tabString[pokaz_idx++]);
-	else pokaz_idx=0;
+	else { pokaz_idx=0; $("#stringi").html(tabString[pokaz_idx++]); }
 }
