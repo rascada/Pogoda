@@ -121,7 +121,6 @@ function createView(tryb) {
 					refdayrep(false); refresh(); 
 		});
 	} else {
-		var rekordy=0;
 			$.ajax({
 				type: "GET",
 				url: "session.php",
@@ -161,9 +160,9 @@ function createView(tryb) {
 		
 }
 
-$(window).load(function() {
-		setTimeout(function() { createView(true); }, 1000);
-		setTimeout(function() { createView(false); }, 4000);
+$(document).ready(function() {
+		createView(false);
+		setTimeout(function() { createView(true); }, 1200);
 });
 
 $(document).mousemove(function(event) {
@@ -332,6 +331,7 @@ var pod_kmph=true;
 var nextRef=120;
 var intNextRef;
 var dzien = new Array();
+var rekordy;
 /*
 dzien:
 0 - [czas max temp] [wartość max temp]
@@ -756,60 +756,69 @@ function nextMinus() {
 var tabString = new Array();
 var tabString_idx=0;
 var dzisiaj = new Array();
-
+var extrema = new Array();
 function zdania(tt, tp, at, ot, ws, wd, wg, op, dob, hm, prs) {
+	clearInterval(ZmienInt);
 	tabString_idx=0;
+		tabString[tabString_idx++] = "Dzisiaj jest&nbsp;<b>"+dzisiaj[18]+"</b>. Słońce w pełni widoczne o&nbsp;<b>"+dzisiaj[7]+"</b>, zacznie zachodzić o&nbsp;<b>"+dzisiaj[8]+"</b>";
+		tabString[tabString_idx++] = "Wschód księżyca o&nbsp;<b>"+dzisiaj[10]+"</b>. Zachód księżyca o&nbsp;<b>"+dzisiaj[11]+"</b>.  Faza:&nbsp;<b>"+dzisiaj[12]+"</b>";
+		
 		if(at<7) at = parseHTML('blue', at+'°C');
 		if(at>=7 && at<=18) at = parseHTML('darkgreen', at+'°C');
 		if(at>18) at = parseHTML('darkred', at+'°C');
 		
-	if(tt.indexOf("stała")==-1) tabString[tabString_idx++]="Aktualna temperatura wynosi "+at+"&nbsp;i "+tt;
-	else tabString[tabString_idx++]="Aktualna temperatura wynosi "+at+"°C i utrzymuje się na stałym poziomie";
+	if(tt.indexOf("stała")==-1) tabString[tabString_idx++]="Aktualna temperatura wynosi "+at+"&nbsp;i "+tt+".";
+	else tabString[tabString_idx++]="Aktualna temperatura wynosi "+at+"&nbsp;i utrzymuje się na stałym poziomie.";
 
 
 		if(ot<7) ot = parseHTML('blue', ot+'°C');
 		if(ot>=7 && ot<=18) ot = parseHTML('darkgreen', ot+'°C');
 		if(ot>18) ot = parseHTML('darkred', ot+'°C');
-	tabString[tabString_idx++] = "Przy wietrze "+wind_dir_str(wd)+" wiejącym "+ws+"m/s odczuwalna temperatura wynosi "+ot;
+	tabString[tabString_idx++] = "Przy wietrze "+wind_dir_str(wd)+"&nbsp;"+ws+"m/s odczuwalna temperatura wynosi "+ot+".";
 	
-	if(wg>1) tabString[tabString_idx++] = "W ciągu ostatnich 15min odnotowano podmuch wiatru wiejącego z prędkością "+wg+"m/s";
-	tabString[tabString_idx++] = "Dzisiaj najmocniejszy podmuch wiatru wynosił &nbsp;"+dzisiaj[5];
+	if(wg>1) tabString[tabString_idx++] = "W ciągu ostatnich 15min odnotowano podmuch wiatru wiejącego z prędkością "+wg+"m/s.";
+	tabString[tabString_idx++] = "Dzisiaj najmocniejszy podmuch wiatru wynosił &nbsp;"+dzisiaj[5]+".";
 	
-	tabString[tabString_idx++] = "Dzisiaj najwyższa temperatura wynosiła "+parseHTML('darkgreen', dzisiaj[0]);
-	tabString[tabString_idx++] = "Dzisiaj najniższa temperatura wynosiła "+parseHTML('darkred', dzisiaj[13]);
+	tabString[tabString_idx++] = "Dzisiaj najwyższa temperatura wynosiła "+parseHTML('darkgreen', dzisiaj[0])+".";
+	tabString[tabString_idx++] = "Dzisiaj najniższa temperatura wynosiła "+parseHTML('darkred', dzisiaj[13])+".";
 	
 		if(prs<975) prs = parseHTML('blue', prs+'hPa');
 		if(prs>=975 && prs<=1015) prs = parseHTML('darkgreen', prs+'hPa');
 		if(prs>1015) prs = parseHTML('darkred', at+'hPa');
-	if(tp.indexOf("stałe")==-1) tabString[tabString_idx++] = "Aktualne ciśnienie wynosi "+prs+"&nbsp;i "+tp;
-	else tabString[tabString_idx++] = "Aktualne ciśnienie wynosi "+prs+"&nbsp;i utrzymuje się na stałym poziomie";
+	if(tp.indexOf("stałe")==-1) tabString[tabString_idx++] = "Aktualne ciśnienie wynosi "+prs+"&nbsp;i "+tp+".";
+	else tabString[tabString_idx++] = "Aktualne ciśnienie wynosi "+prs+"&nbsp;i utrzymuje się na stałym poziomie.";
 	
-	tabString[tabString_idx++] = "Dzisiaj najwyższe ciśnienie wynosiło "+parseHTML('darkgreen', dzisiaj[2]);
-	tabString[tabString_idx++] = "Dzisiaj najniższe ciśnienie wynosiło "+parseHTML('darkred', dzisiaj[15]);
+	tabString[tabString_idx++] = "Dzisiaj najwyższe ciśnienie wynosiło "+parseHTML('darkgreen', dzisiaj[2])+".";
+	tabString[tabString_idx++] = "Dzisiaj najniższe ciśnienie wynosiło "+parseHTML('darkred', dzisiaj[15])+".";
 	
 	
 	
 	if(op>0) {
-		op = parseHTML('blue', op+"mm/h");
+		op = parseHTML('blue', op+"mm/h.");
 		tabString[tabString_idx++] = "Właśnie odnotowano opady deszczu o natężeniu "+op;
 	}
-	else tabString[tabString_idx++] = "Aktualnie nie odnotowano żadnych opadów deszczu";
+	else tabString[tabString_idx++] = "Aktualnie nie odnotowano żadnych opadów deszczu.";
 	
 	if(dob>0) {
-		dob = parseHTML('blue', dob+"mm deszczu");
+		dob = parseHTML('blue', dob+"mm deszczu.");
 		tabString[tabString_idx++] = "W ciągu ostatnich 24 godzin spadło "+dob;
 	}
-	else tabString[tabString_idx++] = "W ciągu ostatnich 24 godzin nie odnotowano żadnych opadów deszczu";
+	else tabString[tabString_idx++] = "W ciągu ostatnich 24 godzin nie odnotowano żadnych opadów deszczu.";
 	
-	if(hm<45) tabString[tabString_idx++] = "Aktualna wilgotność jest zbyt niska i wynosi "+parseHTML('darkred', hm+"%");
-	else if(hm>=45 && hm<=75) tabString[tabString_idx++] = "Aktualna wilgotność jest odpowiednia i wynosi "+parseHTML('darkgreen', hm+"%");
-	else if(hm>75) tabString[tabString_idx++] = "Aktualna wilgotność jest zbyt wysoka i wynosi "+parseHTML('darkred', hm+"%");
+	if(hm<45) tabString[tabString_idx++] = "Aktualna wilgotność jest zbyt niska i wynosi "+parseHTML('darkred', hm+"%.");
+	else if(hm>=45 && hm<=75) tabString[tabString_idx++] = "Aktualna wilgotność jest odpowiednia i wynosi "+parseHTML('darkgreen', hm+"%.");
+	else if(hm>75) tabString[tabString_idx++] = "Aktualna wilgotność jest zbyt wysoka i wynosi "+parseHTML('darkred', hm+"%.");
 	
-	tabString[tabString_idx++] = "Dzisiaj najwyższa wilgotność wynosiła "+parseHTML('darkred', dzisiaj[1]);
-	tabString[tabString_idx++] = "Dzisiaj najniższa wilgotność wynosiła "+parseHTML('darkgreen', dzisiaj[14]);
-	
-	
-	clearInterval(ZmienInt);
+	tabString[tabString_idx++] = "Dzisiaj najwyższa wilgotność wynosiła "+parseHTML('darkred', dzisiaj[1])+"."
+	tabString[tabString_idx++] = "Dzisiaj najniższa wilgotność wynosiła "+parseHTML('darkgreen', dzisiaj[14])+".";
+					if(rekordy['temp']['low']!="none") tabString[tabString_idx++] =  rekordy['temp']['low'];
+					if(rekordy['temp']['high']!="none") tabString[tabString_idx++] = rekordy['temp']['high'];
+					if(rekordy['hum']['low']!="none") tabString[tabString_idx++] = rekordy['hum']['low'];
+					if(rekordy['hum']['high']!="none") tabString[tabString_idx++] = rekordy['hum']['high'];
+					if(rekordy['press']['low']!="none") tabString[tabString_idx++] = rekordy['press']['low'];
+					if(rekordy['press']['high']!="none") tabString[tabString_idx++] = rekordy['press']['high'];
+					if(rekordy['other']['wind']!="none") tabString[tabString_idx++] = rekordy['other']['wind'];
+					if(rekordy['other']['rain']!="none") tabString[tabString_idx++] = rekordy['other']['rain'];
 	pokaz_napis();
 	ZmienInt = setInterval("pokaz_napis()", 7000);
 }

@@ -1120,7 +1120,8 @@ function setForePreci(where_id) {
 					color: Highcharts.getOptions().colors[0]
 				}
 			},
-			opposite: true
+			opposite: true,
+			min: 0
 		}],
 		tooltip: {
 			shared: true,

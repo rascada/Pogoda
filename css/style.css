@@ -754,6 +754,7 @@ footer{
     justify-content: center;
     flex-direction: column;
     width: 100%;
+	min-height: 8em;
 }
 #fore36Cont {
     padding-bottom: .5em;
