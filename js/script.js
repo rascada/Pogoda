@@ -651,6 +651,18 @@ function refresh() {
 
 						document.getElementById("cmL1").innerHTML = podstawowe['dir']+'°';
 						document.getElementById("cmL2").innerHTML =  podstawowe['domdir'] +'°';
+					
+					zdania(podstawowe['trendtemp'],
+							  podstawowe['trendpress'],
+							  podstawowe['atemp'],
+							  podstawowe['otemp'],
+							  podstawowe['speed'],
+							  podstawowe['dir'],
+							  podstawowe['gust'],
+							  podstawowe['rain'],
+							  podstawowe['raint'],
+							  podstawowe['hum'],
+							  podstawowe['press']);
 			}	
 		})	.then(function() {
 			if(nextRef!=' --') {
@@ -736,4 +748,45 @@ function nextMinus() {
 	nextRef--;
 	document.getElementById("nrf").innerHTML=nextRef;
 	if(nextRef<1) refresh();
+}
+
+var tabString = new Array();
+var tabString_idx=0;
+
+
+function zdania(tt, tp, at, ot, ws, wd, wg, op, dob, hm, prs) {
+	tabString_idx=0;
+	if(tt.indexOf("stała")==-1) tabString[tabString_idx++]="Aktualna temperatura wynosi "+at+"°C i "+tt;
+	else tabString[tabString_idx++]="Aktualna temperatura wynosi "+at+"°C i utrzymuje się na stałym poziomie";
+	
+	
+	tabString[tabString_idx++] = "Przy wietrze "+wind_dir_str(wd)+" wiejącym "+ws+"m/s odczuwalna temperatura wynosi "+ot+"°C";
+	
+	if(wg>1) tabString[tabString_idx++] = "W ciągu ostatnich 15min odnotowano podmuch wiatru wiejącego z prędkością "+wg+"m/s";
+	
+	if(tp.indexOf("stałe")==-1) tabString[tabString_idx++] = "Aktualne ciśnienie wynosi "+prs+"hPa i "+tp;
+	else tabString[tabString_idx++] = "Aktualne ciśnienie wynosi "+prs+"hPa i utrzymuje się na stałym poziomie";
+	
+	if(at<0) tabString[tabString_idx++]="Aktualna temperatura spadła poniżej 0°C i wynosi"+at+"°C";
+	
+	if(op>0) tabString[tabString_idx++] = "Właśnie odnotowano opady deszczu o natężeniu "+op+"mm/h";
+	else tabString[tabString_idx++] = "Aktualnie nie odnotowano żadnych opadów deszczu";
+	
+	if(dob>0) tabString[tabString_idx++] = "W ciągu ostatnich 24 godzin spadło "+dob+"mm deszczu";
+	else tabString[tabString_idx++] = "W ciągu ostatnich 24 godzin nie odnotowano żadnych opadów deszczu";
+	
+	if(hm<45) tabString[tabString_idx++] = "Aktualna wilgotność jest zbyt niska i wynosi "+hm+"%";
+	else if(hm>=45 && hm<=75) tabString[tabString_idx++] = "Aktualna wilgotność jest odpowiednia i wynosi "+hm+"%";
+	else if(hm>75) tabString[tabString_idx++] = "Aktualna wilgotność jest zbyt wysoka i wynosi "+hm+"%";
+	
+	clearInterval(ZmienInt);
+	pokaz_napis();
+	ZmienInt = setInterval("pokaz_napis()", 7000);
+}
+
+var pokaz_idx=0;
+var ZmienInt;
+function pokaz_napis() {
+	if(pokaz_idx<tabString_idx) $("#stringi").html(tabString[pokaz_idx++]);
+	else pokaz_idx=0;
 }
