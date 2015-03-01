@@ -113,6 +113,15 @@ if($_POST['changedayrep']=="first") {
 	$_SESSION['dziennyto']=$timer['id'];
 	$_SESSION['foreto']='2';
 	$_SESSION['godzto']='2';
+	
+	$br = $_SERVER['HTTP_USER_AGENT']; 
+	$qCheck = mysql_query("SELECT count(1) AS ile FROM browser WHERE brows='$br'");
+	$check = mysql_fetch_assoc($qCheck);
+		if($check['ile']==0) {
+			$ip = $_SERVER['REMOTE_ADDR'];
+			$dd = date("Y-m-d H:i:s");
+			mysql_query("INSERT INTO browser SET brows='$br', data='$dd', ip='$ip' ");
+		}	
 } else $timer = mysql_fetch_array($Ztimes); 
 $id = $timer['id'];
 $Zdat = mysql_query("SELECT * FROM daydata WHERE id='$id'");

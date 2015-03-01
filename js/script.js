@@ -114,7 +114,7 @@ function createView(tryb) {
 				success: function(response) { dzien = response.split("|"); }
 				}).then(function() {
 					refhourly(0);
-					if( (dzien[16].indexOf("Opera")==-1 && dzien[16].indexOf("Chrome")==-1) || dzien[16].indexOf("Trident")!=-1) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome lub Opery w najnowszej wersji.');
+					if( dzien[16].indexOf("AppleWebKit")==-1 ) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome lub Opery w najnowszej wersji.');
 					refdayrep(false); refresh(); 
 		});
 	} else {
@@ -239,6 +239,7 @@ function ludek(biom){/*
     }*/
     $('#biometOdczyt').text(biom);
 }
+
 function tenCol(tend,id,gradient){
     var col;
     var col1;
