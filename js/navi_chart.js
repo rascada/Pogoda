@@ -707,8 +707,10 @@ $('#'+where_id).highcharts({
 						color: Highcharts.getOptions().colors[2]
 					}
 				},
-				opposite: true
-
+				opposite: true,
+				min: 0,
+				max: 100,
+				tickInterval: 20
 			}, { // Secondary yAxis
 				gridLineWidth: 0,
 				title: {
@@ -1315,7 +1317,10 @@ function setSevenOther(where_id) {
 						color: Highcharts.getOptions().colors[2]
 					}
 				},
-				opposite: true
+				opposite: true,
+				min: 0,
+				max: 100,
+				tickInterval: 20
 
 			}, { // Secondary yAxis
 				gridLineWidth: 0,

@@ -595,6 +595,7 @@ function refdayrep(auto) {
 
 
 function refresh() {
+	clearInterval(ZmienInt);
 	$.ajax({
 		type: "POST",
 		url: "session.php",
@@ -756,9 +757,7 @@ function nextMinus() {
 var tabString = new Array();
 var tabString_idx=0;
 var dzisiaj = new Array();
-var extrema = new Array();
 function zdania(tt, tp, at, ot, ws, wd, wg, op, dob, hm, prs) {
-	clearInterval(ZmienInt);
 	tabString_idx=0;
 		tabString[tabString_idx++] = "Dzisiaj jest&nbsp;<b>"+dzisiaj[18]+"</b>. Słońce w pełni widoczne o&nbsp;<b>"+dzisiaj[7]+"</b>, zacznie zachodzić o&nbsp;<b>"+dzisiaj[8]+"</b>";
 		tabString[tabString_idx++] = "Wschód księżyca o&nbsp;<b>"+dzisiaj[10]+"</b>. Zachód księżyca o&nbsp;<b>"+dzisiaj[11]+"</b>.  Faza:&nbsp;<b>"+dzisiaj[12]+"</b>";
@@ -823,7 +822,7 @@ function zdania(tt, tp, at, ot, ws, wd, wg, op, dob, hm, prs) {
 					if(rekordy['other']['wind']!="none") tabString[tabString_idx++] = rekordy['other']['wind'];
 					if(rekordy['other']['rain']!="none") tabString[tabString_idx++] = rekordy['other']['rain'];
 	pokaz_napis();
-	ZmienInt = setInterval("pokaz_napis()", 7000);
+	ZmienInt = setInterval("pokaz_napis()", 8000);
 }
 
 function parseHTML(clr, str) { return "<span style='color: "+clr+"'>&nbsp;"+str+"</span>"; }
