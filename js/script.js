@@ -799,11 +799,14 @@ function zdania(tt, tp, at, ot, ws, wd, wg, op, dob, hm, prs) {
 	}
 	else tabString[tabString_idx++] = "Aktualnie nie odnotowano żadnych opadów deszczu.";
 	
-	if(dob>0) {
-		dob = parseHTML('blue', dob+"mm deszczu.");
-		tabString[tabString_idx++] = "W ciągu ostatnich 24 godzin spadło "+dob;
+	dob = dzisiaj[6].split(" ");
+	dob[0] = dob[0].replace("<b>", '');
+	dob[0] = dob[0].replace("</b>", '');
+	if(dob[0]>0) {
+		dob = parseHTML('blue', dzisiaj[6]+"mm");
+		tabString[tabString_idx++] = "W ciągu dzisiejszej doby spadło "+dob+"&nbsp;deszczu.";
 	}
-	else tabString[tabString_idx++] = "W ciągu ostatnich 24 godzin nie odnotowano żadnych opadów deszczu.";
+	else tabString[tabString_idx++] = "Dzisiaj nie odnotowano żadnych opadów deszczu.";
 	
 	if(hm<45) tabString[tabString_idx++] = "Aktualna wilgotność jest zbyt niska i wynosi "+parseHTML('darkred', hm+"%.");
 	else if(hm>=45 && hm<=75) tabString[tabString_idx++] = "Aktualna wilgotność jest odpowiednia i wynosi "+parseHTML('darkgreen', hm+"%.");

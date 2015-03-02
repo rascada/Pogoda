@@ -90,7 +90,7 @@ var x_size =31;
 		var sevGust = new Array(); var sevSpeed = new Array(); 
 		var sevDir = new Array(); var sevDom = new Array();
 
-function judgeMonth() { if(mon_display>2) { alert("Tego jeszcze nie wiemy ;("); mon_display=2; } }	
+function judgeMonth() { if(mon_display>3) { alert("Tego jeszcze nie wiemy ;("); mon_display=3; } }	
 		
 jQuery(document).ready(function($) {
 	 getForecastData(); setDailyTemp('chart1');
