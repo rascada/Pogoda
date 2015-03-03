@@ -162,6 +162,7 @@ function createView(tryb) {
 
 $(document).ready(function() {
 		createView(false);
+		setTimeout(function() { wczytajINNE(); }, 3200);
 		setTimeout(function() { createView(true); }, 1200);
 });
 
@@ -203,7 +204,85 @@ function setTab(tab){
 				$('#mapki').fadeIn(500);      
 				widoczny="#mapki";			
 			});     			
-		}
+		} break;
+		case 4: {
+
+	$.ajax({
+		type: "GET",
+		url: "session.php",
+		dataType: "json",
+		async: true,
+		data: { otherpws: "showme", },
+		success: function(pws) { PPWS=pws; }
+	}).then(function() { 
+	for(var i=0; i<8; i++) { 
+		if(parseInt(PPWS['pws'][i]['press'])==0) PPWS['pws'][i]['press']="---";
+		if(parseFloat(PPWS['pws'][i]['temp'])<=5) PPWS['pws'][i]['temp'] = parseHTML("blue", PPWS['pws'][i]['temp']+'°C');
+		else if(parseFloat(PPWS['pws'][i]['temp'])>5 && parseFloat(PPWS['pws'][i]['temp'])<15) PPWS['pws'][i]['temp'] = parseHTML("darkgreen", PPWS['pws'][i]['temp']+'°C');
+		else if(parseFloat(PPWS['pws'][i]['temp'])>=15) PPWS['pws'][i]['temp'] = parseHTML("darkred", PPWS['pws'][i]['temp']+'°C');
+		
+		if(parseInt(PPWS['pws'][i]['hum'])<=40 || parseInt(PPWS['pws'][i]['hum'])>=80) PPWS['pws'][i]['hum'] = parseHTML("darkred", PPWS['pws'][i]['hum']+'%');
+		else if(parseInt(PPWS['pws'][i]['hum'])>40 && parseInt(PPWS['pws'][i]['hum'])<80) PPWS['pws'][i]['hum'] = parseHTML("darkgreen", PPWS['pws'][i]['hum']+'%');
+		
+		if(parseInt(PPWS['pws'][i]['press'])<=980 || parseInt(PPWS['pws'][i]['press'])>=1020) PPWS['pws'][i]['press'] = parseHTML("darkred", PPWS['pws'][i]['press']+'hPa');
+		else if(parseInt(PPWS['pws'][i]['press'])>980 && parseInt(PPWS['pws'][i]['press'])<1020) PPWS['pws'][i]['press'] = parseHTML("darkgreen", PPWS['pws'][i]['press']+'hPa');		
+		
+		if(parseInt(PPWS['pws'][i]['rain'])==0) PPWS['pws'][i]['rain']=parseHTML("darkgreen", PPWS['pws'][i]['rain']+"mm");
+		else PPWS['pws'][i]['rain']=parseHTML("blue", PPWS['pws'][i]['rain']+"mm");
+		
+		if(parseInt(PPWS['pws'][i]['spd'])>15) PPWS['pws'][i]['spd']=parseHTML('darkred', PPWS['pws'][i]['spd']+"km/h");
+		else PPWS['pws'][i]['spd']=parseHTML('darkgreen', PPWS['pws'][i]['spd']+"km/h");
+	}
+	
+		$("#budlast").html(PPWS['pws'][0]['ostatni']);
+		$("#budup").html("Temperatura: "+PPWS['pws'][0]['temp']+"  Ciśnienie: "+PPWS['pws'][0]['press']+
+		"<br/>Wilgotność: "+PPWS['pws'][0]['hum']+" &nbsp;Opady: "+PPWS['pws'][0]['rain']);
+		var dirint = parseInt(PPWS['pws'][0]['dir']);
+		$("#buddown").html("Wiatr:"+parseHTML('blue', wind_dir_str(dirint))+" "+PPWS['pws'][0]['spd']);
+		
+		$("#oplast").html(PPWS['pws'][1]['ostatni']);
+		$("#opup").html("Temperatura: "+PPWS['pws'][1]['temp']+"  Ciśnienie: "+PPWS['pws'][1]['press']+
+		"<br/>Wilgotność: "+PPWS['pws'][1]['hum']+" &nbsp;Opady: "+PPWS['pws'][1]['rain']);
+		dirint = parseInt(PPWS['pws'][1]['dir']);
+		$("#opdown").html("Wiatr:"+parseHTML('blue', wind_dir_str(dirint))+" "+PPWS['pws'][1]['spd']);		
+		
+		$("#turlast").html(PPWS['pws'][2]['ostatni']);
+		$("#tur").html("Temperatura: "+PPWS['pws'][2]['temp']+" &nbsp;Ciśnienie: "+PPWS['pws'][2]['press']+
+		"<br/>Wilgotność: "+PPWS['pws'][2]['hum']);
+		
+		$("#skolast").html(PPWS['pws'][3]['ostatni']);
+		$("#sko").html("Temperatura: "+PPWS['pws'][3]['temp']+" &nbsp;Ciśnienie: "+PPWS['pws'][3]['press']+
+		"<br/>Wilgotność: "+PPWS['pws'][3]['hum']);
+
+		$("#kralast").html(PPWS['pws'][4]['ostatni']);
+		$("#kraup").html("Temperatura: "+PPWS['pws'][4]['temp']+" &nbsp;Ciśnienie: "+PPWS['pws'][4]['press']+
+		"<br/>Wilgotność: "+PPWS['pws'][4]['hum']+" &nbsp;Opady: "+PPWS['pws'][4]['rain']);
+		dirint = parseInt(PPWS['pws'][4]['dir']);
+		$("#kradown").html("Wiatr:"+parseHTML('blue', wind_dir_str(dirint))+" "+PPWS['pws'][4]['spd']);	
+
+		$("#kaslast").html(PPWS['pws'][5]['ostatni']);
+		$("#kasup").html("Temperatura: "+PPWS['pws'][5]['temp']+" &nbsp;Ciśnienie: "+PPWS['pws'][5]['press']+
+		"<br/>Wilgotność: "+PPWS['pws'][5]['hum']+" &nbsp;Opady: "+PPWS['pws'][5]['rain']);
+		dirint = parseInt(PPWS['pws'][5]['dir']);
+		$("#kasdown").html("Wiatr:"+parseHTML('blue', wind_dir_str(dirint))+" "+PPWS['pws'][5]['spd']);	
+
+		$("#wrolast").html(PPWS['pws'][6]['ostatni']);
+		$("#wroup").html("Temperatura: "+PPWS['pws'][6]['temp']+" &nbsp;Ciśnienie: "+PPWS['pws'][6]['press']+
+		"<br/>Wilgotność: "+PPWS['pws'][6]['hum']+" &nbsp;Opady: "+PPWS['pws'][6]['rain']);
+		dirint = parseInt(PPWS['pws'][6]['dir']);
+		$("#wrodown").html("Wiatr:"+parseHTML('blue', wind_dir_str(dirint))+" "+PPWS['pws'][6]['spd']);	
+
+		$("#katlast").html(PPWS['pws'][7]['ostatni']);
+		$("#katup").html("Temperatura: "+PPWS['pws'][7]['temp']+" &nbsp;Ciśnienie: "+PPWS['pws'][7]['press']+
+		"<br/>Wilgotność: "+PPWS['pws'][7]['hum']+" &nbsp;Opady: "+PPWS['pws'][7]['rain']);
+		dirint = parseInt(PPWS['pws'][7]['dir']);
+		$("#katdown").html("Wiatr:"+parseHTML('blue', wind_dir_str(dirint))+" "+PPWS['pws'][7]['spd']);		
+			$(widoczny).fadeOut(500,function(){	
+					$('#othPWS').fadeIn(500);      
+					widoczny="#othPWS";	
+			});  
+	});	
+		} break;
 	}
 }
 
@@ -332,6 +411,7 @@ var nextRef=120;
 var intNextRef;
 var dzien = new Array();
 var rekordy;
+var PPWS;
 /*
 dzien:
 0 - [czas max temp] [wartość max temp]

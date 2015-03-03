@@ -281,6 +281,31 @@ echo<<<END
 	}
 }
 END;
-	}	
+	}
+
+if (isset($_GET['otherpws']) && $_GET['otherpws']=="showme" ) {
+$qOth = mysql_query("SELECT * FROM niemy WHERE id!=1");
+
+echo '{ "pws": ['; $i=0;
+	while( $oth = mysql_fetch_assoc($qOth) ) {
+		$id = $oth['kiedy']; $t = $oth['temp'];
+		$h = $oth['hum']; $p = $oth['press'];
+		$d = $oth['dir']; $s = $oth['spd']; $r = $oth['raint'];
+echo<<<END
+{
+"ostatni": "$id",
+"temp": $t,
+"hum": $h,
+"press": $p,
+"dir": $d,
+"spd": $s,
+"rain": $r
+}
+END;
+if($i++ < 7) echo ",";
+	}
+echo "] }";
+}	
+
  
 ?>
