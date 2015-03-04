@@ -915,3 +915,10 @@ function pokaz_napis() {
 	if(pokaz_idx<tabString_idx) $("#stringi").html(tabString[pokaz_idx++]);
 	else { pokaz_idx=0; $("#stringi").html(tabString[pokaz_idx++]); }
 }
+
+var fo = true;
+function chFontStyle() {
+	fo = !fo;
+	fo ? document.body.style.fontFamily='Rajdhani' : document.body.style.fontFamily="Times New Roman, sans-serif";
+}
+$("#tajnytrik").click(chFontStyle);
