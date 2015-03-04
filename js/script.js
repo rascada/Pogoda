@@ -117,7 +117,7 @@ function createView(tryb) {
 				}
 				}).then(function() {
 					refhourly(0);
-					if( dzien[16].indexOf("AppleWebKit")==-1 ) alert('Używasz niewspieranej przez tę stronę przeglądarki. Zalecamy używanie Chrome lub Opery w najnowszej wersji.');
+					if( dzien[16].indexOf("AppleWebKit")==-1 ) alert('Drogi użytkowniku!\nInformujemy że Twoja przeglądarka nie obsługuje narzędzi WebKit, co może spowodować (czyt. na pewno spowoduje) nieprawidłowe wyświetlenie tej strony.\nProsimy używaj innych przeglądarek, np. Google Chrome lub Opery.');
 					refdayrep(false); refresh(); 
 		});
 	} else {
@@ -215,7 +215,8 @@ function setTab(tab){
 		data: { otherpws: "showme", },
 		success: function(pws) { PPWS=pws; }
 	}).then(function() { 
-	for(var i=0; i<8; i++) { 
+	for(var i=0; i<8; i++) {
+			if(parseInt(PPWS['pws'][i]['najnowszy'])==1) PPWS['pws'][i]['ostatni'] = parseHTML('darkgreen', '<b>'+PPWS['pws'][i]['ostatni']+'</b>');
 		if(parseInt(PPWS['pws'][i]['press'])==0) PPWS['pws'][i]['press']="---";
 		if(parseFloat(PPWS['pws'][i]['temp'])<=5) PPWS['pws'][i]['temp'] = parseHTML("blue", PPWS['pws'][i]['temp']+'°C');
 		else if(parseFloat(PPWS['pws'][i]['temp'])>5 && parseFloat(PPWS['pws'][i]['temp'])<15) PPWS['pws'][i]['temp'] = parseHTML("darkgreen", PPWS['pws'][i]['temp']+'°C');
@@ -853,7 +854,8 @@ function zdania(tt, tp, at, ot, ws, wd, wg, op, dob, hm, prs) {
 		if(ot<7) ot = parseHTML('blue', ot+'°C');
 		if(ot>=7 && ot<=18) ot = parseHTML('darkgreen', ot+'°C');
 		if(ot>18) ot = parseHTML('darkred', ot+'°C');
-	tabString[tabString_idx++] = "Przy wietrze "+wind_dir_str(wd)+"&nbsp;"+ws+"m/s odczuwalna temperatura wynosi "+ot+".";
+		if(ws>0) tabString[tabString_idx++] = "Przy wietrze "+wind_dir_str(wd)+"&nbsp;"+ws+"m/s odczuwalna temperatura wynosi "+ot+".";
+		else tabString[tabString_idx++] = "Aktualnie nie ma wiatru, a odczuwalna temperatura wynosi "+ot+".";
 	
 	if(wg>1) tabString[tabString_idx++] = "W ciągu ostatnich 15min odnotowano podmuch wiatru wiejącego z prędkością "+wg+"m/s.";
 	tabString[tabString_idx++] = "Dzisiaj najmocniejszy podmuch wiatru wynosił &nbsp;"+dzisiaj[5]+".";

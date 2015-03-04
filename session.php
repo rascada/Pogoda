@@ -291,9 +291,14 @@ echo '{ "pws": ['; $i=0;
 		$id = $oth['kiedy']; $t = $oth['temp'];
 		$h = $oth['hum']; $p = $oth['press'];
 		$d = $oth['dir']; $s = $oth['spd']; $r = $oth['raint'];
+		$teraz = strtotime(date("Y-m-d H:i:s")); 
+		$xID = strtotime($id);
+		if($teraz-$xID<7200) $last=1; else $last=0;
+		
 echo<<<END
 {
 "ostatni": "$id",
+"najnowszy": $last,
 "temp": $t,
 "hum": $h,
 "press": $p,
