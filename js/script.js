@@ -225,8 +225,8 @@ function setTab(tab){
 		if(parseInt(PPWS['pws'][i]['hum'])<=40 || parseInt(PPWS['pws'][i]['hum'])>=80) PPWS['pws'][i]['hum'] = parseHTML("darkred", PPWS['pws'][i]['hum']+'%');
 		else if(parseInt(PPWS['pws'][i]['hum'])>40 && parseInt(PPWS['pws'][i]['hum'])<80) PPWS['pws'][i]['hum'] = parseHTML("darkgreen", PPWS['pws'][i]['hum']+'%');
 		
-		if(parseInt(PPWS['pws'][i]['press'])<=980 || parseInt(PPWS['pws'][i]['press'])>=1020) PPWS['pws'][i]['press'] = parseHTML("darkred", PPWS['pws'][i]['press']+'hPa');
-		else if(parseInt(PPWS['pws'][i]['press'])>980 && parseInt(PPWS['pws'][i]['press'])<1020) PPWS['pws'][i]['press'] = parseHTML("darkgreen", PPWS['pws'][i]['press']+'hPa');		
+		if(parseInt(PPWS['pws'][i]['press'])<=980 || parseInt(PPWS['pws'][i]['press'])>=1025) PPWS['pws'][i]['press'] = parseHTML("darkred", PPWS['pws'][i]['press']+'hPa');
+		else if(parseInt(PPWS['pws'][i]['press'])>980 && parseInt(PPWS['pws'][i]['press'])<1025) PPWS['pws'][i]['press'] = parseHTML("darkgreen", PPWS['pws'][i]['press']+'hPa');		
 		
 		if(parseInt(PPWS['pws'][i]['rain'])==0) PPWS['pws'][i]['rain']=parseHTML("darkgreen", PPWS['pws'][i]['rain']+"mm");
 		else PPWS['pws'][i]['rain']=parseHTML("blue", PPWS['pws'][i]['rain']+"mm");
@@ -915,10 +915,4 @@ function pokaz_napis() {
 	if(pokaz_idx<tabString_idx) $("#stringi").html(tabString[pokaz_idx++]);
 	else { pokaz_idx=0; $("#stringi").html(tabString[pokaz_idx++]); }
 }
-
-var fo = true;
-function chFontStyle() {
-	fo = !fo;
-	fo ? document.body.style.fontFamily='Rajdhani' : document.body.style.fontFamily="Times New Roman, sans-serif";
-}
-$("#tajnytrik").click(chFontStyle);
+$("#logo").click(function() { createView(true); });

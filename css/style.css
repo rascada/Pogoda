@@ -314,6 +314,7 @@ body{
 
 #logo{
     display: flex;
+	cursor: pointer;
 }
 header{
     background: linear-gradient(to right, rgba(83,157,194,.3) 65%,rgba(67,141,201,.5));
@@ -1144,13 +1145,6 @@ margin-bottom: -1em;
 margin-top: .4em;
 justify-content: center;
 opacity: .8;
-}
-#tajnytrik {
-position: absolute;
-width: 1em; height: 1em; 
-background: lightgrey; 
-opacity: .4; 
-border-radius: .1em;
 }
 .innePol {
 	font-size: 1.5em;

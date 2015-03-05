@@ -128,37 +128,21 @@ $oth = mysql_fetch_array($Zother);
 $Zblue = mysql_query("SELECT * FROM dayblue WHERE id='$id'");
 $blue = mysql_fetch_array($Zblue); 
 
-$tmpHt = explode(":", $timer['tempmax']);
-$tmpLt = explode(":", $timer['tempmin']);
-$wilHt = explode(":", $timer['hummax']);
-$wilLt = explode(":", $timer['hummin']);
-$cisHt = explode(":", $timer['pressmax']);
-$cisLt = explode(":", $timer['pressmin']);
-$powiewMtt = explode(":", $oth['timempowiew']);
-$opadMtt = explode(":", $oth['timemopad']);
-$wschst = explode(":", $blue['sunrise']);
-$zachst = explode(":", $blue['sunset']);
-$dlugdzient = explode(":", $blue['daylen']);
-$wschkt = explode(":", $blue['moonrise']);
-$zachkt = explode(":", $blue['moonset']);
-$switt = explode(":", $blue['swit']);
-$zmierzcht = explode(":", $blue['zmierzch']);
-
-$tmpH = $tmpHt[0].":".$tmpHt[1];
-$tmpL = $tmpLt[0].":".$tmpLt[1];
-$wilH = $wilHt[0].":".$wilHt[1];
-$wilL = $wilLt[0].":".$wilLt[1];
-$cisH = $cisHt[0].":".$cisHt[1];
-$cisL = $cisLt[0].":".$cisLt[1];
-$mPow = $powiewMtt[0].":".$powiewMtt[1];
-$mOpa = $opadMtt[0].":".$opadMtt[1];
-$wschs = $wschst[0].":".$wschst[1];
-$zachs = $zachst[0].":".$zachst[1];
-$dlugdzien = $dlugdzient[0].":".$dlugdzient[1];
-$wschk = $wschkt[0].":".$wschkt[1];
-$zachk = $zachkt[0].":".$zachkt[1];
-$swit = $switt[0].":".$switt[1];
-$zmier = $zmierzcht[0].":".$zmierzcht[1];
+$tmpH =hms_to_hm($timer['tempmax']);
+$tmpL =hms_to_hm($timer['tempmin']);
+$wilH = hms_to_hm($timer['hummax']);
+$wilL = hms_to_hm($timer['hummin']);
+$cisH = hms_to_hm($timer['pressmax']);
+$cisL = hms_to_hm($timer['pressmin']);
+$mPow = hms_to_hm($oth['timempowiew']);
+$mOpa = hms_to_hm($oth['timemopad']);
+$wschs = hms_to_hm($blue['sunrise']);
+$zachs = hms_to_hm($blue['sunset']);
+$dlugdzien = hms_to_hm($blue['daylen']);
+$wschk = hms_to_hm($blue['moonrise']);
+$zachk = hms_to_hm($blue['moonset']);
+$swit = hms_to_hm($blue['swit']);
+$zmier = hms_to_hm($blue['zmierzch']);
 $dbdata = $timer['ddata'];
 
 $selId = $_SESSION['foreto'];
@@ -312,5 +296,5 @@ if($i++ < 7) echo ",";
 echo "] }";
 }	
 
- 
+function hms_to_hm($a) { $a = explode(":", $a); return $a[0].":".$a[1]; }
 ?>
