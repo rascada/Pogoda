@@ -736,8 +736,8 @@ function refresh() {
 
 						document.getElementById("cmL1").innerHTML = podstawowe['dir']+'°';
 						document.getElementById("cmL2").innerHTML =  podstawowe['domdir'] +'°';
-					
-					zdania(podstawowe['trendtemp'],
+					if(nextRef==0) offline=true; 
+						zdania(podstawowe['trendtemp'],
 							  podstawowe['trendpress'],
 							  podstawowe['atemp'],
 							  podstawowe['otemp'],
@@ -748,9 +748,10 @@ function refresh() {
 							  podstawowe['raint'],
 							  podstawowe['hum'],
 							  podstawowe['press']);
+			
 			}	
 		})	.then(function() {
-			if(nextRef!=' --') {
+			if(nextRef!=0) {
 				clearInterval(intNextRef);
 				intNextRef = setInterval("nextMinus()", 1000);
 			}
@@ -839,6 +840,7 @@ var tabString = new Array();
 var tabString_idx=0;
 var dzisiaj = new Array();
 function zdania(tt, tp, at, ot, ws, wd, wg, op, dob, hm, prs) {
+	if(!offline) {
 	tabString_idx=0;
 		tabString[tabString_idx++] = "Dzisiaj jest&nbsp;<b>"+dzisiaj[18]+"</b>. Słońce w pełni widoczne o&nbsp;<b>"+dzisiaj[7]+"</b>, zacznie zachodzić o&nbsp;<b>"+dzisiaj[8]+"</b>";
 		tabString[tabString_idx++] = "Wschód księżyca o&nbsp;<b>"+dzisiaj[10]+"</b>. Zachód księżyca o&nbsp;<b>"+dzisiaj[11]+"</b>.  Faza:&nbsp;<b>"+dzisiaj[12]+"</b>";
@@ -905,6 +907,7 @@ function zdania(tt, tp, at, ot, ws, wd, wg, op, dob, hm, prs) {
 					if(rekordy['other']['rain']!="none") tabString[tabString_idx++] = rekordy['other']['rain'];
 	pokaz_napis();
 	ZmienInt = setInterval("pokaz_napis()", 8000);
+	} else { tabString[tabString_idx]="Niestety, stacja jest tymczasowo odłączona :("; pokaz_napis(); }
 }
 
 function parseHTML(clr, str) { return "<span style='color: "+clr+"'>&nbsp;"+str+"</span>"; }
