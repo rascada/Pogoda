@@ -162,7 +162,6 @@ function createView(tryb) {
 
 $(document).ready(function() {
 		createView(false);
-		setTimeout(function() { wczytajINNE(); }, 3200);
 		setTimeout(function() { createView(true); }, 1200);
 });
 
@@ -409,7 +408,7 @@ stworzMiarkeLicznik(4,3);
 var ak_kmph=true;
 var pod_kmph=true;
 var nextRef=120;
-var intNextRef;
+var intNextRef, offline;
 var dzien = new Array();
 var rekordy;
 var PPWS;
