@@ -6,9 +6,6 @@ $polaczenie = mysql_connect($host,$user,$password);
 mysql_query("SET CHARSET utf8");
 mysql_query("SET NAMES 'utf8' COLLATE 'utf8_polish_ci'"); 
 mysql_select_db($database);
-$_SESSION['dziennyto'];
-$_SESSION['foreto'];
-$_SESSION['godzto'];
 
 if( isset($_POST['wezpodstawowe']) ) {
 
@@ -105,13 +102,17 @@ if( isset($_POST['changedayrep']) || isset($_POST['changeforecast']) ) {
 		if($_SESSION['foreto']==9) $rend = true;
 	}
 
-$dziennytolocal = $_SESSION['dziennyto'];
-$Ztimes = mysql_query("SELECT * FROM daytime WHERE id='$dziennytolocal'");
 if($_POST['changedayrep']=="first") {
 	$Ztimes = mysql_query("SELECT * FROM daytime ORDER BY id DESC LIMIT 1");
+	if( date("H")>19 ) {
+		$Qprognozy = mysql_query("SELECT * FROM prognozy WHERE id=3");
+		$_SESSION['foreto']='3';			
+	} else {
+		$Qprognozy = mysql_query("SELECT * FROM prognozy WHERE id=2");
+		$_SESSION['foreto']='2';	
+	}
 	$timer = mysql_fetch_array($Ztimes); 
 	$_SESSION['dziennyto']=$timer['id'];
-	$_SESSION['foreto']='2';
 	$_SESSION['godzto']='2';
 	
 	$br = $_SERVER['HTTP_USER_AGENT']; $dd = date("Y-m-d H:i:s"); $ip = $_SERVER['REMOTE_ADDR'];
@@ -119,7 +120,13 @@ if($_POST['changedayrep']=="first") {
 	$check = mysql_fetch_assoc($qCheck);
 		if($check['ile']==0) mysql_query("INSERT INTO browser SET brows='$br', data='$dd', ip='$ip' ");
 		else mysql_query("UPDATE browser SET data='$dd', ip='$ip' WHERE brows='$br'");	
-} else $timer = mysql_fetch_array($Ztimes); 
+} else { 
+	$dziennytolocal = $_SESSION['dziennyto'];
+	$Ztimes = mysql_query("SELECT * FROM daytime WHERE id='$dziennytolocal'");
+	$selId = $_SESSION['foreto'];
+	$Qprognozy = mysql_query("SELECT * FROM prognozy WHERE id='$selId'");
+	$timer = mysql_fetch_array($Ztimes); 
+}
 $id = $timer['id'];
 $Zdat = mysql_query("SELECT * FROM daydata WHERE id='$id'");
 $dat = mysql_fetch_array($Zdat); 
@@ -145,9 +152,6 @@ $swit = hms_to_hm($blue['swit']);
 $zmier = hms_to_hm($blue['zmierzch']);
 $dbdata = $timer['ddata'];
 
-$selId = $_SESSION['foreto'];
-$Qprognozy = mysql_query("SELECT * FROM prognozy WHERE id='$selId'");
-if($_POST['changedayrep']=="first") $Qprognozy = mysql_query("SELECT * FROM prognozy WHERE id=2");
 $prognoza = mysql_fetch_array($Qprognozy);
 
 $lendS = 'false';
