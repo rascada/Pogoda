@@ -1,4 +1,5 @@
 $("#wykresy").css("display","none");
+$("#mapki").css("display","none");
 
 function stworzMiarkeLicznik(id,licznik){
     var zakres;

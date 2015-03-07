@@ -400,70 +400,71 @@
         </div>
     </div>
 	
-	<div id="mapki" style="display: none;">
-	<div style="width: 100%; display: flex; justify-content: space-around; margin-top: 2.5em; margin-bottom: 1em;" id="mapCont">
-	<span class="but" onclick="setMap(0)">Temperatura</span>
-	<span class="but" onclick="setMap(1)">Odczucie gorąca</span>
-	<span class="but" onclick="setMap(2)">Odczucie chłodu</span>
-	<span class="but" onclick="setMap(3)">Punkt rosy</span>
-	<span class="but" onclick="setMap(4)">Wilgotność</span>
-	<span class="but" onclick="setMap(5)">Widzialność</span>
-	<span class="but" onclick="setMap(6)">Wiatr</span>
-	</div>
-	<div style="width: 100%; display: flex; justify-content: space-around; margin-top: .7em;">
-	<img src='http://icons.wxug.com/data/640x480/2xi_pl_st.gif'/ width="70%" height="70%" style="border-radius: .4em;" name="obrazmapy">
-	</div>
+	<div id="mapki">
+	<span id="mapCont">
+	<div class="but" onclick="setMap(0)">Temperatura</div>
+	<div class="but" onclick="setMap(1)">Odczucie gorąca</div>
+	<div class="but" onclick="setMap(2)">Odczucie chłodu</div>
+	<div class="but" onclick="setMap(3)">Punkt rosy</div>
+	<div class="but" onclick="setMap(4)">Wilgotność</div>
+	<div class="but" onclick="setMap(5)">Widzialność</div>
+	<div class="but" onclick="setMap(6)">Wiatr</div>
+	</span>
+	<span id="mapImageCont">
+	<img src='http://icons.wxug.com/data/640x480/2xi_pl_st.gif'/ width="100%" height="100%" name="obrazmapy">
+	</span>
 	</div>
 	
-	<div id="othPWS" style="display: none; margin-top: 4em;">
+	<div id="othPWS" style="display: none; margin-top: 2.5em;">
 			<div class="innePol" style="background: #eee;">
 				<div class="leftPol"><h3 style="margin:0">Budkowice</h3>Stacja PWS<div id="budlast"></div></div>
-				<div class="rightPol" id="budup" style="padding-top: .4em;"></div>
-				<div class="rightPol" id="buddown" style="padding-top: .6em;"></div>
+				<div class="rightPol" id="budup" style="padding-top: .6em;"></div>
+				<div class="rightPol" id="buddown" style="padding-top: .8em;"></div>
 			</div>
 			
-			<div class="innePol" style="background: #aaa;">
+			<div class="innePol" style="background: #bbb;">
 				<div class="leftPol"><h3 style="margin:0">Opole</h3>RCRE Stacja Davis<div id="oplast"></div></div>
-				<div class="rightPol" id="opup"  style="padding-top: .4em;"></div>
-				<div class="rightPol" id="opdown"  style="padding-top: .6em;"></div>
+				<div class="rightPol" id="opup"  style="padding-top: .6em;"></div>
+				<div class="rightPol" id="opdown"  style="padding-top: .8em;"></div>
 			</div>
 
-			<div class="innePol" style="background: #aaa;">
-				<div class="leftPol"><h3 style="margin:0">Turawa</h3>Stacja NetAtmo<div id="turlast"></div></div>
+			<div class="innePol" style="background: #bbb;">
+				<div class="leftPol"><h3 style="margin:0">Turawa</h3>Jezioro - NetAtmo<div id="turlast"></div></div>
 				<div class="rightPol" id="tur"  style="padding-top: .4em;"></div>
 				<div class="rightPol"  style="padding-top: .4em;">Stacje NetAtmo nie są wyposażone<br/>w czujniki wiatru i opadów</div>
 			</div>
 			
 			<div class="innePol" style="background: #eee;">
-				<div class="leftPol"><h3 style="margin:0">Skorogoszcz DK 94</h3>Stacja NetAtmo<div id="skolast"></div></div>
+				<div class="leftPol"><h3 style="margin:0">Skorogoszcz</h3>DK94 - NetAtmo<div id="skolast"></div></div>
 				<div class="rightPol" id="sko"  style="padding-top: .4em;"></div>
 				<div class="rightPol"  style="padding-top: .4em;">Stacje NetAtmo nie są wyposażone<br/>w czujniki wiatru i opadów</div>
 			</div>
 
 			<div class="innePol" style="background: #eee;">
 				<div class="leftPol"><h3 style="margin:0">Krapkowice</h3>Stacja PWS<div id="kralast"></div></div>
-				<div class="rightPol" id="kraup"  style="padding-top: .4em;"></div>
-				<div class="rightPol" id="kradown" style="padding-top: .6em;"></div>
+				<div class="rightPol" id="kraup"  style="padding-top: .6em;"></div>
+				<div class="rightPol" id="kradown" style="padding-top: .8em;"></div>
 			</div>
 			
-			<div class="innePol" style="background: #aaa;">
-				<div class="leftPol"><h3 style="margin:0">Wrocław-AirPort</h3>Stacja na lotnisku<div id="wrolast"></div></div>
-				<div class="rightPol" id="wroup"  style="padding-top: .4em;"></div>
-				<div class="rightPol" id="wrodown"  style="padding-top: .6em;"></div>
+			<div class="innePol" style="background: #bbb;">
+				<div class="leftPol"><h3 style="margin:0">Wrocław</h3>AirPort - lotnisko<div id="wrolast"></div></div>
+				<div class="rightPol" id="wroup"  style="padding-top: .6em;"></div>
+				<div class="rightPol" id="wrodown"  style="padding-top: .8em;"></div>
 			</div>
 
-			<div class="innePol" style="background: #aaa">
-				<div class="leftPol"><h3 style="margin:0">Katowice-Pyrzowice</h3>Stacja na lotnisku<div id="katlast"></div></div>
-				<div class="rightPol" id="katup"  style="padding-top: .4em;"></div>
-				<div class="rightPol" id="katdown"  style="padding-top: .6em;"></div>
+			<div class="innePol" style="background: #bbb">
+				<div class="leftPol"><h3 style="margin:0">Katowice</h3>Pyrzowice - lotnisko<div id="katlast"></div></div>
+				<div class="rightPol" id="katup"  style="padding-top: .6em;"></div>
+				<div class="rightPol" id="katdown"  style="padding-top: .8em;"></div>
 			</div> 
 			
 			<div class="innePol" style="background: #eee;">
 				<div class="leftPol"><h3 style="margin:0">Kasprowy Wierch</h3>Stacja Davis<div id="kaslast"></div></div>
-				<div class="rightPol" id="kasup"  style="padding-top: .4em;"></div>
-				<div class="rightPol" id="kasdown"  style="padding-top: .6em;"></div>
+				<div class="rightPol" id="kasup"  style="padding-top: .6em;"></div>
+				<div class="rightPol" id="kasdown"  style="padding-top: .8em;"></div>
 			</div>
 	</div>
+	
     
     <!--         
 <footer><hr/>

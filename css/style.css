@@ -1119,33 +1119,23 @@ border-color: transparent #2a4 transparent transparent;
   opacity:.8;
   width:5em;
 }
-.but {
-	text-align: center;
-	border: .1em solid lightgrey;
-	background: #ffffdd;
-	font-size: 1.3em;
-	margin-top: .2em;
-	margin-bottom: .2em;
-	cursor: pointer;
-	padding: .3em;
-	border-radius: .3em .3em;
-}
 #stringi {
-font-size: 1.8em;
-background: white;
-border: .1em solid lightgrey;
-border-radius: .1em;
-padding-top: .3em;
-padding-bottom: 0;
-display: flex; 
-width:100%; 
-height: 2em; 
-order: -2; 
-margin-bottom: -1em; 
-margin-top: .4em;
-justify-content: center;
-opacity: .8;
+	font-size: 1.8em;
+	background: white;
+	border: .1em solid lightgrey;
+	border-radius: .1em;
+	padding-top: .3em;
+	padding-bottom: 0;
+	display: flex; 
+	width:100%; 
+	height: 2em; 
+	order: -2; 
+	margin-bottom: -1em; 
+	margin-top: .4em;
+	justify-content: center;
+	opacity: .8;
 }
+
 .innePol {
 	font-size: 1.5em;
 	width: 48%; 
@@ -1155,15 +1145,14 @@ opacity: .8;
 	border-radius: .9em;
 	margin: .5em;
 }
-
 .leftPol {
 	position: relative; 
 	float: left;
 	height:6em; 
 	width: 40%; 
 	text-align: center;
-	padding-top: .9em;
-    left: 1em;
+	padding-top: .5em;
+    left: .5em;
 }
 
 .rightPol {
@@ -1171,6 +1160,36 @@ opacity: .8;
 	position: relative; 
 	float: right;
 	height:3.5em; 
-	width: 56%; 
+	width: 60%; 
+	text-align: right;
+	padding-right: 1em;
+}
+
+.but {
 	text-align: center;
+	border: .1em solid lightgrey;
+	background: #ffffdd;
+	font-size: 1.3em;
+	margin-top: .7em;
+	margin-bottom: .7em;
+	cursor: pointer;
+	padding: .3em;
+	border-radius: .3em .3em;
+	width: 100%;
+}
+#mapCont {
+	margin-top: 5.5em; margin-left: 5em;
+	width: 20%; 
+	float: left;
+	display: flex; 
+	justify-content: center;
+	flex-direction: column;
+}
+#mapki img { border-radius: .4em; }
+#mapImageCont {
+margin-top: 4em;
+width: 60%; 
+float: right;
+margin-right: 4em;
+margin-bottom: 4.5em;
 }
