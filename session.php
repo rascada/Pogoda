@@ -116,10 +116,12 @@ if($_POST['changedayrep']=="first") {
 	$_SESSION['godzto']='2';
 	
 	$br = $_SERVER['HTTP_USER_AGENT']; $dd = date("Y-m-d H:i:s"); $ip = $_SERVER['REMOTE_ADDR'];
-	$qCheck = mysql_query("SELECT count(1) AS ile FROM browser WHERE ip='$ip'");
-	$check = mysql_fetch_assoc($qCheck);
-		if($check['ile']==0) mysql_query("INSERT INTO browser SET brows='$br', data='$dd', ip='$ip' ");
-		else mysql_query("UPDATE browser SET data='$dd', brows='$br' WHERE ip='$ip'");	
+	if($br!='Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)') {
+		$qCheck = mysql_query("SELECT count(1) AS ile FROM browser WHERE ip='$ip'");
+		$check = mysql_fetch_assoc($qCheck);
+			if($check['ile']==0) mysql_query("INSERT INTO browser SET brows='$br', data='$dd', ip='$ip' ");
+			else mysql_query("UPDATE browser SET data='$dd', brows='$br' WHERE ip='$ip'");	
+	}
 } else { 
 	$dziennytolocal = $_SESSION['dziennyto'];
 	$Ztimes = mysql_query("SELECT * FROM daytime WHERE id='$dziennytolocal'");
@@ -271,7 +273,7 @@ echo<<<END
 END;
 	}
 
-if (isset($_GET['otherpws']) && $_GET['otherpws']=="showme" ) {
+if( isset($_GET['otherpws']) && $_GET['otherpws']=="showme" ) {
 $qOth = mysql_query("SELECT * FROM niemy WHERE id!=1");
 
 echo '{ "pws": ['; $i=0;
@@ -300,7 +302,7 @@ if($i++ < 7) echo ",";
 echo "] }";
 }	
 
-if (isset($_GET['aboutus']) && $_GET['aboutus']=="tellme") {
+if( isset($_GET['aboutus']) && $_GET['aboutus']=="tellme") {
 	$qDni = mysql_query("SELECT count(1) AS ile FROM daytime");
 	$dni = mysql_fetch_assoc($qDni);
 	$qReq = mysql_query("SELECT id FROM podstawowe ORDER BY id DESC LIMIT 1");
@@ -313,6 +315,89 @@ if (isset($_GET['aboutus']) && $_GET['aboutus']=="tellme") {
 	$qWejsc = mysql_query("SELECT count(1) AS ile FROM browser WHERE data LIKE '$dzisiajest%'");
 	$wejsc = mysql_fetch_assoc($qWejsc);
 echo($dni['ile']."^".$req['id'].'^'.$days['dzientyg'].' '.$days['strprog'].'^'.$dzisiajest.' '.$hour['wdir'].'^'.$wejsc['ile']);
+}
+
+if( isset($_GET['getmonthly']) && $_GET['getmonthly']=='rekordy' ) {
+	$qData = mysql_query("SELECT * FROM mondata ORDER BY id ASC");
+	$qTime = mysql_query("SELECT * FROM montime ORDER BY id ASC");
+echo ' { "miesiace": [ ';
+
+$i=0;
+while( $dane = mysql_fetch_assoc($qData) ) {
+$tDane[$i++] = $dane['id']."|".$dane['temph']."|".$dane['templ']."|".$dane['apph'].'|'.$dane['appl'].'|'.$dane['pressh'].'|'.$dane['pressl'].'|'.$dane['humh'].'|'.$dane['huml'].'|'.$dane['windh'].'|'.$dane['rainh'].'|'.$dane['dry'].'|'.$dane['wet'];
+}
+$i=0;
+while( $czasy = mysql_fetch_assoc($qTime) ) {
+$tCzasy[$i++] = $czasy['id']."|".$czasy['temph']."|".$czasy['templ']."|".$czasy['apph'].'|'.$czasy['appl'].'|'.$czasy['pressh'].'|'.$czasy['pressl'].'|'.$czasy['humh'].'|'.$czasy['huml'].'|'.$czasy['windh'].'|'.$czasy['rainh'].'|'.$czasy['lupdate'];
+}
+
+$ileBufI = $i;
+for($i=0; $i<$ileBufI; $i++) {
+	$inTabDane = explode('|', $tDane[$i]);
+		$thv = $inTabDane[1]; $tlv = $inTabDane[2];
+		$ahv = $inTabDane[3]; $alv = $inTabDane[4];
+		$phv = $inTabDane[5]; $plv = $inTabDane[6];
+		$hhv = $inTabDane[7]; $hlv =$inTabDane[8];
+		$wdv = $inTabDane[9]; $rnv = $inTabDane[10];
+		$dry = $inTabDane[11]; $wet = $inTabDane[12];
+	$inTabCzasy = explode('|', $tCzasy[$i]);
+		$tht = $inTabCzasy[1]; $tlt = $inTabCzasy[2];
+		$aht = $inTabCzasy[3]; $alt = $inTabCzasy[4];
+		$pht = $inTabCzasy[5]; $plt = $inTabCzasy[6];
+		$hht = $inTabCzasy[7]; $hlt =$inTabCzasy[8];
+		$wdt = $inTabCzasy[9]; $rnt = $inTabCzasy[10];
+		$last = $inTabCzasy[11];
+echo<<<END
+{
+	"last": "$last",
+	"temph": {
+		"value": $thv,
+		"dayntime": "$tht"
+	},
+	"templ": {
+		"value": $tlv,
+		"dayntime": "$tlt"
+	},	
+	"apph": {
+		"value": $ahv,
+		"dayntime": "$aht"
+	},
+	"appl": {
+		"value": $alv,
+		"dayntime": "$alt"
+	},
+	"pressh": {
+		"value": $phv,
+		"dayntime": "$pht"
+	},
+	"pressl": {
+		"value": $plv,
+		"dayntime": "$plt"
+	},
+	"humh": {
+		"value": $hhv,
+		"dayntime": "$hht"
+	},
+	"huml": {
+		"value": $hlv,
+		"dayntime": "$hlt"
+	},
+	"windh": {
+		"value": $wdv,
+		"dayntime": "$wdt"
+	},
+	"rainh": {
+		"value": $rnv,
+		"dayntime": "$rnt"
+	},
+	"dry": $dry,
+	"wet": $wet
+}
+END;
+	if($i < $ileBufI-1) echo ',';
+}
+
+echo ' ] }'; 
 }
 
 function hms_to_hm($a) { $a = explode(":", $a); return $a[0].":".$a[1]; }

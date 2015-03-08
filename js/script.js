@@ -220,8 +220,8 @@ function setTab(tab){
 			if(parseInt(PPWS['pws'][i]['najnowszy'])==1) PPWS['pws'][i]['ostatni'] = parseHTML('darkgreen', '<b>'+PPWS['pws'][i]['ostatni']+'</b>');
 		if(parseInt(PPWS['pws'][i]['press'])==0) PPWS['pws'][i]['press']="---";
 		if(parseFloat(PPWS['pws'][i]['temp'])<=5) PPWS['pws'][i]['temp'] = parseHTML("blue", PPWS['pws'][i]['temp']+'°C');
-		else if(parseFloat(PPWS['pws'][i]['temp'])>5 && parseFloat(PPWS['pws'][i]['temp'])<15) PPWS['pws'][i]['temp'] = parseHTML("darkgreen", PPWS['pws'][i]['temp']+'°C');
-		else if(parseFloat(PPWS['pws'][i]['temp'])>=15) PPWS['pws'][i]['temp'] = parseHTML("darkred", PPWS['pws'][i]['temp']+'°C');
+		else if(parseFloat(PPWS['pws'][i]['temp'])>5 && parseFloat(PPWS['pws'][i]['temp'])<25) PPWS['pws'][i]['temp'] = parseHTML("darkgreen", PPWS['pws'][i]['temp']+'°C');
+		else if(parseFloat(PPWS['pws'][i]['temp'])>=25) PPWS['pws'][i]['temp'] = parseHTML("darkred", PPWS['pws'][i]['temp']+'°C');
 		
 		if(parseInt(PPWS['pws'][i]['hum'])<=40 || parseInt(PPWS['pws'][i]['hum'])>=80) PPWS['pws'][i]['hum'] = parseHTML("darkred", PPWS['pws'][i]['hum']+'%');
 		else if(parseInt(PPWS['pws'][i]['hum'])>40 && parseInt(PPWS['pws'][i]['hum'])<80) PPWS['pws'][i]['hum'] = parseHTML("darkgreen", PPWS['pws'][i]['hum']+'%');
@@ -285,6 +285,13 @@ function setTab(tab){
 			});  
 	});	
 		} break;	
+		
+		case 5: {
+			$(widoczny).fadeOut(500,function(){
+				$('#montRecCont').fadeIn(500);      
+				widoczny="#montRecCont";			
+			}); 
+		} break;
 	}
 }
 
@@ -941,3 +948,79 @@ function pokaz_napis() {
 }
 $("#logo").click(function() { createView(true); });
 $("#stringi").click(pokaz_napis);
+
+var MonthRec;
+function loadMonthlyRecords(toDisplay) {
+	$.ajax({ 
+		type: "GET",
+		url: "session.php",
+		dataType: "json",
+		data: { getmonthly: 'rekordy' },
+		async: true,
+		success: function(resp) { MonthRec = resp; }
+	}).then(function() {
+		var locBufer=0; var locChange=0;
+		for(var i=0; i<MonthRec['miesiace'].length; i++) {
+			locBufer = MonthRec['miesiace'][i]['temph']['dayntime'];
+			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
+			MonthRec['miesiace'][i]['temph']['dayntime'] = locChange;
+			locBufer = MonthRec['miesiace'][i]['templ']['dayntime'];
+			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
+			MonthRec['miesiace'][i]['templ']['dayntime'] = locChange;
+			locBufer = MonthRec['miesiace'][i]['apph']['dayntime'];
+			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
+			MonthRec['miesiace'][i]['apph']['dayntime'] = locChange;			
+			locBufer = MonthRec['miesiace'][i]['appl']['dayntime'];
+			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
+			MonthRec['miesiace'][i]['appl']['dayntime'] = locChange;
+			locBufer = MonthRec['miesiace'][i]['pressh']['dayntime'];
+			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
+			MonthRec['miesiace'][i]['pressh']['dayntime'] = locChange;
+			locBufer = MonthRec['miesiace'][i]['pressl']['dayntime'];
+			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
+			MonthRec['miesiace'][i]['pressl']['dayntime'] = locChange;
+			locBufer = MonthRec['miesiace'][i]['humh']['dayntime'];
+			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
+			MonthRec['miesiace'][i]['humh']['dayntime'] = locChange;
+			locBufer = MonthRec['miesiace'][i]['huml']['dayntime'];
+			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
+			MonthRec['miesiace'][i]['huml']['dayntime'] = locChange;
+			locBufer = MonthRec['miesiace'][i]['windh']['dayntime'];
+			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
+			MonthRec['miesiace'][i]['windh']['dayntime'] = locChange;
+			locBufer = MonthRec['miesiace'][i]['rainh']['dayntime'];
+			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
+			MonthRec['miesiace'][i]['rainh']['dayntime'] = locChange;
+		}
+		$("#titMonth").html(miesiace_pl[toDisplay]);
+		$('#m_temph_v').html(MonthRec['miesiace'][toDisplay]['temph']['value']+'°C');
+		$('#m_temph_t').html(MonthRec['miesiace'][toDisplay]['temph']['dayntime']);
+		$('#m_templ_v').html(MonthRec['miesiace'][toDisplay]['templ']['value']+'°C');
+		$('#m_templ_t').html(MonthRec['miesiace'][toDisplay]['templ']['dayntime']);
+		$('#m_apph_v').html(MonthRec['miesiace'][toDisplay]['apph']['value']+'°C');
+		$('#m_apph_t').html(MonthRec['miesiace'][toDisplay]['apph']['dayntime']);
+		$('#m_appl_v').html(MonthRec['miesiace'][toDisplay]['appl']['value']+'°C');
+		$('#m_appl_t').html(MonthRec['miesiace'][toDisplay]['appl']['dayntime']);
+		$('#m_pressh_v').html(MonthRec['miesiace'][toDisplay]['pressh']['value']+'hPa');
+		$('#m_pressh_t').html(MonthRec['miesiace'][toDisplay]['pressh']['dayntime']);
+		$('#m_pressl_v').html(MonthRec['miesiace'][toDisplay]['pressl']['value']+'hPa');
+		$('#m_pressl_t').html(MonthRec['miesiace'][toDisplay]['pressl']['dayntime']);
+		$('#m_humh_v').html(MonthRec['miesiace'][toDisplay]['humh']['value']+'%');
+		$('#m_humh_t').html(MonthRec['miesiace'][toDisplay]['humh']['dayntime']);
+		$('#m_huml_v').html(MonthRec['miesiace'][toDisplay]['huml']['value']+'%');
+		$('#m_huml_t').html(MonthRec['miesiace'][toDisplay]['huml']['dayntime']);
+		$('#m_wind_v').html(MonthRec['miesiace'][toDisplay]['windh']['value']+'m/s');
+		$('#m_wind_t').html(MonthRec['miesiace'][toDisplay]['windh']['dayntime']);
+		$('#m_rain_v').html(MonthRec['miesiace'][toDisplay]['rainh']['value']+'mm');
+		$('#m_rain_t').html(MonthRec['miesiace'][toDisplay]['rainh']['dayntime']);
+		$('#m_dry').html(MonthRec['miesiace'][toDisplay]['dry']);
+		$('#m_wet').html(MonthRec['miesiace'][toDisplay]['wet']);
+	});
+}
+function setMonRec(right) {
+	if(right && ustawionyMRec<2) ustawionyMRec++;
+	else if(!right && ustawionyMRec>0) ustawionyMRec--;
+	loadMonthlyRecords(ustawionyMRec);
+}
+var ustawionyMRec=2;
+loadMonthlyRecords(ustawionyMRec);

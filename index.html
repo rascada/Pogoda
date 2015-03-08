@@ -37,11 +37,12 @@
             </div>
             <h1>Pogoda Skałągi</h1>
             <h3>Ostatnia aktualiazacja: <span id="last">Łącze..</span></h3>
-			<img src="img/all.png" style="position: absolute; left: 23em; top: -3.7em; opacity: .8;" width="420px" height="330px"/>
+			<img src="img/all.png" style="position: absolute; left: 25em; top: -3.4em; opacity: .8;" width="420px" height="330px"/>
         </div>
             <div class="menu">
         <a><button  onclick="setTab(1);" id='buttonWykres'>Pogoda Skałągi</button></a><!--
             --><a><button id='buttonWykres' onclick="setTab(2);">Wykresy</button></a><!--
+            --><a><button id='buttonWykres' onclick="setTab(5);">Raporty miesięczne</button></a><!--
             --><a><button id='buttonWykres' onclick="setTab(3);">Mapy</button></a><!--
             --><a><button id='buttonWykres' onclick="setTab(4);">Inne stacje</button></a><!--
             --><a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>FŚNiT</button></a>
@@ -221,7 +222,7 @@
         <div id='fore36Cont'class="ramka bigPanel">
             <h3>Prognoza - 36 godzinna</h3>
 
-            <img id='bigforeimg' name="bigforeimg"/>
+           
             <div class="fore36Heading">
                 <div class='arrowContainer'>
                     <div id='RRArrow' style='transform: scale(.7)rotate(180deg);' onclick="refhourly(2)"><div class='RaportArrow'></div></div>
@@ -229,6 +230,7 @@
                 </div>
                 <span id="bigforetime"></span>
                 <span id="bigforedate"></span>
+				 <img id='bigforeimg' name="bigforeimg"/>
             </div>
             <div class="fore36Data">
                 <span class="fore36Text" id="bigforetext"></span>
@@ -343,7 +345,7 @@
             <button class='chartButton'>
                 <div class='specs2'>
                     <p>Miesiąc</p>
-                    <p>Ostatni tydzień </p>
+                    <p>Ostatnie 10 dni</p>
                     <p>Ostatnie 8h</p>
                     <p>Następne 36h</p>
                 </div>
@@ -370,20 +372,20 @@
                     </div>
                 </div>
                 <div class='specs8h'>
-                    <span>Ostatnie 8h</span>
+                    <span style="color: black;">Ostatnie 8h</span>
                     <p onclick="setDailyTemp('chart1')">Temperatura</p>      
                     <p onclick="setDailyOther('chart1')">Wilgotność, ciśnienie, opady</p>
                     <p onclick="setDailyWind('chart1', true)">Wiatr uśredniony</p>
                     <p onclick="setDailyWind('chart1', false)">Wiatr dokładny</p>
                 </div>
                 <div class='specs36h'>
-                    <span>Następne 36h</span>
+                    <span style="color: black;">Następne 36h</span>
                     <p onclick="setForeTemp('chart1')">Temperatura</p>
                     <p onclick="setForeWind('chart1')">Wiatr</p>
                     <p onclick="setForePreci('chart1')">Opady</p>
                 </div>
                 <div class='weekSpecs'>
-                    <span>Ostatni tydzień </span>
+                    <span style="color: black;">Ostatnie 10 dni</span>
                     <p onclick="setSevenTemp('chart1')">Temperatura</p>      
                     <p onclick="setSevenOther('chart1')">Wilgotność, ciśnienie, opady</p>
                     <p onclick="setSevenWind('chart1', true)">Wiatr uśredniony</p>
@@ -464,6 +466,76 @@
 				<div class="rightPol" id="kasup"  style="padding-top: .6em;"></div>
 				<div class="rightPol" id="kasdown"  style="padding-top: .8em;"></div>
 			</div>
+	</div>
+	
+	<div style="font-size: 1.3em; margin-top: 5em; margin-bottom: 11.5em; color: white; display: none;" id="montRecCont">
+		<div class="monHLRow">
+			<div style="width: 49%; font-size: 2em; background: #aaa; text-align: center; border-radius: .3em; border: .1em solid;">
+				<span style="width: 20%; font-size: .5em; cursor: pointer;" onclick="setMonRec(false)">Poprzedni</span>&nbsp;&nbsp;&nbsp;&nbsp;
+				<span id="titMonth"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+				<span style="width: 20%; font-size: .5em; cursor: pointer;" onclick="setMonRec(true)">Następny</span>
+			</div>
+			<div style="display: block; width: 47%;">
+			<div style="float: left; width: 100%; background: darkgreen;">
+			Najdłuższy okres bez opadów: <span id="m_dry"></span> dni
+			</div>
+			
+			<div style="float: left; width: 100%; background: blue; margin-top: .2em;">
+			Najdłuższy okres opadów: <span id="m_wet"></span> dni
+			</div>	
+			</div>
+		</div>
+		
+		<div class="monHLRow">
+			<div class="monH">
+			Najwyższa temperatura <span id="m_temph_v"></span> 
+			zanotowana <span id="m_temph_t"></span></div>
+			
+			<div class="monL">
+			Najniższa temperatura <span id="m_templ_v"></span> 
+			zanotowana <span id="m_templ_t"></span></div>
+		</div>
+
+		<div class="monHLRow">
+			<div class="monH">
+			Najwyższa odczuwalna <span id="m_apph_v"></span> 
+			zanotowana <span id="m_apph_t"></span></div>
+			
+			<div class="monL">
+			Najniższa odczuwalna <span id="m_appl_v"></span> 
+			zanotowana <span id="m_appl_t"></span></div>
+		</div>
+
+		<div class="monHLRow">
+			<div class="monH">
+			Najwyższe ciśnienie <span id="m_pressh_v"></span> 
+			zanotowane <span id="m_pressh_t"></span></div>
+			
+			<div class="monL">
+			Najniższe ciśnienie <span id="m_pressl_v"></span> 
+			zanotowane <span id="m_pressl_t"></span></div>
+		</div>
+		
+		<div class="monHLRow">
+			<div class="monH">
+			Najwyższa wilgotność <span id="m_humh_v"></span> 
+			zanotowana <span id="m_humh_t"></span></div>
+			
+			<div class="monL">
+			Najniższa wilgotność <span id="m_huml_v"></span> 
+			zanotowana <span id="m_huml_t"></span></div>
+		</div>
+		
+		<div class="monHLRow">
+			<div class="monL" style="background: #aaa;">
+			Najmocniejszy podmuch wiatru <span id="m_wind_v"></span> 
+			<span id="m_wind_t"></span></div>
+			
+			<div class="monL" style="background: blue;">
+			Najmocniejszy opad deszczu <span id="m_rain_v"></span> 
+			<span id="m_rain_t"></span></div>
+		    </div>
+		</div>
 	</div>
     <!--         
 <footer><hr/>

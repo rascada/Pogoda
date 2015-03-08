@@ -777,7 +777,7 @@ footer{
 #foreIcon{
     position: absolute;
     top:0;
-    right:.5em;
+    right:.3em;
 }
 
 #weatherUndergroundCont{
@@ -791,7 +791,7 @@ footer{
 }
 #wuIcon{
     position: absolute;
-    right: 1em;
+    right: .7em;
     bottom: .5em;
     width: 2em;
 }
@@ -811,20 +811,19 @@ footer{
 }
 #bigforetime{
     display: block;
+	margin-top: .2em;
     font-size: 1.4em;
 }
 #bigforedate{
     position: relative;
-    margin-top: -.5em;
-    font-size: .9em;
-    border-top: .1em solid #777;
+    font-size: 1.1em;
+	margin-top: .2em;
 }
 .fore36Heading{
     padding-bottom: .5em;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    flex-direction: column;
     margin-bottom: -1em;
 }
 .fore36Data{
@@ -1192,4 +1191,24 @@ width: 60%;
 float: right;
 margin-right: 4em;
 margin-bottom: 4.5em;
+}
+.monHLRow {
+	display: flex; 
+	justify-content: space-around; 
+	width: 100%; 
+	margin-bottom: 1em;
+}
+.monH { 
+background: darkgreen; opacity: .8; 
+width: 49%;
+padding: .3em;
+border: .1em solid lightgrey;
+border-radius: .1em .3em;
+}
+.monL { 
+background: darkred; opacity: .8; 
+width: 49%;
+padding: .3em;
+border: .1em solid lightgrey;
+border-radius: .1em .3em;
 }
