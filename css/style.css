@@ -27,7 +27,7 @@ body{
 #contL2 > div:last-child{border-radius: 0 0 .5em 0;}
 .grey{
     color: #eee;
-    background:rgba(0,0,0,0.4);;
+    background:rgba(0,0,0,0.4);
     margin-bottom: .5em;
     border-radius:.2em;
 }
@@ -1120,6 +1120,7 @@ border-color: transparent #2a4 transparent transparent;
   width:5em;
 }
 #stringi {
+	cursor: pointer;
 	font-size: 1.8em;
 	background: white;
 	border: .1em solid lightgrey;
@@ -1135,7 +1136,6 @@ border-color: transparent #2a4 transparent transparent;
 	justify-content: center;
 	opacity: .8;
 }
-
 .innePol {
 	font-size: 1.5em;
 	width: 48%; 

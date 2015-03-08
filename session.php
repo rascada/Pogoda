@@ -300,5 +300,17 @@ if($i++ < 7) echo ",";
 echo "] }";
 }	
 
+if (isset($_GET['aboutus']) && $_GET['aboutus']=="tellme") {
+	$qDni = mysql_query("SELECT count(1) AS ile FROM daytime");
+	$dni = mysql_fetch_assoc($qDni);
+	$qReq = mysql_query("SELECT id FROM podstawowe ORDER BY id DESC LIMIT 1");
+	$req = mysql_fetch_assoc($qReq);
+	$qDays = mysql_query("SELECT strprog, dzientyg FROM prognozy WHERE id=1");
+	$days = mysql_fetch_assoc($qDays);
+	$qHour = mysql_query("SELECT wdir FROM godzinna WHERE id=1");
+	$hour = mysql_fetch_assoc($qHour);
+echo($dni['ile']."^".$req['id'].'^'.$days['dzientyg'].' '.$days['strprog'].'^'.date("Y-m-d").' '.$hour['wdir']);
+}
+
 function hms_to_hm($a) { $a = explode(":", $a); return $a[0].":".$a[1]; }
 ?>
