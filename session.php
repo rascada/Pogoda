@@ -116,10 +116,10 @@ if($_POST['changedayrep']=="first") {
 	$_SESSION['godzto']='2';
 	
 	$br = $_SERVER['HTTP_USER_AGENT']; $dd = date("Y-m-d H:i:s"); $ip = $_SERVER['REMOTE_ADDR'];
-	$qCheck = mysql_query("SELECT count(1) AS ile FROM browser WHERE brows='$br'");
+	$qCheck = mysql_query("SELECT count(1) AS ile FROM browser WHERE ip='$ip'");
 	$check = mysql_fetch_assoc($qCheck);
 		if($check['ile']==0) mysql_query("INSERT INTO browser SET brows='$br', data='$dd', ip='$ip' ");
-		else mysql_query("UPDATE browser SET data='$dd', ip='$ip' WHERE brows='$br'");	
+		else mysql_query("UPDATE browser SET data='$dd', brows='$br' WHERE ip='$ip'");	
 } else { 
 	$dziennytolocal = $_SESSION['dziennyto'];
 	$Ztimes = mysql_query("SELECT * FROM daytime WHERE id='$dziennytolocal'");
@@ -309,7 +309,10 @@ if (isset($_GET['aboutus']) && $_GET['aboutus']=="tellme") {
 	$days = mysql_fetch_assoc($qDays);
 	$qHour = mysql_query("SELECT wdir FROM godzinna WHERE id=1");
 	$hour = mysql_fetch_assoc($qHour);
-echo($dni['ile']."^".$req['id'].'^'.$days['dzientyg'].' '.$days['strprog'].'^'.date("Y-m-d").' '.$hour['wdir']);
+	$dzisiajest = date("Y-m-d");
+	$qWejsc = mysql_query("SELECT count(1) AS ile FROM browser WHERE data LIKE '$dzisiajest%'");
+	$wejsc = mysql_fetch_assoc($qWejsc);
+echo($dni['ile']."^".$req['id'].'^'.$days['dzientyg'].' '.$days['strprog'].'^'.$dzisiajest.' '.$hour['wdir'].'^'.$wejsc['ile']);
 }
 
 function hms_to_hm($a) { $a = explode(":", $a); return $a[0].":".$a[1]; }

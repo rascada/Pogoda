@@ -923,6 +923,8 @@ function zdania(tt, tp, at, ot, ws, wd, wg, op, dob, hm, prs) {
 		tabString[tabString_idx++] = "Stacja wysłała już "+odp[1]+" odczytów od 8 stycznia 2015 roku";
 		tabString[tabString_idx++] = "Ostatnia aktualizacja prognozy 3-dniowej: "+odp[2];
 		tabString[tabString_idx++] = "Ostatnia aktualizacja prognozy 36-godzinnej: "+odp[3];
+		if(odp[4]==1) tabString[tabString_idx++] = "Dzisiaj naszą stronę odwiedził już "+odp[4]+" użytkownik";
+		else tabString[tabString_idx++] = "Dzisiaj naszą stronę odwiedziło już "+odp[4]+" użytkowników";
 	});
 	pokaz_napis();
 	ZmienInt = setInterval("pokaz_napis()", 8000);
