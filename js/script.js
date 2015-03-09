@@ -867,7 +867,7 @@ function zdania(tt, tp, at, ot, ws, wd, wg, op, dob, hm, prs) {
 		if(ws>0) tabString[tabString_idx++] = "Przy wietrze "+wind_dir_str(wd)+"&nbsp;"+ws+"m/s odczuwalna temperatura wynosi "+ot+".";
 		else tabString[tabString_idx++] = "Aktualnie nie ma wiatru, a odczuwalna temperatura wynosi "+ot+".";
 	
-	if(wg>1) tabString[tabString_idx++] = "W ciągu ostatnich 15min odnotowano podmuch wiatru wiejącego z prędkością "+wg+"m/s.";
+	if(wg>1 || (ws<0.7 && wg>0)) tabString[tabString_idx++] = "W ciągu ostatnich 15min odnotowano podmuch wiatru wiejącego z prędkością "+wg+"m/s.";
 	tabString[tabString_idx++] = "Dzisiaj najmocniejszy podmuch wiatru wynosił &nbsp;"+dzisiaj[5]+".";
 	
 	tabString[tabString_idx++] = "Dzisiaj najwyższa temperatura wynosiła "+parseHTML('darkgreen', dzisiaj[0])+".";
@@ -932,6 +932,7 @@ function zdania(tt, tp, at, ot, ws, wd, wg, op, dob, hm, prs) {
 		tabString[tabString_idx++] = "Ostatnia aktualizacja prognozy 36-godzinnej: "+odp[3];
 		if(odp[4]==1) tabString[tabString_idx++] = "Dzisiaj naszą stronę odwiedził już "+odp[4]+" użytkownik";
 		else tabString[tabString_idx++] = "Dzisiaj naszą stronę odwiedziło już "+odp[4]+" użytkowników";
+		for(var i=0; i<tabString_idx; i++) console.log(tabString[i]);
 	});
 	pokaz_napis();
 	ZmienInt = setInterval("pokaz_napis()", 8000);
