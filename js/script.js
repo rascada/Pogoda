@@ -187,6 +187,8 @@ $(document).mousemove(function(event) {
 var widoczny="#all";
 
 function setTab(tab){
+        $('.menu a button').removeClass('buttonWykresActive');    
+        $('.menu a:nth-child('+tab+') button').addClass('buttonWykresActive');
     switch(tab) {  
         case 1: {
 			$(widoczny).fadeOut(500,function(){
@@ -200,13 +202,13 @@ function setTab(tab){
 				widoczny="#wykresy";
 			});             
 		} break;  
-		case 3: {
+		case 4: {
 			$(widoczny).fadeOut(500,function(){
 				$('#mapki').fadeIn(500);      
 				widoczny="#mapki";			
 			});     			
 		} break;
-		case 4: {
+		case 5: {
 
 	$.ajax({
 		type: "GET",
@@ -286,7 +288,7 @@ function setTab(tab){
 	});	
 		} break;	
 		
-		case 5: {
+		case 3: {
 			$(widoczny).fadeOut(500,function(){
 				$('#montRecCont').fadeIn(500);      
 				widoczny="#montRecCont";			

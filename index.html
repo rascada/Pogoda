@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- liniks -->
-    <link href="http://fonts.googleapis.com/css?family=Rajdhani:400,600&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <!-- scripts -->
 <script type="application/javascript" src="js/jquery-2.1.3.js"></script>
 <script src="js/highcharts.js"></script>
@@ -26,30 +24,34 @@
 </head>
 <body>
     <!------------------------HEADER------------------------------------>
-    <header>
-        <div id='logo' title="Kliknij aby zresetować połączenie">
-            <div id="logoSunBox">
-                <ul id='logoSun'>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
+    <div id='headerCont' class='blockShadow'>
+        <header>
+            <div id='logo' title="Kliknij aby zresetować połączenie">
+                <div id="logoSunBox">
+                    <ul id='logoSun'>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <h1>Pogoda Skałągi</h1>
+                <div id='info'>
+                    <h3>Ostatnia aktualiazacja: <span id="last">Łącze..</span></h3>
+                </div>
+                <!-img src="img/all.png" style="position: absolute; left: 30em; top: -3.4em; opacity: .8;" width="420px" height="330px"/-->
             </div>
-            <h1>Pogoda Skałągi</h1>
-            <h3>Ostatnia aktualiazacja: <span id="last">Łącze..</span></h3>
-			<!-img src="img/all.png" style="position: absolute; left: 30em; top: -3.4em; opacity: .8;" width="420px" height="330px"/-->
+        </header>
+        <div class="menu">
+    <a><button  onclick="setTab(1);" class='buttonWykres buttonWykresActive'>Pogoda Skałągi</button></a><!--
+        --><a><button class='buttonWykres' onclick="setTab(2);">Wykresy</button></a><!--
+        --><a><button class='buttonWykres' onclick="setTab(3);">Raporty miesięczne</button></a><!--
+        --><a><button class='buttonWykres' onclick="setTab(4);">Mapy</button></a><!--
+        --><a><button class='buttonWykres' onclick="setTab(5);">Inne stacje</button></a>
+            
+<div id="stringi">Bład</div>
         </div>
-            <div class="menu">
-        <a><button  onclick="setTab(1);" id='buttonWykres'>Pogoda Skałągi</button></a><!--
-            --><a><button id='buttonWykres' onclick="setTab(2);">Wykresy</button></a><!--
-            --><a><button id='buttonWykres' onclick="setTab(5);">Raporty miesięczne</button></a><!--
-            --><a><button id='buttonWykres' onclick="setTab(3);">Mapy</button></a><!--
-            --><a><button id='buttonWykres' onclick="setTab(4);">Inne stacje</button></a><!--
-            --><a href="http://pogoda.snit.rcre.opolskie.pl/" target="_blank"><button id='buttonWykres'>FŚNiT</button></a>
-            </div>
-    </header>
-
-<div id="stringi"></div>
+    </div>
+    
 <div id='all'>
 <div id='bottomPanel'>
 <div id="panel2" class="panel">
