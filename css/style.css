@@ -1,5 +1,7 @@
 *{box-sizing:border-box;}
 body{
+    
+    margin: 1em 1.5em;
 
     font-family: 'Rajdhani', bold, sans-serif;
     overflow-x: hidden;
@@ -74,24 +76,35 @@ body{
 #panel2{
     order: 4;
 }
-.panel{
-    order: -1;
+
+@media screen and (min-width:1244px){
+    
+    #allFore{
+        flex-flow: column;
+    }
+    
+}
+.flexPanel1{
     display: flex;
-    align-items: flex-start;
-    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
 }
 #panel1{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
     justify-content:space-around;
-    order: 4;
     align-items: center;    
-    flex-direction:row;
     flex-grow:1;
     order:-2;
     min-width:90%;
 }
 #minPanel3{
+    position: relative;
     display:flex;
     flex-direction:column;
+    align-items: center;
     justify-content: space-around;
 }
 .ramka{
@@ -142,6 +155,68 @@ body{
     border-radius: 50%;
     overflow: hidden;
 }
+
+
+#allFore{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    flex-grow: 1;
+}
+#allFore > div{
+    max-width: 19em;    
+}
+#prognoza{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+	min-height: 8em;
+}
+#fore36Cont {
+    padding-bottom: .5em;
+    width: 100%;
+}
+#prognoza h3{
+    color: #444;
+    padding-right: 3em;
+}
+
+#weather{
+    font-size: 1.2em;
+    color: #444;
+}
+#forecast{
+    text-align: left;
+    border-top: .3em double #777;
+}
+#foreIcon{
+    position: absolute;
+    top:0;
+    right:.3em;
+}
+
+#weatherUndergroundCont{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 30vh;
+    margin:.5em 2em;
+}
+#wuIcon{
+    position: absolute;
+    right: .7em;
+    bottom: .5em;
+    width: 2em;
+}
+#prognoza .grey{
+    width: 100%;
+}
+
+
 .RaportArrow, .RaportArrow:before{
     position: absolute;
     width: .2em;
@@ -311,15 +386,14 @@ body{
     top: .3em;
     left: .3em;
 }
-
+/*                    **//*HEADER*//***********************************/
 #logo{
     display: flex;
 	cursor: pointer;
 }
 header{
-    background: linear-gradient(to right, rgba(83,157,194,.3) 65%,rgba(67,141,201,.5));
+    background: linear-gradient(to right, rgba(83,157,194,.5) 65%,rgba(67,141,201,.5));
     padding-bottom: .5em;
-    margin: -.5em;
   position:relative;
 }
 header h1, header h2, header h3
@@ -743,62 +817,6 @@ footer{
   background-color:white;
   margin:0.3em 0;
 }
-#allFore{
-    max-width: 25%;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-}
-#prognoza{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-	min-height: 8em;
-}
-#fore36Cont {
-    padding-bottom: .5em;
-    width: 100%;
-}
-#prognoza h3{
-    color: #444;
-    padding-right: 3em;
-}
-
-#weather{
-    font-size: 1.2em;
-    color: #444;
-}
-#forecast{
-    text-align: left;
-    border-top: .3em double #777;
-}
-#foreIcon{
-    position: absolute;
-    top:0;
-    right:.3em;
-}
-
-#weatherUndergroundCont{
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 30vh;
-    margin:.5em 2em;
-}
-#wuIcon{
-    position: absolute;
-    right: .7em;
-    bottom: .5em;
-    width: 2em;
-}
-#prognoza .grey{
-    width: 100%;
-}
-
 #fore36Cont h3{
     padding-right: 3em;
     color: #444;

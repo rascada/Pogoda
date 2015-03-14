@@ -37,7 +37,7 @@
             </div>
             <h1>Pogoda Skałągi</h1>
             <h3>Ostatnia aktualiazacja: <span id="last">Łącze..</span></h3>
-			<img src="img/all.png" style="position: absolute; left: 30em; top: -3.4em; opacity: .8;" width="420px" height="330px"/>
+			<!-img src="img/all.png" style="position: absolute; left: 30em; top: -3.4em; opacity: .8;" width="420px" height="330px"/-->
         </div>
             <div class="menu">
         <a><button  onclick="setTab(1);" id='buttonWykres'>Pogoda Skałągi</button></a><!--
@@ -202,7 +202,7 @@
 </div>
 </div>
     </div>
-<div class='panel' id='panel1'>
+<div id='panel1'>
     <div id='allFore'>            
         <div id='prognoza' class="ramka bigPanel">
             <h3>Prognoza - trzydniowa</h3>
@@ -218,7 +218,6 @@
             </div>
 
         </div>
-
         <div id='fore36Cont'class="ramka bigPanel">
             <h3>Prognoza - 36 godzinna</h3>
 
@@ -245,6 +244,8 @@
 
 
     </div>
+    
+<div class='flexPanel1'>
 <div id='raportDniaRamka' class="ramka bigPanel">
     <div class='arrowContainer'>
         <div id='RRArrow' onclick="jschangeday(true)"><div class='RaportArrow'></div></div>
@@ -325,17 +326,19 @@
                 </div>
         </div>
 </div>
+    </div>
+    
+<div class='flexPanel1 minPanel3Order'>
     <div id='minPanel3'>
-
         <div id='buttonWykresCont' class="ramka bigPanel">
             <img src="http://pogoda-skalagi.pl/img/sat.gif">     
-            </div>               
-            <div  class="ramka bigPanel">
-                <h3 id='biomet'>Biomet - <span id='biometOdczyt'>Ładuje..</span></h3>
-                
+        </div>               
+        <div  class="ramka bigPanel" style="width:235px;">
+            <h3 id='biomet'>Biomet - <span id='biometOdczyt'>Ładuje..</span></h3>                
         </div>
+    </div>
 </div>
-        </div>
+    </div>
 <!--all-->
 </div>
     
