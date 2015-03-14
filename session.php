@@ -43,7 +43,7 @@ if( isset($_POST['wezpodstawowe']) ) {
 	$jstrendt=$dir['tentemp']." ".$dir['tentempval']."°C/h";
 	$jsbio = $dir['biomet'];
 	
-	if($ostSec>$nowSec-360 && $iledzis>0) { 
+	if($ostSec>$nowSec-160 && $iledzis>0) { 
 	$online="<span style='color: darkgreen;'>Stacja jest online!</span>";
 	$secNextRef = (strtotime($jsdate)+155) - strtotime(date("Y-m-d H:i:s"));
 	} else $secNextRef=0;
