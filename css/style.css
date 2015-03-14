@@ -322,6 +322,7 @@ body{
     background: #fff;
   bottom:.1em;right:.5em;
     justify-content: flex-end;
+    flex-wrap: wrap;
     perspective: 0em;
     perspective-origin: bottom;
 }
