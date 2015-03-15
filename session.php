@@ -1,22 +1,23 @@
 <?php
 session_start();
-ini_set( "display_errors", 0);
+
 require_once "dbconnect.php";
-$polaczenie = mysql_connect($host,$user,$password);
-mysql_query("SET CHARSET utf8");
-mysql_query("SET NAMES 'utf8' COLLATE 'utf8_polish_ci'"); 
-mysql_select_db($database);
+$polaczenie = @new mysqli($host,$user,$password,$database);
+if($polaczenie->connect_errno==0) {
 
 if( isset($_POST['wezpodstawowe']) ) {
 
 	if($_POST['wezpodstawowe']=="nml") {
+		
 	$dzisiaj = date("Y-m-d");
-	$zILE = mysql_query("SELECT id FROM podstawowe WHERE date='$dzisiaj'");
-	$iledzis = mysql_num_rows($zILE);
-
-	$zap = mysql_query("SELECT * FROM podstawowe ORDER BY id DESC LIMIT 1");
-	$dir = mysql_fetch_array($zap); 
-
+	$zILE = $polaczenie->query("SELECT id FROM podstawowe WHERE date='$dzisiaj'");
+	$iledzis = $zILE->num_rows;
+	$zILE->close();
+	
+	$zap = $polaczenie->query("SELECT * FROM podstawowe ORDER BY id DESC LIMIT 1");
+	$dir = $zap->fetch_assoc(); 
+	$zap->close();
+	
 	$online = "<span style='color: red;'>Stacja jest offline!</span>";
 	$nowdate = date("H:i:s");
 	$ostatni = $dir['time'];
@@ -84,8 +85,8 @@ if( isset($_POST['changedayrep']) || isset($_POST['changeforecast']) ) {
 		
 	} else if($_POST['changedayrep']=="right") {
 	
-	$Zrozmiar = mysql_query("SELECT id FROM daytime");
-	$rozmiar = mysql_num_rows($Zrozmiar);
+	$Zrozmiar = $polaczenie->query("SELECT id FROM daytime");
+	$rozmiar = $Zrozmiar->num_rows; $Zrozmiar->close();
 	
 	if($_SESSION['dziennyto'] <= $rozmiar) $_SESSION['dziennyto']++;
 	if($_SESSION['dziennyto']==$rozmiar+1) $rend = true;
@@ -103,39 +104,39 @@ if( isset($_POST['changedayrep']) || isset($_POST['changeforecast']) ) {
 	}
 
 if($_POST['changedayrep']=="first") {
-	$Ztimes = mysql_query("SELECT * FROM daytime ORDER BY id DESC LIMIT 1");
+	$Ztimes = $polaczenie->query("SELECT * FROM daytime ORDER BY id DESC LIMIT 1");
 	if( date("H")>19 ) {
-		$Qprognozy = mysql_query("SELECT * FROM prognozy WHERE id=3");
+		$Qprognozy = $polaczenie->query("SELECT * FROM prognozy WHERE id=3");
 		$_SESSION['foreto']='3';			
 	} else {
-		$Qprognozy = mysql_query("SELECT * FROM prognozy WHERE id=2");
+		$Qprognozy = $polaczenie->query("SELECT * FROM prognozy WHERE id=2");
 		$_SESSION['foreto']='2';	
 	}
-	$timer = mysql_fetch_array($Ztimes); 
+	$timer = $Ztimes->fetch_assoc();  $Ztimes->close();
 	$_SESSION['dziennyto']=$timer['id'];
 	$_SESSION['godzto']='2';
 	
 	$br = $_SERVER['HTTP_USER_AGENT']; $dd = date("Y-m-d H:i:s"); $ip = $_SERVER['REMOTE_ADDR'];
 	if($br!='Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)') {
-		$qCheck = mysql_query("SELECT count(1) AS ile FROM browser WHERE ip='$ip'");
-		$check = mysql_fetch_assoc($qCheck);
-			if($check['ile']==0) mysql_query("INSERT INTO browser SET brows='$br', data='$dd', ip='$ip' ");
-			else mysql_query("UPDATE browser SET data='$dd', brows='$br' WHERE ip='$ip'");	
+		$qCheck = $polaczenie->query("SELECT count(1) AS ile FROM browser WHERE ip='$ip'");
+		$check = $qCheck->fetch_assoc(); $qCheck->close();
+			if($check['ile']==0) $polaczenie->query("INSERT INTO browser SET brows='$br', data='$dd', ip='$ip' ");
+			else $polaczenie->query("UPDATE browser SET data='$dd', brows='$br' WHERE ip='$ip'");	
 	}
 } else { 
 	$dziennytolocal = $_SESSION['dziennyto'];
-	$Ztimes = mysql_query("SELECT * FROM daytime WHERE id='$dziennytolocal'");
+	$Ztimes = $polaczenie->query("SELECT * FROM daytime WHERE id='$dziennytolocal'");
 	$selId = $_SESSION['foreto'];
-	$Qprognozy = mysql_query("SELECT * FROM prognozy WHERE id='$selId'");
-	$timer = mysql_fetch_array($Ztimes); 
+	$Qprognozy = $polaczenie->query("SELECT * FROM prognozy WHERE id='$selId'");
+	$timer = $Ztimes->fetch_assoc(); $Ztimes->close();
 }
 $id = $timer['id'];
-$Zdat = mysql_query("SELECT * FROM daydata WHERE id='$id'");
-$dat = mysql_fetch_array($Zdat); 
-$Zother = mysql_query("SELECT * FROM dayother WHERE id='$id'");
-$oth = mysql_fetch_array($Zother); 
-$Zblue = mysql_query("SELECT * FROM dayblue WHERE id='$id'");
-$blue = mysql_fetch_array($Zblue); 
+$Zdat = $polaczenie->query("SELECT * FROM daydata WHERE id='$id'");
+$dat = $Zdat->fetch_assoc(); $Zdat->close(); 
+$Zother = $polaczenie->query("SELECT * FROM dayother WHERE id='$id'");
+$oth = $Zother->fetch_assoc(); $Zother->close(); 
+$Zblue = $polaczenie->query("SELECT * FROM dayblue WHERE id='$id'");
+$blue = $Zblue->fetch_assoc(); $Zblue->close(); 
 
 $tmpH =hms_to_hm($timer['tempmax']);
 $tmpL =hms_to_hm($timer['tempmin']);
@@ -154,7 +155,7 @@ $swit = hms_to_hm($blue['swit']);
 $zmier = hms_to_hm($blue['zmierzch']);
 $dbdata = $timer['ddata'];
 
-$prognoza = mysql_fetch_array($Qprognozy);
+$prognoza = $Qprognozy->fetch_assoc(); $Qprognozy->close();
 
 $lendS = 'false';
 if($lend) $lendS='true';
@@ -181,9 +182,9 @@ $rendS = 'false';
 if($rend) $rendS='true';
 	
 	$hourid = $_SESSION['godzto'];
-	$queryHourly = mysql_query("SELECT * FROM godzinna WHERE id='$hourid'");
-	if($_POST['gethourlyforecast']=='false') $queryHourly = mysql_query("SELECT * FROM godzinna WHERE id=2");
-	$godzinna = mysql_fetch_array($queryHourly);
+	$queryHourly = $polaczenie->query("SELECT * FROM godzinna WHERE id='$hourid'");
+	if($_POST['gethourlyforecast']=='false') $queryHourly = $polaczenie->query("SELECT * FROM godzinna WHERE id=2");
+	$godzinna = $queryHourly->fetch_assoc(); $queryHourly->close();
 	echo $godzinna['godz'].":00|".$godzinna['dtyg']."|".$godzinna['dmon']."|".$godzinna['napis']."|".$godzinna['temp']."|".$godzinna['dewp']."|".$godzinna['wdir']."|".$godzinna['wspd']."|".$godzinna['rain']."|".$godzinna['snow']."|".$godzinna['imgurl']."|".$lendS."|".$rendS;
 }
 
@@ -193,52 +194,55 @@ if( isset($_GET['checkhighslows']) ) {
 	$hL = "none"; $hH = "none"; $wN = "none"; $rN = "none";
 	
 	$terazMiesiac = date("Y-m-");
-	$queryRecTime = mysql_query("SELECT id FROM montime WHERE lupdate LIKE '$terazMiesiac%'");
-	if(mysql_num_rows($queryRecTime)>0) {
-		$RecTime = mysql_fetch_assoc($queryRecTime);
-		$queryRecVal = mysql_query("SELECT * FROM mondata WHERE id=".$RecTime['id']);
-		$RecVal = mysql_fetch_assoc($queryRecVal);
+	$queryRecTime = $polaczenie->query("SELECT id FROM montime WHERE lupdate LIKE '$terazMiesiac%'");
+	if($queryRecTime->num_rows>0) {
+		$RecTime = $queryRecTime->fetch_assoc(); $queryRecTime->close();
+		$queryRecVal = $polaczenie->query("SELECT * FROM mondata WHERE id=".$RecTime['id']);
+		$RecVal = $queryRecVal->fetch_assoc(); $queryRecVal->close();
 
 		$terazDzien = date("Y-m-d");
-		$queryDayCheckID = mysql_query("SELECT id FROM daytime WHERE ddata='$terazDzien'");
-		$DayCheckID = mysql_fetch_assoc($queryDayCheckID); $DayCheckID = $DayCheckID['id'];
-		$queryDayCheckData = mysql_query("SELECT * FROM daydata WHERE id='$DayCheckID'");
-		$queryDayCheckOther = mysql_query("SELECT * FROM dayother WHERE id='$DayCheckID'");
-		$DayCheckData = mysql_fetch_assoc($queryDayCheckData); $DayCheckOther = mysql_fetch_assoc($queryDayCheckOther);
+		$queryDayCheckID = $polaczenie->query("SELECT id FROM daytime WHERE ddata='$terazDzien'");
+		$DayCheckID = $queryDayCheckID->fetch_assoc(); 
+		$queryDayCheckID->close();
+		$DayCheckID = $DayCheckID['id'];
+		$queryDayCheckData = $polaczenie->query("SELECT * FROM daydata WHERE id='$DayCheckID'");
+		$queryDayCheckOther = $polaczenie->query("SELECT * FROM dayother WHERE id='$DayCheckID'");
+		$DayCheckData = $queryDayCheckData->fetch_assoc(); $queryDayCheckData->close();
+		$DayCheckOther = $queryDayCheckOther->fetch_assoc(); $queryDayCheckOther->close();
 
 		if($DayCheckData['tempmin']<$RecVal['templ']) {
-			$queryKiedyTo = mysql_query("SELECT tempmin FROM daytime WHERE ddata='$terazDzien'");
-			$KiedyTo = mysql_fetch_assoc($queryKiedyTo);
+			$queryKiedyTo = $polaczenie->query("SELECT tempmin FROM daytime WHERE ddata='$terazDzien'");
+			$KiedyTo = $queryKiedyTo->fetch_assoc(); $queryKiedyTo->close();
 			$tL = "Najniższa temperatura w tym miesiącu ".$DayCheckData['tempmin']."°C zanotowana dzisiaj o ".$KiedyTo['tempmin'];
 		}
 
 		if($DayCheckData['hummin']<$RecVal['huml']) {
-			$queryKiedyTo = mysql_query("SELECT hummin FROM daytime WHERE ddata='$terazDzien'");
-			$KiedyTo = mysql_fetch_assoc($queryKiedyTo);
+			$queryKiedyTo = $polaczenie->query("SELECT hummin FROM daytime WHERE ddata='$terazDzien'");
+			$KiedyTo = $queryKiedyTo->fetch_assoc(); $queryKiedyTo->close();
 			$hL = "Najniższa wilgotność w tym miesiącu ".$DayCheckData['hummin']."% zanotowana dzisiaj o ".$KiedyTo['hummin'];
 		}
 
 		if($DayCheckData['pressmin']<$RecVal['pressl']) {
-			$queryKiedyTo = mysql_query("SELECT pressmin FROM daytime WHERE ddata='$terazDzien'");
-			$KiedyTo = mysql_fetch_assoc($queryKiedyTo);
+			$queryKiedyTo = $polaczenie->query("SELECT pressmin FROM daytime WHERE ddata='$terazDzien'");
+			$KiedyTo = $queryKiedyTo->fetch_assoc(); $queryKiedyTo->close();
 			$pL = "Najniższe ciśnienie w tym miesiącu ".$DayCheckData['pressmin']."hPa zanotowane dzisiaj o ".$KiedyTo['pressmin'];
 		}
 
 		if($DayCheckData['tempmax']>$RecVal['temph']) {
-			$queryKiedyTo = mysql_query("SELECT tempmax FROM daytime WHERE ddata='$terazDzien'");
-			$KiedyTo = mysql_fetch_assoc($queryKiedyTo);
+			$queryKiedyTo = $polaczenie->query("SELECT tempmax FROM daytime WHERE ddata='$terazDzien'");
+			$KiedyTo = $queryKiedyTo->fetch_assoc(); $queryKiedyTo->close();
 			$tH = "Najwyższa temperatura w tym miesiącu ".$DayCheckData['tempmax']."°C zanotowana dzisiaj o ".$KiedyTo['tempmax'];
 		}
 
 		if($DayCheckData['hummax']>$RecVal['humh']) {
-			$queryKiedyTo = mysql_query("SELECT hummax FROM daytime WHERE ddata='$terazDzien'");
-			$KiedyTo = mysql_fetch_assoc($queryKiedyTo);
+			$queryKiedyTo = $polaczenie->query("SELECT hummax FROM daytime WHERE ddata='$terazDzien'");
+			$KiedyTo = $queryKiedyTo->fetch_assoc(); $queryKiedyTo->close();
 			$hH = "Najwyższa wilgotność w tym miesiącu ".$DayCheckData['hummax']."% zanotowana dzisiaj o ".$KiedyTo['hummax'];
 		}
 
 		if($DayCheckData['pressmax']>$RecVal['pressh']) {
-			$queryKiedyTo = mysql_query("SELECT pressmax FROM daytime WHERE ddata='$terazDzien'");
-			$KiedyTo = mysql_fetch_assoc($queryKiedyTo);
+			$queryKiedyTo = $polaczenie->query("SELECT pressmax FROM daytime WHERE ddata='$terazDzien'");
+			$KiedyTo = $queryKiedyTo->fetch_assoc(); $queryKiedyTo->close();
 			$pH = "Najwyższe ciśnienie w tym miesiącu ".$DayCheckData['pressmax']."hPa zanotowane dzisiaj o ".$KiedyTo['pressmax'];
 		}
 
@@ -274,10 +278,10 @@ END;
 	}
 
 if( isset($_GET['otherpws']) && $_GET['otherpws']=="showme" ) {
-$qOth = mysql_query("SELECT * FROM niemy WHERE id!=1");
+$qOth = $polaczenie->query("SELECT * FROM niemy WHERE id!=1");
 
 echo '{ "pws": ['; $i=0;
-	while( $oth = mysql_fetch_assoc($qOth) ) {
+	while( $oth = $qOth->fetch_assoc() ) {
 		$id = $oth['kiedy']; $t = $oth['temp'];
 		$h = $oth['hum']; $p = $oth['press'];
 		$d = $oth['dir']; $s = $oth['spd']; $r = $oth['raint'];
@@ -300,37 +304,38 @@ END;
 if($i++ < 7) echo ",";
 	}
 echo "] }";
+$qOth->close();
 }	
 
 if( isset($_GET['aboutus']) && $_GET['aboutus']=="tellme") {
-	$qDni = mysql_query("SELECT count(1) AS ile FROM daytime");
-	$dni = mysql_fetch_assoc($qDni);
-	$qReq = mysql_query("SELECT id FROM podstawowe ORDER BY id DESC LIMIT 1");
-	$req = mysql_fetch_assoc($qReq);
-	$qDays = mysql_query("SELECT strprog, dzientyg FROM prognozy WHERE id=1");
-	$days = mysql_fetch_assoc($qDays);
-	$qHour = mysql_query("SELECT wdir FROM godzinna WHERE id=1");
-	$hour = mysql_fetch_assoc($qHour);
+	$qDni = $polaczenie->query("SELECT count(1) AS ile FROM daytime");
+	$dni = $qDni->fetch_assoc(); $qDni->close();
+	$qReq = $polaczenie->query("SELECT id FROM podstawowe ORDER BY id DESC LIMIT 1");
+	$req = $qReq->fetch_assoc(); $qReq->close();
+	$qDays = $polaczenie->query("SELECT strprog, dzientyg FROM prognozy WHERE id=1");
+	$days = $qDays->fetch_assoc(); $qDays->close();
+	$qHour = $polaczenie->query("SELECT wdir FROM godzinna WHERE id=1");
+	$hour = $qHour->fetch_assoc(); $qHour->close();
 	$dzisiajest = date("Y-m-d");
-	$qWejsc = mysql_query("SELECT count(1) AS ile FROM browser WHERE data LIKE '$dzisiajest%'");
-	$wejsc = mysql_fetch_assoc($qWejsc);
+	$qWejsc = $polaczenie->query("SELECT count(1) AS ile FROM browser WHERE data LIKE '$dzisiajest%'");
+	$wejsc = $qWejsc->fetch_assoc(); $qWejsc->close();
 echo($dni['ile']."^".$req['id'].'^'.$days['dzientyg'].' '.$days['strprog'].'^'.$dzisiajest.' '.$hour['wdir'].'^'.$wejsc['ile']);
 }
 
 if( isset($_GET['getmonthly']) && $_GET['getmonthly']=='rekordy' ) {
-	$qData = mysql_query("SELECT * FROM mondata ORDER BY id ASC");
-	$qTime = mysql_query("SELECT * FROM montime ORDER BY id ASC");
+	$qData = $polaczenie->query("SELECT * FROM mondata ORDER BY id ASC");
+	$qTime = $polaczenie->query("SELECT * FROM montime ORDER BY id ASC");
 echo ' { "miesiace": [ ';
 
 $i=0;
-while( $dane = mysql_fetch_assoc($qData) ) {
+while( $dane = $qData->fetch_assoc() ) {
 $tDane[$i++] = $dane['id']."|".$dane['temph']."|".$dane['templ']."|".$dane['apph'].'|'.$dane['appl'].'|'.$dane['pressh'].'|'.$dane['pressl'].'|'.$dane['humh'].'|'.$dane['huml'].'|'.$dane['windh'].'|'.$dane['rainh'].'|'.$dane['dry'].'|'.$dane['wet'];
 }
 $i=0;
-while( $czasy = mysql_fetch_assoc($qTime) ) {
+while( $czasy = $qTime->fetch_assoc() ) {
 $tCzasy[$i++] = $czasy['id']."|".$czasy['temph']."|".$czasy['templ']."|".$czasy['apph'].'|'.$czasy['appl'].'|'.$czasy['pressh'].'|'.$czasy['pressl'].'|'.$czasy['humh'].'|'.$czasy['huml'].'|'.$czasy['windh'].'|'.$czasy['rainh'].'|'.$czasy['lupdate'];
 }
-
+$qData->close(); $qTime->close();
 $ileBufI = $i;
 for($i=0; $i<$ileBufI; $i++) {
 	$inTabDane = explode('|', $tDane[$i]);
@@ -399,6 +404,7 @@ END;
 
 echo ' ] }'; 
 }
-
+$polaczenie->close();
+}
 function hms_to_hm($a) { $a = explode(":", $a); return $a[0].":".$a[1]; }
 ?>
