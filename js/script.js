@@ -875,9 +875,9 @@ function zdania(tt, tp, at, ot, ws, wd, wg, op, dob, hm, prs) {
 	tabString[tabString_idx++] = "Dzisiaj najwyższa temperatura wynosiła "+parseHTML('darkgreen', dzisiaj[0])+".";
 	tabString[tabString_idx++] = "Dzisiaj najniższa temperatura wynosiła "+parseHTML('darkred', dzisiaj[13])+".";
 	
-		if(prs<975) prs = parseHTML('blue', prs+'hPa');
-		if(prs>=975 && prs<=1015) prs = parseHTML('darkgreen', prs+'hPa');
-		if(prs>1015) prs = parseHTML('darkred', at+'hPa');
+		if(prs<990) prs = parseHTML('blue', prs+'hPa');
+		if(prs>=990 && prs<=1030) prs = parseHTML('darkgreen', prs+'hPa');
+		if(prs>1030) prs = parseHTML('darkred', prs+'hPa');
 	if(tp.indexOf("stałe")==-1) tabString[tabString_idx++] = "Aktualne ciśnienie wynosi "+prs+"&nbsp;i "+tp+".";
 	else tabString[tabString_idx++] = "Aktualne ciśnienie wynosi "+prs+"&nbsp;i utrzymuje się na stałym poziomie.";
 	
