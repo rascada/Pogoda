@@ -854,7 +854,7 @@ function zdania(tt, tp, at, ot, ws, wd, wg, op, dob, hm, prs) {
 	tabString_idx=0;
 		tabString[tabString_idx++] = "Dzisiaj jest&nbsp;<b>"+dzisiaj[18]+"</b>. Słońce w pełni widoczne o&nbsp;<b>"+dzisiaj[7]+"</b>, zacznie zachodzić o&nbsp;<b>"+dzisiaj[8]+"</b>";
 		tabString[tabString_idx++] = "Wschód księżyca o&nbsp;<b>"+dzisiaj[10]+"</b>. Zachód księżyca o&nbsp;<b>"+dzisiaj[11]+"</b>.  Faza:&nbsp;<b>"+dzisiaj[12]+"</b>";
-		tabString[tabString_idx++] = "Juz niedługo, bo 20 marca 2015 będzie miało miejsce całkowite zaćmienie słońca.";
+
 		if(at<7) at = parseHTML('blue', at+'°C');
 		if(at>=7 && at<=18) at = parseHTML('darkgreen', at+'°C');
 		if(at>18) at = parseHTML('darkred', at+'°C');
@@ -908,7 +908,7 @@ function zdania(tt, tp, at, ot, ws, wd, wg, op, dob, hm, prs) {
 	tabString[tabString_idx++] = "Dzisiaj najwyższa wilgotność wynosiła "+parseHTML('darkred', dzisiaj[1])+"."
 	tabString[tabString_idx++] = "Dzisiaj najniższa wilgotność wynosiła "+parseHTML('darkgreen', dzisiaj[14])+".";
 	tabString[tabString_idx++] = "Porada: Używaj strzałek &nbsp;<img src='img/strzalki.png'/>&nbsp; do przełączania prognoz i raportów.";
-	tabString[tabString_idx++] = "Porada: Jeśli dane wczytały się niepoprawnie, kliknij w górny banner aby zresetować połączenie.";
+	tabString[tabString_idx++] = "Porada: Kliknij w górny banner aby zresetować połączenie.";
 					if(rekordy['temp']['low']!="none") tabString[tabString_idx++] =  rekordy['temp']['low'];
 					if(rekordy['temp']['high']!="none") tabString[tabString_idx++] = rekordy['temp']['high'];
 					if(rekordy['hum']['low']!="none") tabString[tabString_idx++] = rekordy['hum']['low'];

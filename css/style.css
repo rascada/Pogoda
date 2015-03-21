@@ -35,7 +35,7 @@ body{
 #contL2 > div:last-child{border-radius: 0 0 .5em 0;}
 .grey{
     color: #eee;
-    background:rgba(0,0,0,0.6);
+    background:rgba(0,0,0,0.8);
     margin-bottom: .5em;
     border-radius:.2em;
 }
@@ -100,7 +100,7 @@ body{
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    justify-content:space-around;
+    justify-content: space-around;
     align-items: center;    
     flex-grow:1;
     order:-2;
@@ -131,14 +131,14 @@ body{
 #raportDniaRamka{
     min-width: 52vw;
     flex-grow: none;
-    background-image: url("/img/zima.jpg");
+    background-image: url("/img/duze.jpg");
     background-size: cover;
 
 }
 
 #raportDniaRamka h3 {
 	border-radius: .2em .2em 0 0;
-	background:rgba(0,0,0,0.6);
+	background:rgba(0,0,0,0.8);
 	padding-left: .3em;
 	padding-top: .1em;
 	border-bottom: .1em solid  white;
@@ -346,7 +346,6 @@ body{
 	cursor: pointer;    
 	background: #fff;
     color: #444;
-    font-size: 1.25em;
 	border-radius: .1em;
 	display: flex; 
     flex-grow: 1;
