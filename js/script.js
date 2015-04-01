@@ -643,7 +643,7 @@ function refdayrep(auto) {
 		document.getElementById("windDayBlow").innerHTML=" "+dzien[5];
 	    document.getElementById("rainDay").innerHTML=" "+dzien[6];
 		if(dzien[6].indexOf("0")==3) document.getElementById("rainDay").innerHTML="- (--:--)"; 
-		document.getElementById("clouds").innerHTML=dzien[17]+"m";
+
 		document.getElementById("forecast").innerHTML=dzien[21];
 		document.getElementById("weather").innerHTML=dzien[22];
 		document.images['forecast'].src = dzien[23]+'?' + Math.random();
@@ -962,39 +962,6 @@ function loadMonthlyRecords(toDisplay) {
 		async: true,
 		success: function(resp) { MonthRec = resp; }
 	}).then(function() {
-		var locBufer=0; var locChange=0;
-		for(var i=0; i<MonthRec['miesiace'].length; i++) {
-			locBufer = MonthRec['miesiace'][i]['temph']['dayntime'];
-			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
-			MonthRec['miesiace'][i]['temph']['dayntime'] = locChange;
-			locBufer = MonthRec['miesiace'][i]['templ']['dayntime'];
-			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
-			MonthRec['miesiace'][i]['templ']['dayntime'] = locChange;
-			locBufer = MonthRec['miesiace'][i]['apph']['dayntime'];
-			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
-			MonthRec['miesiace'][i]['apph']['dayntime'] = locChange;			
-			locBufer = MonthRec['miesiace'][i]['appl']['dayntime'];
-			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
-			MonthRec['miesiace'][i]['appl']['dayntime'] = locChange;
-			locBufer = MonthRec['miesiace'][i]['pressh']['dayntime'];
-			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
-			MonthRec['miesiace'][i]['pressh']['dayntime'] = locChange;
-			locBufer = MonthRec['miesiace'][i]['pressl']['dayntime'];
-			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
-			MonthRec['miesiace'][i]['pressl']['dayntime'] = locChange;
-			locBufer = MonthRec['miesiace'][i]['humh']['dayntime'];
-			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
-			MonthRec['miesiace'][i]['humh']['dayntime'] = locChange;
-			locBufer = MonthRec['miesiace'][i]['huml']['dayntime'];
-			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
-			MonthRec['miesiace'][i]['huml']['dayntime'] = locChange;
-			locBufer = MonthRec['miesiace'][i]['windh']['dayntime'];
-			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
-			MonthRec['miesiace'][i]['windh']['dayntime'] = locChange;
-			locBufer = MonthRec['miesiace'][i]['rainh']['dayntime'];
-			locChange = locBufer.replace(' ', ' '+miesiace_pl[i]+' ');
-			MonthRec['miesiace'][i]['rainh']['dayntime'] = locChange;
-		}
 		$("#titMonth").html(miesiace_pl[toDisplay]);
 		$('#m_temph_v').html(MonthRec['miesiace'][toDisplay]['temph']['value']+'°C');
 		$('#m_temph_t').html(MonthRec['miesiace'][toDisplay]['temph']['dayntime']);

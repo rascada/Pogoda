@@ -473,7 +473,7 @@ function setMonthlyRain(where_id) {
 				zoomType: 'x'
 			},
 			title: {
-				text: 'Opady i zachmurzenie - '+miesiace_pl[mon_display-1]
+				text: 'Opady  - '+miesiace_pl[mon_display-1]
 			},
 			subtitle: {
 				text: 'www.pogoda-skalagi.pl'
@@ -494,22 +494,6 @@ function setMonthlyRain(where_id) {
 						color: Highcharts.getOptions().colors[1]
 					}
 				},
-			}, { // Secondary yAxis
-				gridLineWidth: 0,
-				title: {
-					text: 'Wysokość podstawy chmur',
-					style: {
-						color: Highcharts.getOptions().colors[1]
-					}
-				},
-				labels: {
-					format: '{value} '+"m",
-					style: {
-						color: Highcharts.getOptions().colors[1]
-					}
-				},
-				opposite: true,
-				min: 0
 			}],
 			tooltip: {
 				shared: true,
@@ -532,17 +516,6 @@ function setMonthlyRain(where_id) {
 					valueSuffix: "mm"
 				}
 
-			}, {
-				name: 'Wysokość chmur',
-				type: 'spline',
-				yAxis: 1,
-				data: tabhigh2,
-				tooltip: {
-					valueSuffix: "m"
-				},
-				marker: {
-                enabled: false
-				}
 			}]
 	});
   }); // $.ajax

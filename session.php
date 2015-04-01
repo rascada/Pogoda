@@ -329,7 +329,7 @@ echo ' { "miesiace": [ ';
 
 $i=0;
 while( $dane = $qData->fetch_assoc() ) {
-$tDane[$i++] = $dane['id']."|".$dane['temph']."|".$dane['templ']."|".$dane['apph'].'|'.$dane['appl'].'|'.$dane['pressh'].'|'.$dane['pressl'].'|'.$dane['humh'].'|'.$dane['huml'].'|'.$dane['windh'].'|'.$dane['rainh'].'|'.$dane['dry'].'|'.$dane['wet'];
+$tDane[$i++] = $dane['id']."|".$dane['temph']."|".$dane['templ']."|".$dane['apph'].'|'.$dane['appl'].'|'.$dane['pressh'].'|'.$dane['pressl'].'|'.$dane['humh'].'|'.$dane['huml'].'|'.$dane['windh'].'|'.$dane['rainh'];
 }
 $i=0;
 while( $czasy = $qTime->fetch_assoc() ) {
@@ -344,7 +344,7 @@ for($i=0; $i<$ileBufI; $i++) {
 		$phv = $inTabDane[5]; $plv = $inTabDane[6];
 		$hhv = $inTabDane[7]; $hlv =$inTabDane[8];
 		$wdv = $inTabDane[9]; $rnv = $inTabDane[10];
-		$dry = $inTabDane[11]; $wet = $inTabDane[12];
+
 	$inTabCzasy = explode('|', $tCzasy[$i]);
 		$tht = $inTabCzasy[1]; $tlt = $inTabCzasy[2];
 		$aht = $inTabCzasy[3]; $alt = $inTabCzasy[4];
@@ -394,9 +394,7 @@ echo<<<END
 	"rainh": {
 		"value": $rnv,
 		"dayntime": "$rnt"
-	},
-	"dry": $dry,
-	"wet": $wet
+	}
 }
 END;
 	if($i < $ileBufI-1) echo ',';

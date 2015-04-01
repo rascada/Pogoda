@@ -217,7 +217,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 30vh;
+    max-width: 30vw;
     margin:.5em 2em;
 }
 #wuIcon{
@@ -267,7 +267,8 @@ body{
     border-radius: 50%;
     background: white;
     cursor: pointer;
-    transition: all .2s ease;}
+    transition: all .2s ease;
+	}
 
 #RLArrow:hover{
     background: #ddd;
