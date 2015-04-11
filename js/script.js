@@ -988,9 +988,9 @@ function loadMonthlyRecords(toDisplay) {
 	});
 }
 function setMonRec(right) {
-	if(right && ustawionyMRec<2) ustawionyMRec++;
+	if(right && ustawionyMRec<3) ustawionyMRec++;
 	else if(!right && ustawionyMRec>0) ustawionyMRec--;
 	loadMonthlyRecords(ustawionyMRec);
 }
-var ustawionyMRec=2;
+var ustawionyMRec=3;
 loadMonthlyRecords(ustawionyMRec);
