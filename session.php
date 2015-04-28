@@ -2,7 +2,7 @@
 session_start();
 
 require_once "dbconnect.php";
-$polaczenie = @new mysqli($host,$user,$password,$database);
+$polaczenie = new mysqli($host,$user,$password,$database);
 if($polaczenie->connect_errno==0) {
 
 if( isset($_POST['wezpodstawowe']) ) {
