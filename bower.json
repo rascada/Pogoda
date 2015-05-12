@@ -1,0 +1,20 @@
+{
+  "name": "pogodaSkalagi",
+  "version": "2.0.0",
+  "homepage": "pogoda-skalagi.pl",
+  "authors": [
+    "Damian <carftjr@gmail.com>"
+  ],
+  "description": "Strona o pogodzie napędzana przez stacje pogodową w Skałągach",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}

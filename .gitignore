@@ -1,7 +1,9 @@
 .DS_Store
 prepros.cfg
-
-viewsCompiled
-
 index.html
 main.css
+*.log
+
+viewsCompiled
+node_modules
+bower_components
