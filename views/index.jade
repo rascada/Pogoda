@@ -1,565 +1,527 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- scripts -->
-<script type="application/javascript" src="js/jquery-2.1.3.js"></script>
-<script src="js/highcharts.js"></script>
-<script src="js/exporting.js"></script>
-<script src="js/highcharts-more.js"></script>
-<title>Pogoda Skałągi</title>
-<link rel="icon" href="img/cloud.ico" type="image/x-icon"/>
-<link type="text/css" rel="stylesheet" href="css/style.css"/>
-<meta charset="utf-8" />
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-58565456-1', 'auto');
-  ga('send', 'pageview');
-</script>
-<meta name="description" content="Stacja pogodowa - meteo Skałągi w gminie Wołczyn, powiat Kluczborski, woj. opolskie. Aktualna pogoda, aktualizacja co 5min.">
-<meta name="keywords" content="stacja, meteo, pogodowa, pogoda, skałągi, temperatura, wiatr, kluczbork, wołczyn, prognoza, wilgotność, meteorologiczna, szkoła, podstawowa, rcre, opolskie">
-</head>
-<body>
-    <!------------------------HEADER------------------------------------>
-    <div id='headerCont' class='blockShadow'>
-        <header>
-            <div id='logo' title="Kliknij aby zresetować połączenie">
-                <div id="logoSunBox">
-                    <ul id='logoSun'>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </div>
-                <h1>Pogoda Skałągi</h1>
-                <div id='info'>
-                    <h3>Ostatnia aktualiazacja: <span id="last">Łącze..</span></h3>
-                </div>
-                <img src="img/all.png" style="position: absolute; left: 26em; top: -3.4em; opacity: .8;" width="420px" height="330px"/>
-            </div>
-        </header>
-        <div class="menu">
-            <div id='menu-buttons'>
-    <a><button  onclick="setTab(1);" class='buttonWykres buttonWykresActive'>Pogoda Skałągi</button></a><!--
-        --><a><button class='buttonWykres' onclick="setTab(2);">Wykresy</button></a><!--
-        --><a><button class='buttonWykres' onclick="setTab(3);">Raporty miesięczne</button></a><!--
-        --><a><button class='buttonWykres' onclick="setTab(4);">Mapy</button></a><!--
-        --><a><button class='buttonWykres' onclick="setTab(5);">Inne stacje</button></a>
-            </div>
-            
-<div id="stringi"></div>
-        </div>
-    </div>
-    
-<div id='all'>
-<div id='bottomPanel'>
-<div id="panel2" class="panel">
-    
-    <!------------------------WaterPanel---------------------------------->
-<div id='waterPanel' class="bigPanel">
-    <h1 class="bigPanelH">Opady</h1>
-    <!-----------------------miarka1----------------------------------->
-    <div class='waterTogether'>
-        <div class="f">
-            <div class="fluid"><span id="aktopad">0<br/>mm/h</span>
-                <div class='waterCont'><div class="water" id='water12'></div></div>
-                <div id='miarka12' class='miarka1'></div>
-            </div>
-        </div><p>Aktualne</p>
-    </div>
-    <!--miarka2-->
-    <div class='waterTogether'>
-        <div id='f2' class="f">
-            <div class="fluid"><span id="opadd">0<br/>mm</span>
-                <div class='waterCont'><div class="water" id='water2'></div></div>
-                <div id='miarka2' class='miarka1'></div>
-            </div>
-        </div><p>24h</p>
-    </div>
-</div>
-
-</div>
-<!------------------------Temperatura------------------------------------>
-    <div id='tempPanel' class="bigPanel">
-        <h1 class="bigPanelH">Temperatura</h1>
-        <h3><span id="tentemp">Tendencja</span></h3><br/>
-        <!----------------temp1------------------>
-        <div class='termometr'>
-            <div class="tempBody">
-                    <div class="termMeter">
-                        <div id='aTemp' class='termC'>
-                            <div id="aTempvalM" class='tempMeter'>
-                                <span id="atemval">..</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="termMeter2"></div>
-                <div class='tempMiarka' id='tempMiarka1'></div>
-            </div>
-            <p>Aktualna</p>
-        </div>
-        <!-----------------temp2----------------->
-        <div class='termometr'>
-            <div class="tempBody">
-                <div class="termMeter">
-                    <div id='oTemp' class='termC'>
-                        <div id="oTempvalM" class='tempMeter'>
-                            <span id="otemval">..</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="termMeter2"></div>
-                <div class='tempMiarka' id='tempMiarka2'></div>
-            </div>
-            <p>Odczuwalna</p>
-        </div>
-        <!----------------temp3------------------>
-        <div class='termometr'>
-            <div class="tempBody">
-                <div class="termMeter">
-                    <div id='srTemp' class='termC'>
-                        <div id="srTempvalM" class='tempMeter'>                
-                            <span id="srtemval">..</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="termMeter2">
-                </div>
-                <div class='tempMiarka' id='tempMiarka3'></div>
-            </div>
-            <p>Średnia</p>
-        </div>
-        <!------------------------coTera------------------------------------>
-        <div id='trueDew' class=" bigHeader">
-            <h4 class="bigPanelH"><b>Punkt rosy: </b><span id='dewDeg'>0</span> </h4>
-        </div>
-    </div>
-<!------------------------Wiatr------------------------------------>
-<div id='contL' style="border: 0; margin-top: 2em;">
-<div id='windPanel' class="bigPanel">
-    <h1 class="bigPanelH" id="windBfw">Wiatr</h1>
-    <!-----------------------compass1---------------------------------->
-    <div class='compassCont'>
-        <div  id='compass1' class="compass">
-            <div class="compArr" id="cm1">
-                <span class="compArrDeg" id="cmL1">0</span>
-            </div>
-            <div class='licznikKomp'>
-              <div id='strz1' class='strz'></div>
-              <div class='dot'></div>
-              <div class='liczPods' id='liczPods1'></div>
-                <span class='liczCyf labelek' id='wSpeed' onclick="aktwindclick()">Ładuje..</span>
-            </div>
-        </div><br/>
-        <span class="compassSpan"  id="aktDirVal">Aktualny</span>
-    </div>
-    <!-----------------------compass2---------------------------------->
-    <div class='compassCont'>
-        <div  id='compass2' class="compass">
-            <div class="compArr" id="cm2">
-                <span class="compArrDeg" id="cmL2">0</span>
-            </div>
-            <div class='licznikKomp'>
-              <div id='strz2' class='strz'></div>
-              <div class='dot'></div>
-              <div class='liczPods' id='liczPods2'></div>
-                <span class='liczCyf labelek' id='wPSpeed' onclick="podwindclick()">Ładuje..</span>
-            </div>
-        </div><br/>
-        <span class="compassSpan"  id="domDirVal">Dominujący</span>
-    </div> <br/>
-</div><br/>
-    <!----------------------------ciśnienie-------------------------------------------->
-<div id='contL2'>
-    <div class="bigPanel" id='cisPanel'>
-        <h1 class='bigPanelH'>Ciśnienie</h1>
-        <div id='cisnienieCont'>
-            <div class='licznikCont'>
-                <div id='cisLicznik' class='licznik'>
-                    <div id='strz3' class='strz'></div>
-                    <div class='dot'></div>
-                    <div class='liczPods' id='liczPods3'></div>
-                    <span  class='liczCyf' id='pressval'>Ładuje..</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!---wilgotność-->
-    <div class="bigPanel" id='wilPanel'>
-        <h1 class='bigPanelH'>Wilgotność</h1>
-        <div id='wilgCont'>
-            <div class='licznikCont'>
-                <div class='licznik'>
-                    <div id='humPercWater'></div>
-                    <div id='strz4' class='strz'></div>
-                    <div class='dot'></div>
-                    <div class='liczPods' id='liczPods4'></div>
-                    <span  class='liczCyf' id='wilval'>Ładuje..</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-</div>
-    </div>
-<div id='panel1'>
-    <div id='allFore'>            
-        <div id='prognoza' class="ramka bigPanel">
-            <h3>Prognoza - trzydniowa</h3>
-            <div id='weatherUndergroundCont'>
-                   <span id='weather'>Ładuje...</span>
-                    <img name='forecast' id='foreIcon' />
-                   <span id='forecast'>Ładuje...</span>
-			         <a href="http://www.wunderground.com/personal-weather-station/dashboard?ID=IOPOLSKI10" target="_blank"><img id='wuIcon' src="img/wu.png"/></a>
-            <div class='arrowContainer'>
-                <div id='RRArrow' style='transform: scale(.7)rotate(180deg);' onclick="jschangefore(true)"><div class='RaportArrow'></div></div>
-                <div id='RLArrow' style='transform: scale(.7);' class="weatherArrowsL" onclick="jschangefore(false)"><div class='RaportArrow'></div></div>
-            </div>
-            </div>
-
-        </div>
-        <div id='fore36Cont'class="ramka bigPanel">
-            <h3>Prognoza - 36 godzinna</h3>
-
-           
-            <div class="fore36Heading">
-                <div class='arrowContainer'>
-                    <div id='RRArrow' style='transform: scale(.7)rotate(180deg);' onclick="refhourly(2)"><div class='RaportArrow'></div></div>
-                    <div id='RLArrow' style='transform: scale(.7);' class="weatherArrowsL" onclick="refhourly(1)"><div class='RaportArrow'></div></div>
-                </div>
-                <span id="bigforetime"></span>
-                <span id="bigforedate"></span>
-				 <img id='bigforeimg' name="bigforeimg"/>
-            </div>
-            <div class="fore36Data">
-                <span class="fore36Text" id="bigforetext"></span>
-                <span class="fore36Text">Temp: <span id="bigforetemp"></span></span>
-                <span class="fore36Text">Pkt. rosy: <span id="bigforedew"></span></span>
-                <span class="fore36Text">Wiatr: <span id="bigforewdir"></span>
-                <span id="bigforewspd"></span></span>
-                <span class="fore36Text">Deszcz: <span id="bigforerain"></span></span>
-                <span class="fore36Text">Śnieg: <span id="bigforesnow"></span></span>
-            </div>
-        </div>
-
-
-    </div>
-    
-<div class='flexPanel1'>
-<div id='raportDniaRamka' class="ramka bigPanel">
-    <div class='arrowContainer'>
-        <div id='RRArrow' onclick="jschangeday(true)"><div class='RaportArrow'></div></div>
-        <div id='RLArrow' onclick="jschangeday(false)"><div class='RaportArrow'></div></div>
-    </div>
-    <h3>Raport dnia - <span id="daydate">Ładuje...</span></h3>
-        <div id='raportDnia'>
-            <div id='raportDniaA'>
-                <div class='minMaxBG grey'>
-                    <div class='minMax '>
-                      <b>Słońce </b>
-                    </div>
-                    <div class='minMax '>
-                        <b>Brzask: </b><span id='sunBrz'>0:00</span><br/>
-                        <b>Wschód: </b><span id='sunWsch'>0:00</span><br/>
-                        <b>Zachód: </b><span id='sunZch'>0:00</span><br/>
-                        <b>Zmierzch: </b><span id='sunZm'>0:00</span><br/>
-                    </div>
-                </div>
-                <div class="grey">
-                    <b>Długość dnia</b> - <span id='dayLen'>0:00</span>
-                </div>
-                <div class='minMaxBG grey'>
-                    <div class='minMax '>
-                      <b>Księżyc </b>
-                    </div>
-                    <div class='minMax '>
-                        <b>Wschód: </b><span id='moonWsch'>0:00</span><br/>
-                        <b>Zachód: </b><span id='moonZch'>0:00</span><br/>
-                    </div>
-                </div>
-                <div class='minMaxBG grey'>
-                    <div class='minMax '>
-                        <b>Faza księżyca</b><br/> <span id='moonPhase'>Sprawdzanie</span>
-                    </div>
-                    <div class='minMax '>
-                        <div id='moonDiv'>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id='raportDniaA'>
-                <div class="grey">
-                    <b>Wiatr</b> <br/>
-                    <b>Podmuch</b> -<span id="windDayBlow"> 0 m/s</span><br/>
-                    <b>Dominujący kierunek</b> - <span id="windDayDom"> </span><br/>
-                </div>
-                <div class="grey">
-                    <b>Suma Opadów (mm)</b> -<span id="rainDay">0 mm</span><br/>
-                </div>
-                <div class='minMaxBG grey'>
-                    <div class='minMax'>
-                        <b>Temperatura </b>
-                    </div><div class='minMax '>
-                        <b>max:</b><span id='tempDayMax'>0</span><br/>
-                        <b>min:</b> <span id='tempDayMin'>0</span><br/>
-                    </div>
-                </div>
-                <div class='minMaxBG grey'>
-                    <div class='minMax '>
-                        <b>Wilgotność </b>
-                    </div><div class='minMax '>
-                        <b>max:</b><span id='wilDayMax'>0%</span><br/>
-                        <b>min:</b> <span id='wilDayMin'>0%</span><br/>
-                    </div>
-                </div>
-                <div class='minMaxBG grey'>
-                    <div class='minMax '>
-                      <b>Ciśnienie </b>
-                    </div><div class='minMax '>
-                        <b>max:</b><span id='cisDayMax'>0 hPa</span><br/>
-                        <b>min: </b> <span id='cisDayMin'>0 hPa</span><br/>
-                    </div>
-                </div>
-                </div>
-        </div>
-</div>
-    </div>
-    
-<div class='flexPanel1 minPanel3Order'>
-    <div id='minPanel3'>
-        <div id='buttonWykresCont' class="ramka bigPanel">
-            <img src="http://pogoda-skalagi.pl/img/sat.gif">     
-        </div>               
-        <div  class="ramka bigPanel" style="width:235px;">
-            <h3 id='biomet'>Biomet - <span id='biometOdczyt'>Ładuje..</span></h3>                
-        </div>
-    </div>
-</div>
-    </div>
-<!--all-->
-</div>
-    
-    <div id='wykresy'>
-        <div id="chart1"></div> 
-        <div class='chartMenu' style="margin-bottom: .7em">
-            <button class='chartButton'>
-                <div class='specs2'>
-                    <p>Miesiąc</p>
-                    <p>Ostatnie 10 dni</p>
-                    <p>Ostatnie 8h</p>
-                    <p>Następne 36h</p>
-                </div>
-                <div class='monthSpecs'>
-                    <div class='pora1'>
-                        <p onclick="mon_display=1; judgeMonth();">Styczeń</p>
-                        <p onclick="mon_display=2; judgeMonth();">Luty</p>
-                        <p onclick="mon_display=3; judgeMonth();">Marzec</p>   
-                    </div>
-                    <div class='pora2'>
-                        <p onclick="mon_display=4; judgeMonth();">Kwiecień</p>
-                        <p onclick="mon_display=5; judgeMonth();">Maj</p>
-                        <p onclick="mon_display=6; judgeMonth();">Czerwiec</p>   
-                    </div>
-                    <div class='pora3'>
-                        <p onclick="mon_display=7; judgeMonth();">Lipiec</p>
-                        <p onclick="mon_display=8; judgeMonth();">Sierpień</p>
-                        <p onclick="mon_display=9; judgeMonth();">Wrzesień</p>   
-                    </div>
-                    <div class='pora4'>
-                        <p onclick="mon_display=10; judgeMonth();">Październik</p>
-                        <p onclick="mon_display=11; judgeMonth();">Listopad</p>
-                        <p onclick="mon_display=12; judgeMonth();">Grudzień</p>   
-                    </div>
-                </div>
-                <div class='specs8h'>
-                    <span style="color: black;">Ostatnie 8h</span>
-                    <p onclick="setDailyTemp('chart1')">Temperatura</p>      
-                    <p onclick="setDailyOther('chart1')">Wilgotność, ciśnienie, opady</p>
-                    <p onclick="setDailyWind('chart1', true)">Wiatr uśredniony</p>
-                    <p onclick="setDailyWind('chart1', false)">Wiatr dokładny</p>
-                </div>
-                <div class='specs36h'>
-                    <span style="color: black;">Następne 36h</span>
-                    <p onclick="setForeTemp('chart1')">Temperatura</p>
-                    <p onclick="setForeWind('chart1')">Wiatr</p>
-                    <p onclick="setForePreci('chart1')">Opady</p>
-                </div>
-                <div class='weekSpecs'>
-                    <span style="color: black;">Ostatnie 10 dni</span>
-                    <p onclick="setSevenTemp('chart1')">Temperatura</p>      
-                    <p onclick="setSevenOther('chart1')">Wilgotność, ciśnienie, opady</p>
-                    <p onclick="setSevenWind('chart1', true)">Wiatr uśredniony</p>
-                    <p onclick="setSevenWind('chart1', false)">Wiatr dokładny</p>      
-                </div>    
-                <div class='monthSpecsMonth'>
-                    <p onclick="setMonthlyTemp('chart1')">Temperatura min/max</p>      
-                    <p onclick="setMonthlyHum('chart1')">Wilgotność Min/Max</p>
-                    <p onclick="setMonthlyPress('chart1')">Ciśnienie Min/Max</p>
-                    <p onclick="setMonthlyWind('chart1')">Wiatr</p>   
-                    <p onclick="setMonthlyRain('chart1')">Sumy opadów</p>     
-                </div>  
-                <div class='menuBack'></div>    
-            </button>  
-        </div>
-    </div>
-	
-	<div id="mapki">
-	<span id="mapCont">
-	<div class="but" onclick="setMap(0)">Temperatura</div>
-	<div class="but" onclick="setMap(1)">Odczucie gorąca</div>
-	<div class="but" onclick="setMap(2)">Odczucie chłodu</div>
-	<div class="but" onclick="setMap(3)">Punkt rosy</div>
-	<div class="but" onclick="setMap(4)">Wilgotność</div>
-	<div class="but" onclick="setMap(5)">Widzialność</div>
-	<div class="but" onclick="setMap(6)">Wiatr</div>
-	</span>
-	<span id="mapImageCont">
-	<img src='http://icons.wxug.com/data/640x480/2xi_pl_st.gif'/ width="100%" height="100%" name="obrazmapy">
-	</span>
-	</div>
-	
-	<div id="othPWS" style="display: none; margin-top: 2.5em;">
-			<div class="innePol" style="background: #eee;">
-				<div class="leftPol"><h3 style="margin:0">Budkowice</h3>Stacja PWS<div id="budlast"></div></div>
-				<div class="rightPol" id="budup" style="padding-top: .6em;"></div>
-				<div class="rightPol" id="buddown" style="padding-top: .8em;"></div>
-			</div>
-			
-			<div class="innePol" style="background: #bbb;">
-				<div class="leftPol"><h3 style="margin:0">Opole</h3>RCRE Stacja Davis<div id="oplast"></div></div>
-				<div class="rightPol" id="opup"  style="padding-top: .6em;"></div>
-				<div class="rightPol" id="opdown"  style="padding-top: .8em;"></div>
-			</div>
-
-			<div class="innePol" style="background: #bbb;">
-				<div class="leftPol"><h3 style="margin:0">Turawa</h3>Jezioro - NetAtmo<div id="turlast"></div></div>
-				<div class="rightPol" id="tur"  style="padding-top: .4em;"></div>
-				<div class="rightPol"  style="padding-top: .4em;">Stacje NetAtmo nie są wyposażone<br/>w czujniki wiatru i opadów</div>
-			</div>
-			
-			<div class="innePol" style="background: #eee;">
-				<div class="leftPol"><h3 style="margin:0">Skorogoszcz</h3>DK94 - NetAtmo<div id="skolast"></div></div>
-				<div class="rightPol" id="sko"  style="padding-top: .4em;"></div>
-				<div class="rightPol"  style="padding-top: .4em;">Stacje NetAtmo nie są wyposażone<br/>w czujniki wiatru i opadów</div>
-			</div>
-
-			<div class="innePol" style="background: #eee;">
-				<div class="leftPol"><h3 style="margin:0">Krapkowice</h3>Stacja PWS<div id="kralast"></div></div>
-				<div class="rightPol" id="kraup"  style="padding-top: .6em;"></div>
-				<div class="rightPol" id="kradown" style="padding-top: .8em;"></div>
-			</div>
-			
-			<div class="innePol" style="background: #bbb;">
-				<div class="leftPol"><h3 style="margin:0">Wrocław</h3>AirPort - lotnisko<div id="wrolast"></div></div>
-				<div class="rightPol" id="wroup"  style="padding-top: .6em;"></div>
-				<div class="rightPol" id="wrodown"  style="padding-top: .8em;"></div>
-			</div>
-
-			<div class="innePol" style="background: #bbb">
-				<div class="leftPol"><h3 style="margin:0">Katowice</h3>Pyrzowice - lotnisko<div id="katlast"></div></div>
-				<div class="rightPol" id="katup"  style="padding-top: .6em;"></div>
-				<div class="rightPol" id="katdown"  style="padding-top: .8em;"></div>
-			</div> 
-			
-			<div class="innePol" style="background: #eee;">
-				<div class="leftPol"><h3 style="margin:0">Kasprowy Wierch</h3>Stacja Davis<div id="kaslast"></div></div>
-				<div class="rightPol" id="kasup"  style="padding-top: .6em;"></div>
-				<div class="rightPol" id="kasdown"  style="padding-top: .8em;"></div>
-			</div>
-	</div>
-	
-	<div style="font-size: 1.3em; margin-top: 5em; margin-bottom: 11.5em; color: white; display: none;" id="montRecCont">
-		<div class="monHLRow">
-			<div style="width: 49%; font-size: 2em; background: #aaa; text-align: center; border-radius: .3em; border: .03em dotted;">
-				<span style="width: 20%; font-size: .5em; cursor: pointer;" onclick="setMonRec(false)">Poprzedni</span>&nbsp;&nbsp;&nbsp;&nbsp;
-				<span id="titMonth"></span>&nbsp;&nbsp;&nbsp;&nbsp;
-				<span style="width: 20%; font-size: .5em; cursor: pointer;" onclick="setMonRec(true)">Następny</span>
-			</div>
-		</div>
-		
-		<div class="monHLRow">
-			<div class="monH">
-			Najwyższa temperatura <span id="m_temph_v"></span> 
-			zanotowana <span id="m_temph_t"></span></div>
-			
-			<div class="monL">
-			Najniższa temperatura <span id="m_templ_v"></span> 
-			zanotowana <span id="m_templ_t"></span></div>
-		</div>
-
-		<div class="monHLRow">
-			<div class="monH">
-			Najwyższa odczuwalna <span id="m_apph_v"></span> 
-			zanotowana <span id="m_apph_t"></span></div>
-			
-			<div class="monL">
-			Najniższa odczuwalna <span id="m_appl_v"></span> 
-			zanotowana <span id="m_appl_t"></span></div>
-		</div>
-
-		<div class="monHLRow">
-			<div class="monH">
-			Najwyższe ciśnienie <span id="m_pressh_v"></span> 
-			zanotowane <span id="m_pressh_t"></span></div>
-			
-			<div class="monL">
-			Najniższe ciśnienie <span id="m_pressl_v"></span> 
-			zanotowane <span id="m_pressl_t"></span></div>
-		</div>
-		
-		<div class="monHLRow">
-			<div class="monH">
-			Najwyższa wilgotność <span id="m_humh_v"></span> 
-			zanotowana <span id="m_humh_t"></span></div>
-			
-			<div class="monL">
-			Najniższa wilgotność <span id="m_huml_v"></span> 
-			zanotowana <span id="m_huml_t"></span></div>
-		</div>
-		
-		<div class="monHLRow">
-			<div class="monL" style="background: #aaa;">
-			Najmocniejszy podmuch wiatru <span id="m_wind_v"></span> 
-			<span id="m_wind_t"></span></div>
-			
-			<div class="monL" style="background: blue;">
-			Najmocniejszy opad deszczu <span id="m_rain_v"></span> 
-			<span id="m_rain_t"></span></div>
-		    </div>
-		</div>
-	</div>
-    <!--         
-<footer><hr/>
-    SP Skałągi &copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina<hr/> 
-    <div style="font-size: .83em; color: black;">Wspierane przeglądarki: <br/>
-    Chrome i Firefox w najnowszych wersjach.<br/>Wkrótce też najnowszy IE.
-</footer>
--->
-    
-<!--
-            <div id='smileyFaceCont' class="ramka bigPanel">
-                <div id='smileyFace'>
-                     <div id='smileyFaceDarken'></div>
-                     <div id='smileyFaceLighten'></div>
-                     <div id='eyesCont'>
-                         <div class='eye'></div>
-                         <div class='eye eye1'></div>
-                    </div>
-                    <div id='mouth'></div>
-                    <span id='biomet'>Biomet</span>
-                    <span id='biometOdczyt'>Ładuje..</span>
-                </div>
-        </div>
--->
-
-<div id='hint'>Zmień jednostki</div>
-
-<script type="application/javascript" src="js/script.js"></script>
-<script type="text/javascript" src="js/navi_chart.js"></script>
-</body>
-</html>
-
+doctype html
+html
+  head
+    title Pogoda Skałągi
+    meta(charset='utf-8')
+    link(rel='icon', href='img/cloud.ico', type='image/x-icon')
+    link(type='text/css', rel='stylesheet', href='css/style.css')
+    meta(name='description', content='Stacja pogodowa - meteo Skałągi w gminie Wołczyn, powiat Kluczborski, woj. opolskie. Aktualna pogoda, aktualizacja co 5min.')
+    meta(name='keywords', content='stacja, meteo, pogodowa, pogoda, skałągi, temperatura, wiatr, kluczbork, wołczyn, prognoza, wilgotność, meteorologiczna, szkoła, podstawowa, rcre, opolskie')
+  body
+    // HEADER----------------------------------
+    #headerCont.blockShadow
+      header
+        #logo(title='Kliknij aby zresetować połączenie')
+          #logoSunBox
+            ul#logoSun
+              li
+              li
+              li
+          h1 Pogoda Skałągi
+          #info
+            h3
+              | Ostatnia aktualiazacja: 
+              span#last Łącze..
+          img(src='img/all.png', style='position: absolute; left: 26em; top: -3.4em; opacity: .8;', width='420px', height='330px')
+      .menu
+        #menu-buttons
+          a
+            button.buttonWykres.buttonWykresActive(onclick='setTab(1);') Pogoda Skałągi
+          a
+            button.buttonWykres(onclick='setTab(2);') Wykresy
+          a
+            button.buttonWykres(onclick='setTab(3);') Raporty miesięczne
+          a
+            button.buttonWykres(onclick='setTab(4);') Mapy
+          a
+            button.buttonWykres(onclick='setTab(5);') Inne stacje
+        #stringi
+    #all
+      #bottomPanel
+        #panel2.panel
+          // ----------------------WaterPanel--------------------------------
+          #waterPanel.bigPanel
+            h1.bigPanelH Opady
+            // ---------------------miarka1---------------------------------
+            .waterTogether
+              .f
+                .fluid
+                  span#aktopad
+                    | 0
+                    br
+                    | mm/h
+                  .waterCont
+                    #water12.water
+                  #miarka12.miarka1
+              p Aktualne
+            // miarka2
+            .waterTogether
+              #f2.f
+                .fluid
+                  span#opadd
+                    | 0
+                    br
+                    | mm
+                  .waterCont
+                    #water2.water
+                  #miarka2.miarka1
+              p 24h
+        // ----------------------Temperatura----------------------------------
+        #tempPanel.bigPanel
+          h1.bigPanelH Temperatura
+          h3
+            span#tentemp Tendencja
+          br
+          // --------------temp1----------------
+          .termometr
+            .tempBody
+              .termMeter
+                #aTemp.termC
+                  #aTempvalM.tempMeter
+                    span#atemval ..
+              .termMeter2
+              #tempMiarka1.tempMiarka
+            p Aktualna
+          // ---------------temp2---------------
+          .termometr
+            .tempBody
+              .termMeter
+                #oTemp.termC
+                  #oTempvalM.tempMeter
+                    span#otemval ..
+              .termMeter2
+              #tempMiarka2.tempMiarka
+            p Odczuwalna
+          // --------------temp3----------------
+          .termometr
+            .tempBody
+              .termMeter
+                #srTemp.termC
+                  #srTempvalM.tempMeter
+                    span#srtemval ..
+              .termMeter2
+              #tempMiarka3.tempMiarka
+            p Średnia
+          // coTera----------------------------------
+          #trueDew.bigHeader
+            h4.bigPanelH
+              b Punkt rosy: 
+              span#dewDeg 0
+        // Wiatr----------------------------------
+        #contL(style='border: 0; margin-top: 2em;')
+          #windPanel.bigPanel
+            h1#windBfw.bigPanelH Wiatr
+            // compass1--------------------------------
+            .compassCont
+              #compass1.compass
+                #cm1.compArr
+                  span#cmL1.compArrDeg 0
+                .licznikKomp
+                  #strz1.strz
+                  .dot
+                  #liczPods1.liczPods
+                  span#wSpeed.liczCyf.labelek(onclick='aktwindclick()') Ładuje..
+              br
+              span#aktDirVal.compassSpan Aktualny
+            // compass2--------------------------------
+            .compassCont
+              #compass2.compass
+                #cm2.compArr
+                  span#cmL2.compArrDeg 0
+                .licznikKomp
+                  #strz2.strz
+                  .dot
+                  #liczPods2.liczPods
+                  span#wPSpeed.liczCyf.labelek(onclick='podwindclick()') Ładuje..
+              br
+              span#domDirVal.compassSpan Dominujący
+            br
+          br
+          // ciśnienie------------------------------------------
+          #contL2
+            #cisPanel.bigPanel
+              h1.bigPanelH Ciśnienie
+              #cisnienieCont
+                .licznikCont
+                  #cisLicznik.licznik
+                    #strz3.strz
+                    .dot
+                    #liczPods3.liczPods
+                    span#pressval.liczCyf Ładuje..
+            // wilgotność
+            #wilPanel.bigPanel
+              h1.bigPanelH Wilgotność
+              #wilgCont
+                .licznikCont
+                  .licznik
+                    #humPercWater
+                    #strz4.strz
+                    .dot
+                    #liczPods4.liczPods
+                    span#wilval.liczCyf Ładuje..
+      #panel1
+        #allFore
+          #prognoza.ramka.bigPanel
+            h3 Prognoza - trzydniowa
+            #weatherUndergroundCont
+              span#weather Ładuje...
+              img#foreIcon(name='forecast')
+              span#forecast Ładuje...
+              a(href='http://www.wunderground.com/personal-weather-station/dashboard?ID=IOPOLSKI10', target='_blank')
+                img#wuIcon(src='img/wu.png')
+              .arrowContainer
+                #RRArrow(style='transform: scale(.7)rotate(180deg);', onclick='jschangefore(true)')
+                  .RaportArrow
+                #RLArrow.weatherArrowsL(style='transform: scale(.7);', onclick='jschangefore(false)')
+                  .RaportArrow
+          #fore36Cont.ramka.bigPanel
+            h3 Prognoza - 36 godzinna
+            .fore36Heading
+              .arrowContainer
+                #RRArrow(style='transform: scale(.7)rotate(180deg);', onclick='refhourly(2)')
+                  .RaportArrow
+                #RLArrow.weatherArrowsL(style='transform: scale(.7);', onclick='refhourly(1)')
+                  .RaportArrow
+              span#bigforetime
+              span#bigforedate
+              img#bigforeimg(name='bigforeimg')
+            .fore36Data
+              span#bigforetext.fore36Text
+              span.fore36Text
+                | Temp: 
+                span#bigforetemp
+              span.fore36Text
+                | Pkt. rosy: 
+                span#bigforedew
+              span.fore36Text
+                | Wiatr: 
+                span#bigforewdir
+                span#bigforewspd
+              span.fore36Text
+                | Deszcz: 
+                span#bigforerain
+              span.fore36Text
+                | Śnieg: 
+                span#bigforesnow
+        .flexPanel1
+          #raportDniaRamka.ramka.bigPanel
+            .arrowContainer
+              #RRArrow(onclick='jschangeday(true)')
+                .RaportArrow
+              #RLArrow(onclick='jschangeday(false)')
+                .RaportArrow
+            h3
+              | Raport dnia - 
+              span#daydate Ładuje...
+            #raportDnia
+              #raportDniaA
+                .minMaxBG.grey
+                  .minMax
+                    b Słońce 
+                  .minMax
+                    b Brzask: 
+                    span#sunBrz 0:00
+                    br
+                    b Wschód: 
+                    span#sunWsch 0:00
+                    br
+                    b Zachód: 
+                    span#sunZch 0:00
+                    br
+                    b Zmierzch: 
+                    span#sunZm 0:00
+                    br
+                .grey
+                  b Długość dnia
+                  |  - 
+                  span#dayLen 0:00
+                .minMaxBG.grey
+                  .minMax
+                    b Księżyc 
+                  .minMax
+                    b Wschód: 
+                    span#moonWsch 0:00
+                    br
+                    b Zachód: 
+                    span#moonZch 0:00
+                    br
+                .minMaxBG.grey
+                  .minMax
+                    b Faza księżyca
+                    br
+                    span#moonPhase Sprawdzanie
+                  .minMax
+                    #moonDiv
+              #raportDniaA
+                .grey
+                  b Wiatr
+                  br
+                  b Podmuch
+                  |  -
+                  span#windDayBlow  0 m/s
+                  br
+                  b Dominujący kierunek
+                  |  - 
+                  span#windDayDom  
+                  br
+                .grey
+                  b Suma Opadów (mm)
+                  |  -
+                  span#rainDay 0 mm
+                  br
+                .minMaxBG.grey
+                  .minMax
+                    b Temperatura 
+                  .minMax
+                    b max:
+                    span#tempDayMax 0
+                    br
+                    b min:
+                    span#tempDayMin 0
+                    br
+                .minMaxBG.grey
+                  .minMax
+                    b Wilgotność 
+                  .minMax
+                    b max:
+                    span#wilDayMax 0%
+                    br
+                    b min:
+                    span#wilDayMin 0%
+                    br
+                .minMaxBG.grey
+                  .minMax
+                    b Ciśnienie 
+                  .minMax
+                    b max:
+                    span#cisDayMax 0 hPa
+                    br
+                    b min: 
+                    span#cisDayMin 0 hPa
+                    br
+        .flexPanel1.minPanel3Order
+          #minPanel3
+            #buttonWykresCont.ramka.bigPanel
+              img(src='http://pogoda-skalagi.pl/img/sat.gif')
+            .ramka.bigPanel(style='width:235px;')
+              h3#biomet
+                | Biomet - 
+                span#biometOdczyt Ładuje..
+      // all
+    #wykresy
+      #chart1
+      .chartMenu(style='margin-bottom: .7em')
+        button.chartButton
+          .specs2
+            p Miesiąc
+            p Ostatnie 10 dni
+            p Ostatnie 8h
+            p Następne 36h
+          .monthSpecs
+            .pora1
+              p(onclick='mon_display=1; judgeMonth();') Styczeń
+              p(onclick='mon_display=2; judgeMonth();') Luty
+              p(onclick='mon_display=3; judgeMonth();') Marzec
+            .pora2
+              p(onclick='mon_display=4; judgeMonth();') Kwiecień
+              p(onclick='mon_display=5; judgeMonth();') Maj
+              p(onclick='mon_display=6; judgeMonth();') Czerwiec
+            .pora3
+              p(onclick='mon_display=7; judgeMonth();') Lipiec
+              p(onclick='mon_display=8; judgeMonth();') Sierpień
+              p(onclick='mon_display=9; judgeMonth();') Wrzesień
+            .pora4
+              p(onclick='mon_display=10; judgeMonth();') Październik
+              p(onclick='mon_display=11; judgeMonth();') Listopad
+              p(onclick='mon_display=12; judgeMonth();') Grudzień
+          .specs8h
+            span(style='color: black;') Ostatnie 8h
+            p(onclick="setDailyTemp('chart1')") Temperatura
+            p(onclick="setDailyOther('chart1')") Wilgotność, ciśnienie, opady
+            p(onclick="setDailyWind('chart1', true)") Wiatr uśredniony
+            p(onclick="setDailyWind('chart1', false)") Wiatr dokładny
+          .specs36h
+            span(style='color: black;') Następne 36h
+            p(onclick="setForeTemp('chart1')") Temperatura
+            p(onclick="setForeWind('chart1')") Wiatr
+            p(onclick="setForePreci('chart1')") Opady
+          .weekSpecs
+            span(style='color: black;') Ostatnie 10 dni
+            p(onclick="setSevenTemp('chart1')") Temperatura
+            p(onclick="setSevenOther('chart1')") Wilgotność, ciśnienie, opady
+            p(onclick="setSevenWind('chart1', true)") Wiatr uśredniony
+            p(onclick="setSevenWind('chart1', false)") Wiatr dokładny
+          .monthSpecsMonth
+            p(onclick="setMonthlyTemp('chart1')") Temperatura min/max
+            p(onclick="setMonthlyHum('chart1')") Wilgotność Min/Max
+            p(onclick="setMonthlyPress('chart1')") Ciśnienie Min/Max
+            p(onclick="setMonthlyWind('chart1')") Wiatr
+            p(onclick="setMonthlyRain('chart1')") Sumy opadów
+          .menuBack
+    #mapki
+      span#mapCont
+        .but(onclick='setMap(0)') Temperatura
+        .but(onclick='setMap(1)') Odczucie gorąca
+        .but(onclick='setMap(2)') Odczucie chłodu
+        .but(onclick='setMap(3)') Punkt rosy
+        .but(onclick='setMap(4)') Wilgotność
+        .but(onclick='setMap(5)') Widzialność
+        .but(onclick='setMap(6)') Wiatr
+      span#mapImageCont
+        img(src='http://icons.wxug.com/data/640x480/2xi_pl_st.gif', width='100%', height='100%', name='obrazmapy')
+    #othPWS(style='display: none; margin-top: 2.5em;')
+      .innePol(style='background: #eee;')
+        .leftPol
+          h3(style='margin:0') Budkowice
+          | Stacja PWS
+          #budlast
+        #budup.rightPol(style='padding-top: .6em;')
+        #buddown.rightPol(style='padding-top: .8em;')
+      .innePol(style='background: #bbb;')
+        .leftPol
+          h3(style='margin:0') Opole
+          | RCRE Stacja Davis
+          #oplast
+        #opup.rightPol(style='padding-top: .6em;')
+        #opdown.rightPol(style='padding-top: .8em;')
+      .innePol(style='background: #bbb;')
+        .leftPol
+          h3(style='margin:0') Turawa
+          | Jezioro - NetAtmo
+          #turlast
+        #tur.rightPol(style='padding-top: .4em;')
+        .rightPol(style='padding-top: .4em;')
+          | Stacje NetAtmo nie są wyposażone
+          br
+          | w czujniki wiatru i opadów
+      .innePol(style='background: #eee;')
+        .leftPol
+          h3(style='margin:0') Skorogoszcz
+          | DK94 - NetAtmo
+          #skolast
+        #sko.rightPol(style='padding-top: .4em;')
+        .rightPol(style='padding-top: .4em;')
+          | Stacje NetAtmo nie są wyposażone
+          br
+          | w czujniki wiatru i opadów
+      .innePol(style='background: #eee;')
+        .leftPol
+          h3(style='margin:0') Krapkowice
+          | Stacja PWS
+          #kralast
+        #kraup.rightPol(style='padding-top: .6em;')
+        #kradown.rightPol(style='padding-top: .8em;')
+      .innePol(style='background: #bbb;')
+        .leftPol
+          h3(style='margin:0') Wrocław
+          | AirPort - lotnisko
+          #wrolast
+        #wroup.rightPol(style='padding-top: .6em;')
+        #wrodown.rightPol(style='padding-top: .8em;')
+      .innePol(style='background: #bbb')
+        .leftPol
+          h3(style='margin:0') Katowice
+          | Pyrzowice - lotnisko
+          #katlast
+        #katup.rightPol(style='padding-top: .6em;')
+        #katdown.rightPol(style='padding-top: .8em;')
+      .innePol(style='background: #eee;')
+        .leftPol
+          h3(style='margin:0') Kasprowy Wierch
+          | Stacja Davis
+          #kaslast
+        #kasup.rightPol(style='padding-top: .6em;')
+        #kasdown.rightPol(style='padding-top: .8em;')
+    #montRecCont(style='font-size: 1.3em; margin-top: 5em; margin-bottom: 11.5em; color: white; display: none;')
+      .monHLRow
+        div(style='width: 49%; font-size: 2em; background: #aaa; text-align: center; border-radius: .3em; border: .03em dotted;')
+          span(style='width: 20%; font-size: .5em; cursor: pointer;', onclick='setMonRec(false)') Poprzedni
+          span#titMonth
+          span(style='width: 20%; font-size: .5em; cursor: pointer;', onclick='setMonRec(true)') Następny
+      .monHLRow
+        .monH
+          | Najwyższa temperatura 
+          span#m_temph_v
+          |             zanotowana 
+          span#m_temph_t
+        .monL
+          | Najniższa temperatura 
+          span#m_templ_v
+          |             zanotowana 
+          span#m_templ_t
+      .monHLRow
+        .monH
+          | Najwyższa odczuwalna 
+          span#m_apph_v
+          |             zanotowana 
+          span#m_apph_t
+        .monL
+          | Najniższa odczuwalna 
+          span#m_appl_v
+          |             zanotowana 
+          span#m_appl_t
+      .monHLRow
+        .monH
+          | Najwyższe ciśnienie 
+          span#m_pressh_v
+          |             zanotowane 
+          span#m_pressh_t
+        .monL
+          | Najniższe ciśnienie 
+          span#m_pressl_v
+          |             zanotowane 
+          span#m_pressl_t
+      .monHLRow
+        .monH
+          | Najwyższa wilgotność 
+          span#m_humh_v
+          |             zanotowana 
+          span#m_humh_t
+        .monL
+          | Najniższa wilgotność 
+          span#m_huml_v
+          |             zanotowana 
+          span#m_huml_t
+      .monHLRow
+        .monL(style='background: #aaa;')
+          | Najmocniejszy podmuch wiatru 
+          span#m_wind_v
+          span#m_wind_t
+        .monL(style='background: blue;')
+          | Najmocniejszy opad deszczu 
+          span#m_rain_v
+          span#m_rain_t
+    //
+      <footer><hr/>
+      SP Skałągi &copy;opyright 2015<br/> Frontend by Damian Martyniak<br/> Backend by Marcin Łacina<hr/>
+      <div style="font-size: .83em; color: black;">Wspierane przeglądarki: <br/>
+      Chrome i Firefox w najnowszych wersjach.<br/>Wkrótce też najnowszy IE.
+      </footer>
+    //
+      <div id='smileyFaceCont' class="ramka bigPanel">
+      <div id='smileyFace'>
+      <div id='smileyFaceDarken'></div>
+      <div id='smileyFaceLighten'></div>
+      <div id='eyesCont'>
+      <div class='eye'></div>
+      <div class='eye eye1'></div>
+      </div>
+      <div id='mouth'></div>
+      <span id='biomet'>Biomet</span>
+      <span id='biometOdczyt'>Ładuje..</span>
+      </div>
+      </div>
+    #hint Zmień jednostki
+    script(type='application/javascript', src='js/jquery-2.1.3.js')
+    script(src='js/highcharts.js')
+    script(src='js/exporting.js')
+    script(src='js/highcharts-more.js')
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-58565456-1', 'auto');
+      ga('send', 'pageview');
+    script(type='application/javascript', src='js/script.js')
+    script(type='text/javascript', src='js/navi_chart.js')
