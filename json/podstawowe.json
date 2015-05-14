@@ -1,6 +1,14 @@
 {
 	"datetime": "2015-05-11 20:55:00",
 	
+	"temperature": {
+		"current": 16.6,
+		"real": 16.6,
+		"dewPoint": 0,
+		"trend": -5.8,
+		"avg": 15
+	},
+	
 	"humidity": 40,
 	
 	"pressure": {
@@ -11,14 +19,6 @@
 	"rain": {
 		"current": 0,
 		"sum": 0
-	},
-	
-	"temperature": {
-		"current": 16.6,
-		"real": 16.6,
-		"dewPoint": 0,
-		"trend": -5.8,
-		"avg": 15
 	},
 	
 	"wind": {
