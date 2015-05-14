@@ -37,6 +37,8 @@ var podstawowe = [
 }());
 
 function changeText(id, val){
-	console.log(id,val);
-	document.getElementById(id).innerHTML = val.toString();
+	console.log("changeText",id+': '+val);
+	var elem = document.getElementById(id);
+	if(elem)
+		elem.innerHTML= val.toString();
 }
