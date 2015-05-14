@@ -1,7 +1,7 @@
 # Pogoda
 Strona stacji pogodowej w Skałągach
 
-# Serwera
+# Serwer
 PogodaV2 posiada drobny serwer, który pozwala na wczytanie json'a.
 
 Serwer jest napisany pod nodejs, więc w pierwszej kolejności musisz miec go zainstalowanego.
