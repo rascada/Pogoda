@@ -1,6 +1,9 @@
 @import url("http://fonts.googleapis.com/css?family=Rajdhani:400,600&amp;subset=latin,latin-ext");
 
 sunWidth = 4em
+thermometerColor = #f42
+borderRound()
+	border-radius .25em
 
 animation()
 	animation arguments
@@ -8,7 +11,6 @@ animation()
 	-moz-animation arguments
 	-o-animation arguments
 
-*
 	box-sizing border-box
 	
 .blockShadow
@@ -16,9 +18,9 @@ animation()
 	
 body
 	margin 1em 1.5em
-	font-family 'Rajdhani', bold, sans-serif
 	overflow-x hidden
 	background #539DC2
+	font-family 'Rajdhani', bold, sans-serif
 	header
 		display flex
 		overflow hidden
@@ -40,8 +42,8 @@ body
 				height 100%
 				opacity 0.6
 				position absolute
-				border-radius .25em
 				background #fad335
+				borderRound()
 				&:nth-child(1)
 					transform rotate(60deg)
 				&:nth-child(2)
@@ -59,3 +61,84 @@ body
 				margin 0
 				color #eee
 				font-size 3.5em
+
+#dashboard
+	display flex
+	margin 0 .5em	
+	#tempSect
+		z-index -5
+		color #222
+		padding .5em
+		background #eee
+		overflow hidden
+		display flex
+		flex-flow column
+		align-items center
+		h1
+			margin 0
+		.thermometer
+			width 4.5em
+			height 24em
+			display flex
+			padding .5em
+			padding-top 2em
+			background #fff
+			border-radius 4em
+			margin-bottom 6em
+			position relative
+			justify-content center
+			.bottom
+				top 90%
+				width 35%
+				height 32%
+				content ''
+				background #fff
+				position absolute	
+				border-radius 2em
+				overflow hidden
+				left 50% - (@width/2)
+			&:after				
+				content ''
+				position absolute
+				top -1.9%
+				left 56%
+				width 110%
+				height 135%
+				z-index 3
+				transform skew(25deg) rotate(25deg)
+				background rgba(0,0,0,.1)
+			.sensor
+				z-index 2
+				width 15%
+				height 107.5%
+				borderRound()
+				background thermometerColor
+				&:before
+					top 102%
+					width 20%
+					height 18%
+					content ''
+					background thermometerColor
+					position absolute	
+					border-radius 2em
+					left 49.5% - (@width/2)	
+			.measure
+				position absolute
+				height 85%
+				width 20%
+				z-index 2
+				left 0
+				display flex
+				flex-flow column				
+				.line
+					background #333
+					flex-grow 1
+					margin-top .5em
+					width 100%
+				.boldLine
+					background #333
+					flex-grow 1
+					margin-top .5em
+					width 150%
+					
+					

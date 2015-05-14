@@ -1,0 +1,19 @@
+#tempSect.blockShadow
+	h1 Temperatura
+	p Dziś temperatura wynosi: 
+		span#temperatureAvg
+		°C
+	//#cos
+		span#temperatureCurrent
+		span#temperatureReal 
+		span#temperatureDewPoint
+		span#temperatureTrend
+
+	.thermometer
+		.measure
+			-for(var i=30;i--;)
+				-if(i % 5 == 0)
+					.boldLine
+				.line
+		.sensor
+		.bottom
