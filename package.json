@@ -19,6 +19,7 @@
   "homepage": "pogoda-skalagi.pl",
   "dependencies": {
     "bower": "^1.4.1",
-    "express": "^4.12.3"
+    "express": "^4.12.3",
+    "morgan": "^1.5.3"
   }
 }
