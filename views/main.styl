@@ -1,9 +1,15 @@
 @import url("http://fonts.googleapis.com/css?family=Rajdhani:400,600&amp;subset=latin,latin-ext");
 
 sunWidth = 4em
+elemsHeight = 24em
 thermometerColor = #f42
 borderRound()
 	border-radius .25em
+flexC()
+	display flex
+	justify-content center
+	align-items center
+
 
 animation()
 	animation arguments
@@ -14,6 +20,8 @@ animation()
 	box-sizing border-box
 	
 .blockShadow
+	box-shadow 0 .2em .3em .2em rgba(0,0,0,.1)
+blockShadow()
 	box-shadow 0 .2em .3em .2em rgba(0,0,0,.1)
 	
 body
@@ -74,10 +82,10 @@ body
 	align-items center
 	h1
 		margin 0
-			
+		
 .thermometer
 			width 4.5em
-			height 24em
+			height elemsHeight
 			display flex
 			padding .5em
 			padding-top 2em
@@ -162,18 +170,29 @@ body
 							left 25%
 							z-index -1
 							position absolute
+.vial
+	flexC()
+	blockShadow()
+	height elemsHeight
+	width 6em
+	background #fff
+	border-radius 0 0 5em 5em
+	.vialVal
+		background #09f
+		border-radius 0 0 5em 5em
+		width 90%
+		height 95%
+		@extend .blockShadow
 				
 .compassSect
 	.compass
+		flexC()
+		blockShadow()
 		width 13em
 		height 13em
 		background #ddd
 		position relative
 		border-radius 50%
-		display flex
-		justify-content center
-		align-items center
-		box-shadow 0 .2em .3em .2em rgba(0,0,0,.1)
 		.arrow
 			@extend .compassSect .compass
 			width 80%
