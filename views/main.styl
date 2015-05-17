@@ -208,7 +208,20 @@ body
 	#tempSect
 		@extend .sect, .blockShadow
 	#windSect
-	  #currentCompass
-		@extend .compassSect
-	  #gustCompass
-		@extend .compassSect
+		#currentCompass
+			@extend .compassSect
+		#gustCompass
+			@extend .compassSect
+	#rainSect
+		@extend .sect	
+		justify-content space-around
+		background none
+	#forecastSect
+		@extend .sect
+		background none 
+		justify-content space-around
+		#forecast3days
+			@extend .sect, .blockShadow
+		#forecast36hours
+			@extend .sect, .blockShadow
+			
