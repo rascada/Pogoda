@@ -61,21 +61,31 @@ body
 				margin 0
 				color #eee
 				font-size 3.5em
+				
+.sect
+	z-index -5
+	color #222
+	padding .5em
+	background #eee
+	overflow hidden
+	display flex
+	flex-flow column
+	align-items center
+	h1
+		margin 0
+.compassSect
+	.compass
+		width 13em
+		height 13em
+		background #ddd
+		border-radius 50%
+
 
 #dashboard
 	display flex
 	margin .5em	
+	justify-content space-around
 	#tempSect
-		z-index -5
-		color #222
-		padding .5em
-		background #eee
-		overflow hidden
-		display flex
-		flex-flow column
-		align-items center
-		h1
-			margin 0
 		.thermometer
 			width 4.5em
 			height 24em
@@ -140,7 +150,7 @@ body
 				flex-flow column				
 				.line
 					position relative
-					background #444
+					background #444	
 					flex-grow 1
 					margin-top .5em
 					width 90%
@@ -163,5 +173,4 @@ body
 							left 25%
 							z-index -1
 							position absolute
-					
-					
+							
