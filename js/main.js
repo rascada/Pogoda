@@ -36,9 +36,22 @@ var podstawowe = [
 	});
 }());
 
+//Gdy do changeText podamy tylko jeden argument to zwróci nam złapany element po podanym id.
+
 function changeText(id, val){
-	console.log("changeText",id+': '+val);
 	var elem = document.getElementById(id);
-	if(elem)
-		elem.innerHTML= val.toString();
+	if(arguments.length == 1){
+		console.log(elem)
+		return elem;
+	}
+	else{
+		console.log("changeText",id+': '+val);
+		if(elem)
+			elem.innerHTML= val.toString();
+		switch(id){
+		case 'temperatureCurrent':
+			changeText(podstawowe[1]+'Sensor').style.height = (val*2.9+13)+'%';
+			break;
+		}
+	}
 }
