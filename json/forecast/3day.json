@@ -1,0 +1,396 @@
+
+{
+  "response": {
+  "version":"0.1",
+  "termsofService":"http://www.wunderground.com/weather/api/d/terms.html",
+  "features": {
+  "forecast": 1
+  }
+	}
+		,
+	"forecast":{
+		"txt_forecast": {
+		"date":"21:32 CEST",
+		"forecastday": [
+		{
+		"period":0,
+		"icon":"partlycloudy",
+		"icon_url":"http://icons.wxug.com/i/c/k/partlycloudy.gif",
+		"title":"Niedziela",
+		"fcttext":"Częściowe zachmurzenie. Min. temp. 41 °F.",
+		"fcttext_metric":"Częściowe zachmurzenie. Min. temp. 5 °C.",
+		"pop":"0"
+		}
+		,
+		{
+		"period":1,
+		"icon":"nt_partlycloudy",
+		"icon_url":"http://icons.wxug.com/i/c/k/nt_partlycloudy.gif",
+		"title":"Niedziela wieczór i noc",
+		"fcttext":"Częściowe zachmurzenie. Min. temp. 41 °F. Wiatr pd.-zach. i zmienny.",
+		"fcttext_metric":"Częściowe zachmurzenie. Min. temp. 5 °C. Wiatr pd.-zach. i zmienny.",
+		"pop":"0"
+		}
+		,
+		{
+		"period":2,
+		"icon":"clear",
+		"icon_url":"http://icons.wxug.com/i/c/k/clear.gif",
+		"title":"Poniedziałek",
+		"fcttext":"Przeważnie bezchmurnie. Maks. temp. 71 °F. Wiatr pd.-zach. z prędkością 5 do 10 mph.",
+		"fcttext_metric":"Przeważnie bezchmurnie. Maks. temp. 21 °C. Wiatr pd.-zach. z prędkością 10 do 15 km/h.",
+		"pop":"0"
+		}
+		,
+		{
+		"period":3,
+		"icon":"nt_partlycloudy",
+		"icon_url":"http://icons.wxug.com/i/c/k/nt_partlycloudy.gif",
+		"title":"Poniedziałek wieczór i noc",
+		"fcttext":"Częściowe zachmurzenie. Min. temp. 54 °F. Wiatr pd.pd.-wsch. z prędkością 5 do 10 mph.",
+		"fcttext_metric":"Częściowe zachmurzenie. Min. temp. 12 °C. Wiatr pd.pd.-wsch. z prędkością 10 do 15 km/h.",
+		"pop":"10"
+		}
+		,
+		{
+		"period":4,
+		"icon":"rain",
+		"icon_url":"http://icons.wxug.com/i/c/k/rain.gif",
+		"title":"Wtorek",
+		"fcttext":"Opady deszczu rozwijające się po południu. Maks. temp. 81 °F. Wiatr pd.pd.-zach. z prędkością 5 do 10 mph. Możliwe op. deszczu 70%.",
+		"fcttext_metric":"Opady deszczu rozwijające się po południu. Maks. temp. 27 °C. Wiatr pd.pd.-zach. z prędkością 10 do 15 km/h. Możliwe op. deszczu 70%.",
+		"pop":"70"
+		}
+		,
+		{
+		"period":5,
+		"icon":"nt_chancerain",
+		"icon_url":"http://icons.wxug.com/i/c/k/nt_chancerain.gif",
+		"title":"Wtorek wieczór i noc",
+		"fcttext":"Rano przelotne opady. Min. temp. 52 °F. Wiatr pn.-zach. z prędkością 5 do 10 mph. Możliwe op. deszczu 50%.",
+		"fcttext_metric":"Rano przelotne opady. Min. temp. 11 °C. Wiatr pn.-zach. z prędkością 10 do 15 km/h. Możliwe op. deszczu 50%.",
+		"pop":"50"
+		}
+		,
+		{
+		"period":6,
+		"icon":"chancerain",
+		"icon_url":"http://icons.wxug.com/i/c/k/chancerain.gif",
+		"title":"Środa",
+		"fcttext":"Przelotne opady. Maks. temp. 65 °F. Wiatr pn.-wsch. z prędkością 5 do 10 mph. Możliwe op. deszczu 60%.",
+		"fcttext_metric":"Przelotne opady. Maks. temp. 18 °C. Wiatr pn.-wsch. z prędkością 10 do 15 km/h. Możliwe op. deszczu 60%.",
+		"pop":"60"
+		}
+		,
+		{
+		"period":7,
+		"icon":"nt_rain",
+		"icon_url":"http://icons.wxug.com/i/c/k/nt_rain.gif",
+		"title":"Środa wieczór i noc",
+		"fcttext":"Deszcz. Min. temp. 47 °F. Wiatr pn.-zach. z prędkością 5 do 10 mph. Możliwe op. deszczu 90%. Opady deszczu około ~ 0.25 in.",
+		"fcttext_metric":"Deszcz. Min. temp. 9 °C. Wiatr pn.-zach. z prędkością 10 do 15 km/h. Możliwe op. deszczu 90%. Opady deszczu około ~ 6 mm.",
+		"pop":"90"
+		}
+		]
+		},
+		"simpleforecast": {
+		"forecastday": [
+		{"date":{
+	"epoch":"1431882000",
+	"pretty":"19:00 CEST dnia 17-maj-2015",
+	"day":17,
+	"month":5,
+	"year":2015,
+	"yday":136,
+	"hour":19,
+	"min":"00",
+	"sec":0,
+	"isdst":"1",
+	"monthname":"maj",
+	"monthname_short":"maj",
+	"weekday_short":"N.",
+	"weekday":"Niedziela",
+	"ampm":"PM",
+	"tz_short":"CEST",
+	"tz_long":"Europe/Warsaw"
+},
+		"period":1,
+		"high": {
+		"fahrenheit":"64",
+		"celsius":"17"
+		},
+		"low": {
+		"fahrenheit":"41",
+		"celsius":"5"
+		},
+		"conditions":"niewielkie zachmurzenie",
+		"icon":"partlycloudy",
+		"icon_url":"http://icons.wxug.com/i/c/k/partlycloudy.gif",
+		"skyicon":"",
+		"pop":0,
+		"qpf_allday": {
+		"in": 0.00,
+		"mm": 0
+		},
+		"qpf_day": {
+		"in": null,
+		"mm": null
+		},
+		"qpf_night": {
+		"in": 0.00,
+		"mm": 0
+		},
+		"snow_allday": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"snow_day": {
+		"in": null,
+		"cm": null
+		},
+		"snow_night": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"maxwind": {
+		"mph": 6,
+		"kph": 10,
+		"dir": "",
+		"degrees": 0
+		},
+		"avewind": {
+		"mph": 1,
+		"kph": 2,
+		"dir": "PdZd",
+		"degrees": 236
+		},
+		"avehumidity": 66,
+		"maxhumidity": 0,
+		"minhumidity": 0
+		}
+		,
+		{"date":{
+	"epoch":"1431968400",
+	"pretty":"19:00 CEST dnia 18-maj-2015",
+	"day":18,
+	"month":5,
+	"year":2015,
+	"yday":137,
+	"hour":19,
+	"min":"00",
+	"sec":0,
+	"isdst":"1",
+	"monthname":"maj",
+	"monthname_short":"maj",
+	"weekday_short":"Pn.",
+	"weekday":"Poniedziałek",
+	"ampm":"PM",
+	"tz_short":"CEST",
+	"tz_long":"Europe/Warsaw"
+},
+		"period":2,
+		"high": {
+		"fahrenheit":"71",
+		"celsius":"22"
+		},
+		"low": {
+		"fahrenheit":"54",
+		"celsius":"12"
+		},
+		"conditions":"pogodnie",
+		"icon":"clear",
+		"icon_url":"http://icons.wxug.com/i/c/k/clear.gif",
+		"skyicon":"",
+		"pop":0,
+		"qpf_allday": {
+		"in": 0.00,
+		"mm": 0
+		},
+		"qpf_day": {
+		"in": 0.00,
+		"mm": 0
+		},
+		"qpf_night": {
+		"in": 0.00,
+		"mm": 0
+		},
+		"snow_allday": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"snow_day": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"snow_night": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"maxwind": {
+		"mph": 10,
+		"kph": 16,
+		"dir": "pd.-zach.",
+		"degrees": 225
+		},
+		"avewind": {
+		"mph": 7,
+		"kph": 11,
+		"dir": "pd.-zach.",
+		"degrees": 225
+		},
+		"avehumidity": 40,
+		"maxhumidity": 0,
+		"minhumidity": 0
+		}
+		,
+		{"date":{
+	"epoch":"1432054800",
+	"pretty":"19:00 CEST dnia 19-maj-2015",
+	"day":19,
+	"month":5,
+	"year":2015,
+	"yday":138,
+	"hour":19,
+	"min":"00",
+	"sec":0,
+	"isdst":"1",
+	"monthname":"maj",
+	"monthname_short":"maj",
+	"weekday_short":"Wt.",
+	"weekday":"Wtorek",
+	"ampm":"PM",
+	"tz_short":"CEST",
+	"tz_long":"Europe/Warsaw"
+},
+		"period":3,
+		"high": {
+		"fahrenheit":"81",
+		"celsius":"27"
+		},
+		"low": {
+		"fahrenheit":"52",
+		"celsius":"11"
+		},
+		"conditions":"deszcz",
+		"icon":"rain",
+		"icon_url":"http://icons.wxug.com/i/c/k/rain.gif",
+		"skyicon":"",
+		"pop":70,
+		"qpf_allday": {
+		"in": 0.13,
+		"mm": 3
+		},
+		"qpf_day": {
+		"in": 0.08,
+		"mm": 2
+		},
+		"qpf_night": {
+		"in": 0.04,
+		"mm": 1
+		},
+		"snow_allday": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"snow_day": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"snow_night": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"maxwind": {
+		"mph": 10,
+		"kph": 16,
+		"dir": "pd.pd.-zach.",
+		"degrees": 212
+		},
+		"avewind": {
+		"mph": 8,
+		"kph": 13,
+		"dir": "pd.pd.-zach.",
+		"degrees": 212
+		},
+		"avehumidity": 48,
+		"maxhumidity": 0,
+		"minhumidity": 0
+		}
+		,
+		{"date":{
+	"epoch":"1432141200",
+	"pretty":"19:00 CEST dnia 20-maj-2015",
+	"day":20,
+	"month":5,
+	"year":2015,
+	"yday":139,
+	"hour":19,
+	"min":"00",
+	"sec":0,
+	"isdst":"1",
+	"monthname":"maj",
+	"monthname_short":"maj",
+	"weekday_short":"Śr.",
+	"weekday":"Środa",
+	"ampm":"PM",
+	"tz_short":"CEST",
+	"tz_long":"Europe/Warsaw"
+},
+		"period":4,
+		"high": {
+		"fahrenheit":"65",
+		"celsius":"18"
+		},
+		"low": {
+		"fahrenheit":"47",
+		"celsius":"8"
+		},
+		"conditions":"możliwy deszcz",
+		"icon":"chancerain",
+		"icon_url":"http://icons.wxug.com/i/c/k/chancerain.gif",
+		"skyicon":"",
+		"pop":60,
+		"qpf_allday": {
+		"in": 0.38,
+		"mm": 10
+		},
+		"qpf_day": {
+		"in": 0.12,
+		"mm": 3
+		},
+		"qpf_night": {
+		"in": 0.26,
+		"mm": 7
+		},
+		"snow_allday": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"snow_day": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"snow_night": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"maxwind": {
+		"mph": 10,
+		"kph": 16,
+		"dir": "pn.-wsch.",
+		"degrees": 36
+		},
+		"avewind": {
+		"mph": 6,
+		"kph": 10,
+		"dir": "pn.-wsch.",
+		"degrees": 36
+		},
+		"avehumidity": 76,
+		"maxhumidity": 0,
+		"minhumidity": 0
+		}
+		]
+		}
+	}
+}
