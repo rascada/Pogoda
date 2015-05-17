@@ -1,1 +1,10 @@
 .DS_Store
+prepros.cfg
+index.html
+main.css
+*.log
+
+viewsCompiled
+node_modules
+bower_components
+libs
