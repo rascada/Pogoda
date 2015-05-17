@@ -74,25 +74,8 @@ body
 	align-items center
 	h1
 		margin 0
-.compassSect
-	.compass
-		width 13em
-		height 13em
-		background #ddd
-		border-radius 50%
-		
-
-#windSect
-  #currentCompass
-	@extend .compassSect, .sect, .blockShadow
-  	
-#dashboard
-	display flex
-	margin .5em	
-	justify-content space-around
-	#tempSect
-		@extend .sect, .blockShadow
-		.thermometer
+			
+.thermometer
 			width 4.5em
 			height 24em
 			display flex
@@ -179,4 +162,20 @@ body
 							left 25%
 							z-index -1
 							position absolute
+				
+.compassSect
+	.compass
+		width 13em
+		height 13em
+		background #ddd
+		border-radius 50%
 							
+#dashboard
+	display flex
+	margin .5em	
+	justify-content space-around
+	#tempSect
+		@extend .sect, .blockShadow
+	#windSect
+	  #currentCompass
+		@extend .compassSect, .sect, .blockShadow
