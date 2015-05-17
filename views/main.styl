@@ -22,6 +22,7 @@ body
 	background #539DC2
 	font-family 'Rajdhani', bold, sans-serif
 	header
+		@extend .blockShadow
 		display flex
 		overflow hidden
 		border-radius .3em
@@ -79,13 +80,18 @@ body
 		height 13em
 		background #ddd
 		border-radius 50%
+		
 
-
+#windSect
+  #currentCompass
+	@extend .compassSect, .sect, .blockShadow
+  	
 #dashboard
 	display flex
 	margin .5em	
 	justify-content space-around
 	#tempSect
+		@extend .sect, .blockShadow
 		.thermometer
 			width 4.5em
 			height 24em
