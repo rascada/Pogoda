@@ -25,13 +25,11 @@ var podstawowe = [
 	$.getJSON('json/podstawowe.json', function(data){
 	var i = -1;
 		$.map(data,function(val){
-			if(typeof val === "object"){
-				$.map(val,function(val){
-					i++;changeText(podstawowe[i],val);
+			if(typeof val === "object"){ 
+				$.map( val, function(val){ 
+					changeText(podstawowe[i++],val);
 				});
-			}else{
-				i++;changeText(podstawowe[i],val);
-			}
+			}else changeText(podstawowe[i++],val);
 		});
 	});
 }());
