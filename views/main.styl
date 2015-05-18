@@ -182,11 +182,19 @@ body
 	background #fff
 	border-radius 0 0 5em 5em
 	.vialVal
-		background #09f
 		border-radius 0 0 5em 5em
 		width 90%
 		height 95%
-		@extend .blockShadow
+		display flex
+		align-items flex-end
+		overflow hidden
+		border-left .1em solid #ddd
+		.rainVal
+			background #09f
+			height 50%
+			width 100%
+			@extend .blockShadow
+			
 				
 .compassSect
 	.compass
