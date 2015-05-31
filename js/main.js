@@ -23,7 +23,7 @@ var podstawowe = [
 
 (function(){
 	$.getJSON('json/podstawowe.json', function(data){
-	var i = -1;
+	var i = 0;
 		$.map(data,function(val){
 			if(typeof val === "object"){ 
 				$.map( val, function(val){ 
