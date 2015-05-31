@@ -34,6 +34,23 @@ var podstawowe = [
 	});
 }());
 
+(function(){
+	$.getJSON('json/forecast/3day.json',function(data){
+		var forecast3d = data.forecast.txt_forecast.forecastday;
+		console.log( forecast3d );
+ 		changeText('forecast3dFct').innerHTML = forecast3d[0].fcttext_metric;
+		changeText('forecast3dTitle').innerHTML = forecast3d[0].title;
+		changeText('forecast3dIcon').src = forecast3d[0].icon_url;
+	});
+}());
+
+(function(){
+	$.getJSON('json/forecast/36hours.json',function(data){
+		var forecast36h = data.hourly_forecast;
+		console.log( forecast36h );
+	});
+}());
+
 //Gdy do changeText podamy tylko jeden argument to zwróci nam złapany element po podanym id.
 
 function changeText(id, val){
