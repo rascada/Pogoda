@@ -49,6 +49,13 @@ function changeText(id, val){
 		switch(id){
 		case 'temperatureCurrent':
 			changeText(podstawowe[1]+'Sensor').style.height = (val*2.9+13)+'%';
+		case 'windCurrentDir':
+			val += 45;
+			changeText('windCurrentDirSensor').style.transform = 'rotate('+ val +'deg)';
+			break;
+		case 'windGustDir':
+			val += 45;
+			changeText('windGustDirSensor').style.transform = 'rotate('+ val +'deg)';
 			break;
 		}
 	}
