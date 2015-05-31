@@ -33,44 +33,65 @@ body
 		@extend .blockShadow
 		display flex
 		overflow hidden
+		flex-flow column
 		border-radius .3em
 		background linear-gradient(to right, rgba(83,157,194,.5) 65%,rgba(67,141,201,.5))
-		#logoSun
-			width sunWidth
-			height sunWidth
-			margin-left (sunWidth/4)
-			margin-right (sunWidth/4)
-			display block
-			list-style none
-			transform rotate(180deg)
-			animation rotation 25s ease-in-out infinite
-			li
-				top 0
-				left 0
-				width 100%
-				height 100%
-				opacity 0.6
-				position absolute
-				background #fad335
-				borderRound()
-				&:nth-child(1)
-					transform rotate(60deg)
-				&:nth-child(2)
-					transform rotate(30deg)
-				&:nth-child(3)
-					transform rotate(0deg)
-				@keyframes rotation
-					0%
-						transform rotate(0deg) 
-		#title
+		#logo
 			display flex
-			flex-flow column
-			justify-content center
-			h1
-				margin 0
-				color #eee
-				font-size 3.5em
-				
+			#logoSun
+				width sunWidth
+				height sunWidth
+				margin-left (sunWidth/4)
+				margin-right (sunWidth/4)
+				display block
+				list-style none
+				transform rotate(180deg)
+				animation rotation 25s ease-in-out infinite
+				li
+					top 0
+					left 0
+					width 100%
+					height 100%
+					opacity 0.6
+					position absolute
+					background #fad335
+					borderRound()
+					&:nth-child(1)
+						transform rotate(60deg)
+					&:nth-child(2)
+						transform rotate(30deg)
+					&:nth-child(3)
+						transform rotate(0deg)
+					@keyframes rotation
+						0%
+							transform rotate(0deg) 
+			#title
+				display flex
+				flex-flow column
+				justify-content center
+				h1
+					margin 0
+					color #eee
+					font-size 3.5em
+		nav
+			display flex
+			list-style-type none
+			background #eee
+			padding .25em .5em
+			li
+				margin 0 .25em
+				cursor pointer
+				padding .2em; 
+				border .1em solid transparent
+				border-radius .2em
+				transition all .2s ease
+				&:hover
+					border .1em solid gold
+					color #222
+					background rgba(255,255,0,.05)
+			.active
+				border .1em solid gold
+				color #222
 .sect
 	z-index -5
 	color #222
