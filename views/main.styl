@@ -24,6 +24,8 @@ animation()
 blockShadow()
 	box-shadow 0 .2em .3em .2em rgba(0,0,0,.1)
 	
+*
+	box-shadow border-box
 body
 	margin 1em 1.5em
 	overflow-x hidden
@@ -238,6 +240,9 @@ body
 	display flex
 	margin .5em	
 	justify-content space-around
+	h1
+		color #333
+		font-size 1.5em
 	#tempSect
 		@extend .sect, .blockShadow
 	#windSect
