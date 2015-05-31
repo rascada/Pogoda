@@ -1,7 +1,11 @@
-header.blockShadow
-  ul#logoSun
-    li
-    li
-    li
-  #title
-    h1 Pogoda Skałągi
+header
+	#logo
+		ul#logoSun
+			-for(var i = 3; i--;)
+				li
+		#title
+			h1 Pogoda Skałągi
+	nav
+		li.active Pogoda
+		li Prognoza
+		li Historia
