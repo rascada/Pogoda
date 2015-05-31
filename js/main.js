@@ -65,7 +65,8 @@ function changeText(id, val){
 			elem.innerHTML= val.toString();
 		switch(id){
 		case 'temperatureCurrent':
-			changeText(podstawowe[1]+'Sensor').style.height = (val*2.9+13)+'%';
+			changeText('temperatureCurrentSensor').style.height = (val*2.9+13)+'%';
+			break;
 		case 'windCurrentDir':
 			val += 45;
 			changeText('windCurrentDirSensor').style.transform = 'rotate('+ val +'deg)';
