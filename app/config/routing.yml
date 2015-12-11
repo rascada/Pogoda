@@ -1,0 +1,3 @@
+syntax_error_api:
+    resource: "@SyntaxErrorApiBundle/Resources/config/routing.yml"
+    prefix:   /api
