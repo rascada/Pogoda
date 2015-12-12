@@ -53,6 +53,11 @@
     RewriteCond %{REQUEST_FILENAME} -f
     RewriteRule .? - [L]
 
+    RewriteRule pogoda-dnia day.html
+    RewriteRule pogoda-miesiaca month.html
+    RewriteRule pogoda-roku year.html
+    RewriteRule wybierz-zakres year.html
+
     # Rewrite all other queries to the front controller.
     RewriteRule ^api.? %{ENV:BASE}/app.php [L]
 </IfModule>
