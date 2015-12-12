@@ -14,8 +14,8 @@ class ArchiveDayWindgustdirRepository extends EntityRepository
 {
     public function avgMonth(\DateTime $dateTime)
     {
-        $from = (new \DateTime( $dateTime->format('Y-m-01 00:00:00') ))->getTimestamp()+3600*20;
-        $to = (new \DateTime( $dateTime->format('Y-m-t 23:59:59') ))->getTimestamp()+3600*20;
+        $from = (new \DateTime( $dateTime->format('Y-m-01 00:00:00') ))->getTimestamp();
+        $to = (new \DateTime( $dateTime->format('Y-m-t 23:59:59') ))->getTimestamp();
         $records = $this->getEntityManager()->getRepository("SyntaxErrorApiBundle:ArchiveDayWindgustdir")
             ->createQueryBuilder('a')->select('a.sum, a.count')
             ->where('a.datetime BETWEEN :from AND :to')

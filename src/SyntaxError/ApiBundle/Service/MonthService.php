@@ -20,8 +20,8 @@ class MonthService
 
     public function highDoubleFormatter(\DateTime $dateTime, $archiveName)
     {
-        $from = (new \DateTime( $dateTime->format("Y-m-01 00:00:00") ))->getTimestamp()+3600*20;
-        $to = (new \DateTime( $dateTime->format("Y-m-t 23:59:59") ))->getTimestamp()+3600*20;
+        $from = (new \DateTime( $dateTime->format("Y-m-01 00:00:00") ))->getTimestamp();
+        $to = (new \DateTime( $dateTime->format("Y-m-t 23:59:59") ))->getTimestamp();
 
         $records = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDay$archiveName")
             ->createQueryBuilder('a')->where('a.datetime BETWEEN :from AND :to')
@@ -35,7 +35,7 @@ class MonthService
                     if($record instanceof ArchiveDay) {
                         if( (new \DateTime())->setTimestamp( $record->getDatetime() )->format("H") != 0) continue;
                         $cnt = $record->getCount();
-                        $output[] = [$record->getDatetime()-5, $cnt ? $record->getSum() / $cnt : 0];
+                        $output[] = [$record->getDatetime(), $cnt ? $record->getSum() / $cnt : 0];
                     }
                 } break;
 
@@ -43,7 +43,7 @@ class MonthService
                 foreach($records as $i => $record) {
                     if($record instanceof ArchiveDay) {
                         if( (new \DateTime())->setTimestamp( $record->getDatetime() )->format("H") != 0) continue;
-                        $output[] = [$record->getDatetime()-5, $record->getSum()];
+                        $output[] = [$record->getDatetime(), $record->getSum()];
                     }
                 } break;
 
@@ -51,7 +51,7 @@ class MonthService
                 foreach($records as $i => $record) {
                     if($record instanceof ArchiveDay) {
                         if( (new \DateTime())->setTimestamp( $record->getDatetime() )->format("H") != 0) continue;
-                        $output[] = [$record->getDatetime()-5, $record->getMin(), $record->getMax()];
+                        $output[] = [$record->getDatetime(), $record->getMin(), $record->getMax()];
                     }
                 } break;
         }

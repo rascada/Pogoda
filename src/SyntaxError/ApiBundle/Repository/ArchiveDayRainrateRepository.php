@@ -3,7 +3,7 @@
 namespace SyntaxError\ApiBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use SyntaxError\ApiBundle\Entity\ArchiveDayOuttemp;
+use SyntaxError\ApiBundle\Entity\ArchiveDayRainrate;
 
 /**
  * ArchiveDayRainrateRepository
@@ -16,13 +16,13 @@ class ArchiveDayRainrateRepository extends EntityRepository
     /**
      * @param \DateTime $dateTime
      * @param $max
-     * @return null|ArchiveDayOuttemp
+     * @return null|ArchiveDayRainrate
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findMonthRecord(\DateTime $dateTime, $max = true)
     {
-        $from = (new \DateTime( $dateTime->format('Y-m-01 00:00:00') ))->getTimestamp()+3600*20;
-        $to = (new \DateTime( $dateTime->format('Y-m-t 23:59:59') ))->getTimestamp()+3600*20;
+        $from = (new \DateTime( $dateTime->format('Y-m-01 00:00:00') ))->getTimestamp();
+        $to = (new \DateTime( $dateTime->format('Y-m-t 23:59:59') ))->getTimestamp();
         return $this->getEntityManager()->getRepository("SyntaxErrorApiBundle:ArchiveDayRainrate")->createQueryBuilder('a')
             ->where('a.datetime BETWEEN :from AND :to')
             ->setParameter('from', $from)->setParameter('to', $to)

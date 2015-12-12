@@ -75,7 +75,7 @@ class Informer
      */
     public function addClient($id, $ip)
     {
-        $clients = is_readable(Config::hostsPath) ? json_decode(file_get_contents(Config::hostsPath)) : [];
+        $clients = is_readable(Config::hostsPath) ? json_decode(file_get_contents(Config::hostsPath)) : new \stdClass;
         $clients->{$id} = [
             'ip' => $ip."", 'connected' => (new \DateTime('now'))->format("Y-m-d H:i:s")
         ];
@@ -89,7 +89,7 @@ class Informer
      */
     public function removeClient($id)
     {
-        $clients = is_readable(Config::hostsPath) ? json_decode(file_get_contents(Config::hostsPath)) : [];
+        $clients = is_readable(Config::hostsPath) ? json_decode(file_get_contents(Config::hostsPath)) : new \stdClass;
         unset( $clients->{$id} );
         file_put_contents(Config::hostsPath, json_encode($clients));
         return $this;
