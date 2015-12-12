@@ -1,0 +1,18 @@
+services:
+#    syntax_error_api.example:
+#        class: SyntaxError\ApiBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    syntax_error_api.live:
+      class: SyntaxError\ApiBundle\Service\LiveService
+      arguments: [@doctrine.orm.default_entity_manager]
+
+    syntax_error_api.wu:
+      class: SyntaxError\ApiBundle\Service\Wunderground
+      
+    syntax_error_api.day:
+      class: SyntaxError\ApiBundle\Service\DayService
+      arguments: [@doctrine.orm.default_entity_manager]
+
+    syntax_error_api.month:
+      class: SyntaxError\ApiBundle\Service\MonthService
+      arguments: [@doctrine.orm.default_entity_manager]

@@ -1,10 +1,25 @@
 .DS_Store
 prepros.cfg
-index.html
-main.css
+web/*.html
+web/css
 *.log
 
 viewsCompiled
 node_modules
 bower_components
 libs
+/.idea
+/web/bundles/
+/app/bootstrap.php.cache
+/app/cache/*
+/app/config/parameters.yml
+/app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+/app/phpunit.xml
+/build/
+/vendor/
+/bin/
+/composer.phar
+.hosts
+.pid

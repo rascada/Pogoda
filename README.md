@@ -1,16 +1,15 @@
 # Pogoda
 Strona stacji pogodowej w Skałągach
 
-# Serwer
-PogodaV2 posiada drobny serwer, który pozwala na wczytanie json'a.
+## Struktura
+- `env/front.sh`: skrypt bashowy do kompilacji klienta.
+- `src/Rascada`: źródła klienta
+- `src/SyntaxError/ApiBundle`: źródła JSONowego API
+- `src/SyntaxError/SocketBundle`: serwer web-socketów
 
-Serwer jest napisany pod nodejs, więc w pierwszej kolejności musisz miec go zainstalowanego.
-
-# Uruchomienie serwera
- + By serwer mógł ściągnąc wszystko czego potrzebuje do działania należy wpisac:  
-    $ npm i && bower i  
-
- + By uruchomic serwer należy wpisac:  
-    $ npm start
-
-
+## Kompilacja klienta:
+```
+jade ./src/Rascada/views/*.jade -o ./web
+stylus ./src/Rascada/styl -o ./web/css
+babel ./src/Rascada/script --out-dir ./web/js
+```

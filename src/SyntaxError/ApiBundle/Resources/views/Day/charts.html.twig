@@ -1,0 +1,34 @@
+{% extends "SyntaxErrorApiBundle::base.html.twig" %}
+
+{% block desc %}
+    <div>
+        Data from one day formatted for highcharts.js library.
+    </div>
+
+    <div style="margin-top: .5em;" id="date">
+        You can change datetime from url, eg. <span style="color: #4842b5;">?date=2015-09-01</span>
+        <input type="date" style="float: right; margin-right: .5em;"/>
+        Default is <a href="{{ path('syntax_error_api_day_charts', { 'type': app.request.attributes.get('_route_params').type }) }}">today</a>.
+    </div>
+
+
+    <div style="margin-top: 1em;">
+        <h3 style="margin: 0 .5em">/day-charts/{type}</h3>
+        <ul style="margin-top: .2em">
+            <li><a href="{{ path('syntax_error_api_day_charts', {'type': 'outTemp'}) }}">type: outTemp</a></li>
+            <li><a href="{{ path('syntax_error_api_day_charts', {'type': 'outHumidity'}) }}">type: outHumidity</a></li>
+            <li><a href="{{ path('syntax_error_api_day_charts', {'type': 'barometer'}) }}">type: barometer</a></li>
+            <li><a href="{{ path('syntax_error_api_day_charts', {'type': 'windSpeed'}) }}">type: windSpeed</a></li>
+            <li><a href="{{ path('syntax_error_api_day_charts', {'type': 'windDir'}) }}">type: windDir</a></li>
+            <li><a href="{{ path('syntax_error_api_day_charts', {'type': 'windGust'}) }}">type: windGust</a></li>
+            <li><a href="{{ path('syntax_error_api_day_charts', {'type': 'windGustDir'}) }}">type: windGustDir</a></li>
+            <li><a href="{{ path('syntax_error_api_day_charts', {'type': 'rain'}) }}">type: rain</a></li>
+            <li><a href="{{ path('syntax_error_api_day_charts', {'type': 'rainRate'}) }}">type: rainRate</a></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>var today = '{{ "now"|date("Y-m-d") }}';</script>
+    <script src="{{ asset('bundles/syntaxerrorapi/js/dater.js') }}"></script>
+{% endblock %}
