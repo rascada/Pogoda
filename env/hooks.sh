@@ -6,7 +6,8 @@ echo "<h3> Hook created at `date` </h3>" > $STAT
 echo >> $STAT
 
 echo "<h4>Git pull: " >> $STAT
-cd $DIR/.. && git pull >> $STAT
+GITPULL=$(cd $DIR/.. && git pull 2>&1)
+echo $GITPULL >> $STAT
 echo "</h4>" >> $STAT
 
 echo "<h4>Front: " >> $STAT
