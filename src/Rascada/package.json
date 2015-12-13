@@ -16,12 +16,5 @@
   "bugs": {
     "url": "https://github.com/marcinlacina/Pogoda/issues"
   },
-  "homepage": "pogoda-skalagi.pl",
-  "dependencies": {
-    "bower": "^1.4.1",
-    "express": "^4.12.3",
-    "jade": "^1.9.2",
-    "morgan": "^1.5.3",
-    "stylus": "^0.51.1"
-  }
+  "homepage": "pogoda-skalagi.pl"
 }
