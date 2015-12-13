@@ -1,14 +1,7 @@
 <template lang='jade'>
 #tempSect
 	h1 Temperatura
-	p Dziś temperatura wynosi:
-		span#temperatureAvg
-	//#cos
-		span#temperatureCurrent
-		span#temperatureReal
-		span#temperatureDewPoint
-		span#temperatureTrend
-
+	p Dziś temperatura wynosi: {{ degrees }}
 	.thermometer
 		.measure
 			-for(var i=30;i--;)
@@ -18,7 +11,7 @@
 				-else
 					.line
 		.sensor
-			#temperatureCurrentSensor.sensorVal
+			#temperatureCurrentSensor.sensorVal(:style="{height: 13 + (degrees * 2.9) + '%'}")
 				span#temperatureCurrent
 				span
 
@@ -26,19 +19,23 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {}
-  },
+  export default {
+    data () {
+      return {
+        degrees: 0
+      }
+    },
+    methods:{
 
-  ready () {
+    },
 
-  },
+    ready () {
+    },
 
-  destroyed () {
+    destroyed () {
 
+    }
   }
-}
 </script>
 
 <style lang='stylus'>
