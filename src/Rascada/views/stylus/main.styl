@@ -18,12 +18,12 @@ animation()
 	-o-animation arguments
 
 	box-sizing border-box
-	
+
 .blockShadow
 	box-shadow 0 .2em .3em .2em rgba(0,0,0,.1)
 blockShadow()
 	box-shadow 0 .2em .3em .2em rgba(0,0,0,.1)
-	
+
 *
 	box-shadow border-box
 
@@ -71,7 +71,7 @@ body
 						transform rotate(0deg)
 					@keyframes rotation
 						0%
-							transform rotate(0deg) 
+							transform rotate(0deg)
 			#title
 				display flex
 				flex-flow column
@@ -88,7 +88,7 @@ body
 			a
 				margin 0 .25em
 				cursor pointer
-				padding .2em; 
+				padding .2em;
 				border .1em solid transparent
 				border-radius .2em
 				transition all .2s ease
@@ -110,98 +110,7 @@ body
 	align-items center
 	h1
 		margin 0
-		
-.thermometer
-			width 4.5em
-			height elemsHeight
-			display flex
-			padding .5em
-			padding-top 2em
-			background #fff
-			border-radius 4em
-			margin-bottom 6em
-			position relative
-			justify-content center
-			.bottom
-				top 90%
-				width 35%
-				height 32%
-				content ''
-				background #fff
-				position absolute	
-				border-radius 2em
-				overflow hidden
-				left 50% - (@width/2)
-			&:after				
-				content ''
-				position absolute
-				top -1.9%
-				left 56%
-				width 110%
-				height 135%
-				z-index 3
-				transform skew(25deg) rotate(25deg)
-				background rgba(0,0,0,.1)
-			.sensor
-				z-index 2
-				width 15%
-				height 107.5%
-				position relative
-				borderRound()
-				background #eee
-				&:before
-					top 97%
-					width 150%
-					height 18%
-					content ''
-					background thermometerColor
-					position absolute	
-					border-radius 2em
-					left 49.5% - (@width/2)	
-				.sensorVal
-					position absolute
-					bottom 0 
-					left 0
-					width 100%
-					height 70%
-					background thermometerColor
-					span
-						position relative
-						top -2.5% 
-						left 150%
-			.measure
-				position absolute
-				height 85%
-				width 20%
-				z-index 2
-				left 0
-				display flex
-				flex-flow column				
-				.line
-					position relative
-					background #444	
-					flex-grow 1
-					margin-top .5em
-					width 90%
-				.boldLine
-					width 150%
-					p
-						position absolute
-						right 160%
-						top -200%
-						padding .25em
-						margin 0
-						background #fff
-						&:after
-							content ''
-							width 100%
-							height 100%
-							background #fff
-							transform rotate(45deg)
-							top 0
-							left 25%
-							z-index -1
-							position absolute
+
 .vial
 	flexC()
 	blockShadow()
@@ -218,7 +127,7 @@ body
 		flex-flow column
 		justify-content space-between
 		.line
-			height .11em 
+			height .11em
 			margin-left .1em
 			width 1em
 			background #555;
@@ -237,8 +146,8 @@ body
 			height 50%
 			width 100%
 			@extend .blockShadow
-			
-				
+
+
 .compassSect
 	.compass
 		flexC()
@@ -258,25 +167,23 @@ body
 
 #dashboard
 	display flex
-	margin .5em	
+	margin .5em
 	justify-content space-around
 	h1
 		color #333
 		font-size 1.5em
-	#tempSect
-		@extend .sect, .blockShadow
 	#windSect
 		#currentCompass
 			@extend .compassSect
 		#gustCompass
 			@extend .compassSect
 	#rainSect
-		@extend .sect	
+		@extend .sect
 		justify-content space-around
 		background none
 	#forecastSect
 		@extend .sect
-		background none 
+		background none
 		justify-content space-around
 		#forecast3days
 			@extend .sect, .blockShadow
