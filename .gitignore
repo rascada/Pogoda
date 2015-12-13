@@ -1,7 +1,6 @@
 .DS_Store
 prepros.cfg
 
-web/*.html
 web/css/*.css
 web/js/*.js
 
