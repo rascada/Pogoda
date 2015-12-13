@@ -26,10 +26,23 @@
       }
     },
     methods:{
+      updateTemperature(){
+        let xhr = new XMLHttpRequest();
 
+        xhr.open('get', '/api?temperature');
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        xhr.onload = e => {
+          let res = JSON.parse(e.target.responseText);
+
+          this.degrees = res.temperature.current.value;
+          setTimeout(this.updateTemperature, res.time.next.value * 1000);
+        };
+        xhr.send();
+      }
     },
 
     ready () {
+      this.updateTemperature();
     },
 
     destroyed () {
