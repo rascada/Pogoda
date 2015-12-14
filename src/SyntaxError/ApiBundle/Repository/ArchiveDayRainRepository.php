@@ -15,12 +15,30 @@ class ArchiveDayRainRepository extends EntityRepository
     /**
      * @param \DateTime $dateTime
      * @return float
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findMonthSum(\DateTime $dateTime)
     {
         $from = (new \DateTime( $dateTime->format('Y-m-01 00:00:00') ))->getTimestamp();
         $to = (new \DateTime( $dateTime->format('Y-m-t 23:59:59') ))->getTimestamp();
+        $records = $this->getEntityManager()->getRepository("SyntaxErrorApiBundle:ArchiveDayRain")->createQueryBuilder('a')
+            ->select('a.sum')
+            ->where('a.datetime BETWEEN :from AND :to')
+            ->setParameter('from', $from)->setParameter('to', $to)->getQuery()->getResult();
+        $sum = 0;
+        foreach($records as $record) {
+            $sum += $record['sum'];
+        }
+        return $sum;
+    }
+
+    /**
+     * @param \DateTime $dateTime
+     * @return float
+     */
+    public function findYearSum(\DateTime $dateTime)
+    {
+        $from = (new \DateTime( $dateTime->format('Y-01-01 00:00:00') ))->getTimestamp();
+        $to = (new \DateTime( $dateTime->format('Y-12-31 23:59:59') ))->getTimestamp();
         $records = $this->getEntityManager()->getRepository("SyntaxErrorApiBundle:ArchiveDayRain")->createQueryBuilder('a')
             ->select('a.sum')
             ->where('a.datetime BETWEEN :from AND :to')

@@ -16,3 +16,7 @@ services:
     syntax_error_api.month:
       class: SyntaxError\ApiBundle\Service\MonthService
       arguments: [@doctrine.orm.default_entity_manager]
+
+    syntax_error_api.year:
+      class: SyntaxError\ApiBundle\Service\YearService
+      arguments: [@doctrine.orm.default_entity_manager]
