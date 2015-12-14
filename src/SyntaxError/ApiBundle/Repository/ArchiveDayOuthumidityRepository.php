@@ -3,7 +3,7 @@
 namespace SyntaxError\ApiBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use SyntaxError\ApiBundle\Entity\ArchiveDayOuttemp;
+use SyntaxError\ApiBundle\Entity\ArchiveDayOuthumidity;
 
 /**
  * ArchiveDayOuthumidityRepository
@@ -16,13 +16,29 @@ class ArchiveDayOuthumidityRepository extends EntityRepository
     /**
      * @param \DateTime $dateTime
      * @param $max
-     * @return null|ArchiveDayOuttemp
+     * @return null|ArchiveDayOuthumidity
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findMonthRecord(\DateTime $dateTime, $max = true)
     {
         $from = (new \DateTime( $dateTime->format('Y-m-01 00:00:00') ))->getTimestamp();
         $to = (new \DateTime( $dateTime->format('Y-m-t 23:59:59') ))->getTimestamp();
+        return $this->getEntityManager()->getRepository("SyntaxErrorApiBundle:ArchiveDayOuthumidity")->createQueryBuilder('a')
+            ->where('a.datetime BETWEEN :from AND :to')
+            ->setParameter('from', $from)->setParameter('to', $to)
+            ->orderBy('a.max', $max ? 'desc' : 'asc')->setMaxResults(1)->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * @param \DateTime $dateTime
+     * @param bool|true $max
+     * @return null|ArchiveDayOuthumidity
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findYearRecord(\DateTime $dateTime, $max = true)
+    {
+        $from = (new \DateTime( $dateTime->format('Y-01-01 00:00:00') ))->getTimestamp();
+        $to = (new \DateTime( $dateTime->format('Y-12-31 23:59:59') ))->getTimestamp();
         return $this->getEntityManager()->getRepository("SyntaxErrorApiBundle:ArchiveDayOuthumidity")->createQueryBuilder('a')
             ->where('a.datetime BETWEEN :from AND :to')
             ->setParameter('from', $from)->setParameter('to', $to)
