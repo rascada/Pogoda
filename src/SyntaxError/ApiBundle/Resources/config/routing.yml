@@ -26,3 +26,11 @@ syntax_error_api_month_charts:
 syntax_error_api_month_records:
   path: /month-records
   defaults: { _controller: SyntaxErrorApiBundle:Month:records }
+
+syntax_error_api_year_charts:
+  path: /year-charts/{type}
+  defaults: { _controller: SyntaxErrorApiBundle:Year:charts }
+
+syntax_error_api_year_records:
+  path: /year-records
+  defaults: { _controller: SyntaxErrorApiBundle:Year:records }
