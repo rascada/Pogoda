@@ -12,10 +12,10 @@ class DayControllerTest extends WebTestCase
         $params = ['outTemp', 'outHumidity', 'barometer', 'rain', 'rainRate', 'windSpeed', 'windDir', 'windGust', 'windGustDir'];
 
         foreach($params as $param) {
-            $crawler = $client->request('GET', '/day-charts/'.$param);
+            $crawler = $client->request('GET', '/api/day-charts/'.$param);
             $this->assertTrue($client->getResponse()->getStatusCode() == 200);
 
-            $crawler = $client->request('GET', '/day-charts/'.$param, [], [], [
+            $crawler = $client->request('GET', '/api/day-charts/'.$param, [], [], [
                 'HTTP_X-Requested-With' => 'XMLHttpRequest'
             ]);
             $this->assertTrue($client->getResponse()->getStatusCode() == 200);
@@ -27,9 +27,9 @@ class DayControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/day-records');
+        $crawler = $client->request('GET', '/api/day-records');
         $this->assertTrue($client->getResponse()->getStatusCode() == 200);
-        $crawler = $client->request('GET', '/day-records', [], [], [
+        $crawler = $client->request('GET', '/api/day-records', [], [], [
             'HTTP_X-Requested-With' => 'XMLHttpRequest'
         ]);
         $this->assertTrue($client->getResponse()->getStatusCode() == 200);
