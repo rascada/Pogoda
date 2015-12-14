@@ -11,7 +11,7 @@
 				-else
 					.line
 		.sensor
-			#temperatureCurrentSensor.sensorVal(:style="{height: 13 + (degrees * 2.9) + '%'}")
+			#temperatureCurrentSensor.sensorVal(:style="{height: sensorVal }")
 				span#temperatureCurrent
 				span
 
@@ -25,7 +25,12 @@
         degrees: 0
       }
     },
-    methods:{
+		computed: {
+			sensorVal () {
+				return `${ 13 + (this.degrees * 2.9) }%`;
+			}
+		},
+    methods: {
       updateTemperature(){
         let xhr = new XMLHttpRequest();
 
