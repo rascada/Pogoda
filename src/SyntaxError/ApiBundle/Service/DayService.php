@@ -209,4 +209,17 @@ class DayService
 
         return [ 'max' => $max ];
     }
+
+    public function createRain(\DateTime $dateTime)
+    {
+        $sum = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayRain")->findOneBy([
+            'datetime' => $dateTime->setTime(0,0,0)->getTimestamp()
+        ]);
+
+        $reading = new Reading();
+        $reading->name = "Suma opadów";
+        $reading->value = $sum->getSum();
+        $reading->units = "mm";
+        return $reading;
+    }
 }
