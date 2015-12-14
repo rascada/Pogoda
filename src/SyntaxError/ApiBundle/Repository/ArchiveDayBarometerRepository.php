@@ -26,7 +26,7 @@ class ArchiveDayBarometerRepository extends EntityRepository
         return $this->getEntityManager()->getRepository("SyntaxErrorApiBundle:ArchiveDayBarometer")->createQueryBuilder('a')
             ->where('a.datetime BETWEEN :from AND :to')
             ->setParameter('from', $from)->setParameter('to', $to)
-            ->orderBy('a.max', $max ? 'desc' : 'asc')->setMaxResults(1)->getQuery()->getOneOrNullResult();
+            ->orderBy('a.'.( $max ? 'max' : 'min'), $max ? 'desc' : 'asc')->setMaxResults(1)->getQuery()->getOneOrNullResult();
     }
 
     /**
@@ -42,6 +42,6 @@ class ArchiveDayBarometerRepository extends EntityRepository
         return $this->getEntityManager()->getRepository("SyntaxErrorApiBundle:ArchiveDayBarometer")->createQueryBuilder('a')
             ->where('a.datetime BETWEEN :from AND :to')
             ->setParameter('from', $from)->setParameter('to', $to)
-            ->orderBy('a.max', $max ? 'desc' : 'asc')->setMaxResults(1)->getQuery()->getOneOrNullResult();
+            ->orderBy('a.'.( $max ? 'max' : 'min'), $max ? 'desc' : 'asc')->setMaxResults(1)->getQuery()->getOneOrNullResult();
     }
 }
