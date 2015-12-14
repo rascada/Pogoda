@@ -17,7 +17,7 @@ class YearController extends Controller
         $day = $this->get('syntax_error_api.year');
         $data = [];
         if( !$request->query->count() ) {
-            foreach(get_class_methods('SyntaxError\ApiBundle\Service\MonthService') as $method) {
+            foreach(get_class_methods('SyntaxError\ApiBundle\Service\YearService') as $method) {
                 if( preg_match('/create/', $method) ) {
                     $key = strtolower( str_replace('create', '', $method) );
                     $data[$key] = call_user_func_array([$day, $method], [$dateTime]);
