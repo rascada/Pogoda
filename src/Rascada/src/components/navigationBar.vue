@@ -5,12 +5,9 @@
 
 <script>
   export default {
-    data(){
-      return {
-        name: 'Wstaw nazwe'
-      }
-    },
-    props: ['name']
+    props: {
+      name: 'Wstaw nazwe'
+    }
   }
 </script>
 
