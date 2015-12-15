@@ -85,7 +85,7 @@ class Jsoner
      */
     public function createResponse($callback)
     {
-        $response = new Response( $this->jsonString );
+        $response = new Response( $callback ? '"'.$this->jsonString.'"' : $this->jsonString );
         if($callback) {
             $response->headers->set('Access-Control-Allow-Origin', '*');
         }
