@@ -1,4 +1,0 @@
-[
-  ["jade", "views/jade/index.jade", "../../web/index.html"],
-  ["stylus", "views/stylus/main.styl", "../../web/css/main.css"]
-]
