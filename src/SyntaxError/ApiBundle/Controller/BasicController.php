@@ -54,7 +54,7 @@ class BasicController extends Controller
         }
 
         if( $ext == 'json' ) {
-            $response = new Response($jsonString);
+            $response = new Response($call ? '"'.$jsonString.'"' : $jsonString);
 
             $response->headers->set(
                 'Content-Type',
