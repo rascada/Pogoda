@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use SyntaxError\ApiBundle\Tools\Jsoner;
 
-class MonthController extends Controller
+class YearController extends Controller
 {
     public function recordsAction(Request $request, $ext)
     {
@@ -14,10 +14,10 @@ class MonthController extends Controller
             $request->query->has('date') ? $request->query->get('date')." 00:00:00" : 'now'
         );
         $request->query->remove('date');
-        $day = $this->get('syntax_error_api.month');
+        $day = $this->get('syntax_error_api.year');
         $data = [];
         if( !$request->query->count() ) {
-            foreach(get_class_methods('SyntaxError\ApiBundle\Service\MonthService') as $method) {
+            foreach(get_class_methods('SyntaxError\ApiBundle\Service\YearService') as $method) {
                 if( preg_match('/create/', $method) ) {
                     $key = strtolower( str_replace('create', '', $method) );
                     $data[$key] = call_user_func_array([$day, $method], [$dateTime]);
@@ -35,8 +35,8 @@ class MonthController extends Controller
         $jsoner->createJson($data);
 
         return $ext == 'json' ? $jsoner->createResponse() : $this->render(
-            "SyntaxErrorApiBundle:Month:records.html.twig", [
-            'title' => 'Month records: '.$dateTime->format("Y M") ,
+            "SyntaxErrorApiBundle:Year:records.html.twig", [
+            'title' => 'Year records: '.$dateTime->format("Y") ,
             'json' => $jsoner->getJsonString()
         ]);
     }
@@ -46,14 +46,14 @@ class MonthController extends Controller
         $dateTime = new \DateTime(
             $request->query->has('date') ? $request->query->get('date')." 00:00:00" : 'now'
         );
-        $month = $this->get('syntax_error_api.month');
+        $month = $this->get('syntax_error_api.year');
 
         $jsoner = new Jsoner();
         $jsoner->createJson( $month->highDoubleFormatter($dateTime, ucfirst(strtolower($type)) ) );
 
-        return $ext == 'json'  ? $jsoner->createResponse() : $this->render(
-            "SyntaxErrorApiBundle:Month:charts.html.twig", [
-            'title' => 'Month '.ucfirst($type).": ".$dateTime->format("Y M"),
+        return $ext == 'json' ? $jsoner->createResponse() : $this->render(
+            "SyntaxErrorApiBundle:Year:charts.html.twig", [
+            'title' => 'Year '.ucfirst($type).": ".$dateTime->format("Y"),
             'json' => $jsoner->getJsonString()
         ]);
     }

@@ -10,7 +10,7 @@ use SyntaxError\ApiBundle\Tools\Jsoner;
 
 class DayController extends Controller
 {
-    public function recordsAction(Request $request)
+    public function recordsAction(Request $request, $ext)
     {
         $dateTime = new \DateTime(
             $request->query->has('date') ? $request->query->get('date')." 00:00:00" : 'now'
@@ -36,14 +36,14 @@ class DayController extends Controller
         $jsoner = new Jsoner();
         $jsoner->createJson($data);
 
-        return $request->isXmlHttpRequest() ? $jsoner->createResponse() : $this->render(
+        return $ext == 'json' ? $jsoner->createResponse() : $this->render(
             "SyntaxErrorApiBundle:Day:records.html.twig", [
             'title' => 'Day records: '.$dateTime->format("d.m.Y") ,
             'json' => $jsoner->getJsonString()
         ]);
     }
 
-    public function chartsAction(Request $request, $type)
+    public function chartsAction(Request $request, $type, $ext)
     {
         $dateTime = new \DateTime(
             $request->query->has('date') ? $request->query->get('date')." 00:00:00" : 'now'
@@ -51,7 +51,7 @@ class DayController extends Controller
         try {
             $data = $this->get('syntax_error_api.day')->highFormatter($dateTime, $type);
         } catch(\RuntimeException $e) {
-            return $request->isXmlHttpRequest() ? new JsonResponse('Invalid property '.$type, 500) : $this->render(
+            return $ext == 'json' ? new JsonResponse('Invalid property '.$type, 500) : $this->render(
                 "SyntaxErrorApiBundle:Day:charts.html.twig", [
                 'title' => 'Day: '.$dateTime->format("d.m.Y"),
                 'json' => '"Invalid property '.$type.'"'
@@ -61,7 +61,7 @@ class DayController extends Controller
         $jsoner = new Jsoner();
         $jsoner->createJson($data);
 
-        return $request->isXmlHttpRequest() ? $jsoner->createResponse() : $this->render(
+        return $ext == 'json' ? $jsoner->createResponse() : $this->render(
             "SyntaxErrorApiBundle:Day:charts.html.twig", [
             'title' => 'Day '.ucfirst($type).": ".$dateTime->format("d.m.Y"),
             'json' => $jsoner->getJsonString()

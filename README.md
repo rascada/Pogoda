@@ -8,8 +8,16 @@ Strona stacji pogodowej w Skałągach
 - `src/SyntaxError/SocketBundle`: serwer web-socketów
 
 ## Kompilacja klienta:
+### Kompilowanie z oficjalnymi cli
 ```
-jade ./src/Rascada/views/*.jade -o ./web
-stylus ./src/Rascada/styl -o ./web/css
-babel ./src/Rascada/script --out-dir ./web/js
+jade ./src/Rascada/views/jade/*.jade -o ./web
+stylus ./src/Rascada/views/stylus -o ./web/css
+babel ./src/Rascada/views/script --out-dir ./web/js
+```
+
+### Kompilacja z [front-render](https://github.com/rascada/front-render)
+Rownież używa oficjalnych pluginów
+```
+~/Pogoda$ cd src/Rascada
+~/Pogoda/src/Rascada$ front-render
 ```

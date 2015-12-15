@@ -16,7 +16,7 @@
             </a>
 
             <span>
-                Get raw json with header <b>X-Requested-With: XMLHttpRequest</b>
+                Get raw json with file extension <b>json</b>
             </span>
         </header>
 
@@ -33,6 +33,8 @@
                     <a href="{{ path('syntax_error_api_day_records') }}">Day records</a>
                     <a href="{{ path('syntax_error_api_month_charts', { 'type': 'outTemp'}) }}">Month charts</a>
                     <a href="{{ path('syntax_error_api_month_records') }}">Month records</a>
+                    <a href="{{ path('syntax_error_api_year_charts', { 'type': 'outTemp'}) }}">Year charts</a>
+                    <a href="{{ path('syntax_error_api_year_records') }}">Year records</a>
                 </menu>
                 <article>{% block desc %}{% endblock %}</article>
 

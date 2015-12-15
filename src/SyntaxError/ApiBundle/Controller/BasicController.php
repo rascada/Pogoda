@@ -9,7 +9,7 @@ use SyntaxError\ApiBundle\Tools\Jsoner;
 
 class BasicController extends Controller
 {
-    public function nowAction(Request $request)
+    public function nowAction(Request $request, $ext)
     {
         $live = $this->get('syntax_error_api.live');
         $jsoner = new Jsoner();
@@ -32,18 +32,18 @@ class BasicController extends Controller
         $data['time'] = $live->createTime();
         $jsoner->createJson($data);
 
-        return $request->isXmlHttpRequest() ? $jsoner->createResponse() : $this->render(
+        return $ext == 'json' ? $jsoner->createResponse() : $this->render(
             "SyntaxErrorApiBundle:Basic:now.html.twig", [
                 'title' => 'Basic',
                 'json' => $jsoner->getJsonString()
         ]);
     }
 
-    public function wundergroundAction(Request $request, $type)
+    public function wundergroundAction(Request $request, $type, $ext)
     {
         $jsonString = $this->get('syntax_error_api.wu')->read($type, 2*60);
 
-        if( $request->isXmlHttpRequest() ) {
+        if( $ext == 'json' ) {
             $response = new Response($jsonString);
             $response->headers->set('Content-Type', 'application/json; charset=utf-8');
         } else {
