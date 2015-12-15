@@ -29,6 +29,7 @@ main
 	import navigationbar from './components/navigationBar.vue'
 	import compass from './components/compass.vue'
 	import vial from './components/vial.vue'
+	let aja = require('aja');
 
 	export default {
 	  components: {
@@ -36,6 +37,18 @@ main
 			navigationbar,
 			compass,
 			vial
-	  }
+	  },
+
+		methods: {
+			basic(firstGetParam, ...getParams){
+				let params = firstGetParam ? `?${firstGetParam}` : false;
+
+				if(getParams)
+					getParams.forEach( param => params += `&${param}`);
+
+				return aja().url(`//pogoda/app_dev.php/api/basic.json${params}`)
+					.type('jsonp').jsonPadding('jsonp');
+			}
+		}
 	}
 </script>
