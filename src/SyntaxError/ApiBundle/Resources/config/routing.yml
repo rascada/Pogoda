@@ -1,36 +1,36 @@
 syntax_error_api_basic_now:
-  path: /
-  defaults: { _controller: SyntaxErrorApiBundle:Basic:now }
+  path: /basic.{ext}
+  defaults: { _controller: SyntaxErrorApiBundle:Basic:now, ext: default }
 
 syntax_error_api_socket:
   path: /websocket
-  defaults: { _controller: SyntaxErrorApiBundle:Socket:information }
+  defaults: { _controller: SyntaxErrorApiBundle:Socket:information, ext: default }
 
 syntax_error_api_wu:
-  path: /wu/{type}
-  defaults: { _controller: SyntaxErrorApiBundle:Basic:wunderground }
+  path: /wu/{type}.{ext}
+  defaults: { _controller: SyntaxErrorApiBundle:Basic:wunderground, ext: default }
   requirements: { type: forecast|astronomy }
 
 syntax_error_api_day_charts:
-  path: /day-charts/{type}
-  defaults: { _controller: SyntaxErrorApiBundle:Day:charts }
+  path: /day-charts/{type}.{ext}
+  defaults: { _controller: SyntaxErrorApiBundle:Day:charts, ext: default }
 
 syntax_error_api_day_records:
-  path: /day-records
-  defaults: { _controller: SyntaxErrorApiBundle:Day:records }
+  path: /day-records.{ext}
+  defaults: { _controller: SyntaxErrorApiBundle:Day:records, ext: default }
 
 syntax_error_api_month_charts:
-  path: /month-charts/{type}
-  defaults: { _controller: SyntaxErrorApiBundle:Month:charts }
+  path: /month-charts/{type}.{ext}
+  defaults: { _controller: SyntaxErrorApiBundle:Month:charts, ext: default }
 
 syntax_error_api_month_records:
-  path: /month-records
-  defaults: { _controller: SyntaxErrorApiBundle:Month:records }
+  path: /month-records.{ext}
+  defaults: { _controller: SyntaxErrorApiBundle:Month:records, ext: default }
 
 syntax_error_api_year_charts:
-  path: /year-charts/{type}
-  defaults: { _controller: SyntaxErrorApiBundle:Year:charts }
+  path: /year-charts/{type}.{ext}
+  defaults: { _controller: SyntaxErrorApiBundle:Year:charts, ext: default }
 
 syntax_error_api_year_records:
-  path: /year-records
-  defaults: { _controller: SyntaxErrorApiBundle:Year:records }
+  path: /year-records.{ext}
+  defaults: { _controller: SyntaxErrorApiBundle:Year:records, ext: default }

@@ -12,10 +12,10 @@ class MonthControllerTest extends WebTestCase
         $params = ['outTemp', 'outHumidity', 'barometer', 'rain', 'windGust', 'windGustDir'];
 
         foreach($params as $param) {
-            $crawler = $client->request('GET', '/api/month-charts/'.$param);
+            $crawler = $client->request('GET', '/api/month-charts/'.$param.".json");
             $this->assertTrue($client->getResponse()->getStatusCode() == 200);
 
-            $crawler = $client->request('GET', '/api/month-charts/'.$param, [], [], [
+            $crawler = $client->request('GET', '/api/month-charts/'.$param.".json", [], [], [
                 'HTTP_X-Requested-With' => 'XMLHttpRequest'
             ]);
             $this->assertTrue($client->getResponse()->getStatusCode() == 200);
@@ -29,7 +29,7 @@ class MonthControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/api/month-records');
         $this->assertTrue($client->getResponse()->getStatusCode() == 200);
-        $crawler = $client->request('GET', '/api/month-records', [], [], [
+        $crawler = $client->request('GET', '/api/month-records.json', [], [], [
             'HTTP_X-Requested-With' => 'XMLHttpRequest'
         ]);
         $this->assertTrue($client->getResponse()->getStatusCode() == 200);

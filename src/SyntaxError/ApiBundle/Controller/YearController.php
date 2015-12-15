@@ -8,7 +8,7 @@ use SyntaxError\ApiBundle\Tools\Jsoner;
 
 class YearController extends Controller
 {
-    public function recordsAction(Request $request)
+    public function recordsAction(Request $request, $ext)
     {
         $dateTime = new \DateTime(
             $request->query->has('date') ? $request->query->get('date')." 00:00:00" : 'now'
@@ -34,14 +34,14 @@ class YearController extends Controller
         $jsoner = new Jsoner();
         $jsoner->createJson($data);
 
-        return $request->query->has('type') && $request->query->get('type') == 'json' ? $jsoner->createResponse() : $this->render(
+        return $ext == 'json' ? $jsoner->createResponse() : $this->render(
             "SyntaxErrorApiBundle:Year:records.html.twig", [
             'title' => 'Year records: '.$dateTime->format("Y") ,
             'json' => $jsoner->getJsonString()
         ]);
     }
 
-    public function chartsAction(Request $request, $type)
+    public function chartsAction(Request $request, $type, $ext)
     {
         $dateTime = new \DateTime(
             $request->query->has('date') ? $request->query->get('date')." 00:00:00" : 'now'
@@ -51,7 +51,7 @@ class YearController extends Controller
         $jsoner = new Jsoner();
         $jsoner->createJson( $month->highDoubleFormatter($dateTime, ucfirst(strtolower($type)) ) );
 
-        return $request->query->has('type') && $request->query->get('type') == 'json' ? $jsoner->createResponse() : $this->render(
+        return $ext == 'json' ? $jsoner->createResponse() : $this->render(
             "SyntaxErrorApiBundle:Year:charts.html.twig", [
             'title' => 'Year '.ucfirst($type).": ".$dateTime->format("Y"),
             'json' => $jsoner->getJsonString()

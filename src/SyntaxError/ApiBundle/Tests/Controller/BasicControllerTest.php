@@ -10,11 +10,11 @@ class BasicControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/api/');
+        $crawler = $client->request('GET', '/api/basic');
         $this->assertTrue($client->getResponse()->getStatusCode() == 200);
         $this->assertRegExp('/hljs\.initHighlightingOnLoad\(\)\;/', $crawler->getNode(0)->lastChild->nodeValue);
 
-        $crawler = $client->request('GET', '/api/', [], [], [
+        $crawler = $client->request('GET', '/api/basic.json', [], [], [
            'HTTP_X-Requested-With' => 'XMLHttpRequest'
         ]);
         $this->assertTrue($client->getResponse()->getStatusCode() == 200);
@@ -27,7 +27,7 @@ class BasicControllerTest extends WebTestCase
 
         $forecast = $client->request('GET', '/api/wu/forecast');
         $this->assertTrue($client->getResponse()->getStatusCode() == 200);
-        $forecast = $client->request('GET', '/api/wu/forecast', [], [], [
+        $forecast = $client->request('GET', '/api/wu/forecast.json', [], [], [
             'HTTP_X-Requested-With' => 'XMLHttpRequest'
         ]);
         $this->assertTrue($client->getResponse()->getStatusCode() == 200);
@@ -37,7 +37,7 @@ class BasicControllerTest extends WebTestCase
 
         $astronomy = $client->request('GET', '/api/wu/astronomy');
         $this->assertTrue($client->getResponse()->getStatusCode() == 200);
-        $astronomy = $client->request('GET', '/api/wu/astronomy', [], [], [
+        $astronomy = $client->request('GET', '/api/wu/astronomy.json', [], [], [
             'HTTP_X-Requested-With' => 'XMLHttpRequest'
         ]);
         $this->assertTrue($client->getResponse()->getStatusCode() == 200);
