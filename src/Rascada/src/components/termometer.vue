@@ -19,12 +19,15 @@
 </template>
 
 <script>
+	let aja = require('aja');
+
   export default {
     data () {
       return {
         degrees: 0
       }
     },
+		
 		computed: {
 			sensorVal () {
 				return `${ 13 + (this.degrees * 2.9) }%`;
@@ -32,17 +35,13 @@
 		},
     methods: {
       updateTemperature(){
-        let xhr = new XMLHttpRequest();
-
-        xhr.open('get', '/api?temperature');
-        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-        xhr.onload = e => {
-          let res = JSON.parse(e.target.responseText);
-
-          this.degrees = res.temperature.current.value;
-          setTimeout(this.updateTemperature, res.time.next.value * 1000);
-        };
-        xhr.send();
+				aja().url('//pogoda/app_dev.php/api/basic.json?temperature')
+					.type('jsonp')
+					.jsonPadding('jsonp')
+			    .on('success', res => {
+		        this.degrees = res.temperature.current.value;
+		        setTimeout(this.updateTemperature, res.time.next.value * 1000);
+			    }).go();
       }
     },
 
