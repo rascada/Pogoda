@@ -32,7 +32,7 @@ class BasicController extends Controller
         $data['time'] = $live->createTime();
         $jsoner->createJson($data);
 
-        return $request->isXmlHttpRequest() ? $jsoner->createResponse() : $this->render(
+        return $request->query->has('type') && $request->query->get('type') == 'json' ? $jsoner->createResponse() : $this->render(
             "SyntaxErrorApiBundle:Basic:now.html.twig", [
                 'title' => 'Basic',
                 'json' => $jsoner->getJsonString()
@@ -43,7 +43,7 @@ class BasicController extends Controller
     {
         $jsonString = $this->get('syntax_error_api.wu')->read($type, 2*60);
 
-        if( $request->isXmlHttpRequest() ) {
+        if( $request->query->has('type') && $request->query->get('type') == 'json' ) {
             $response = new Response($jsonString);
             $response->headers->set('Content-Type', 'application/json; charset=utf-8');
         } else {

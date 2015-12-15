@@ -34,7 +34,7 @@ class MonthController extends Controller
         $jsoner = new Jsoner();
         $jsoner->createJson($data);
 
-        return $request->isXmlHttpRequest() ? $jsoner->createResponse() : $this->render(
+        return $request->query->has('type') && $request->query->get('type') == 'json' ? $jsoner->createResponse() : $this->render(
             "SyntaxErrorApiBundle:Month:records.html.twig", [
             'title' => 'Month records: '.$dateTime->format("Y M") ,
             'json' => $jsoner->getJsonString()
@@ -51,7 +51,7 @@ class MonthController extends Controller
         $jsoner = new Jsoner();
         $jsoner->createJson( $month->highDoubleFormatter($dateTime, ucfirst(strtolower($type)) ) );
 
-        return $request->isXmlHttpRequest() ? $jsoner->createResponse() : $this->render(
+        return $request->query->has('type') && $request->query->get('type') == 'json' ? $jsoner->createResponse() : $this->render(
             "SyntaxErrorApiBundle:Month:charts.html.twig", [
             'title' => 'Month '.ucfirst($type).": ".$dateTime->format("Y M"),
             'json' => $jsoner->getJsonString()
