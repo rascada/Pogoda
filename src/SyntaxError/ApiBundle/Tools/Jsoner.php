@@ -80,11 +80,15 @@ class Jsoner
         return $this;
     }
     /**
+     * @param $callback
      * @return Response
      */
-    public function createResponse()
+    public function createResponse($callback)
     {
         $response = new Response( $this->jsonString );
+        if($callback) {
+            $response = new Response( $callback."(".$this->jsonString.")" );
+        }
         $response->headers->set('Content-Type', 'application/json; charset=utf-8');
         return $response;
     }
