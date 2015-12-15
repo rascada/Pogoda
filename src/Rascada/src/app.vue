@@ -9,7 +9,8 @@
 		background color
 		font-family 'Rajdhani', bold, sans-serif
 		main
-			display flex
+			@extend .center
+			justify-content space-around
 
 </style>
 
