@@ -19,7 +19,12 @@
   sunWidth = 4em
 
   header
+    display flex
+    align-items center
+
     background #eee
+    color color
+    text-shadow .05em .05em (teal + 20%)
 
     margin .5em
     padding .5em 1em
