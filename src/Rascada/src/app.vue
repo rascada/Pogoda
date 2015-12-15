@@ -18,17 +18,23 @@
 navigationbar(name='Pogoda Skałągi')
 main
 	termometer
+	compass
+	vial
 
 </template>
 
 <script>
 	import termometer from './components/termometer.vue'
 	import navigationbar from './components/navigationBar.vue'
+	import compass from './components/compass.vue'
+	import vial from './components/vial.vue'
 
 	export default {
 	  components: {
 	    termometer,
-			navigationbar
+			navigationbar,
+			compass,
+			vial
 	  }
 	}
 </script>
