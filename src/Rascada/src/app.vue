@@ -60,6 +60,13 @@ main
 
 				return aja().url(`//pogoda/app_dev.php/api/basic.json${params}`)
 					.type('jsonp').jsonPadding('jsonp');
+			},
+
+			initApi(api){
+				let requests = this.api.basic.request;
+
+				this.api.basic = api;
+				requests.forEach( req => req(api) );
 			}
 		}
 	}
