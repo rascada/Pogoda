@@ -50,7 +50,7 @@ main
 		},
 
 		ready(){
-			this.basic().on('success', this.initApi).go();
+			this.initApi();
 		},
 
 		methods: {
@@ -66,8 +66,11 @@ main
 			initApi(api){
 				let requests = this.api.basic.request;
 
-				this.api.basic = api;
-				requests.forEach( req => req(api) );
+				if(api) {
+					this.api.basic = api;
+					if(requests)
+						requests.forEach( req => req(api) );
+				}
 			}
 		}
 	}
