@@ -8,16 +8,17 @@ Strona stacji pogodowej w Skałągach
 - `src/SyntaxError/SocketBundle`: serwer web-socketów
 
 ## Kompilacja klienta:
-### Kompilowanie z oficjalnymi cli
+#### [webpack](https://webpack.github.io/)
+Klient pogody używa go do skompilowania aplikacji.
+```sh
+# aby go zainstalować należy
+$ npm i -g webpack
 ```
-jade ./src/Rascada/views/jade/*.jade -o ./web
-stylus ./src/Rascada/views/stylus -o ./web/css
-babel ./src/Rascada/views/script --out-dir ./web/js
-```
+#### aby skompilować Pogode
 
-### Kompilacja z [front-render](https://github.com/rascada/front-render)
-Rownież używa oficjalnych pluginów
-```
+```sh
 ~/Pogoda$ cd src/Rascada
-~/Pogoda/src/Rascada$ front-render
+~/Pogoda/src/Rascada$ webpack
+# albo
+~/Pogoda$ webpack src/Rascada
 ```
