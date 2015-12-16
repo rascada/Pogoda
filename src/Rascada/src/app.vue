@@ -71,6 +71,11 @@ main
 					if(requests)
 						requests.forEach( req => req(api) );
 				}
+
+				setTimeout(
+					this.basic().on('success', this.initApi).go(),
+					api ? api.time.next.value * 1000 : 100
+				);
 			}
 		}
 	}
