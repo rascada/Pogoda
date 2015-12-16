@@ -41,7 +41,7 @@ main
 
 		methods: {
 			basic(firstGetParam, ...getParams){
-				let params = firstGetParam ? `?${firstGetParam}` : false;
+				let params = firstGetParam ? `?${firstGetParam}` : '';
 
 				if(getParams)
 					getParams.forEach( param => params += `&${param}`);
