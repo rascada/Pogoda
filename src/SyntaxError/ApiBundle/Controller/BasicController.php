@@ -54,16 +54,12 @@ class BasicController extends Controller
         }
 
         if( $ext == 'json' ) {
-            $response = new Response($jsonString);
-            if($call) {
-                $response = new Response($call."($jsonString)");
-                $response->headers->set('Access-Control-Allow-Origin', '*');
-            }
-
+            $response = new Response($call ? ($call."($jsonString)") : $jsonString);
             $response->headers->set(
                 'Content-Type',
                 ($call ? 'application/javascript': 'application/json' ).'; charset=utf-8'
             );
+            $response->headers->set('Access-Control-Allow-Origin', '*');
 
         } else {
             $response = new Response($this->renderView("SyntaxErrorApiBundle:Basic:wunderground.html.twig", [
