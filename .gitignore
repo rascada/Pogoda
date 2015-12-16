@@ -2,8 +2,7 @@
 prepros.cfg
 
 web/css/*.css
-web/js/*.js
-
+web/js/build.js
 *.log
 
 viewsCompiled
