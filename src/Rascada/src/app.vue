@@ -39,6 +39,18 @@ main
 			vial
 	  },
 
+		data(){
+			return {
+				api: {
+					basic: {}
+				}
+			}
+		},
+
+		ready(){
+			this.basic().on('success', api => this.api.basic = api ).go();
+		},
+
 		methods: {
 			basic(firstGetParam, ...getParams){
 				let params = firstGetParam ? `?${firstGetParam}` : '';
