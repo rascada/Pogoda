@@ -13,6 +13,11 @@ class MonthController extends Controller
         $dateTime = new \DateTime(
             $request->query->has('date') ? $request->query->get('date')." 00:00:00" : 'now'
         );
+        $call = null;
+        if( $request->query->has('callback') ) {
+            $call = $request->query->get('callback');
+            $request->query->remove('callback');
+        }
         $request->query->remove('date');
         $day = $this->get('syntax_error_api.month');
         $data = [];
@@ -34,7 +39,7 @@ class MonthController extends Controller
         $jsoner = new Jsoner();
         $jsoner->createJson($data);
 
-        return $ext == 'json' ? $jsoner->createResponse() : $this->render(
+        return $ext == 'json' ? $jsoner->createResponse($call) : $this->render(
             "SyntaxErrorApiBundle:Month:records.html.twig", [
             'title' => 'Month records: '.$dateTime->format("Y M") ,
             'json' => $jsoner->getJsonString()
@@ -46,12 +51,17 @@ class MonthController extends Controller
         $dateTime = new \DateTime(
             $request->query->has('date') ? $request->query->get('date')." 00:00:00" : 'now'
         );
+        $call = null;
+        if( $request->query->has('callback') ) {
+            $call = $request->query->get('callback');
+            $request->query->remove('callback');
+        }
         $month = $this->get('syntax_error_api.month');
 
         $jsoner = new Jsoner();
         $jsoner->createJson( $month->highDoubleFormatter($dateTime, ucfirst(strtolower($type)) ) );
 
-        return $ext == 'json'  ? $jsoner->createResponse() : $this->render(
+        return $ext == 'json'  ? $jsoner->createResponse($call) : $this->render(
             "SyntaxErrorApiBundle:Month:charts.html.twig", [
             'title' => 'Month '.ucfirst($type).": ".$dateTime->format("Y M"),
             'json' => $jsoner->getJsonString()

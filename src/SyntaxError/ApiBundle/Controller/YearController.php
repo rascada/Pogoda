@@ -16,6 +16,12 @@ class YearController extends Controller
         $request->query->remove('date');
         $day = $this->get('syntax_error_api.year');
         $data = [];
+        $call = null;
+        if( $request->query->has('callback') ) {
+            $call = $request->query->get('callback');
+            $request->query->remove('callback');
+        }
+
         if( !$request->query->count() ) {
             foreach(get_class_methods('SyntaxError\ApiBundle\Service\YearService') as $method) {
                 if( preg_match('/create/', $method) ) {
@@ -34,7 +40,7 @@ class YearController extends Controller
         $jsoner = new Jsoner();
         $jsoner->createJson($data);
 
-        return $ext == 'json' ? $jsoner->createResponse() : $this->render(
+        return $ext == 'json' ? $jsoner->createResponse($call) : $this->render(
             "SyntaxErrorApiBundle:Year:records.html.twig", [
             'title' => 'Year records: '.$dateTime->format("Y") ,
             'json' => $jsoner->getJsonString()
@@ -47,11 +53,16 @@ class YearController extends Controller
             $request->query->has('date') ? $request->query->get('date')." 00:00:00" : 'now'
         );
         $month = $this->get('syntax_error_api.year');
+        $call = null;
+        if( $request->query->has('callback') ) {
+            $call = $request->query->get('callback');
+            $request->query->remove('callback');
+        }
 
         $jsoner = new Jsoner();
         $jsoner->createJson( $month->highDoubleFormatter($dateTime, ucfirst(strtolower($type)) ) );
 
-        return $ext == 'json' ? $jsoner->createResponse() : $this->render(
+        return $ext == 'json' ? $jsoner->createResponse($call) : $this->render(
             "SyntaxErrorApiBundle:Year:charts.html.twig", [
             'title' => 'Year '.ucfirst($type).": ".$dateTime->format("Y"),
             'json' => $jsoner->getJsonString()

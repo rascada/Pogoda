@@ -15,6 +15,12 @@ class DayController extends Controller
         $dateTime = new \DateTime(
             $request->query->has('date') ? $request->query->get('date')." 00:00:00" : 'now'
         );
+        $call = null;
+        if( $request->query->has('callback') ) {
+            $call = $request->query->get('callback');
+            $request->query->remove('callback');
+        }
+
         $request->query->remove('date');
         $day = $this->get('syntax_error_api.day');
         $data = [];
@@ -36,7 +42,7 @@ class DayController extends Controller
         $jsoner = new Jsoner();
         $jsoner->createJson($data);
 
-        return $ext == 'json' ? $jsoner->createResponse() : $this->render(
+        return $ext == 'json' ? $jsoner->createResponse($call) : $this->render(
             "SyntaxErrorApiBundle:Day:records.html.twig", [
             'title' => 'Day records: '.$dateTime->format("d.m.Y") ,
             'json' => $jsoner->getJsonString()
@@ -48,6 +54,12 @@ class DayController extends Controller
         $dateTime = new \DateTime(
             $request->query->has('date') ? $request->query->get('date')." 00:00:00" : 'now'
         );
+        $call = null;
+        if( $request->query->has('callback') ) {
+            $call = $request->query->get('callback');
+            $request->query->remove('callback');
+        }
+
         try {
             $data = $this->get('syntax_error_api.day')->highFormatter($dateTime, $type);
         } catch(\RuntimeException $e) {
@@ -61,7 +73,7 @@ class DayController extends Controller
         $jsoner = new Jsoner();
         $jsoner->createJson($data);
 
-        return $ext == 'json' ? $jsoner->createResponse() : $this->render(
+        return $ext == 'json' ? $jsoner->createResponse($call) : $this->render(
             "SyntaxErrorApiBundle:Day:charts.html.twig", [
             'title' => 'Day '.ucfirst($type).": ".$dateTime->format("d.m.Y"),
             'json' => $jsoner->getJsonString()
