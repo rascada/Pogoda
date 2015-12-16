@@ -60,7 +60,7 @@ main
 				if(getParams)
 					getParams.forEach( param => params += `&${param}`);
 
-				return aja().url(`//pogoda/app_dev.php/api/basic.json${params}`);
+				return aja().url(`/api/basic.json${params}`);
 			},
 
 			initApi(api){
