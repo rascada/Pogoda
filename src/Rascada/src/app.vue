@@ -42,13 +42,15 @@ main
 		data(){
 			return {
 				api: {
-					basic: {}
+					basic: {
+						request: []
+					}
 				}
 			}
 		},
 
 		ready(){
-			this.basic().on('success', api => this.api.basic = api ).go();
+			this.basic().on('success', this.initApi).go();
 		},
 
 		methods: {
