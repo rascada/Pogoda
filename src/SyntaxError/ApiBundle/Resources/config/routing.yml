@@ -34,3 +34,8 @@ syntax_error_api_year_charts:
 syntax_error_api_year_records:
   path: /year-records.{ext}
   defaults: { _controller: SyntaxErrorApiBundle:Year:records, ext: default }
+
+# Redirect
+syntax_error_api_home:
+  path: /
+  defaults: { _controller: FrameworkBundle:Redirect:redirect, route: syntax_error_api_basic_now, permanent: true }
