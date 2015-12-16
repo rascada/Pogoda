@@ -39,15 +39,13 @@
 						setTimeout(this.updateTemperature, res.time.next.value * 1000);
 					}).go();
       },
-			apiConnect(){
-				if(this.$parent.api.basic.temperature)
-					this.degrees = this.$parent.api.basic.temperature.current.value;
-				else setTimeout(this.apiConnect, 100);
+			apiConnect(api){
+				this.degrees = api.temperature.current.value;
 			}
     },
 
     ready () {
-			this.apiConnect();
+			this.$parent.api.basic.request.push(this.apiConnect)
     },
 
     destroyed () {
