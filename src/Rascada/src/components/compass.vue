@@ -1,7 +1,25 @@
 <template lang='jade'>
   .compass
-    .arrow
+    .arrow(:style='{ transform: "rotate(" + (direction.value + 45) + direction.units + ")" }')
 </template>
+
+<script>
+
+  export default {
+    data(){
+      return {
+        direction: 0
+      }
+    },
+
+    ready(){
+      this.$parent.api.basic.request.push(api => {
+        this.direction = api.wind.currentDir;
+      });
+    }
+  }
+
+</script>
 
 <style lang='stylus'>
   @import "~styles/main"
