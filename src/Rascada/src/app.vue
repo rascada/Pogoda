@@ -65,9 +65,12 @@ main
 
 			initApi(api){
 				let requests = this.api.basic.request;
+				let makeRequest = delay =>
+					setTimeout(this.basic().on('success', this.initApi).go(), delay);
 
 				if(api) {
 					this.api.basic = api;
+
 					if(requests)
 						requests.forEach( req => req(api) );
 				}
