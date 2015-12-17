@@ -1,5 +1,11 @@
 <template lang='jade'>
-  compass(:direction='direction')
+
+.windWraper
+  h1 Wiatr
+  .wind
+    compass(title='aktualny' v-bind:direction='wind.actual')
+    compass(title='powiew' v-bind:direction='wind.gust')
+
 </template>
 
 <script>
