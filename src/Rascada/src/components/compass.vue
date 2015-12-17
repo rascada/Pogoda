@@ -30,13 +30,14 @@
     margin .5em
     width 13em
     height @width
-    background #ddd
+    background color
     position relative
     border-radius 50%
     .arrow
       width 80%
       height 80%
-      background rgba(255,255,255,.75)
+      background #fff
       border-radius 0 50% 50% 50%
+      border .4em solid
       transform rotate(45deg)
 </style>

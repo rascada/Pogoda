@@ -35,10 +35,18 @@
 </script>
 
 <style lang='stylus'>
+  @import '~styles/main'
+
   .windWraper
-    background rgba(#fff, .25)
+    @extend .blockShadow
+    border-radius .25em
+    background #eee
+    color color
     padding 1em
     text-align center
+    h1
+      margin .1em
     .wind
       display flex
+
 </style>
