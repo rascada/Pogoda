@@ -1,22 +1,14 @@
 <template lang='jade'>
   .compass
-    .arrow(:style='{ transform: "rotate(" + (direction.value + 45) + direction.units + ")" }')
+    .arrow(:style='{ transform: "rotate(" + (direction + 45) + "deg)" }')
 </template>
 
 <script>
 
   export default {
-    data(){
-      return {
-        direction: 0
-      }
+    props: {
+      direction: 0
     },
-
-    ready(){
-      this.$parent.api.basic.request.push(api => {
-        this.direction = api.wind.currentDir;
-      });
-    }
   }
 
 </script>
