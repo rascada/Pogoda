@@ -68,16 +68,15 @@ main
 				let makeRequest = delay =>
 					setTimeout(_=> this.basic().on('success', this.initApi).go(), delay);
 
-				if(api) {
+				if (api) {
 					this.api.basic = api;
+					makeRequest(api.time.next.value * 1000)
 
-					if(requests)
+					if (requests)
 						requests.forEach( req => req(api) );
-				}
 
-				if(requests)
-					makeRequest(api ? api.time.next.value * 1000 : 5000);
-			}
+				}else if (requests) makeRequest();
 		}
 	}
+}
 </script>
