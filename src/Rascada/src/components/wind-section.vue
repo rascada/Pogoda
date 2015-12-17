@@ -12,13 +12,17 @@
 
     data(){
       return {
-        direction: 0
+        wind: {
+          gust: 0,
+          actual: 0
+        }
       }
     },
 
     ready(){
       this.$parent.api.basic.request.push(api => {
-        this.direction = api.wind.currentDir.value;
+        this.wind.actual = api.wind.currentDir.value;
+          this.wind.gust = api.wind.gustDir.value;
       });
     }
   }
