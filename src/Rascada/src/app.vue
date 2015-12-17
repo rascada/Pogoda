@@ -66,7 +66,7 @@ main
 			initApi(api){
 				let requests = this.api.basic.request;
 				let makeRequest = delay =>
-					setTimeout(this.basic().on('success', this.initApi).go(), delay);
+					setTimeout(_=> this.basic().on('success', this.initApi).go(), delay);
 
 				if(api) {
 					this.api.basic = api;
