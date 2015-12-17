@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/marcinlacina/Pogoda"
+    "url": "https://github.com/rascada/Pogoda"
   },
   "private": true,
   "author": "Damian Martyniak",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/marcinlacina/Pogoda/issues"
+    "url": "https://github.com/rascada/Pogoda/issues"
   },
   "homepage": "pogoda-skalagi.pl",
   "dependencies": {
