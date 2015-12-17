@@ -19,23 +19,23 @@
 navigationbar(name='Pogoda Skałągi')
 main
 	termometer
-	compass
+	wind-section
 	vial
 
 </template>
 
 <script>
+	import windSection from './components/wind-section.vue'
 	import termometer from './components/termometer.vue'
 	import navigationbar from './components/navigationBar.vue'
-	import compass from './components/compass.vue'
 	import vial from './components/vial.vue'
 	let aja = require('aja');
 
 	export default {
 	  components: {
+			windSection,
 	    termometer,
 			navigationbar,
-			compass,
 			vial
 	  },
 
