@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marcin
- * Date: 29.11.15
- * Time: 17:50
- */
 
 namespace SyntaxError\ApiBundle\Service;
 
