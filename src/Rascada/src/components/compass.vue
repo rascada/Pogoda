@@ -27,6 +27,7 @@
 
   .compass
     @extend .blockShadow, .center
+    margin .5em
     width 13em
     height @width
     background #ddd

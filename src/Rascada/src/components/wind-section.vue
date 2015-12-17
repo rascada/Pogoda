@@ -33,3 +33,12 @@
     }
   }
 </script>
+
+<style lang='stylus'>
+  .windWraper
+    background rgba(#fff, .25)
+    padding 1em
+    text-align center
+    .wind
+      display flex
+</style>
