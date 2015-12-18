@@ -1,10 +1,18 @@
 <template lang='jade'>
 
-nav
+nav( v-show='visible' )
   -for(var i = 10; i--;)
     button menu #{i}
 
 </template>
+
+<script>
+  export default {
+    props: {
+      visible: true
+    }
+  }
+</script>
 
 <style lang='stylus' scoped>
 @import '~styles/main'
