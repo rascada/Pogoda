@@ -2,7 +2,7 @@
   @import url("http://fonts.googleapis.com/css?family=Rajdhani:400,600&amp;subset=latin,latin-ext");
   @import "~styles/main"
   @import "~styles/flex"
-  
+
   body
     margin 1em 1.5em
     overflow-x hidden
@@ -18,9 +18,9 @@
 
 navigationbar(name='Pogoda Skałągi')
 main
-	termometer
-	wind-section
-	vial
+  vial
+  wind-section
+  termometer
 
 </template>
 
