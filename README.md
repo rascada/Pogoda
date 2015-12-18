@@ -7,9 +7,11 @@ Strona stacji pogodowej w Skałągach
 - `src/SyntaxError/ApiBundle`: źródła JSONowego API
 - `src/SyntaxError/SocketBundle`: serwer web-socketów
 
-## Kompilacja klienta:
+# Pogoda-cli
+
+## kompilacja:
 #### [webpack](https://webpack.github.io/)
-Klient pogody używa go do skompilowania aplikacji.
+Pogoda-cli używa go do skompilowania aplikacji.
 ```sh
 # aby go zainstalować należy
 $ npm i -g webpack
@@ -17,8 +19,8 @@ $ npm i -g webpack
 #### aby skompilować Pogode
 
 ```sh
+# przejście do katalogu pogoda-cli
 ~/Pogoda$ cd src/Rascada
+# inicializacja webpack'a
 ~/Pogoda/src/Rascada$ webpack
-# albo
-~/Pogoda$ webpack src/Rascada
 ```
