@@ -29,12 +29,12 @@
                     <a href="{{ path('syntax_error_api_socket') }}">WebSocket</a>
                     <a href="{{ path('syntax_error_api_wu', { 'type': 'forecast' }) }}">Forecast</a>
                     <a href="{{ path('syntax_error_api_wu', { 'type': 'astronomy' }) }}">Astronomy</a>
-                    <a href="{{ path('syntax_error_api_day_charts', { 'type': 'outTemp' }) }}">Day charts</a>
-                    <a href="{{ path('syntax_error_api_day_records') }}">Day records</a>
-                    <a href="{{ path('syntax_error_api_month_charts', { 'type': 'outTemp'}) }}">Month charts</a>
-                    <a href="{{ path('syntax_error_api_month_records') }}">Month records</a>
-                    <a href="{{ path('syntax_error_api_year_charts', { 'type': 'outTemp'}) }}">Year charts</a>
-                    <a href="{{ path('syntax_error_api_year_records') }}">Year records</a>
+                    <a href="{{ path('syntax_error_api_archive_charts', { 'type': 'outTemp', 'period': 'day' }) }}">Day charts</a>
+                    <a href="{{ path('syntax_error_api_archive_records', { 'period': 'day' }) }}">Day records</a>
+                    <a href="{{ path('syntax_error_api_archive_charts', { 'type': 'outTemp', 'period': 'month' }) }}">Month charts</a>
+                    <a href="{{ path('syntax_error_api_archive_records', { 'period': 'month' }) }}">Month records</a>
+                    <a href="{{ path('syntax_error_api_archive_charts', { 'type': 'outTemp', 'period': 'year' }) }}">Year charts</a>
+                    <a href="{{ path('syntax_error_api_archive_records', { 'period': 'year' }) }}">Year records</a>
                 </menu>
                 <article>{% block desc %}{% endblock %}</article>
 

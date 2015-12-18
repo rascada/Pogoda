@@ -18,7 +18,7 @@ class MonthService
         $this->em = $entityManager;
     }
 
-    public function highDoubleFormatter(\DateTime $dateTime, $archiveName)
+    public function highFormatter(\DateTime $dateTime, $archiveName)
     {
         $from = (new \DateTime( $dateTime->format("Y-m-01 00:00:00") ))->getTimestamp();
         $to = (new \DateTime( $dateTime->format("Y-m-t 23:59:59") ))->getTimestamp();

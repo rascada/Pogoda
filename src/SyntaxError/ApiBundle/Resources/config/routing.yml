@@ -11,29 +11,15 @@ syntax_error_api_wu:
   defaults: { _controller: SyntaxErrorApiBundle:Basic:wunderground, ext: default }
   requirements: { type: forecast|astronomy }
 
-syntax_error_api_day_charts:
-  path: /day-charts/{type}.{ext}
-  defaults: { _controller: SyntaxErrorApiBundle:Day:charts, ext: default }
+syntax_error_api_archive_charts:
+  path: /{period}-charts/{type}.{ext}
+  defaults: { _controller: SyntaxErrorApiBundle:Archive:charts, ext: default }
+  requirements: { period: day|month|year }
 
-syntax_error_api_day_records:
-  path: /day-records.{ext}
-  defaults: { _controller: SyntaxErrorApiBundle:Day:records, ext: default }
-
-syntax_error_api_month_charts:
-  path: /month-charts/{type}.{ext}
-  defaults: { _controller: SyntaxErrorApiBundle:Month:charts, ext: default }
-
-syntax_error_api_month_records:
-  path: /month-records.{ext}
-  defaults: { _controller: SyntaxErrorApiBundle:Month:records, ext: default }
-
-syntax_error_api_year_charts:
-  path: /year-charts/{type}.{ext}
-  defaults: { _controller: SyntaxErrorApiBundle:Year:charts, ext: default }
-
-syntax_error_api_year_records:
-  path: /year-records.{ext}
-  defaults: { _controller: SyntaxErrorApiBundle:Year:records, ext: default }
+syntax_error_api_archive_records:
+  path: /{period}-records.{ext}
+  defaults: { _controller: SyntaxErrorApiBundle:Archive:records, ext: default }
+  requirements: { period: day|month|year }
 
 # Redirect
 syntax_error_api_home:
