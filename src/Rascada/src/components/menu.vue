@@ -19,10 +19,7 @@ nav( v-show='visible' )
 
 nav
   background #eee
-
   padding .5em
-  margin .5em
-  margin-top -.5em
 
   button
     margin 0 .5em

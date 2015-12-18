@@ -1,5 +1,5 @@
 <template lang='jade'>
-  .navigationBar(@mouseover='navbar.visible = true' @mouseout='navbar.visible = false')
+  .navbar(@mouseover='navbar.visible = true' @mouseout='navbar.visible = false')
     header
 
       ul.sunLogo
@@ -36,6 +36,9 @@
   @import "~styles/main"
   sunWidth = 4em
 
+  .navbar
+    margin .5em
+
   header
     display flex
     align-items center
@@ -45,7 +48,6 @@
     text-shadow .05em .05em (teal + 20%)
     @extend .blockShadow
 
-    margin .5em
     padding .5em 1em
 
     .sunLogo
