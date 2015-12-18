@@ -43,6 +43,7 @@
     background #eee
     color color
     text-shadow .05em .05em (teal + 20%)
+    @extend .blockShadow
 
     margin .5em
     padding .5em 1em

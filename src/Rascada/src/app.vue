@@ -16,7 +16,7 @@
 
 <template lang="jade">
 
-navigationbar(name='Pogoda Skałągi')
+navbar(name='Pogoda Skałągi')
 main
 	termometer
 	wind-section
@@ -27,7 +27,7 @@ main
 <script>
 	import windSection from './components/wind-section.vue'
 	import termometer from './components/termometer.vue'
-	import navigationbar from './components/navigationBar.vue'
+	import navbar from './components/navbar.vue'
 	import vial from './components/vial.vue'
 	let aja = require('aja');
 
@@ -35,7 +35,7 @@ main
 	  components: {
 			windSection,
 	    termometer,
-			navigationbar,
+			navbar,
 			vial
 	  },
 
