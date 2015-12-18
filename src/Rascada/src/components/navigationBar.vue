@@ -4,10 +4,17 @@
       -for(var i = 3; i--;)
         li
     h1 {{ name }}
+    menu
 </template>
 
 <script>
+  import menu from './menu.vue'
+
   export default {
+    components: {
+      menu
+    },
+
     props: {
       name: 'Wstaw nazwe'
     }
