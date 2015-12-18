@@ -1,5 +1,5 @@
 <template lang='jade'>
-#tempSect
+.tempSect
 	h1 Temperatura
 	p Dziś temperatura wynosi: {{ degrees }}
 	.thermometer
@@ -11,10 +11,9 @@
 				-else
 					.line
 		.sensor
-			#temperatureCurrentSensor.sensorVal(:style="{height: sensorVal }")
-				span#temperatureCurrent
 				span
 
+			.temperatureSensor.sensorVal(:style="{height: sensorVal }")
 		.bottom
 </template>
 
@@ -58,7 +57,7 @@
 @import "~styles/main"
 thermometerColor = #f42
 
-#tempSect
+.tempSect
   @extend .sect, .blockShadow
 
 .thermometer
