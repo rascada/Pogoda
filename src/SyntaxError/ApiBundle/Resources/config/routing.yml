@@ -11,15 +11,17 @@ syntax_error_api_wu:
   defaults: { _controller: SyntaxErrorApiBundle:Basic:wunderground, ext: default }
   requirements: { type: forecast|astronomy }
 
-syntax_error_api_archive_charts:
-  path: /{period}-charts/{type}.{ext}
-  defaults: { _controller: SyntaxErrorApiBundle:Archive:charts, ext: default }
-  requirements: { period: day|month|year }
-
 syntax_error_api_archive_records:
   path: /{period}-records.{ext}
   defaults: { _controller: SyntaxErrorApiBundle:Archive:records, ext: default }
   requirements: { period: day|month|year }
+
+syntax_error_api_archive_charts:
+  path: /{period}-charts/{type}.{ext}
+  defaults: { _controller: SyntaxErrorApiBundle:Archive:charts, ext: default }
+  requirements:
+    period: day|month|year
+    type: outTemp|outHumidity|barometer|windSpeed|windDir|windGust|windGustDir|rain|rainRate
 
 # Redirect
 syntax_error_api_home:

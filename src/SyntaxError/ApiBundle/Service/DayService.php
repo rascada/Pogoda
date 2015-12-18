@@ -22,9 +22,6 @@ class DayService
     public function highFormatter(\DateTime $dateTime, $callName)
     {
         $callName = 'get'.ucfirst($callName);
-        if( !method_exists('SyntaxError\ApiBundle\Entity\Archive', $callName) ) {
-            throw new \RuntimeException("Not found method '$callName' in archive.");
-        }
         $archives = $this->archive->findByDay($dateTime);
         $response = [];
         foreach($archives as $archive) {
