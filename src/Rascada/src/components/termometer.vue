@@ -11,7 +11,7 @@
 					.line
 		.sensor
 			.temperatureSensor.sensorVal(:style="{height: sensorVal }")
-				span {{ degrees }}°C
+				span {{ degrees | round }}°C
 		.bottom
 </template>
 
