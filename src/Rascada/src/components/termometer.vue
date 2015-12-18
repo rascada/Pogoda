@@ -137,19 +137,7 @@ thermometerColor = #f42
       width 150%
       p
         position absolute
-        right 160%
+        right 110%
         top -200%
-        padding .25em
         margin 0
-        background #fff
-        &:after
-          content ''
-          width 100%
-          height 100%
-          background #fff
-          transform rotate(45deg)
-          top 0
-          left 25%
-          z-index -1
-          position absolute
 </style>
