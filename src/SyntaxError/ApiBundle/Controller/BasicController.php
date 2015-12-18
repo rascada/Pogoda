@@ -9,7 +9,7 @@ use SyntaxError\ApiBundle\Tools\Jsoner;
 
 class BasicController extends Controller
 {
-    public function nowAction(Request $request, $ext)
+    public function nowAction(Request $request, $ext = 'default')
     {
         $live = $this->get('syntax_error_api.live');
         $jsoner = new Jsoner();
@@ -44,7 +44,7 @@ class BasicController extends Controller
         ]);
     }
 
-    public function wundergroundAction(Request $request, $type, $ext)
+    public function wundergroundAction(Request $request, $type, $ext = 'default')
     {
         $jsonString = $this->get('syntax_error_api.wu')->read($type, 2*60);
         $call = null;
