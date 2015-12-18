@@ -4,6 +4,8 @@
   "description": "Strona o pogodzie napędzana przez stacje pogodową w Skałągach",
   "main": "",
   "scripts": {
+    "dev": "webpack-dev-server --inline --hot",
+    "prod": "webpack --progress --hide-modules --config webpack-prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
