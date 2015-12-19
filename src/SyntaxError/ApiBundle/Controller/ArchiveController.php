@@ -4,9 +4,20 @@ namespace SyntaxError\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use SyntaxError\ApiBundle\Tools\ArchiveManager;
 
 class ArchiveController extends Controller
 {
+    /**
+     * @var ArchiveManager
+     */
+    private $manager;
+
+    public function __construct()
+    {
+        $this->manager = new ArchiveManager();
+    }
+
     public function recordsAction(Request $request, $period, $ext = 'default')
     {
         $dateTime = new \DateTime(
@@ -14,7 +25,8 @@ class ArchiveController extends Controller
         );
         $call = $request->query->has('callback') ? $request->query->get('callback') : null;
 
-        $archive = $this->get('syntax_error_api.archive')->handleDate($dateTime)->initService($period);
+        $serviceName = "syntax_error_api.$period";
+        $archive = $this->manager->handleDate($dateTime)->initService( $this->get($serviceName) );
         $jsoner = $archive->getRecords($request->query);
         $ucfPeriod = ucfirst($period);
 
@@ -32,7 +44,8 @@ class ArchiveController extends Controller
         );
         $call = $request->query->has('callback') ? $request->query->get('callback') : null;
 
-        $archive = $this->get('syntax_error_api.archive')->handleDate($dateTime)->initService($period);
+        $serviceName = "syntax_error_api.$period";
+        $archive = $this->manager->handleDate($dateTime)->initService( $this->get($serviceName) );
         $jsoner = $archive->getChart($type);
         $ucfPeriod = ucfirst($period);
 
