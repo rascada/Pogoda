@@ -2,12 +2,12 @@
 
 namespace SyntaxError\ApiBundle\Service;
 
-
 use Doctrine\ORM\EntityManager;
+use SyntaxError\ApiBundle\Interfaces\ArchiveService;
 use SyntaxError\ApiBundle\Weather\MaxMin;
 use SyntaxError\ApiBundle\Weather\Reading;
 
-class DayService
+class DayService implements ArchiveService
 {
     private $archive;
 
