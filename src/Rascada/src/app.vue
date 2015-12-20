@@ -29,59 +29,60 @@ main
   import termometer from './components/termometer.vue'
   import navbar from './components/navbar.vue'
   import vial from './components/vial.vue'
-	let aja = require('aja');
+  import forecast from './components/forecast.vue'
+  let aja = require('aja');
 
-	export default {
-	  components: {
-			windSection,
-	    termometer,
-			navbar,
-			vial,
-	  },
+  export default {
+    components: {
+      windSection,
+      termometer,
+      navbar,
+      vial,
+    },
 
-		data(){
-			return {
+    data (){
+      return {
         env: process.env.NODE_ENV,
-				api: {
+        api: {
           source: 'https://pi.syntax-shell.me/api',
-					basic: {
-						request: []
-					}
-				}
-			}
-		},
+          basic: {
+            request: []
+          }
+        }
+      }
+    },
 
-		ready(){
+    ready(){
       if (this.env == 'production')
         this.api.source = '/api';
 
-			this.initApi();
-		},
+      this.initApi();
+    },
 
-		methods: {
-			basic(firstGetParam, ...getParams){
-				let params = firstGetParam ? `?${firstGetParam}` : '';
+    methods: {
+      basic(firstGetParam, ...getParams){
+        let params = firstGetParam ? `?${firstGetParam}` : '';
 
-				if(getParams)
-					getParams.forEach( param => params += `&${param}`);
+        if(getParams)
+          getParams.forEach( param => params += `&${param}`);
 
-				return aja().url(`${this.api.source}/basic.json${params}`);
-			},
+        return aja().url(`${this.api.source}/basic.json${params}`);
+      },
 
-			initApi(api){
-				let requests = this.api.basic.request;
-				let makeRequest = delay =>
-					setTimeout(_=> this.basic().on('success', this.initApi).go(), delay);
+      initApi(api){
+        let requests = this.api.basic.request;
+        let makeRequest = delay =>
+          setTimeout(_=> this.basic().on('success', this.initApi).go(), delay);
 
-				if (api) {
-					this.api.basic = api;
-					makeRequest(api.time.next.value * 1000)
+        if (api) {
+          this.api.basic = api;
+          makeRequest(api.time.next.value * 1000);
 
-					if (requests)
-						requests.forEach( req => req(api) );
+          if (requests)
+            requests.forEach( req => req(api) );
 
-				}else if (requests) makeRequest();
-		}
-	}
+        }else if (requests) makeRequest();
+    }
+  }
 }
 </script>

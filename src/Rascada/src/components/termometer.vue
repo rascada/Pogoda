@@ -1,18 +1,18 @@
 <template lang='jade'>
 .tempSect
-	h1 Temperatura
-	.thermometer
-		.measure
-			-for(var i=30;i--;)
-				-if(i % 5 == 0 && i != 30)
-					div.line.boldLine
-						p #{i}
-				-else
-					.line
-		.sensor
-			.temperatureSensor.sensorVal(:style="{height: sensorVal }")
-				span {{ degrees | round }}°C
-		.bottom
+  h1 Temperatura
+  .thermometer
+    .measure
+      -for(var i=30;i--;)
+        -if(i % 5 == 0 && i != 30)
+          div.line.boldLine
+            p #{i}
+        -else
+          .line
+    .sensor
+      .temperatureSensor.sensorVal(:style="{height: sensorVal }")
+        span {{ degrees | round }}°C
+    .bottom
 </template>
 
 <script>
@@ -23,26 +23,26 @@
       }
     },
 
-		computed: {
-			sensorVal () {
-				return `${ 13 + (this.degrees * 2.9) }%`;
-			}
-		},
+    computed: {
+      sensorVal () {
+        return `${ 13 + (this.degrees * 2.9) }%`;
+      }
+    },
     methods: {
       updateTemperature(){
-				this.$parent.basic('temperature')
-					.on('success', res => {
-						this.degrees = res.temperature.current.value;
-						setTimeout(this.updateTemperature, res.time.next.value * 1000);
-					}).go();
+        this.$parent.basic('temperature')
+          .on('success', res => {
+            this.degrees = res.temperature.current.value;
+            setTimeout(this.updateTemperature, res.time.next.value * 1000);
+          }).go();
       },
-			apiConnect(api){
-				this.degrees = api.temperature.current.value;
-			}
+      apiConnect(api){
+        this.degrees = api.temperature.current.value;
+      }
     },
 
     ready () {
-			this.$parent.api.basic.request.push(this.apiConnect)
+      this.$parent.api.basic.request.push(this.apiConnect)
     },
 
     destroyed () {
