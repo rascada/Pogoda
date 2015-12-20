@@ -18,6 +18,7 @@
 
 navbar(name='Pogoda Skałągi')
 main
+  forecast
   vial
   wind-section
   termometer
@@ -38,6 +39,7 @@ main
       termometer,
       navbar,
       vial,
+      forecast,
     },
 
     data (){
