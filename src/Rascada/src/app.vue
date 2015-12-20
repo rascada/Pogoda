@@ -42,7 +42,9 @@ main
 
 		data(){
 			return {
+        env: process.env.NODE_ENV,
 				api: {
+          source: 'https://pi.syntax-shell.me/api',
 					basic: {
 						request: []
 					}
@@ -51,6 +53,9 @@ main
 		},
 
 		ready(){
+      if (this.env == 'production')
+        this.api.source = '/api';
+
 			this.initApi();
 		},
 
@@ -61,7 +66,7 @@ main
 				if(getParams)
 					getParams.forEach( param => params += `&${param}`);
 
-				return aja().url(`/api/basic.json${params}`);
+				return aja().url(`${this.api.source}/basic.json${params}`);
 			},
 
 			initApi(api){
