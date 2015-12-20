@@ -2,8 +2,6 @@
 
 namespace SyntaxError\ApiBundle\Service;
 
-use SyntaxError\ApiBundle\Tools\RedisStorage;
-
 class Wunderground
 {
     private $rootApi = "http://api.wunderground.com/api/d3e5e159801b834c/";
@@ -19,23 +17,24 @@ class Wunderground
      */
     public function read($dataName, $lifeTimeInMinutes)
     {
-        $redis = RedisStorage::createManager();
-        $isOld = !$redis->exists("value_$dataName");
-        if( $redis->exists($dataName) ) {
-            $last = (int)$redis->get($dataName);
-            $now = (new \DateTime('now'))->getTimestamp();
-            if( ($now-$last)/60 > $lifeTimeInMinutes ) {
-                $isOld = true;
-            }
-        }
-
-        if($isOld) {
+        $redis = $this->createRedis();
+        if( !$redis->exists($dataName) ) {
             $apiUrl = $this->rootApi.$dataName."/lang:".$this->lang."/q/".$this->place.".json";
-            $redis->set("value_$dataName", file_get_contents($apiUrl));
-            $redis->set( $dataName, (new \DateTime('now'))->getTimestamp() );
+            $redis->setEx( $dataName, $lifeTimeInMinutes*60, file_get_contents($apiUrl) );
         }
 
-        return $redis->get("value_$dataName");
+        return $redis->get($dataName);
+
+    }
+
+    /**
+     * @return \Redis
+     */
+    private function createRedis()
+    {
+        $redis = new \Redis();
+        $redis->connect('127.0.0.1');
+        return $redis;
     }
 
     /**

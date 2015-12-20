@@ -8,40 +8,51 @@ class BasicControllerTest extends WebTestCase
 {
     public function testNow()
     {
+        $route = '/api/basic';
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/api/basic');
+        $crawler = $client->request('GET', $route);
         $this->assertTrue($client->getResponse()->getStatusCode() == 200);
         $this->assertRegExp('/hljs\.initHighlightingOnLoad\(\)\;/', $crawler->getNode(0)->lastChild->nodeValue);
 
-        $crawler = $client->request('GET', '/api/basic.json', [], [], [
-           'HTTP_X-Requested-With' => 'XMLHttpRequest'
-        ]);
+        $crawler = $client->request('GET', "$route.json");
         $this->assertTrue($client->getResponse()->getStatusCode() == 200);
+        $this->assertTrue( $client->getResponse()->headers->has('Access-Control-Allow-Origin') );
         $this->assertEquals('application/json; charset=utf-8', $client->getResponse()->headers->get('Content-Type'));
+
+        $crawler = $client->request('GET', "$route.json?callback=test");
+        $this->assertTrue($client->getResponse()->getStatusCode() == 200);
+        $this->assertTrue( $client->getResponse()->headers->has('Access-Control-Allow-Origin') );
+        $this->assertEquals('application/javascript; charset=utf-8', $client->getResponse()->headers->get('Content-Type'));
     }
 
-    public function testWunderground()
+    /**
+     * @param $type
+     * @dataProvider wundergroundProvider
+     */
+    public function testWunderground($type)
     {
+        $route = '/api/wu';
         $client = static::createClient();
 
-        $forecast = $client->request('GET', '/api/wu/forecast');
+        $wu = $client->request('GET', "$route/$type");
         $this->assertTrue($client->getResponse()->getStatusCode() == 200);
-        $forecast = $client->request('GET', '/api/wu/forecast.json', [], [], [
-            'HTTP_X-Requested-With' => 'XMLHttpRequest'
-        ]);
+
+        $wu = $client->request('GET', "$route/$type.json");
         $this->assertTrue($client->getResponse()->getStatusCode() == 200);
+        $this->assertTrue( $client->getResponse()->headers->has('Access-Control-Allow-Origin') );
         $this->assertEquals('application/json; charset=utf-8', $client->getResponse()->headers->get('Content-Type'));
 
-
-
-        $astronomy = $client->request('GET', '/api/wu/astronomy');
+        $wu = $client->request('GET', "$route/$type.json?callback=test");
         $this->assertTrue($client->getResponse()->getStatusCode() == 200);
-        $astronomy = $client->request('GET', '/api/wu/astronomy.json', [], [], [
-            'HTTP_X-Requested-With' => 'XMLHttpRequest'
-        ]);
-        $this->assertTrue($client->getResponse()->getStatusCode() == 200);
-        $this->assertEquals('application/json; charset=utf-8', $client->getResponse()->headers->get('Content-Type'));
+        $this->assertTrue( $client->getResponse()->headers->has('Access-Control-Allow-Origin') );
+        $this->assertEquals('application/javascript; charset=utf-8', $client->getResponse()->headers->get('Content-Type'));
+    }
 
+    public function wundergroundProvider()
+    {
+        return [
+          ['forecast'], ['astronomy']
+        ];
     }
 }

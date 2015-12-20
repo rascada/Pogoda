@@ -1,30 +1,26 @@
 <?php
 
-namespace SyntaxError\ApiBundle\Service;
+namespace SyntaxError\ApiBundle\Tools;
 
 use Symfony\Component\HttpFoundation\ParameterBag;
-use SyntaxError\ApiBundle\Tools\Jsoner;
+use SyntaxError\ApiBundle\Interfaces\ArchiveService;
 
-class ArchiveDayService
+class ArchiveManager
 {
-    private $day;
+    /**
+     * @var ArchiveService|null
+     */
+    private $service;
 
-    private $month;
-
-    private $year;
-
+    /**
+     * @var \DateTime|null
+     */
     private $datetime;
 
-    private $factories;
-
-    private $serviceName;
-
-    public function __construct(DayService $dayService, MonthService $monthService, YearService $yearService)
-    {
-        $this->day = $dayService;
-        $this->month = $monthService;
-        $this->year = $yearService;
-    }
+    /**
+     * @var array
+     */
+    private $factories = [];
 
     public function handleDate(\DateTime $dateTime)
     {
@@ -32,15 +28,15 @@ class ArchiveDayService
         return $this;
     }
 
-    public function initService($name)
+    public function initService($archiveService)
     {
-        if( property_exists($this, $name) ) {
-            foreach(get_class_methods( $this->{$name} ) as $method) {
+        if($archiveService instanceof ArchiveService) {
+            $this->service = $archiveService;
+            foreach(get_class_methods($this->service) as $method) {
                 if( preg_match('/create/', $method) ) {
                     $this->factories[] = strtolower( str_replace('create', '', $method) );
                 }
             }
-            $this->serviceName = $name;
         }
         return $this;
     }
@@ -57,9 +53,9 @@ class ArchiveDayService
         if($userQuery) {
             foreach($requestQuery->all() as $key => $value) {
                 $methodName = "create".ucfirst($key);
-                if( method_exists($this->{$this->serviceName}, $methodName) ) {
+                if( method_exists($this->service, $methodName) ) {
                     $data[$key] = call_user_func_array(
-                        [$this->{$this->serviceName}, $methodName], [$this->datetime]
+                        [$this->service, $methodName], [$this->datetime]
                     );
                 }
             }
@@ -67,7 +63,7 @@ class ArchiveDayService
             foreach($this->factories as $factory) {
                 $methodName = "create".ucfirst($factory);
                 $data[$factory] = call_user_func_array(
-                    [$this->{$this->serviceName}, $methodName], [$this->datetime]
+                    [$this->service, $methodName], [$this->datetime]
                 );
             }
         }
@@ -82,14 +78,14 @@ class ArchiveDayService
         $this->validateInit();
         $jsoner = new Jsoner();
         $jsoner->createJson(
-            $this->{$this->serviceName}->highFormatter($this->datetime, ucfirst(strtolower($type)))
+            $this->service->highFormatter($this->datetime, ucfirst(strtolower($type)))
         );
         return $jsoner;
     }
 
     private function validateInit()
     {
-        if($this->serviceName === null) {
+        if(!($this->service instanceof ArchiveService)) {
             throw new \RuntimeException("Not initialized service.");
         }
 

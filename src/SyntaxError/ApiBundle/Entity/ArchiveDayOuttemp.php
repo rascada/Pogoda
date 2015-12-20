@@ -3,7 +3,7 @@
 namespace SyntaxError\ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use SyntaxError\ApiBundle\Tools\ArchiveDay;
+use SyntaxError\ApiBundle\Interfaces\ArchiveDay;
 
 /**
  * ArchiveDayOuttemp
