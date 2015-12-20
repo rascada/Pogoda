@@ -29,7 +29,6 @@ main
   import termometer from './components/termometer.vue'
   import navbar from './components/navbar.vue'
   import vial from './components/vial.vue'
-  import forecast from './components/forecast.vue'
   let aja = require('aja');
 
   export default {
