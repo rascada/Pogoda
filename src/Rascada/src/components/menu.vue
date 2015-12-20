@@ -1,6 +1,6 @@
 <template lang='jade'>
 
-nav( v-show='visible' )
+nav( v-show='visible' transition='slide' )
   button(v-for='button in buttons') {{ button }}
 
 </template>
