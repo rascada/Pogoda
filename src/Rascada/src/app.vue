@@ -1,5 +1,5 @@
 <style lang="stylus">
-  @import url("http://fonts.googleapis.com/css?family=Rajdhani:400,600&amp;subset=latin,latin-ext");
+  @import url("https://fonts.googleapis.com/css?family=Rajdhani:400,600&amp;subset=latin,latin-ext");
   @import "~styles/main"
   @import "~styles/flex"
 
