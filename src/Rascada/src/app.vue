@@ -28,6 +28,7 @@ main
 <script>
   import windSection from './components/wind-section.vue'
   import termometer from './components/termometer.vue'
+  import forecast from './components/forecast.vue'
   import navbar from './components/navbar.vue'
   import vial from './components/vial.vue'
   let aja = require('aja');
