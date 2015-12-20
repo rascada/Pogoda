@@ -14,13 +14,9 @@ class BasicController extends Controller
         $live = $this->get('syntax_error_api.live');
         $jsoner = new Jsoner();
         $data = [];
-        $call = null;
-        if( $request->query->has('callback') ) {
-            $call = $request->query->get('callback');
-            $request->query->remove('callback');
-        }
+        $call = $request->query->has('callback') ? $request->query->get('callback') : null;
 
-        if( !$request->query->count() ) {
+        if( !$request->query->count() || ($request->query->count() == 1 && $request->query->has('callback')) ) {
             foreach(get_class_methods('SyntaxError\ApiBundle\Service\LiveService') as $method) {
                 if($method == '__construct' || $method == 'createTime') continue;
                 $key = strtolower( str_replace('create', '', $method) );
@@ -47,11 +43,7 @@ class BasicController extends Controller
     public function wundergroundAction(Request $request, $type, $ext = 'default')
     {
         $jsonString = $this->get('syntax_error_api.wu')->read($type, 2*60);
-        $call = null;
-        if( $request->query->has('callback') ) {
-            $call = $request->query->get('callback');
-            $request->query->remove('callback');
-        }
+        $call = $request->query->has('callback') ? $request->query->get('callback') : null;
 
         if( $ext == 'json' ) {
             $response = new Response($call ? ($call."($jsonString)") : $jsonString);

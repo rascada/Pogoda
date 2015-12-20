@@ -5,11 +5,12 @@ namespace SyntaxError\ApiBundle\Service;
 use Doctrine\ORM\EntityManager;
 use SyntaxError\ApiBundle\Entity\ArchiveDayOuttemp;
 use SyntaxError\ApiBundle\Entity\ArchiveDayWindgustdir;
-use SyntaxError\ApiBundle\Tools\ArchiveDay;
+use SyntaxError\ApiBundle\Interfaces\ArchiveDay;
+use SyntaxError\ApiBundle\Interfaces\ArchiveService;
 use SyntaxError\ApiBundle\Weather\MaxMin;
 use SyntaxError\ApiBundle\Weather\Reading;
 
-class YearService
+class YearService implements ArchiveService
 {
     private $em;
 
