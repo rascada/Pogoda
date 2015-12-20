@@ -1,15 +1,15 @@
 <template lang='jade'>
 
 nav( v-show='visible' )
-  -for(var i = 10; i--;)
-    button menu #{i}
+  button(v-for='button in buttons') {{ button }}
 
 </template>
 
 <script>
   export default {
     props: {
-      visible: true
+      visible: true,
+      buttons: []
     }
   }
 </script>
