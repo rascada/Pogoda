@@ -9,7 +9,7 @@ syntax_error_api_socket:
 syntax_error_api_wu:
   path: /wu/{type}.{ext}
   defaults: { _controller: SyntaxErrorApiBundle:Basic:wunderground, ext: default }
-  requirements: { type: forecast|astronomy }
+  requirements: { type: forecast|astronomy|alerts }
 
 syntax_error_api_archive_records:
   path: /{period}-records.{ext}
