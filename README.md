@@ -4,7 +4,7 @@ Strona stacji pogodowej w Skałągach
 ## Struktura
 - `env/front.sh`: skrypt bashowy do kompilacji klienta.
 - `src/Rascada`: Pogoda-cli
-- `src/SyntaxError/ApiBundle`: źródła JSONowego API z [Symofny](https://symfony.com/)
+- `src/SyntaxError/ApiBundle`: źródła JSONowego API z [Symfony](https://symfony.com/)
 - `src/SyntaxError/SocketBundle`: serwer web-socketów z [Ratchet](http://socketo.me/)
 
 # Pogoda-cli
