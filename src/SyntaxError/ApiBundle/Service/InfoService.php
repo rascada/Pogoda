@@ -55,6 +55,27 @@ class InfoService
         return $sentence;
     }
 
+    private function wind()
+    {
+        $speed = $this->last->getWindSpeed();
+        $dir = $this->last->getWindDir();
+        if(!$speed) return "Nie odnotowano żadnych podmuchów wiatru.";
+
+        $sentence = "Odnotowano ";
+        if($speed <= 5) $sentence .= "powiew ";
+        elseif($speed > 5 && $speed < 7) $sentence .= "lekki wiatr ";
+        elseif($speed >= 7 && $speed < 10) $sentence .= "umiarkowany wiatr ";
+        elseif($speed >= 10 && $speed < 14) $sentence .= "mocny wiatr ";
+        elseif($speed >= 14 && $speed < 18) $sentence .= "silny wiatr ";
+        elseif($speed > 18 && $speed < 21) $sentence .= "bardzo silny wiatr ";
+        else $sentence = "ekstremalnie silny wiatr ";
+
+
+        $sentence .= "o prędkości ".round($speed, 3).Uniter::speed;
+
+        return $sentence." ".Uniter::windDirPl($dir).".";
+    }
+
     public function all()
     {
         $data = [];
