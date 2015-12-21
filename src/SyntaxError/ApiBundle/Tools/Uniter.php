@@ -48,4 +48,17 @@ class Uniter
 
         return array_sum($trends)/count($trends);
     }
+
+    public static function windDirPl($deg)
+    {
+        if($deg<20 || $deg>=320) return "z północy";
+        else if($deg>=20 && $deg<70) return "z północnego wschodu";
+        else if($deg>=70 && $deg<110) return "ze wschodu";
+        else if($deg>=110 && $deg<160) return "z południowego wschodu";
+        else if($deg>=160 && $deg<215) return "z południa";
+        else if($deg>=215 && $deg<240) return "z południowego zachodu";
+	    else if($deg>=240 && $deg<285) return "z zachodu";
+
+        return "z północnego zachodu";
+    }
 }

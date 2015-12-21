@@ -3,13 +3,19 @@
 namespace SyntaxError\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class InfoController extends Controller
 {
-    public function sentenceAction($ext)
+    public function sentenceAction(Request $request, $ext)
     {
-        return $this->render('SyntaxErrorApiBundle:Info:sentence.html.twig', [
+        $call = $request->query->has('callback') ? $request->query->get('callback') : null;
+        $jsoner = $this->get('syntax_error_api.info')->all();
 
+        return $ext == 'json' ? $jsoner->createResponse($call) : $this->render(
+            'SyntaxErrorApiBundle:Info:sentence.html.twig', [
+            'title' => 'Information sentence',
+            'json' => $jsoner->getJsonString()
         ]);
     }
 
