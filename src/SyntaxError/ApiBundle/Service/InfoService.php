@@ -73,7 +73,10 @@ class InfoService
 
         $sentence .= "o prędkości ".round($speed, 3).Uniter::speed;
 
-        return $sentence." ".Uniter::windDirPl($dir).".";
+        $gustDir = Uniter::windDirPl( $this->last->getWindGustDir() );
+        $gust = "Porywy wiatru $gustDir przekraczają ".round($this->last->getWindGust()-1, 0).Uniter::speed.".";
+
+        return [$sentence." ".Uniter::windDirPl($dir).".", $gust];
     }
 
     private function rain()
