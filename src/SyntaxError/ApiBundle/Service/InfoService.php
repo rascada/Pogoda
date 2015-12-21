@@ -44,6 +44,17 @@ class InfoService
         return $baroSentence;
     }
 
+    private function humidity()
+    {
+        $humidity = round($this->last->getOutHumidity(), 2);
+        $sentence = "Aktualna wilgotność wynosi $humidity".Uniter::humidity;
+
+        if($humidity <= 35) $sentence .= " i jest zbyt niska.";
+        elseif($humidity > 35 && $humidity < 75) $sentence .= ' i jest odpowiednia.';
+        else $sentence .= " i jest zbyt wysoka.";
+        return $sentence;
+    }
+
     public function all()
     {
         $data = [];
