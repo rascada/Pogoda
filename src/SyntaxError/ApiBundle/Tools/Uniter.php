@@ -4,14 +4,14 @@ namespace SyntaxError\ApiBundle\Tools;
 
 class Uniter
 {
-    public function kmph2knots($kmph)
+    public static function kmph2knots($kmph)
     {
         return $kmph * 0.539956803;
     }
 
-    public function getWindChill($kmph, $temp)
+    public static function getWindChill($kmph, $temp)
     {
-        $wind = $this->kmph2knots($kmph) * 1.852;
+        $wind = static::kmph2knots($kmph) * 1.852;
         $wind2 = pow($wind, 0.16);
         $wind_chill = (13.12 + 0.6215 * $temp - 11.37 * $wind2 + 0.3965 * $temp * $wind2);
         $wind_chill = round($wind_chill, 2);
@@ -20,7 +20,7 @@ class Uniter
         return $wind_chill;
     }
 
-    public function getTrend(array $values, $key)
+    public static function getTrend(array $values, $key)
     {
         if(!$values || count($values) < 2) {
             return 0;

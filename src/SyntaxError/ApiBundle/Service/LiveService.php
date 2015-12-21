@@ -121,8 +121,6 @@ class LiveService
 
     public function createTemperature()
     {
-        $uniter = new Uniter();
-
         $current = new Reading();
         $current->name = "Aktualna temperatura";
         $current->units = "℃";
@@ -132,7 +130,7 @@ class LiveService
         $real = new Reading();
         $real->name = "Odczuwalna temperatura";
         $real->units = "℃";
-        $real->value = $uniter->getWindChill($this->lastArchive->getWindGust(), $current->value);
+        $real->value = Uniter::getWindChill($this->lastArchive->getWindGust(), $current->value);
 
         $dewPoint = new Reading();
         $dewPoint->name = "Punkt rosy";
