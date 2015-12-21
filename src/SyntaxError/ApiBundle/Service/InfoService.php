@@ -31,6 +31,19 @@ class InfoService
         return $tempSentence;
     }
 
+    private function barometer()
+    {
+        $baroTrend = round($this->em->getRepository("SyntaxErrorApiBundle:Archive")->getLastPressTrend(), 3);
+        $baroSentence = "Aktualne ciśnienie wynosi ".round($this->last->getBarometer(), 2).Uniter::barometer;
+        if(!$baroTrend) {
+            $baroSentence .= ' i jest stałe.';
+        } else {
+            $baroSentence .= ($baroTrend > 0 ? " i rośnie " : " i spada ");
+            $baroSentence .= $baroTrend.Uniter::barometer.Uniter::trend.".";
+        }
+        return $baroSentence;
+    }
+
     public function all()
     {
         $data = [];
