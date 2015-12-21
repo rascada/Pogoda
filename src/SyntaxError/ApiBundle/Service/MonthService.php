@@ -7,6 +7,7 @@ use SyntaxError\ApiBundle\Entity\ArchiveDayOuttemp;
 use SyntaxError\ApiBundle\Entity\ArchiveDayWindgustdir;
 use SyntaxError\ApiBundle\Interfaces\ArchiveDay;
 use SyntaxError\ApiBundle\Interfaces\ArchiveService;
+use SyntaxError\ApiBundle\Tools\Uniter;
 use SyntaxError\ApiBundle\Weather\MaxMin;
 use SyntaxError\ApiBundle\Weather\Reading;
 
@@ -67,12 +68,12 @@ class MonthService implements ArchiveService
         if(!$max || !$min) return "Empty record.";
         $maxTemp = new Reading();
         $maxTemp->value = $max->getMax();
-        $maxTemp->units = '℃';
+        $maxTemp->units = Uniter::temp;
         $maxTemp->name = (new \DateTime())->setTimestamp( $max->getMaxtime() )->format("Y-m-d H:i:s");
 
         $minTemp = new Reading();
         $minTemp->value = $min->getMin();
-        $minTemp->units = '℃';
+        $minTemp->units = Uniter::temp;
         $minTemp->name = (new \DateTime())->setTimestamp( $min->getMintime() )->format("Y-m-d H:i:s");
 
         $maxMin = new MaxMin();
@@ -87,12 +88,12 @@ class MonthService implements ArchiveService
         if(!$max || !$min) return "Empty record.";
         $maxHumidity = new Reading();
         $maxHumidity->value = $max->getMax();
-        $maxHumidity->units = '%';
+        $maxHumidity->units = Uniter::humidity;
         $maxHumidity->name = (new \DateTime())->setTimestamp( $max->getMaxtime() )->format("Y-m-d H:i:s");
 
         $minHumidity = new Reading();
         $minHumidity->value = $min->getMin();
-        $minHumidity->units = '%';
+        $minHumidity->units = Uniter::humidity;
         $minHumidity->name = (new \DateTime())->setTimestamp( $min->getMintime() )->format("Y-m-d H:i:s");
 
         $maxMin = new MaxMin();
@@ -107,12 +108,12 @@ class MonthService implements ArchiveService
         if(!$max || !$min) return "Empty record.";
         $maxBaro = new Reading();
         $maxBaro->value = $max->getMax();
-        $maxBaro->units = 'hPa';
+        $maxBaro->units = Uniter::barometer;
         $maxBaro->name = (new \DateTime())->setTimestamp( $max->getMaxtime() )->format("Y-m-d H:i:s");
 
         $minBaro = new Reading();
         $minBaro->value = $min->getMin();
-        $minBaro->units = 'hPa';
+        $minBaro->units = Uniter::barometer;
         $minBaro->name = (new \DateTime())->setTimestamp( $min->getMintime() )->format("Y-m-d H:i:s");
 
         $maxMin = new MaxMin();
@@ -126,7 +127,7 @@ class MonthService implements ArchiveService
         if(!$max) return "Empty record.";
         $windSpeed = new Reading();
         $windSpeed->value = $max->getMax();
-        $windSpeed->units = 'km/h';
+        $windSpeed->units = Uniter::speed;
         $windSpeed->name = (new \DateTime())->setTimestamp( $max->getMaxtime() )->format("Y-m-d H:i:s");
 
         return ['max' => $windSpeed];
@@ -138,7 +139,7 @@ class MonthService implements ArchiveService
 
         $reading = new Reading();
         $reading->name = "Średni kierunek wiatru";
-        $reading->units = "deg";
+        $reading->units = Uniter::deg;
         $reading->value = $avg;
         return $reading;
     }
@@ -150,7 +151,7 @@ class MonthService implements ArchiveService
         $reading = new Reading();
         $reading->name = "Suma opadów";
         $reading->value = $sum*25.4;
-        $reading->units = "mm";
+        $reading->units = Uniter::rain;
         return $reading;
     }
 
@@ -160,7 +161,7 @@ class MonthService implements ArchiveService
         if(!$max) return "Empty record.";
         $rainRate = new Reading();
         $rainRate->value = $max->getMax();
-        $rainRate->units = 'mm/h';
+        $rainRate->units = Uniter::rain.'/h';
         $rainRate->name = (new \DateTime())->setTimestamp( $max->getMaxtime() )->format("Y-m-d H:i:s");
 
         return ['max' => $rainRate];

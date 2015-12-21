@@ -56,7 +56,7 @@ class LiveService
     {
         $humidity = new Reading();
         $humidity->name = "Wilgotność";
-        $humidity->units = "%";
+        $humidity->units = Uniter::humidity;
         $humidity->value = $this->lastArchive->getOutHumidity();
         return $humidity;
     }
@@ -65,12 +65,12 @@ class LiveService
     {
         $current = new Reading();
         $current->name = "Aktualne ciśnienie";
-        $current->units = "hPa";
+        $current->units = Uniter::barometer;
         $current->value = $this->lastArchive->getPressure();
 
         $trend = new Reading();
         $trend->name = "Tendencja ciśnienia";
-        $trend->units = "hPa";
+        $trend->units = Uniter::barometer.Uniter::trend;
         $trend->value = $this->archiveRepository->getLastPressTrend();
 
         $pressure = new Pressure($current);
@@ -81,12 +81,12 @@ class LiveService
     {
         $current = new Reading();
         $current->name = "Akutalne opady";
-        $current->units = "mm/h";
+        $current->units = Uniter::rain."/h";
         $current->value = $this->lastArchive->getRainRate();
 
         $sum = new Reading();
         $sum->name = "Suma opadów";
-        $sum->units = "mm";
+        $sum->units = Uniter::rain;
         $sum->value = $this->lastArchive->getRain();
 
         $rain = new Rain($current);
@@ -97,22 +97,22 @@ class LiveService
     {
         $currentSpeed = new Reading();
         $currentSpeed->name = "Aktualna prędkość";
-        $currentSpeed->units = "km/h";
+        $currentSpeed->units = Uniter::speed;
         $currentSpeed->value = $this->lastArchive->getWindSpeed();
 
         $currentDir = new Reading();
         $currentDir->name = "Aktualny kierunek";
-        $currentDir->units = "deg";
+        $currentDir->units = Uniter::deg;
         $currentDir->value = $this->lastArchive->getWindDir();
 
         $gustSpeed = new Reading();
         $gustSpeed->name = "Prędkość porywów";
-        $gustSpeed->units = "km/h";
+        $gustSpeed->units = Uniter::speed;
         $gustSpeed->value = $this->lastArchive->getWindGust();
 
         $gustDir = new Reading();
         $gustDir->name = "Kierunek porywów";
-        $gustDir->units = "deg";
+        $gustDir->units = Uniter::deg;
         $gustDir->value = $this->lastArchive->getWindGustDir();
 
         $wind = new Wind($currentSpeed, $currentDir);
@@ -123,24 +123,24 @@ class LiveService
     {
         $current = new Reading();
         $current->name = "Aktualna temperatura";
-        $current->units = "℃";
+        $current->units = Uniter::temp;
         $current->value = $this->lastArchive->getOutTemp();
 
 
         $real = new Reading();
         $real->name = "Odczuwalna temperatura";
-        $real->units = "℃";
+        $real->units = Uniter::temp;
         $real->value = Uniter::getWindChill($this->lastArchive->getWindGust(), $current->value);
 
         $dewPoint = new Reading();
         $dewPoint->name = "Punkt rosy";
-        $dewPoint->units = "℃";
+        $dewPoint->units = Uniter::temp;
         $dewPoint->value = $this->lastArchive->getDewpoint();
 
 
         $trend = new Reading();
         $trend->name = "Tendencja temperatury";
-        $trend->units = "℃/h";
+        $trend->units = Uniter::temp.Uniter::trend;
         $trend->value = $this->archiveRepository->getLastTempTrend();
 
         $temperature = new Temperature($current);

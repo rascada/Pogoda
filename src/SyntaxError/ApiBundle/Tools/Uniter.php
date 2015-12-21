@@ -4,6 +4,20 @@ namespace SyntaxError\ApiBundle\Tools;
 
 class Uniter
 {
+    const temp = "℃";
+
+    const trend = "/h";
+
+    const humidity = "%";
+
+    const barometer = "hPa";
+
+    const speed = "km/h";
+
+    const rain = "mm";
+
+    const deg = "deg";
+
     public static function kmph2knots($kmph)
     {
         return $kmph * 0.539956803;
