@@ -1,3 +1,7 @@
+'use strict';
+
+let webpack = require('webpack');
+
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -5,6 +9,11 @@ module.exports = {
     publicPath: '/js/',
     filename: 'build.js',
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      dyn: 'dynamics.js',
+    }),
+  ],
   module: {
     loaders: [
       {

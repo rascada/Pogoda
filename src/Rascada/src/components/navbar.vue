@@ -1,15 +1,33 @@
 <template lang='jade'>
-  header
-    ul.sunLogo
-      -for(var i = 3; i--;)
-        li
-    h1 {{ name }}
+  .navbar(@mouseover='navbar.visible = true' @mouseout='navbar.visible = false')
+    header
+
+      ul.sunLogo
+        -for(var i = 3; i--;)
+          li
+
+      h1 {{ name }}
+    menu(:visible='navbar.visible')
 </template>
 
 <script>
+  import menu from './menu.vue'
+
   export default {
+    components: {
+      menu
+    },
+
     props: {
       name: 'Wstaw nazwe'
+    },
+
+    data(){
+      return {
+        navbar: {
+          visible: true
+        }
+      };
     }
   }
 </script>
@@ -18,6 +36,9 @@
   @import "~styles/main"
   sunWidth = 4em
 
+  .navbar
+    margin .5em
+
   header
     display flex
     align-items center
@@ -25,8 +46,8 @@
     background #eee
     color color
     text-shadow .05em .05em (teal + 20%)
+    @extend .blockShadow
 
-    margin .5em
     padding .5em 1em
 
     .sunLogo
