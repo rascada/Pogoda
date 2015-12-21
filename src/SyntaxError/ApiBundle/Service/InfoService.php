@@ -78,7 +78,7 @@ class InfoService
 
     private function rain()
     {
-        $rainRate = $this->last->getRainRate();
+        $rainRate = round($this->last->getRainRate(), 3);
         if(!$rainRate) $sentence = "Aktualnie nie odnotowano opadów deszczu.";
         elseif($rainRate <= 1) $sentence = "Aktualnie odnotowano delikatne opady ";
         elseif($rainRate > 1 && $rainRate <= 5) $sentence = "Aktualnie odnotowano umiarkowane opady ";
@@ -89,10 +89,13 @@ class InfoService
             $sentence .= $rainRate.Uniter::rain."/h";
         }
 
-        $rain = $this->last->getRain();
+        $rain = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayRain")->findOneBy([
+            'datetime' => (new \DateTIme('now'))->setTime(0,0,0)->getTimestamp()
+        ])->getSum();
+
         return [
             $sentence,
-            $rain ? "Dzisiaj spadło $rain".Uniter::rain." deszczu." : "Dzisiaj nie odnotowano opadów deszczu."
+            $rain ? "Dzisiaj spadło ".round($rain, 3).Uniter::rain." deszczu." : "Dzisiaj nie odnotowano opadów deszczu."
         ];
     }
 
