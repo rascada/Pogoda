@@ -2,14 +2,18 @@ syntax_error_api_basic_now:
   path: /basic.{ext}
   defaults: { _controller: SyntaxErrorApiBundle:Basic:now, ext: default }
 
-syntax_error_api_socket:
-  path: /websocket
-  defaults: { _controller: SyntaxErrorApiBundle:Socket:information, ext: default }
-
 syntax_error_api_wu:
   path: /wu/{type}.{ext}
   defaults: { _controller: SyntaxErrorApiBundle:Basic:wunderground, ext: default }
   requirements: { type: forecast|astronomy|alerts }
+
+syntax_error_api_socket:
+  path: /websocket
+  defaults: { _controller: SyntaxErrorApiBundle:Info:socket }
+
+syntax_error_api_sentence:
+  path: /info.{ext}
+  defaults: { _controller: SyntaxErrorApiBundle:Info:sentence, ext: default }
 
 syntax_error_api_archive_records:
   path: /{period}-records.{ext}
