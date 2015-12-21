@@ -3,14 +3,14 @@ module.exports = {
   output: {
     path: '../../web/js',
     publicPath: '/js/',
-    filename: 'build.js'
+    filename: 'build.js',
   },
   module: {
     loaders: [
       {
         test: /\.vue$/,
-        loader: 'vue'
-      }
-    ]
-  }
-}
+        loader: 'vue',
+      },
+    ],
+  },
+};

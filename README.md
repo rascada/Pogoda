@@ -3,12 +3,14 @@ Strona stacji pogodowej w Skałągach
 
 ## Struktura
 - `env/front.sh`: skrypt bashowy do kompilacji klienta.
-- `src/Rascada`: źródła klienta
-- `src/SyntaxError/ApiBundle`: źródła JSONowego API
-- `src/SyntaxError/SocketBundle`: serwer web-socketów
+- `src/Rascada`: Pogoda-cli
+- `src/SyntaxError/ApiBundle`: źródła JSONowego API z [Symofny](https://symfony.com/)
+- `src/SyntaxError/SocketBundle`: serwer web-socketów z [Ratchet](http://socketo.me/)
 
 # Pogoda-cli
-Klient do api od stacji pogodowej
+Klient do api od stacji pogodowej  
+Napisany jest z [vue](http://vuejs.org)
+
 ## Kompilacja
 ### [webpack](https://webpack.github.io/)
 Pogoda-cli używa go do skompilowania aplikacji.

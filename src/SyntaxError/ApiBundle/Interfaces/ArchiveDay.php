@@ -1,6 +1,6 @@
 <?php
 
-namespace SyntaxError\ApiBundle\Tools;
+namespace SyntaxError\ApiBundle\Interfaces;
 
 interface ArchiveDay
 {

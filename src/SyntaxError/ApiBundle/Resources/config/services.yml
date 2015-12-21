@@ -9,10 +9,6 @@ services:
     syntax_error_api.wu:
       class: SyntaxError\ApiBundle\Service\Wunderground
 
-    syntax_error_api.archive:
-      class: SyntaxError\ApiBundle\Service\ArchiveDayService
-      arguments: [@syntax_error_api.day, @syntax_error_api.month, @syntax_error_api.year]
-
     syntax_error_api.day:
       class: SyntaxError\ApiBundle\Service\DayService
       arguments: [@doctrine.orm.default_entity_manager]
