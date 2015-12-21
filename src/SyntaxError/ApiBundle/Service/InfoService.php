@@ -76,6 +76,26 @@ class InfoService
         return $sentence." ".Uniter::windDirPl($dir).".";
     }
 
+    private function rain()
+    {
+        $rainRate = $this->last->getRainRate();
+        if(!$rainRate) $sentence = "Aktualnie nie odnotowano opadów deszczu.";
+        elseif($rainRate <= 1) $sentence = "Aktualnie odnotowano delikatne opady ";
+        elseif($rainRate > 1 && $rainRate <= 5) $sentence = "Aktualnie odnotowano umiarkowane opady ";
+        elseif($rainRate > 5 && $rainRate <= 10) $sentence = "Aktualnie odnotowano silne opady ";
+        else $sentence = "Aktualnie odnotowano ekstremalnie silne opady ";
+
+        if($rainRate) {
+            $sentence .= $rainRate.Uniter::rain."/h";
+        }
+
+        $rain = $this->last->getRain();
+        return [
+            $sentence,
+            $rain ? "Dzisiaj spadło $rain".Uniter::rain." deszczu." : "Dzisiaj nie odnotowano opadów deszczu."
+        ];
+    }
+
     public function all()
     {
         $data = [];
