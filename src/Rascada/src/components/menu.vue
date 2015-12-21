@@ -9,8 +9,8 @@ nav( v-show='visible' transition='slide' )
   export default {
     props: {
       visible: true,
-      buttons: []
-    }
+      buttons: [],
+    },
   }
 </script>
 
@@ -19,10 +19,9 @@ nav( v-show='visible' transition='slide' )
 
 nav
   background #eee
-  padding .5em
 
   button
-    margin 0 .5em
+    margin .75em .5em
     padding .5em .75em
     border .1em solid transparent
 
