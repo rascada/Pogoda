@@ -4,6 +4,7 @@ namespace SyntaxError\ApiBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 use SyntaxError\ApiBundle\Tools\Jsoner;
+use SyntaxError\ApiBundle\Tools\Uniter;
 
 class InfoService
 {
@@ -15,6 +16,19 @@ class InfoService
     {
         $this->em = $entityManager;
         $this->last = $this->em->getRepository("SyntaxErrorApiBundle:Archive")->findLast();
+    }
+
+    private function temperature()
+    {
+        $tempTrend = round($this->em->getRepository("SyntaxErrorApiBundle:Archive")->getLastTempTrend(), 3);
+        $tempSentence = "Aktualna temperatura wynosi ".round($this->last->getOutTemp(), 2).Uniter::temp;
+        if(!$tempTrend) {
+            $tempSentence .= ' i jest stała.';
+        } else {
+            $tempSentence .= ($tempTrend > 0 ? " i rośnie " : " i spada ");
+            $tempSentence .= $tempTrend.Uniter::temp.Uniter::trend.".";
+        }
+        return $tempSentence;
     }
 
     public function all()
