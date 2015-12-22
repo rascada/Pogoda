@@ -25,8 +25,8 @@ class InfoService
         if(!$tempTrend) {
             $tempSentence .= ' i jest stała.';
         } else {
-            $tempSentence .= ($tempTrend > 0 ? " i rośnie " : " i spada ");
-            $tempSentence .= $tempTrend.Uniter::temp.Uniter::trend.".";
+            $tempSentence .= ($tempTrend > 0 ? " i rośnie o " : " i spada o ");
+            $tempSentence .= abs($tempTrend).Uniter::temp.Uniter::trend.".";
         }
         return $tempSentence;
     }
@@ -38,8 +38,8 @@ class InfoService
         if(!$baroTrend) {
             $baroSentence .= ' i jest stałe.';
         } else {
-            $baroSentence .= ($baroTrend > 0 ? " i rośnie " : " i spada ");
-            $baroSentence .= $baroTrend.Uniter::barometer.Uniter::trend.".";
+            $baroSentence .= ($baroTrend > 0 ? " i rośnie o " : " i spada o ");
+            $baroSentence .= abs($baroTrend).Uniter::barometer.Uniter::trend.".";
         }
         return $baroSentence;
     }
