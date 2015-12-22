@@ -4,6 +4,7 @@ namespace SyntaxError\ApiBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 use SyntaxError\ApiBundle\Interfaces\ArchiveService;
+use SyntaxError\ApiBundle\Tools\Uniter;
 use SyntaxError\ApiBundle\Weather\MaxMin;
 use SyntaxError\ApiBundle\Weather\Reading;
 
@@ -40,8 +41,8 @@ class DayService implements ArchiveService
         if(!$record && !$isToday) return "Empty record.";
         $max = new Reading();
         $min = new Reading();
-        $max->units = "℃";
-        $min->units = "℃";
+        $max->units = Uniter::temp;
+        $min->units = Uniter::temp;
 
         if($isToday) {
             $maxTemperature = $this->em->getRepository("SyntaxErrorApiBundle:Archive")->findTodayRecord('outTemp');
@@ -74,8 +75,8 @@ class DayService implements ArchiveService
         if(!$record && !$isToday) return "Empty record.";
         $max = new Reading();
         $min = new Reading();
-        $max->units = "%";
-        $min->units = "%";
+        $max->units = Uniter::humidity;
+        $min->units = Uniter::humidity;
 
         if($isToday) {
             $maxHumidity = $this->em->getRepository("SyntaxErrorApiBundle:Archive")->findTodayRecord('outHumidity');
@@ -108,8 +109,8 @@ class DayService implements ArchiveService
         if(!$record && !$isToday) return "Empty record.";
         $max = new Reading();
         $min = new Reading();
-        $max->units = "hPa";
-        $min->units = "hPa";
+        $max->units = Uniter::barometer;
+        $min->units = Uniter::barometer;
 
         if($isToday) {
             $maxBarometer = $this->em->getRepository("SyntaxErrorApiBundle:Archive")->findTodayRecord('barometer');
@@ -142,7 +143,7 @@ class DayService implements ArchiveService
         if(!$record && !$isToday) return "Empty record.";
 
         $max = new Reading();
-        $max->units = "km/h";
+        $max->units = Uniter::speed;
         if($isToday) {
             $windMax = $this->em->getRepository("SyntaxErrorApiBundle:Archive")->findTodayRecord('windGust');
             if($windMax === null) return "Empty record.";
@@ -166,7 +167,7 @@ class DayService implements ArchiveService
 
         $dir = new Reading();
         $dir->name = "Średni kierunek wiatru";
-        $dir->units = "deg";
+        $dir->units = Uniter::deg;
         if($isToday) {
             $windAvg = $this->em->getRepository("SyntaxErrorApiBundle:Archive")->findAvgWindToday();
             if($windAvg === null) return "Empty record.";
@@ -187,7 +188,7 @@ class DayService implements ArchiveService
         if(!$record && !$isToday) return "Empty record.";
 
         $max = new Reading();
-        $max->units = "mm/h";
+        $max->units = Uniter::rain."/h";
         if($isToday) {
             $rainMax = $this->em->getRepository("SyntaxErrorApiBundle:Archive")->findTodayRecord('rainRate');
             if($rainMax === null) return "Empty record.";
@@ -210,7 +211,7 @@ class DayService implements ArchiveService
         $reading = new Reading();
         $reading->name = "Suma opadów";
         $reading->value = $sum->getSum();
-        $reading->units = "mm";
+        $reading->units = Uniter::rain;
         return $reading;
     }
 }
