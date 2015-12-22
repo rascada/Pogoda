@@ -108,8 +108,11 @@ class InfoService
         foreach(get_class_methods($this) as $method) {
             if($method != '__construct' && $method != 'all') {
                 $returned = call_user_func([$this, $method]);
-                if( is_array($returned) ) $data = array_merge($data, $returned);
-                else $data[] = $returned;
+                if( is_array($returned) ) {
+                    $data = array_merge($data, $returned);
+                } elseif($returned) {
+                    $data[] = $returned;
+                }
             }
         }
         $jsoner = new Jsoner();
