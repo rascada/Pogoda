@@ -26,9 +26,7 @@
     },
 
     ready(){
-      this.$parent.api.basic.once('updated', _ => {
-        let api = this.$parent.api.basic;
-
+      this.$parent.api.basic.on('updated', api => {
         this.wind.actual = api.wind.currentDir.value;
         this.wind.gust = api.wind.gustDir.value;
       });

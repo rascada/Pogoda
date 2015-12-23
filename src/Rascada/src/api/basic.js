@@ -6,14 +6,17 @@ let ee = require('eventemitter2');
 module.exports = class Basic extends ee{
   init(source) {
     this.source = source;
-    this.sendRequest();
+    this.handleRequest();
     this.emit('init');
   }
 
   sendRequest(delay) {
     setTimeout(_=>
       this.prepareRequest()
+        .on('success', this.handleRequest.bind(this))
         .go(), delay);
+  }
+
   prepareRequest(firstGetParam, ...getParams) {
     let params = firstGetParam ? `?${firstGetParam}` : '';
 
@@ -23,6 +26,10 @@ module.exports = class Basic extends ee{
     return aja().url(`${this.source}/basic.json${params}`);
   }
 
+  handleRequest(api) {
     if (api) {
+      this.emit('updated', api);
+      this.sendRequest(api.time.next.value * 1000);
+    } else if (!this.time) this.sendRequest();
   }
 };
