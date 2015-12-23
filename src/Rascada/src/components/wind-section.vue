@@ -26,9 +26,11 @@
     },
 
     ready(){
-      this.$parent.api.basic.request.push(api => {
+      this.$parent.api.basic.once('updated', _ => {
+        let api = this.$parent.api.basic;
+
         this.wind.actual = api.wind.currentDir.value;
-          this.wind.gust = api.wind.gustDir.value;
+        this.wind.gust = api.wind.gustDir.value;
       });
     }
   }

@@ -29,7 +29,7 @@ main
   import termometer from './components/termometer.vue'
   import navbar from './components/navbar.vue'
   import vial from './components/vial.vue'
-  let aja = require('aja');
+  let Basic = require('./api/basic');
 
   export default {
     components: {
@@ -44,44 +44,13 @@ main
         env: process.env.NODE_ENV,
         api: {
           source: 'https://pi.syntax-shell.me/api',
-          basic: {
-            request: []
-          }
-        }
-      }
+          basic: new Basic(),
+        },
+      };
     },
 
     ready(){
-      if (this.env == 'production')
-        this.api.source = '/api';
-
-      this.initApi();
+      this.api.basic.init(this.env == 'production' ? '/api' : this.api.source);
     },
-
-    methods: {
-      basic(firstGetParam, ...getParams){
-        let params = firstGetParam ? `?${firstGetParam}` : '';
-
-        if(getParams)
-          getParams.forEach( param => params += `&${param}`);
-
-        return aja().url(`${this.api.source}/basic.json${params}`);
-      },
-
-      initApi(api){
-        let requests = this.api.basic.request;
-        let makeRequest = delay =>
-          setTimeout(_=> this.basic().on('success', this.initApi).go(), delay);
-
-        if (api) {
-          this.api.basic = api;
-          makeRequest(api.time.next.value * 1000);
-
-          if (requests)
-            requests.forEach( req => req(api) );
-
-        }else if (requests) makeRequest();
-    }
   }
-}
 </script>
