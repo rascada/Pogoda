@@ -1,9 +1,9 @@
 'use strict';
 
 let aja = require('aja');
-let ee = require('eventemitter2');
+let eventEmiter = require('eventemitter2');
 
-module.exports = class Basic extends ee{
+module.exports = class Basic extends eventEmiter{
   init(source) {
     this.source = source;
     this.handleRequest();
