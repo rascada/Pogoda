@@ -18,7 +18,6 @@
 
 navbar(name='Pogoda Skałągi')
 main
-  vial
   wind-section
   termometer
 
