@@ -50,7 +50,9 @@ class Creator
     {
         $info = 'Server started at '.$this->server->socket->getPort()." port.";
         $this->informer->addInfo('SERVER', $info);
-        Config::setPid();
+        if( !(Config::setPid()) ) {
+            $this->informer->addAlert('SERVER_NOTICE', 'Cannot save pid file. Check permissions.');
+        };
         $this->server->run();
         return $this;
     }
