@@ -10,6 +10,10 @@ module.exports = class Basic extends ee{
     this.emit('init');
   }
 
+  sendRequest(delay) {
+    setTimeout(_=>
+      this.prepareRequest()
+        .go(), delay);
   prepareRequest(firstGetParam, ...getParams) {
     let params = firstGetParam ? `?${firstGetParam}` : '';
 
@@ -19,14 +23,6 @@ module.exports = class Basic extends ee{
     return aja().url(`${this.source}/basic.json${params}`);
   }
 
-  sendRequest(api) {
-    let makeRequest = delay =>
-      setTimeout(_=> this.prepareRequest().on('success', this.sendRequest.bind(this)).go(), delay);
-
     if (api) {
-      Object.assign(this, api);
-      this.emit('updated');
-      makeRequest(api.time.next.value * 1000);
-    } else if (!this.time) makeRequest();
   }
 };
