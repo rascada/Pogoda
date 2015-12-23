@@ -1,5 +1,5 @@
 {
-  "name": "pogodaSkalagi",
+  "name": "pogoda-cli",
   "version": "2.1.0",
   "description": "Strona o pogodzie napędzana przez stacje pogodową w Skałągach",
   "main": "",
@@ -12,13 +12,12 @@
     "type": "git",
     "url": "https://github.com/rascada/Pogoda"
   },
-  "private": true,
   "author": "Damian Martyniak",
-  "license": "ISC",
+  "license": "nolicense",
   "bugs": {
     "url": "https://github.com/rascada/Pogoda/issues"
   },
-  "homepage": "pogoda-skalagi.pl",
+  "homepage": "pi.syntax-shell.me",
   "dependencies": {
     "aja": "^0.4.1",
     "dynamics.js": "0.0.9",
