@@ -57,7 +57,7 @@ class Provider
 
         $next->setTime(
             $next->format("H"),
-            $nowMinutesArray[1] < 6 && $nowMinutesArray[1] > 0 ? $nowMinutesArray[0] . "6" : ($nowMinutesArray[0] + 1) . "1"
+            $nowMinutesArray[1] < 6 && $nowMinutesArray[1] >= 0 ? $nowMinutesArray[0] . "6" : ($nowMinutesArray[0] + 1) . "1"
         );
 
         return $next;
