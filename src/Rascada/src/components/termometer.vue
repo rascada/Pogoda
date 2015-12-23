@@ -42,7 +42,7 @@
     },
 
     ready () {
-      this.$parent.api.basic.request.push(this.apiConnect)
+      this.$parent.api.basic.on('updated', this.apiConnect);
     },
 
     destroyed () {
