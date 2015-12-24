@@ -1,7 +1,9 @@
 <template lang='jade'>
   .forecast
-    h1 prognoza
-    span {{ update }}
+    .peroid(v-for='forecast in week' v-show='focused == $index')
+      h1 {{ forecast.title }}
+      p {{ forecast.fcttext_metric }}
+    span.update {{ update }}
 </template>
 
 <script>
@@ -10,6 +12,7 @@
   export default {
     data(){
       return {
+        focused: 0,
         update: false,
         week: false,
         simple: false,
@@ -38,4 +41,8 @@
 
   .forecast
     @extend .blockShadow, .sect
+    text-align center
+    max-width 15em
+    .update
+      align-self flex-end
 </style>
