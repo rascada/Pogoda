@@ -1,9 +1,13 @@
 <template lang='jade'>
   .forecast
     .peroid(v-for='forecast in week' v-show='focused == $index')
-      h1 {{ forecast.title }}
+      .title
+        img(:src='forecast.icon_url')
+        h1 {{ forecast.title }}
       p {{ forecast.fcttext_metric }}
-    span.update {{ update }}
+    .update
+      span prognoza
+      span dane z {{ update }}
 </template>
 
 <script>
@@ -43,6 +47,18 @@
     @extend .blockShadow, .sect
     text-align center
     max-width 15em
+
+    .title
+      display flex
+      justify-content space-around
+      align-items center
+
     .update
-      align-self flex-end
+      width 100%
+
+      border-top .1em solid #444
+      padding-top .5em
+
+      display flex
+      justify-content space-between
 </style>
