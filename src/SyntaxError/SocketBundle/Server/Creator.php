@@ -18,6 +18,7 @@ class Creator
     {
         $config = Config::create();
         $this->informer = new Informer( $this->createAbsoluteLogPath($config['log']) );
+        $this->informer->addInfo( 'SERVER', 'Logged to '.$config['log']." file.");
 
         $loop = Factory::create();
 
@@ -29,15 +30,13 @@ class Creator
             ),
             $this->createSocket($config['bind'], $config['port'], $loop), $loop
         );
-
-        $this->informer->addInfo( 'SERVER', 'Created socket on '.$config['bind'] );
-        $this->informer->addInfo( 'SERVER', 'Logged to '.$config['log']." file.");
     }
 
     private function createSocket($addr, $port, $loop)
     {
         $socket = new Server($loop);
         $socket->listen($port, $addr);
+        $this->informer->addInfo('SERVER', "Created socket at '$addr'");
         return $socket;
     }
 
