@@ -9,7 +9,7 @@
 
         <pre style="margin-top: 0">
             <code class="js">
-                var conn = new WebSocket('ws://{{ app.request.server.get('HTTP_HOST') ~ "/socket" }}');
+                var conn = new WebSocket('wss://{{ app.request.server.get('HTTP_HOST') ~ "/socket" }}');
                 conn.request = function() {
                     var date = new Date();
                     this.send( date.getTime()/1000 );

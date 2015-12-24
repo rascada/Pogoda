@@ -26,9 +26,9 @@
     },
 
     ready(){
-      this.$parent.api.basic.request.push(api => {
+      this.$parent.api.basic.on('updated', api => {
         this.wind.actual = api.wind.currentDir.value;
-          this.wind.gust = api.wind.gustDir.value;
+        this.wind.gust = api.wind.gustDir.value;
       });
     }
   }

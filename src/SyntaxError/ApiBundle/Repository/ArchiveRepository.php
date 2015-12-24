@@ -32,7 +32,7 @@ class ArchiveRepository extends EntityRepository
     {
         $temperatures = $this->getEntityManager()->getRepository("SyntaxErrorApiBundle:Archive")->createQueryBuilder('a')
             ->select('a.outTemp')->orderBy('a.dateTime', 'desc')->setMaxResults(12)->getQuery()->getResult();
-        return (new Uniter())->getTrend($temperatures, 'outTemp');
+        return Uniter::getTrend($temperatures, 'outTemp');
     }
 
     /**
@@ -42,7 +42,7 @@ class ArchiveRepository extends EntityRepository
     {
         $pressures = $this->getEntityManager()->getRepository("SyntaxErrorApiBundle:Archive")->createQueryBuilder('a')
             ->select('a.pressure')->orderBy('a.dateTime', 'desc')->setMaxResults(12)->getQuery()->getResult();
-        return (new Uniter())->getTrend($pressures, 'pressure');
+        return Uniter::getTrend($pressures, 'pressure');
     }
 
     /**
