@@ -1,19 +1,19 @@
-var webpack = require('webpack')
-var config = require('./webpack.config')
+var webpack = require('webpack');
+var config = require('./webpack.config');
 
 config.plugins = (config.plugins || []).concat([
   new webpack.DefinePlugin({
     'process.env': {
-      NODE_ENV: '"production"'
-    }
+      NODE_ENV: '"production"',
+    },
   }),
 
   new webpack.optimize.UglifyJsPlugin({
     compress: {
-      warnings: false
-    }
+      warnings: false,
+    },
   }),
-  new webpack.optimize.OccurenceOrderPlugin()
-])
+  new webpack.optimize.OccurenceOrderPlugin(),
+]);
 
-module.exports = config
+module.exports = config;

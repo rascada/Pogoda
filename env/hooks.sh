@@ -20,5 +20,4 @@ echo "</h4>" >> $STAT
 echo "<h4>Cache: " >> $STAT
 php $DIR/../app/console cache:clear --env=prod >> $STAT
 echo "</h4>" >> $STAT
-
-
+redis-cli set deploy_running false
