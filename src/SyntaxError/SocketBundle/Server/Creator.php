@@ -18,9 +18,15 @@ class Creator
     {
         $config = Config::create();
         $this->informer = new Informer( $this->createAbsoluteLogPath($config['log']) );
+        $this->informer->addInfo( 'SERVER', 'Logged to '.$config['log']." file.");
 
         $loop = Factory::create();
 
+        if( !class_exists($config['task']) ) {
+            $exception = new \Exception(sprintf("Not found task class '%s'", $config['task']));
+            $this->informer->addCriticalError('SERVER', $exception);
+            throw $exception;
+        }
         $this->server = new IoServer(
             new HttpServer(
                 new WsServer(
@@ -29,15 +35,13 @@ class Creator
             ),
             $this->createSocket($config['bind'], $config['port'], $loop), $loop
         );
-
-        $this->informer->addInfo( 'SERVER', 'Created socket on '.$config['bind'] );
-        $this->informer->addInfo( 'SERVER', 'Logged to '.$config['log']." file.");
     }
 
     private function createSocket($addr, $port, $loop)
     {
         $socket = new Server($loop);
         $socket->listen($port, $addr);
+        $this->informer->addInfo('SERVER', "Created socket at '$addr'");
         return $socket;
     }
 
@@ -50,7 +54,9 @@ class Creator
     {
         $info = 'Server started at '.$this->server->socket->getPort()." port.";
         $this->informer->addInfo('SERVER', $info);
-        Config::setPid();
+        if( !(Config::setPid()) ) {
+            $this->informer->addAlert('SERVER_NOTICE', 'Cannot save pid file. Check permissions.');
+        };
         $this->server->run();
         return $this;
     }
