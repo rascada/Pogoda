@@ -22,6 +22,11 @@ class Creator
 
         $loop = Factory::create();
 
+        if( !class_exists($config['task']) ) {
+            $exception = new \Exception(sprintf("Not found task class '%s'", $config['task']));
+            $this->informer->addCriticalError('SERVER', $exception);
+            throw $exception;
+        }
         $this->server = new IoServer(
             new HttpServer(
                 new WsServer(
