@@ -1,5 +1,5 @@
 {
-    "name": "rascada/pogoda-cli",
+    "name": "rascada/pogoda",
     "license": "MIT",
     "type": "project",
     "description": "Weather web-server for weewx.",
