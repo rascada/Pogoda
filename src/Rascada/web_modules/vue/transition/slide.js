@@ -1,5 +1,7 @@
 'use strict';
 
+import dyn from 'dynamics.js';
+
 function slide(el, value, done) {
 
   if (!this.rect) {
