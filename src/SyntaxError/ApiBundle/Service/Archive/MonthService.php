@@ -1,6 +1,6 @@
 <?php
 
-namespace SyntaxError\ApiBundle\Service;
+namespace SyntaxError\ApiBundle\Service\Archive;
 
 use Doctrine\ORM\EntityManager;
 use SyntaxError\ApiBundle\Entity\ArchiveDayOuttemp;
