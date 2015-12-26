@@ -3,6 +3,7 @@
 namespace SyntaxError\ApiBundle\Tools;
 
 use SyntaxError\ApiBundle\Weather\Reading;
+use SyntaxError\ApiBundle\Weather\MaxMin;
 
 class RecordBuilder
 {
@@ -31,4 +32,34 @@ class RecordBuilder
         $this->{$property}->value = $value;
         return $this;
     }
+
+    public function getTemperatureRecord()
+    {
+        $this->max->units = Uniter::temp;
+        $this->min->units = Uniter::temp;
+        return $this->createRecord();
+    }
+
+    public function getHumidityRecord()
+    {
+        $this->max->units = Uniter::humidity;
+        $this->min->units = Uniter::humidity;
+        return $this->createRecord();
+    }
+
+    public function getBarometerRecord()
+    {
+        $this->max->units = Uniter::barometer;
+        $this->min->units = Uniter::barometer;
+        return $this->createRecord();
+    }
+
+    private function createRecord()
+    {
+        $maxMin = new MaxMin();
+        $maxMin->setMax($this->max);
+        $maxMin->setMin($this->min);
+        return $maxMin;
+    }
+
 }
