@@ -62,4 +62,27 @@ class RecordBuilder
         return $maxMin;
     }
 
+    public function getWindSpeedRecord()
+    {
+        $this->max->units = Uniter::speed;
+        return ['max' => $this->max];
+    }
+
+    public function getWindDirAvg()
+    {
+        $this->avg->units = Uniter::deg;
+        return $this->avg;
+    }
+
+    public function getRainRateRecord()
+    {
+        $this->max->units = Uniter::rain."/h";
+        return ['max' => $this->max];
+    }
+
+    public function getRainRecord()
+    {
+        $this->sum->units = Uniter::rain;
+        return $this->sum;
+    }
 }
