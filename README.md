@@ -29,6 +29,6 @@ $ npm i -g webpack
 
 ## hakowanie pogody
 ```sh
-~/Pogoda/src/Rascada$ npm run dev
+~/Pogoda/src/Rascada$ npm start
 ```
 To polecenie uruchomi serwer nasłuchujący na zmiany, który po ich wykryciu zbudje oraz odświeży stronę.
