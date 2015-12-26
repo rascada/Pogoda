@@ -20,7 +20,7 @@ function slide(el, value, done) {
   });
 };
 
-module.exports = {
+export default {
   enter: function(el, done) {
     slide.call(this, el, null, done);
   },

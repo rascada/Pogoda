@@ -28,7 +28,7 @@ main
   import termometer from './components/termometer.vue'
   import navbar from './components/navbar.vue'
   import vial from './components/vial.vue'
-  let Basic = require('./api/basic');
+  import Basic from './api/basic';
 
   export default {
     components: {
