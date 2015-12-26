@@ -4,9 +4,7 @@ namespace SyntaxError\ApiBundle\Service\Archive;
 
 use Doctrine\ORM\EntityManager;
 use SyntaxError\ApiBundle\Interfaces\ArchiveService;
-use SyntaxError\ApiBundle\Tools\Uniter;
-use SyntaxError\ApiBundle\Weather\MaxMin;
-use SyntaxError\ApiBundle\Weather\Reading;
+use SyntaxError\ApiBundle\Tools\RecordBuilder;
 
 class DayService implements ArchiveService
 {
@@ -34,172 +32,71 @@ class DayService implements ArchiveService
 
     public function createTemperature(\DateTime $dateTime)
     {
-        $isToday = $dateTime->format("Ymd") == (new \DateTime('now'))->format("Ymd");
         $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayOuttemp")->findOneBy([
-            'datetime' => $dateTime->getTimestamp()
+            'datetime' => $dateTime->setTime(0,0,0)->getTimestamp()
         ]);
-        if(!$record && !$isToday) return "Empty record.";
-        $max = new Reading();
-        $min = new Reading();
-        $max->units = Uniter::temp;
-        $min->units = Uniter::temp;
-
-        if($isToday) {
-            $maxTemperature = $this->em->getRepository("SyntaxErrorApiBundle:Archive")->findTodayRecord('outTemp');
-            $minTemperature = $this->em->getRepository("SyntaxErrorApiBundle:Archive")->findTodayRecord('outTemp', false);
-            if($maxTemperature === null || $minTemperature === null) return "Empty record.";
-            $max->name = (new \DateTime)->setTimestamp( $maxTemperature['dateTime'] )->format("Y-m-d H:i:s");
-            $max->value = $maxTemperature['outTemp'];
-
-            $min->name = (new \DateTime)->setTimestamp( $minTemperature['dateTime'] )->format("Y-m-d H:i:s");
-            $min->value = $minTemperature['outTemp'];
-        } else {
-            $max->name = (new \DateTime)->setTimestamp( $record->getMaxtime() )->format("Y-m-d H:i:s");
-            $max->value = $record->getMax();
-
-            $min->name = (new \DateTime)->setTimestamp( $record->getMintime() )->format("Y-m-d H:i:s");
-            $min->value = $record->getMin();
-        }
-
-        $temperature = new MaxMin();
-        $temperature->setMax($max);
-        return $temperature->setMin($min);
+        if(!$record) return "Empty record.";
+        $builder = new RecordBuilder();
+        $builder->set( 'max', $record->getMaxtime(), $record->getMax() );
+        $builder->set( 'min', $record->getMintime(), $record->getMin() );
+        return $builder->getTemperatureRecord();
     }
 
     public function createHumidity(\DateTime $dateTime)
     {
-        $isToday = $dateTime->format("Ymd") == (new \DateTime('now'))->format("Ymd");
         $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayOuthumidity")->findOneBy([
-            'datetime' => $dateTime->getTimestamp()
+            'datetime' => $dateTime->setTime(0,0,0)->getTimestamp()
         ]);
-        if(!$record && !$isToday) return "Empty record.";
-        $max = new Reading();
-        $min = new Reading();
-        $max->units = Uniter::humidity;
-        $min->units = Uniter::humidity;
-
-        if($isToday) {
-            $maxHumidity = $this->em->getRepository("SyntaxErrorApiBundle:Archive")->findTodayRecord('outHumidity');
-            $minHumidity = $this->em->getRepository("SyntaxErrorApiBundle:Archive")->findTodayRecord('outHumidity', false);
-            if($maxHumidity === null || $minHumidity === null) return "Empty record.";
-            $max->name = (new \DateTime)->setTimestamp( $maxHumidity['dateTime'] )->format("Y-m-d H:i:s");
-            $max->value = $maxHumidity['outHumidity'];
-
-            $min->name = (new \DateTime)->setTimestamp( $minHumidity['dateTime'] )->format("Y-m-d H:i:s");
-            $min->value = $minHumidity['outHumidity'];
-        } else {
-            $max->name = (new \DateTime)->setTimestamp( $record->getMaxtime() )->format("Y-m-d H:i:s");
-            $max->value = $record->getMax();
-
-            $min->name = (new \DateTime)->setTimestamp( $record->getMintime() )->format("Y-m-d H:i:s");
-            $min->value = $record->getMin();
-        }
-
-        $humidity = new MaxMin();
-        $humidity->setMax($max);
-        return $humidity->setMin($min);
+        if(!$record) return "Empty record.";
+        $builder = new RecordBuilder();
+        $builder->set( 'max', $record->getMaxtime(), $record->getMax() );
+        $builder->set( 'min', $record->getMintime(), $record->getMin() );
+        return $builder->getHumidityRecord();
     }
 
     public function createBarometer(\DateTime $dateTime)
     {
-        $isToday = $dateTime->format("Ymd") == (new \DateTime('now'))->format("Ymd");
         $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayBarometer")->findOneBy([
-            'datetime' => $dateTime->getTimestamp()
+            'datetime' => $dateTime->setTime(0,0,0)->getTimestamp()
         ]);
-        if(!$record && !$isToday) return "Empty record.";
-        $max = new Reading();
-        $min = new Reading();
-        $max->units = Uniter::barometer;
-        $min->units = Uniter::barometer;
-
-        if($isToday) {
-            $maxBarometer = $this->em->getRepository("SyntaxErrorApiBundle:Archive")->findTodayRecord('barometer');
-            $minBarometer = $this->em->getRepository("SyntaxErrorApiBundle:Archive")->findTodayRecord('barometer', false);
-            if($maxBarometer === null || $minBarometer === null) return "Empty record.";
-            $max->name = (new \DateTime)->setTimestamp( $maxBarometer['dateTime'] )->format("Y-m-d H:i:s");
-            $max->value = $maxBarometer['barometer'];
-
-            $min->name = (new \DateTime)->setTimestamp( $maxBarometer['dateTime'] )->format("Y-m-d H:i:s");
-            $min->value = $minBarometer['barometer'];
-        } else {
-            $max->name = (new \DateTime)->setTimestamp( $record->getMaxtime() )->format("Y-m-d H:i:s");
-            $max->value = $record->getMax();
-
-            $min->name = (new \DateTime)->setTimestamp( $record->getMintime() )->format("Y-m-d H:i:s");
-            $min->value = $record->getMin();
-        }
-
-        $barometer = new MaxMin();
-        $barometer->setMax($max);
-        return $barometer->setMin($min);
+        if(!$record) return "Empty record.";
+        $builder = new RecordBuilder();
+        $builder->set( 'max', $record->getMaxtime(), $record->getMax() );
+        $builder->set( 'min', $record->getMintime(), $record->getMin() );
+        return $builder->getBarometerRecord();
     }
 
     public function createWindSpeed(\DateTime $dateTime)
     {
-        $isToday = $dateTime->format("Ymd") == (new \DateTime('now'))->format("Ymd");
         $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayWindgust")->findOneBy([
-            'datetime' => $dateTime->getTimestamp()
+            'datetime' => $dateTime->setTime(0,0,0)->getTimestamp()
         ]);
-        if(!$record && !$isToday) return "Empty record.";
-
-        $max = new Reading();
-        $max->units = Uniter::speed;
-        if($isToday) {
-            $windMax = $this->em->getRepository("SyntaxErrorApiBundle:Archive")->findTodayRecord('windGust');
-            if($windMax === null) return "Empty record.";
-            $max->value = $windMax['windGust'];
-            $max->name = (new \DateTime())->setTimestamp( $windMax['dateTime'] )->format("Y-m-d H:i:s");
-        } else {
-            $max->name = (new \DateTime)->setTimestamp( $record->getMaxtime() )->format("Y-m-d H:i:s");
-            $max->value = $record->getMax();
-        }
-
-        return ['max' => $max];
+        if(!$record) return "Empty record.";
+        $builder = new RecordBuilder();
+        $builder->set( 'max', $record->getMaxtime(), $record->getMax() );
+        return $builder->getWindSpeedRecord();
     }
 
     public function createWindDir(\DateTime $dateTime)
     {
-        $isToday = $dateTime->format("Ymd") == (new \DateTime('now'))->format("Ymd");
         $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayWindgustdir")->findOneBy([
-            'datetime' => $dateTime->getTimestamp()
+            'datetime' => $dateTime->setTime(0,0,0)->getTimestamp()
         ]);
-        if(!$record && !$isToday) return "Empty record.";
-
-        $dir = new Reading();
-        $dir->name = "Średni kierunek wiatru";
-        $dir->units = Uniter::deg;
-        if($isToday) {
-            $windAvg = $this->em->getRepository("SyntaxErrorApiBundle:Archive")->findAvgWindToday();
-            if($windAvg === null) return "Empty record.";
-            $dir->value = $windAvg;
-        } else {
-            $dir->value = $record->getSum() / $record->getCount();
-        }
-
-        return $dir;
+        if(!$record) return "Empty record.";
+        $builder = new RecordBuilder();
+        $builder->set( 'avg', 'Średni kierunek wiatru', $record->getSum() / $record->getCount() );
+        return $builder->getWindDirAvg();
     }
 
     public function createRainRate(\DateTime $dateTime)
     {
-        $isToday = $dateTime->format("Ymd") == (new \DateTime('now'))->format("Ymd");
         $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayRainrate")->findOneBy([
-            'datetime' => $dateTime->getTimestamp()
+            'datetime' => $dateTime->setTime(0,0,0)->getTimestamp()
         ]);
-        if(!$record && !$isToday) return "Empty record.";
-
-        $max = new Reading();
-        $max->units = Uniter::rain."/h";
-        if($isToday) {
-            $rainMax = $this->em->getRepository("SyntaxErrorApiBundle:Archive")->findTodayRecord('rainRate');
-            if($rainMax === null) return "Empty record.";
-            $max->value = $rainMax['rainRate'];
-            $max->name = (new \DateTime())->setTimestamp( $rainMax['dateTime'] )->format("Y-m-d H:i:s");
-        } else {
-            $max->name = (new \DateTime)->setTimestamp( $record->getMaxtime() )->format("Y-m-d H:i:s");
-            $max->value = $record->getMax();
-        }
-
-        return [ 'max' => $max ];
+        if(!$record) return "Empty record.";
+        $builder = new RecordBuilder();
+        $builder->set( 'max', $record->getMaxtime(), $record->getMax() );
+        return $builder->getRainRateRecord();
     }
 
     public function createRain(\DateTime $dateTime)
@@ -207,11 +104,9 @@ class DayService implements ArchiveService
         $sum = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayRain")->findOneBy([
             'datetime' => $dateTime->setTime(0,0,0)->getTimestamp()
         ]);
-
-        $reading = new Reading();
-        $reading->name = "Suma opadów";
-        $reading->value = $sum->getSum();
-        $reading->units = Uniter::rain;
-        return $reading;
+        if(!$sum) return "Empty record.";
+        $builder = new RecordBuilder();
+        $builder->set( 'sum', 'Suma opadów', $sum->getSum() );
+        return $builder->getRainRecord();
     }
 }
