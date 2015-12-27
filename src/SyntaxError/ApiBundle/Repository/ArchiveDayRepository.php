@@ -16,7 +16,7 @@ class ArchiveDayRepository extends EntityRepository
     public function findMonthRecord(\DateTime $dateTime, $max = true)
     {
         $from = (new \DateTime( $dateTime->format('Y-m-01 00:00:00') ))->getTimestamp();
-        $to = (new \DateTime( $dateTime->format('Y-m-t 23:59:59') ))->getTimestamp();
+        $to = (new \DateTime( $dateTime->format('Y-m-t 00:00:00') ))->getTimestamp();
         return $this->createQueryBuilder('a')
             ->where('a.datetime BETWEEN :from AND :to')
             ->setParameter('from', $from)->setParameter('to', $to)
@@ -33,7 +33,7 @@ class ArchiveDayRepository extends EntityRepository
     public function findYearRecord(\DateTime $dateTime, $max = true)
     {
         $from = (new \DateTime( $dateTime->format('Y-01-01 00:00:00') ))->getTimestamp();
-        $to = (new \DateTime( $dateTime->format('Y-12-31 23:59:59') ))->getTimestamp();
+        $to = (new \DateTime( $dateTime->format('Y-12-31 00:00:00') ))->getTimestamp();
         return $this->createQueryBuilder('a')
             ->where('a.datetime BETWEEN :from AND :to')
             ->setParameter('from', $from)->setParameter('to', $to)
