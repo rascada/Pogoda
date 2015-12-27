@@ -25,7 +25,7 @@ class DayService implements ArchiveService
         $response = [];
         foreach($archives as $archive) {
             $value = call_user_func([$archive, $callName]);
-            $response[] = [$archive->getDateTime(), $value ? $value : 0];
+            $response[] = [($archive->getDatetime()+3600)*1000, $value ? $value : 0];
         }
         return $response;
     }

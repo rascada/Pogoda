@@ -20,13 +20,11 @@ class MonthService implements ArchiveService
 
     public function highFormatter(\DateTime $dateTime, $archiveName)
     {
-        $from = (new \DateTime( $dateTime->format("Y-m-01 00:00:00") ))->getTimestamp();
-        $to = (new \DateTime( $dateTime->format("Y-m-t 23:59:59") ))->getTimestamp();
+        $from = (new \DateTime( $dateTime->format("Y-m-01 00:00:00") ));
+        $to = (new \DateTime( $dateTime->format("Y-m-t 23:59:59") ));
 
-        $records = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDay$archiveName")
-            ->createQueryBuilder('a')->where('a.datetime BETWEEN :from AND :to')
-            ->setParameter('from', $from)->setParameter('to', $to)
-            ->orderBy('a.datetime', 'asc')->getQuery()->getResult();
+        /** @noinspection PhpUndefinedMethodInspection */
+        $records = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDay$archiveName")->findBetween($from, $to);
         $output = [];
 
         switch($archiveName) {
@@ -35,7 +33,7 @@ class MonthService implements ArchiveService
                     if($record instanceof ArchiveDay) {
                         if( (new \DateTime())->setTimestamp( $record->getDatetime() )->format("H") != 0) continue;
                         $cnt = $record->getCount();
-                        $output[] = [$record->getDatetime(), $cnt ? $record->getSum() / $cnt : 0];
+                        $output[] = [($record->getDatetime()+3600)*1000, $cnt ? $record->getSum() / $cnt : 0];
                     }
                 } break;
 
@@ -43,7 +41,7 @@ class MonthService implements ArchiveService
                 foreach($records as $i => $record) {
                     if($record instanceof ArchiveDay) {
                         if( (new \DateTime())->setTimestamp( $record->getDatetime() )->format("H") != 0) continue;
-                        $output[] = [$record->getDatetime(), $record->getSum()];
+                        $output[] = [($record->getDatetime()+3600)*1000, $record->getSum()];
                     }
                 } break;
 
@@ -51,7 +49,7 @@ class MonthService implements ArchiveService
                 foreach($records as $i => $record) {
                     if($record instanceof ArchiveDay) {
                         if( (new \DateTime())->setTimestamp( $record->getDatetime() )->format("H") != 0) continue;
-                        $output[] = [$record->getDatetime(), $record->getMin(), $record->getMax()];
+                        $output[] = [($record->getDatetime()+3600)*1000, $record->getMin(), $record->getMax()];
                     }
                 } break;
         }
