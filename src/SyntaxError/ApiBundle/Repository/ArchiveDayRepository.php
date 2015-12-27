@@ -40,4 +40,12 @@ class ArchiveDayRepository extends EntityRepository
             ->orderBy('a.'.( $max ? 'max' : 'min'), $max ? 'desc' : 'asc')
             ->setMaxResults(1)->getQuery()->getOneOrNullResult();
     }
+
+    public function findBetween(\DateTime $from, \DateTime $to)
+    {
+        return $this->getEntityManager()->getRepository($this->getEntityName())
+            ->createQueryBuilder('a')->where('a.datetime BETWEEN :from AND :to')
+            ->setParameter( 'from', $from->getTimestamp() )->setParameter( 'to', $to->getTimestamp() )
+            ->orderBy('a.datetime', 'asc')->getQuery()->getResult();
+    }
 }
