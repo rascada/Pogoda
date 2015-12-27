@@ -11,16 +11,13 @@ class RecordBuilder
 
     private $min;
 
-    private $avg;
-
-    private $sum;
+    private $other;
 
     public function __construct()
     {
         $this->max = new Reading();
         $this->min = new Reading();
-        $this->avg = new Reading();
-        $this->sum = new Reading();
+        $this->other = new Reading();
     }
 
     public function set($property, $name, $value)
@@ -28,8 +25,14 @@ class RecordBuilder
         if( is_numeric($name) ) {
             $name = (new \DateTime)->setTimestamp($name)->format("Y-m-d H:i:s");
         }
-        $this->{$property}->name = $name;
-        $this->{$property}->value = $value;
+        if( !property_exists($this, $property) ) {
+            $this->other->name = $name;
+            $this->other->value = $value;
+        } else {
+            $this->{$property}->name = $name;
+            $this->{$property}->value = $value;
+        }
+
         return $this;
     }
 
@@ -70,8 +73,8 @@ class RecordBuilder
 
     public function getWindDirAvg()
     {
-        $this->avg->units = Uniter::deg;
-        return $this->avg;
+        $this->other->units = Uniter::deg;
+        return $this->other;
     }
 
     public function getRainRateRecord()
@@ -82,7 +85,7 @@ class RecordBuilder
 
     public function getRainRecord()
     {
-        $this->sum->units = Uniter::rain;
-        return $this->sum;
+        $this->other->units = Uniter::rain;
+        return $this->other;
     }
 }
