@@ -1,8 +1,12 @@
 {% extends "SyntaxErrorApiBundle::base.html.twig" %}
 
-{% block desc %}
-    {% set period = app.request.attributes.get('_route_params').period %}
+{% set period = app.request.attributes.get('_route_params').period %}
 
+{% block title %}
+    {{ period|capitalize }} records: {{ datetime }}
+{% endblock %}
+
+{% block desc %}
     <div id="date">
         Records of <b>{{ period }}</b>. You can change date by <span style="color: #4842b5;">?date</span> parameter.
         <input type="date" style="float: right; margin-right: .5em;"/>

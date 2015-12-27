@@ -35,7 +35,6 @@ class BasicController extends Controller
 
         return $ext == 'json' ? $jsoner->createResponse($call) : $this->render(
             "SyntaxErrorApiBundle:Basic:now.html.twig", [
-                'title' => 'Basic',
                 'json' => $jsoner->getJsonString()
         ]);
     }
@@ -55,7 +54,6 @@ class BasicController extends Controller
 
         } else {
             $response = new Response($this->renderView("SyntaxErrorApiBundle:Basic:wunderground.html.twig", [
-                'title' => ucfirst($type),
                 'json' => $jsonString
             ]));
         }

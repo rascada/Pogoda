@@ -14,15 +14,12 @@ class InfoController extends Controller
 
         return $ext == 'json' ? $jsoner->createResponse($call) : $this->render(
             'SyntaxErrorApiBundle:Info:sentence.html.twig', [
-            'title' => 'Information sentence',
             'json' => $jsoner->getJsonString()
         ]);
     }
 
     public function socketAction()
     {
-        return $this->render("SyntaxErrorApiBundle:Info:socket.html.twig", [
-            'title' => 'Socket'
-        ]);
+        return $this->render("SyntaxErrorApiBundle:Info:socket.html.twig");
     }
 }

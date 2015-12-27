@@ -30,11 +30,10 @@ class ArchiveController extends Controller
         /** @noinspection PhpParamsInspection */
         $archive = $this->manager->initService( $this->get($serviceName) );
         $jsoner = $archive->getRecords($request->query);
-        $ucfPeriod = ucfirst($period);
 
         return $ext == 'json' ? $jsoner->createResponse($call) : $this->render(
             "SyntaxErrorApiBundle:Archive:records.html.twig", [
-            'title' => $ucfPeriod.' records: '.$dateTime->format( $this->datetimeFormat($period) ) ,
+            'datetime' => $dateTime->format( $this->datetimeFormat($period) ) ,
             'json' => $jsoner->getJsonString()
         ]);
     }
@@ -51,11 +50,10 @@ class ArchiveController extends Controller
         /** @noinspection PhpParamsInspection */
         $archive = $this->manager->initService( $this->get($serviceName) );
         $jsoner = $archive->getChart($type);
-        $ucfPeriod = ucfirst($period);
 
         return $ext == 'json' ? $jsoner->createResponse($call) : $this->render(
             "SyntaxErrorApiBundle:Archive:charts.html.twig", [
-            'title' => $ucfPeriod.' '.ucfirst($type).": ".$dateTime->format( $this->datetimeFormat($period) ),
+            'datetime' => $dateTime->format( $this->datetimeFormat($period) ),
             'json' => $jsoner->getJsonString()
         ]);
     }
