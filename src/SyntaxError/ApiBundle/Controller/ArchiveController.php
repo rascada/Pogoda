@@ -23,10 +23,12 @@ class ArchiveController extends Controller
         $dateTime = new \DateTime(
             $request->query->has('date') ? $request->query->get('date')." 00:00:00" : 'now'
         );
+        $this->manager->handleDate($dateTime);
         $call = $request->query->has('callback') ? $request->query->get('callback') : null;
 
         $serviceName = "syntax_error_api.$period";
-        $archive = $this->manager->handleDate($dateTime)->initService( $this->get($serviceName) );
+        /** @noinspection PhpParamsInspection */
+        $archive = $this->manager->initService( $this->get($serviceName) );
         $jsoner = $archive->getRecords($request->query);
         $ucfPeriod = ucfirst($period);
 
@@ -42,10 +44,12 @@ class ArchiveController extends Controller
         $dateTime = new \DateTime(
             $request->query->has('date') ? $request->query->get('date')." 00:00:00" : 'now'
         );
+        $this->manager->handleDate($dateTime);
         $call = $request->query->has('callback') ? $request->query->get('callback') : null;
 
         $serviceName = "syntax_error_api.$period";
-        $archive = $this->manager->handleDate($dateTime)->initService( $this->get($serviceName) );
+        /** @noinspection PhpParamsInspection */
+        $archive = $this->manager->initService( $this->get($serviceName) );
         $jsoner = $archive->getChart($type);
         $ucfPeriod = ucfirst($period);
 

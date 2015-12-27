@@ -24,18 +24,16 @@ class ArchiveManager
 
     public function handleDate(\DateTime $dateTime)
     {
-        $this->datetime = $dateTime;
+        $this->datetime = $dateTime->setTime(0,0,0);
         return $this;
     }
 
-    public function initService($archiveService)
+    public function initService(ArchiveService $archiveService)
     {
-        if($archiveService instanceof ArchiveService) {
-            $this->service = $archiveService;
-            foreach(get_class_methods($this->service) as $method) {
-                if( preg_match('/create/', $method) ) {
-                    $this->factories[] = strtolower( str_replace('create', '', $method) );
-                }
+        $this->service = $archiveService;
+        foreach(get_class_methods($this->service) as $method) {
+            if( preg_match('/create/', $method) ) {
+                $this->factories[] = strtolower( str_replace('create', '', $method) );
             }
         }
         return $this;
