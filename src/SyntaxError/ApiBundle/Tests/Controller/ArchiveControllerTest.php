@@ -13,7 +13,7 @@ class ArchiveControllerTest extends WebTestCase
     public function testCharts($period)
     {
         $client = static::createClient();
-        $params = ['outTemp', 'outHumidity', 'barometer', 'rain', 'rainRate', 'windSpeed', 'windDir', 'windGust', 'windGustDir'];
+        $params = ['outTemp', 'outHumidity', 'barometer', 'rain', 'rainRate', 'windGust', 'windGustDir'];
 
         foreach($params as $param) {
             $crawler = $client->request('GET', '/api/'.$period.'-charts/'.$param);
