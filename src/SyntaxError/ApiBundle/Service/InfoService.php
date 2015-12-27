@@ -20,7 +20,7 @@ class InfoService
 
     private function temperature()
     {
-        $tempTrend = round($this->em->getRepository("SyntaxErrorApiBundle:Archive")->getLastTempTrend(), 3);
+        $tempTrend = round($this->em->getRepository("SyntaxErrorApiBundle:Archive")->getLastTrend('outTemp'), 3);
         $tempSentence = "Aktualna temperatura wynosi ".round($this->last->getOutTemp(), 2).Uniter::temp;
         if(!$tempTrend) {
             $tempSentence .= ' i jest stała.';
@@ -33,7 +33,7 @@ class InfoService
 
     private function barometer()
     {
-        $baroTrend = round($this->em->getRepository("SyntaxErrorApiBundle:Archive")->getLastPressTrend(), 3);
+        $baroTrend = round($this->em->getRepository("SyntaxErrorApiBundle:Archive")->getLastTrend('barometer'), 3);
         $baroSentence = "Aktualne ciśnienie wynosi ".round($this->last->getBarometer(), 2).Uniter::barometer;
         if(!$baroTrend) {
             $baroSentence .= ' i jest stałe.';

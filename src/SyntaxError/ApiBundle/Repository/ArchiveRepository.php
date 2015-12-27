@@ -25,23 +25,15 @@ class ArchiveRepository extends EntityRepository
     }
 
     /**
-     * @return float
+     * @param $archiveProperty
+     * @return float|int
      */
-    public function getLastTempTrend()
+    public function getLastTrend($archiveProperty)
     {
-        $temperatures = $this->getEntityManager()->getRepository("SyntaxErrorApiBundle:Archive")->createQueryBuilder('a')
-            ->select('a.outTemp')->orderBy('a.dateTime', 'desc')->setMaxResults(12)->getQuery()->getResult();
-        return Uniter::getTrend($temperatures, 'outTemp');
-    }
-
-    /**
-     * @return float
-     */
-    public function getLastPressTrend()
-    {
-        $pressures = $this->getEntityManager()->getRepository("SyntaxErrorApiBundle:Archive")->createQueryBuilder('a')
-            ->select('a.pressure')->orderBy('a.dateTime', 'desc')->setMaxResults(12)->getQuery()->getResult();
-        return Uniter::getTrend($pressures, 'pressure');
+        $archives = $this->getEntityManager()->getRepository("SyntaxErrorApiBundle:Archive")->createQueryBuilder('a')
+            ->select("a.$archiveProperty")->orderBy('a.dateTime', 'desc')->setMaxResults(12)->getQuery()->getResult();
+        if(!$archives) return 0;
+        return Uniter::getTrend($archives, $archiveProperty);
     }
 
     /**
