@@ -7,9 +7,7 @@ use SyntaxError\ApiBundle\Entity\ArchiveDayOuttemp;
 use SyntaxError\ApiBundle\Entity\ArchiveDayWindgustdir;
 use SyntaxError\ApiBundle\Interfaces\ArchiveDay;
 use SyntaxError\ApiBundle\Interfaces\ArchiveService;
-use SyntaxError\ApiBundle\Tools\Uniter;
-use SyntaxError\ApiBundle\Weather\MaxMin;
-use SyntaxError\ApiBundle\Weather\Reading;
+use SyntaxError\ApiBundle\Tools\RecordBuilder;
 
 class YearService implements ArchiveService
 {
@@ -66,19 +64,10 @@ class YearService implements ArchiveService
         $max = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayOuttemp")->findYearRecord($dateTime);
         $min = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayOuttemp")->findYearRecord($dateTime, false);
         if(!$max || !$min) return "Empty record.";
-        $maxTemp = new Reading();
-        $maxTemp->value = $max->getMax();
-        $maxTemp->units = Uniter::temp;
-        $maxTemp->name = (new \DateTime())->setTimestamp( $max->getMaxtime() )->format("Y-m-d H:i:s");
-
-        $minTemp = new Reading();
-        $minTemp->value = $min->getMin();
-        $minTemp->units = Uniter::temp;
-        $minTemp->name = (new \DateTime())->setTimestamp( $min->getMintime() )->format("Y-m-d H:i:s");
-
-        $maxMin = new MaxMin();
-        $maxMin->setMax($maxTemp);
-        return $maxMin->setMin($minTemp);
+        $builder = new RecordBuilder();
+        $builder->set( 'max', $max->getMaxtime(), $max->getMax() );
+        $builder->set( 'min', $min->getMintime(), $min->getMin() );
+        return $builder->getTemperatureRecord();
     }
 
     public function createHumidity(\DateTime $dateTime)
@@ -86,19 +75,10 @@ class YearService implements ArchiveService
         $max = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayOuthumidity")->findYearRecord($dateTime);
         $min = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayOuthumidity")->findYearRecord($dateTime, false);
         if(!$max || !$min) return "Empty record.";
-        $maxHumidity = new Reading();
-        $maxHumidity->value = $max->getMax();
-        $maxHumidity->units = Uniter::humidity;
-        $maxHumidity->name = (new \DateTime())->setTimestamp( $max->getMaxtime() )->format("Y-m-d H:i:s");
-
-        $minHumidity = new Reading();
-        $minHumidity->value = $min->getMin();
-        $minHumidity->units = Uniter::humidity;
-        $minHumidity->name = (new \DateTime())->setTimestamp( $min->getMintime() )->format("Y-m-d H:i:s");
-
-        $maxMin = new MaxMin();
-        $maxMin->setMax($maxHumidity);
-        return $maxMin->setMin($minHumidity);
+        $builder = new RecordBuilder();
+        $builder->set( 'max', $max->getMaxtime(), $max->getMax() );
+        $builder->set( 'min', $min->getMintime(), $min->getMin() );
+        return $builder->getHumidityRecord();
     }
 
     public function createBarometer(\DateTime $dateTime)
@@ -106,65 +86,44 @@ class YearService implements ArchiveService
         $max = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayBarometer")->findYearRecord($dateTime);
         $min = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayBarometer")->findYearRecord($dateTime, false);
         if(!$max || !$min) return "Empty record.";
-        $maxBaro = new Reading();
-        $maxBaro->value = $max->getMax();
-        $maxBaro->units = Uniter::barometer;
-        $maxBaro->name = (new \DateTime())->setTimestamp( $max->getMaxtime() )->format("Y-m-d H:i:s");
-
-        $minBaro = new Reading();
-        $minBaro->value = $min->getMin();
-        $minBaro->units = Uniter::barometer;
-        $minBaro->name = (new \DateTime())->setTimestamp( $min->getMintime() )->format("Y-m-d H:i:s");
-
-        $maxMin = new MaxMin();
-        $maxMin->setMax($maxBaro);
-        return $maxMin->setMin($minBaro);
+        $builder = new RecordBuilder();
+        $builder->set( 'max', $max->getMaxtime(), $max->getMax() );
+        $builder->set( 'min', $min->getMintime(), $min->getMin() );
+        return $builder->getBarometerRecord();
     }
 
     public function createWindSpeed(\DateTime $dateTime)
     {
         $max = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayWindgust")->findYearRecord($dateTime);
         if(!$max) return "Empty record.";
-        $windSpeed = new Reading();
-        $windSpeed->value = $max->getMax();
-        $windSpeed->units = Uniter::speed;
-        $windSpeed->name = (new \DateTime())->setTimestamp( $max->getMaxtime() )->format("Y-m-d H:i:s");
-
-        return ['max' => $windSpeed];
+        $builder = new RecordBuilder();
+        $builder->set( 'max', $max->getMaxtime(), $max->getMax() );
+        return $builder->getWindSpeedRecord();
     }
 
     public function createWindDir(\DateTime $dateTime)
     {
         $avg = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayWindgustdir")->avgYear($dateTime);
-
-        $reading = new Reading();
-        $reading->name = "Średni kierunek wiatru";
-        $reading->units = Uniter::deg;
-        $reading->value = $avg;
-        return $reading;
+        $builder = new RecordBuilder();
+        $builder->set( 'avg', "Średni kierunek wiatru", $avg );
+        return $builder->getWindDirAvg();
     }
 
     public function createRain(\DateTime $dateTime)
     {
         $sum = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayRain")->findYearSum($dateTime);
-
-        $reading = new Reading();
-        $reading->name = "Suma opadów";
-        $reading->value = $sum;
-        $reading->units = Uniter::rain;
-        return $reading;
+        $builder = new RecordBuilder();
+        $builder->set( 'sum', "Suma opadów", $sum );
+        return $builder->getRainRecord();
     }
 
     public function createRainRate(\DateTime $dateTime)
     {
         $max = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayRainrate")->findYearRecord($dateTime);
         if(!$max) return "Empty record.";
-        $rainRate = new Reading();
-        $rainRate->value = $max->getMax();
-        $rainRate->units = Uniter::rain.'/h';
-        $rainRate->name = (new \DateTime())->setTimestamp( $max->getMaxtime() )->format("Y-m-d H:i:s");
-
-        return ['max' => $rainRate];
+        $builder = new RecordBuilder();
+        $builder->set( 'max', $max->getMaxtime(), $max->getMax() );
+        return $builder->getRainRateRecord();
     }
 
 }
