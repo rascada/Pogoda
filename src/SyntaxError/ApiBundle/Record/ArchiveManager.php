@@ -1,9 +1,10 @@
 <?php
 
-namespace SyntaxError\ApiBundle\Tools;
+namespace SyntaxError\ApiBundle\Record;
 
 use Symfony\Component\HttpFoundation\ParameterBag;
 use SyntaxError\ApiBundle\Interfaces\ArchiveService;
+use SyntaxError\ApiBundle\Tools\Jsoner;
 
 class ArchiveManager
 {
@@ -22,12 +23,20 @@ class ArchiveManager
      */
     private $factories = [];
 
+    /**
+     * @param \DateTime $dateTime
+     * @return ArchiveManager
+     */
     public function handleDate(\DateTime $dateTime)
     {
         $this->datetime = $dateTime->setTime(0,0,0);
         return $this;
     }
 
+    /**
+     * @param ArchiveService $archiveService
+     * @return ArchiveManager
+     */
     public function initService(ArchiveService $archiveService)
     {
         $this->service = $archiveService;
@@ -39,6 +48,10 @@ class ArchiveManager
         return $this;
     }
 
+    /**
+     * @param ParameterBag $requestQuery
+     * @return Jsoner
+     */
     public function getRecords(ParameterBag $requestQuery)
     {
         $this->validateInit();
@@ -71,6 +84,10 @@ class ArchiveManager
         return $jsoner;
     }
 
+    /**
+     * @param $type
+     * @return Jsoner
+     */
     public function getChart($type)
     {
         $this->validateInit();
@@ -81,6 +98,9 @@ class ArchiveManager
         return $jsoner;
     }
 
+    /**
+     * @void
+     */
     private function validateInit()
     {
         if(!($this->service instanceof ArchiveService)) {

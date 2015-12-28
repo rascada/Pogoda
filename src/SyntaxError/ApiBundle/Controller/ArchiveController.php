@@ -4,7 +4,7 @@ namespace SyntaxError\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use SyntaxError\ApiBundle\Tools\ArchiveManager;
+use SyntaxError\ApiBundle\Record\ArchiveManager;
 
 class ArchiveController extends Controller
 {
