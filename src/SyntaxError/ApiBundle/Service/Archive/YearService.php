@@ -7,6 +7,7 @@ use SyntaxError\ApiBundle\Entity\ArchiveDayOuttemp;
 use SyntaxError\ApiBundle\Entity\ArchiveDayWindgustdir;
 use SyntaxError\ApiBundle\Interfaces\ArchiveService;
 use SyntaxError\ApiBundle\Record\RecordGenerator;
+use SyntaxError\ApiBundle\Repository\ArchiveDayRepository;
 
 class YearService implements ArchiveService
 {
@@ -25,10 +26,12 @@ class YearService implements ArchiveService
         $from = (new \DateTime( $dateTime->format("Y-01-01 00:00:00") ));
         $to = (new \DateTime( $dateTime->format("Y-12-31 23:59:59") ));
 
-        /** @noinspection PhpUndefinedMethodInspection */
-        $records = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDay$archiveName")->findBetween($from, $to);
-
-        return $this->generator->highGenerate($records, $archiveName);
+        $repository = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDay$archiveName");
+        if($repository instanceof ArchiveDayRepository) {
+            $records = $repository->findBetween($from, $to);
+            return $this->generator->highGenerate($records, $archiveName);
+        }
+        return null;
     }
 
     public function createTemperature(\DateTime $dateTime)
