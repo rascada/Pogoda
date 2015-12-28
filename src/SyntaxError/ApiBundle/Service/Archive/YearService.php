@@ -5,16 +5,18 @@ namespace SyntaxError\ApiBundle\Service\Archive;
 use Doctrine\ORM\EntityManager;
 use SyntaxError\ApiBundle\Entity\ArchiveDayOuttemp;
 use SyntaxError\ApiBundle\Entity\ArchiveDayWindgustdir;
-use SyntaxError\ApiBundle\Interfaces\ArchiveDay;
 use SyntaxError\ApiBundle\Interfaces\ArchiveService;
-use SyntaxError\ApiBundle\Tools\RecordBuilder;
+use SyntaxError\ApiBundle\Record\RecordGenerator;
 
 class YearService implements ArchiveService
 {
     private $em;
 
+    private $generator;
+
     public function __construct(EntityManager $entityManager)
     {
+        $this->generator = new RecordGenerator();
         $this->em = $entityManager;
     }
 
@@ -25,103 +27,60 @@ class YearService implements ArchiveService
 
         /** @noinspection PhpUndefinedMethodInspection */
         $records = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDay$archiveName")->findBetween($from, $to);
-        $output = [];
 
-        switch($archiveName) {
-            case 'Windgustdir':
-                foreach($records as $i => $record) {
-                    if($record instanceof ArchiveDay) {
-                        if( (new \DateTime())->setTimestamp( $record->getDatetime() )->format("H") != 0) continue;
-                        $cnt = $record->getCount();
-                        $output[] = [($record->getDatetime()+3600)*1000, $cnt ? $record->getSum() / $cnt : 0];
-                    }
-                } break;
-
-            case 'Rain':
-                foreach($records as $i => $record) {
-                    if($record instanceof ArchiveDay) {
-                        if( (new \DateTime())->setTimestamp( $record->getDatetime() )->format("H") != 0) continue;
-                        $output[] = [($record->getDatetime()+3600)*1000, $record->getSum()];
-                    }
-                } break;
-
-            default:
-                foreach($records as $i => $record) {
-                    if($record instanceof ArchiveDay) {
-                        if( (new \DateTime())->setTimestamp( $record->getDatetime() )->format("H") != 0) continue;
-                        $output[] = [($record->getDatetime()+3600)*1000, $record->getMin(), $record->getMax()];
-                    }
-                } break;
-        }
-
-        return $output;
+        return $this->generator->highGenerate($records, $archiveName);
     }
 
     public function createTemperature(\DateTime $dateTime)
     {
         $max = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayOuttemp")->findYearRecord($dateTime);
         $min = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayOuttemp")->findYearRecord($dateTime, false);
-        if(!$max || !$min) return "Empty record.";
-        $builder = new RecordBuilder();
-        $builder->set( 'max', $max->getMaxtime(), $max->getMax() );
-        $builder->set( 'min', $min->getMintime(), $min->getMin() );
-        return $builder->getTemperatureRecord();
+
+        return $this->generator->generateTemperature($max, $min);
     }
 
     public function createHumidity(\DateTime $dateTime)
     {
         $max = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayOuthumidity")->findYearRecord($dateTime);
         $min = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayOuthumidity")->findYearRecord($dateTime, false);
-        if(!$max || !$min) return "Empty record.";
-        $builder = new RecordBuilder();
-        $builder->set( 'max', $max->getMaxtime(), $max->getMax() );
-        $builder->set( 'min', $min->getMintime(), $min->getMin() );
-        return $builder->getHumidityRecord();
+
+        return $this->generator->generateHumidity($max, $min);
     }
 
     public function createBarometer(\DateTime $dateTime)
     {
         $max = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayBarometer")->findYearRecord($dateTime);
         $min = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayBarometer")->findYearRecord($dateTime, false);
-        if(!$max || !$min) return "Empty record.";
-        $builder = new RecordBuilder();
-        $builder->set( 'max', $max->getMaxtime(), $max->getMax() );
-        $builder->set( 'min', $min->getMintime(), $min->getMin() );
-        return $builder->getBarometerRecord();
+
+        return $this->generator->generateBarometer($max, $min);
     }
 
     public function createWindSpeed(\DateTime $dateTime)
     {
         $max = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayWindgust")->findYearRecord($dateTime);
-        if(!$max) return "Empty record.";
-        $builder = new RecordBuilder();
-        $builder->set( 'max', $max->getMaxtime(), $max->getMax() );
-        return $builder->getWindSpeedRecord();
+
+        return $this->generator->generateWindSpeed($max);
     }
 
     public function createWindDir(\DateTime $dateTime)
     {
         $avg = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayWindgustdir")->avgYear($dateTime);
-        $builder = new RecordBuilder();
-        $builder->set( 'avg', "Średni kierunek wiatru", $avg );
-        return $builder->getWindDirAvg();
+
+        return $this->generator->generateWindDir($avg);
     }
 
     public function createRain(\DateTime $dateTime)
     {
         $sum = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayRain")->findYearSum($dateTime);
-        $builder = new RecordBuilder();
-        $builder->set( 'sum', "Suma opadów", $sum );
-        return $builder->getRainRecord();
+
+        return $this->generator->generateRain($sum);
     }
 
     public function createRainRate(\DateTime $dateTime)
     {
         $max = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayRainrate")->findYearRecord($dateTime);
-        if(!$max) return "Empty record.";
-        $builder = new RecordBuilder();
-        $builder->set( 'max', $max->getMaxtime(), $max->getMax() );
-        return $builder->getRainRateRecord();
+
+        return $this->generator->generateRainRate($max);
     }
 
 }
