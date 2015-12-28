@@ -1,16 +1,26 @@
 <?php
 
-namespace SyntaxError\ApiBundle\Tools;
+namespace SyntaxError\ApiBundle\Record;
 
 use SyntaxError\ApiBundle\Weather\Reading;
 use SyntaxError\ApiBundle\Weather\MaxMin;
+use SyntaxError\ApiBundle\Tools\Uniter;
 
 class RecordBuilder
 {
+    /**
+     * @var Reading
+     */
     private $max;
 
+    /**
+     * @var Reading
+     */
     private $min;
 
+    /**
+     * @var Reading
+     */
     private $other;
 
     public function __construct()
@@ -20,6 +30,12 @@ class RecordBuilder
         $this->other = new Reading();
     }
 
+    /**
+     * @param $property
+     * @param $name
+     * @param $value
+     * @return RecordBuilder
+     */
     public function set($property, $name, $value)
     {
         if( is_numeric($name) ) {
@@ -36,6 +52,9 @@ class RecordBuilder
         return $this;
     }
 
+    /**
+     * @return MaxMin
+     */
     public function getTemperatureRecord()
     {
         $this->max->units = Uniter::temp;
@@ -43,6 +62,9 @@ class RecordBuilder
         return $this->createRecord();
     }
 
+    /**
+     * @return MaxMin
+     */
     public function getHumidityRecord()
     {
         $this->max->units = Uniter::humidity;
@@ -50,6 +72,9 @@ class RecordBuilder
         return $this->createRecord();
     }
 
+    /**
+     * @return MaxMin
+     */
     public function getBarometerRecord()
     {
         $this->max->units = Uniter::barometer;
@@ -57,6 +82,9 @@ class RecordBuilder
         return $this->createRecord();
     }
 
+    /**
+     * @return MaxMin
+     */
     private function createRecord()
     {
         $maxMin = new MaxMin();
@@ -65,24 +93,36 @@ class RecordBuilder
         return $maxMin;
     }
 
+    /**
+     * @return array
+     */
     public function getWindSpeedRecord()
     {
         $this->max->units = Uniter::speed;
         return ['max' => $this->max];
     }
 
+    /**
+     * @return Reading
+     */
     public function getWindDirAvg()
     {
         $this->other->units = Uniter::deg;
         return $this->other;
     }
 
+    /**
+     * @return array
+     */
     public function getRainRateRecord()
     {
         $this->max->units = Uniter::rain."/h";
         return ['max' => $this->max];
     }
 
+    /**
+     * @return Reading
+     */
     public function getRainRecord()
     {
         $this->other->units = Uniter::rain;
