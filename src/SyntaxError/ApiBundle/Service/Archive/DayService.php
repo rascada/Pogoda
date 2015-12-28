@@ -14,8 +14,8 @@ class DayService implements ArchiveService
 
     public function __construct(EntityManager $entityManager)
     {
-        $this->em = $entityManager;
         $this->generator = new RecordGenerator();
+        $this->em = $entityManager;
     }
 
     public function highFormatter(\DateTime $dateTime, $callName)
