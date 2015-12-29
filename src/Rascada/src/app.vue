@@ -42,7 +42,7 @@ main
       return {
         env: process.env.NODE_ENV,
         api: {
-          source: 'https://pi.syntax-shell.me/api',
+          source: 'https://pogoda.skalagi.pl/api',
           basic: new Basic(),
         },
       };
