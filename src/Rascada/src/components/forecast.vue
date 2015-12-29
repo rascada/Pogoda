@@ -5,7 +5,7 @@
         img(:src='forecast.icon_url')
         h1 {{ forecast.title }}
       p {{ forecast.fcttext_metric }}
-    .update
+    .update(v-show='update')
       span prognoza
       span dane z {{ update }}
 </template>
@@ -61,4 +61,7 @@
 
       display flex
       justify-content space-between
+
+      span
+        margin 0 .25em
 </style>
