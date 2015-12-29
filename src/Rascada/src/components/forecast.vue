@@ -70,6 +70,11 @@
 
     .title
       @extends .flex, .around, .acenter
+      img
+        transform translateY(-.2em)
+        animation float 7.5s infinite ease-in-out
+      h1
+        padding-left .25em
 
     .update
       width 100%
