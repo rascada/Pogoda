@@ -5,12 +5,12 @@
         img(:src='forecast.icon_url')
         h1 {{ forecast.title }}
       p {{ forecast.fcttext_metric }}
-    .update(v-show='update')
-      span prognoza
-      span dane z {{ update }}
     .arrows
       button(@click='focused--' v-show='near.yesterday') {{ near.yesterday.title }}
       button(@click='focused++' v-show='near.tomorrow') {{ near.tomorrow.title }}
+    .update(v-show='update')
+      span prognoza
+      span dane z {{ update }}
 </template>
 
 <script>
@@ -76,20 +76,20 @@
       h1
         padding-left .25em
 
+    .arrows
+      @extend .flex, .around
+      width 100%
+      margin .5em
+      button()
+
     .update
+      @extends .flex, .between
       width 100%
 
-      border-top .1em solid #444
+      border-top .1em solid
       padding-top .5em
-
-      @extends .flex, .between
+      color #777
 
       span
         margin 0 .25em
-
-    .arrows
-      width 100%
-      margin .5em
-      @extend .flex, .around
-      button()
 </style>
