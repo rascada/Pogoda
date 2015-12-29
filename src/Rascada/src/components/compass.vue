@@ -26,7 +26,7 @@
     text-align center
 
   .compass
-    @extend .blockShadow, .center
+    @extend .blockShadow, .flex, .center
     margin .5em
     width 13em
     height @width

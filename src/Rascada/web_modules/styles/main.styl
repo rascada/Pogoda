@@ -1,3 +1,5 @@
+@import 'flex'
+
 color = #539DC2
 
 .blockShadow
@@ -8,8 +10,6 @@ color = #539DC2
   padding .5em
   background #eee
   overflow hidden
-  display inline-flex
-  flex-flow column
-  align-items center
+  @extend .flex-line, .fcolumn, .acenter
   h1
     margin 0

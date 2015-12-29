@@ -9,9 +9,7 @@
     background color
     font-family 'Rajdhani', bold, sans-serif
     main
-      @extend .center
-      flex-wrap wrap
-      justify-content space-around
+      @extend .flex, .center, .fwrap, .around
 </style>
 
 <template lang="jade">
