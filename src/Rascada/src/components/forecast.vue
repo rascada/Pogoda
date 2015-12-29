@@ -8,6 +8,9 @@
     .update(v-show='update')
       span prognoza
       span dane z {{ update }}
+    .arrows
+      button(@click='focused--' v-show='near.yesterday') {{ near.yesterday.title }}
+      button(@click='focused++' v-show='near.tomorrow') {{ near.tomorrow.title }}
 </template>
 
 <script>
@@ -23,6 +26,21 @@
       }
     },
 
+    computed: {
+      near() {
+        let focus = this.focused;
+        let tomorrow = this.week[focus + 1];
+
+        return {
+          tomorrow: tomorrow ?
+            tomorrow : false,
+
+          yesterday: focus > 0 ?
+            this.week[focus - 1] : false,
+        };
+      },
+    },
+
     ready(){
       aja().url(`${this.$parent.api.source}/wu/forecast.json`)
         .on('success', res => {
@@ -36,22 +54,22 @@
           })
         })
         .go();
-    }
+    },
   }
 </script>
 
 <style lang='stylus'>
+  @import '~styles/flex'
   @import '~styles/main'
+  @import '~styles/ui'
 
   .forecast
-    @extend .blockShadow, .sect
+    @extends .blockShadow, .sect
     text-align center
     max-width 15em
 
     .title
-      display flex
-      justify-content space-around
-      align-items center
+      @extends .flex, .around, .acenter
 
     .update
       width 100%
@@ -59,9 +77,14 @@
       border-top .1em solid #444
       padding-top .5em
 
-      display flex
-      justify-content space-between
+      @extends .flex, .between
 
       span
         margin 0 .25em
+
+    .arrows
+      width 100%
+      margin .5em
+      @extend .flex, .around
+      button()
 </style>
