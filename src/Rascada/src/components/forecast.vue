@@ -24,7 +24,7 @@
     },
 
     ready(){
-      aja().url(`https://pi.syntax-shell.me/api/wu/forecast.json`)
+      aja().url(`${this.$parent.api.source}/wu/forecast.json`)
         .on('success', res => {
           let forecast = res.forecast;
           let week = forecast.txt_forecast;
