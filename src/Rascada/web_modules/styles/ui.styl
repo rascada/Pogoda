@@ -9,18 +9,18 @@
 
   color color
   background #fff
-  blockShadow(.5)
+  shadow(.5)
   cursor pointer
   goodHover()
 
   &:hover
     color #fff
-    blockShadow(.6)
+    shadow(.6)
     background color + 25%
     transform translateY(.2em)
 
   &:active
-    blockShadow(0)
+    shadow(0)
     transition .2s
     background #eee
     transform scale(.9)
