@@ -1,0 +1,59 @@
+﻿Merge remote-tracking branch 'refs/remotes/origin/master' into forecast
+
+# Conflicts:
+#	src/Rascada/src/app.vue
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch forecast
+# Your branch is up-to-date with 'origin/forecast'.
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes not staged for commit:
+#	modified:   README.md
+#	modified:   env/hooks.sh
+#	modified:   src/Rascada/package.json
+#	modified:   src/Rascada/src/app.vue
+#	modified:   src/Rascada/src/components/navbar.vue
+#	modified:   src/Rascada/src/components/termometer.vue
+#	modified:   src/Rascada/src/components/wind-section.vue
+#	modified:   src/Rascada/src/main.js
+#	modified:   src/Rascada/webpack-prod.js
+#	modified:   src/Rascada/webpack.config.js
+#	deleted:    src/SyntaxError/ApiBundle/Controller/SocketController.php
+#	modified:   src/SyntaxError/ApiBundle/Repository/ArchiveDayBarometerRepository.php
+#	modified:   src/SyntaxError/ApiBundle/Repository/ArchiveDayOuthumidityRepository.php
+#	modified:   src/SyntaxError/ApiBundle/Repository/ArchiveDayOuttempRepository.php
+#	modified:   src/SyntaxError/ApiBundle/Repository/ArchiveDayRainrateRepository.php
+#	modified:   src/SyntaxError/ApiBundle/Repository/ArchiveDayWindgustRepository.php
+#	modified:   src/SyntaxError/ApiBundle/Repository/ArchiveRepository.php
+#	modified:   src/SyntaxError/ApiBundle/Resources/config/routing.yml
+#	modified:   src/SyntaxError/ApiBundle/Resources/config/services.yml
+#	deleted:    src/SyntaxError/ApiBundle/Resources/views/Socket/information.html.twig
+#	modified:   src/SyntaxError/ApiBundle/Resources/views/base.html.twig
+#	modified:   src/SyntaxError/ApiBundle/Service/DayService.php
+#	modified:   src/SyntaxError/ApiBundle/Service/LiveService.php
+#	modified:   src/SyntaxError/ApiBundle/Service/MonthService.php
+#	modified:   src/SyntaxError/ApiBundle/Service/YearService.php
+#	modified:   src/SyntaxError/ApiBundle/Tests/Controller/ArchiveControllerTest.php
+#	modified:   src/SyntaxError/ApiBundle/Tools/Uniter.php
+#	modified:   web/hooks.php
+#
+# Untracked files:
+#	src/Rascada/src/api/
+#	src/Rascada/src/components/menu.vue
+#	src/Rascada/web_modules/vue/
+#	src/SyntaxError/ApiBundle/Controller/InfoController.php
+#	src/SyntaxError/ApiBundle/Repository/ArchiveDayRepository.php
+#	src/SyntaxError/ApiBundle/Resources/views/Info/
+#	src/SyntaxError/ApiBundle/Service/InfoService.php
+#	src/SyntaxError/ApiBundle/Tests/Controller/InfoControllerTest.php
+#
+

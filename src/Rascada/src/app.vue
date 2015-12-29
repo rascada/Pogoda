@@ -9,15 +9,14 @@
     background color
     font-family 'Rajdhani', bold, sans-serif
     main
-      @extend .center
-      flex-wrap wrap
-      justify-content space-around
+      @extend .flex, .center, .fwrap, .around
 </style>
 
 <template lang="jade">
 
 navbar(name='Pogoda Skałągi')
 main
+  forecast
   wind-section
   termometer
 
@@ -26,6 +25,7 @@ main
 <script>
   import windSection from './components/wind-section.vue'
   import termometer from './components/termometer.vue'
+  import forecast from './components/forecast.vue'
   import navbar from './components/navbar.vue'
   import vial from './components/vial.vue'
   import Basic from './api/basic';
@@ -36,9 +36,10 @@ main
       termometer,
       navbar,
       vial,
+      forecast,
     },
 
-    data (){
+    data() {
       return {
         env: process.env.NODE_ENV,
         api: {

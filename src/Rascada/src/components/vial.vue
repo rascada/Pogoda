@@ -15,7 +15,7 @@
   @import "~styles/flex"
 
   .vial
-    @extend .blockShadow, .center
+    @extend .blockShadow, .flex, .center
     width 6em
     height 24em
     background #fff
@@ -25,9 +25,7 @@
       top 2.5%
       height 85%
       position absolute
-      display flex
-      flex-flow column
-      justify-content space-between
+      @extend .flex, .fcolumn, .between
       .line
         height .11em
         margin-left .1em
