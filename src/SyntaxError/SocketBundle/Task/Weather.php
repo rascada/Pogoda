@@ -12,7 +12,7 @@ class Weather extends Server
 {
     private $provider;
 
-    private $timers = [];
+    private $timers;
 
     private $events;
 
@@ -21,6 +21,7 @@ class Weather extends Server
         parent::__construct($loop, $informer, $config);
         $this->provider = new Provider();
         $this->events = new ArrayCollection();
+        $this->timers = new ArrayCollection();
     }
 
     public function onOpen(ConnectionInterface $conn)
@@ -55,11 +56,12 @@ class Weather extends Server
         $from->send(json_encode( ['registered' => $time] ));
 
         /** @noinspection PhpParamsInspection */
-        $this->timers[ $client['id'] ] = $this->loop->addTimer($time['wait'], function () use ($from, $client) {
+        $newTimer = $this->loop->addTimer($time['wait'], function () use ($from, $client) {
             $from->send( $this->provider->getBasic() );
             $this->info->addInfo($client['ip'], "Send data to client ".$client['id'].".");
             $this->events->set($client['id'], false);
         });
+        $this->timers->set($client['id'], $newTimer);
 
         return $client;
     }
@@ -68,10 +70,10 @@ class Weather extends Server
     {
         $client = parent::onClose($conn);
         $this->events->remove( $client['id'] );
-        if( array_key_exists($client['id'], $this->timers) ) {
-            $this->loop->cancelTimer( $this->timers[ $client['id'] ] );
+        if( $this->timers->containsKey($client['id']) ) {
+            $this->loop->cancelTimer( $this->timers->get($client['id']) );
         }
-        unset( $this->timers[ $client['id'] ] );
+        $this->timers->remove($client['id']);
         return $client;
     }
 }

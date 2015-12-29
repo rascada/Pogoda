@@ -31,8 +31,20 @@ class StatusCommand extends Command
             $output->writeln("<info>Logged to file: </info><comment>".$config['log']."</comment>");
             $output->writeln("<info>Task class is: </info><comment>".$config['task']."</comment>");
 
+            $clientsCount = 0;
+            if( is_readable(Config::hostsPath) ){
+                $decoded = json_decode(file_get_contents(Config::hostsPath));
+                $decoded = !is_array($decoded) ? get_object_vars($decoded) : $decoded;
+                $clientsCount = count($decoded);
+            }
+
+
             $pid = Config::getPid();
-            $starStop = is_numeric($pid) ? "<fg=blue>STARTED ($pid)</>" : "<fg=red>STOPPED</>";
+            $started = is_numeric($pid);
+            $starStop = $started ? "<fg=blue>STARTED ($pid)</>" : "<fg=red>STOPPED</>";
+            if($started) {
+                $output->writeln("<info>Connected clients: </info><comment>$clientsCount</comment>");
+            }
             $output->writeln("<info>Server: </info>$starStop");
         }
     }

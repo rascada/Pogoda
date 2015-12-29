@@ -1,5 +1,7 @@
 'use strict';
 
+import dyn from 'dynamics.js';
+
 function slide(el, value, done) {
 
   if (!this.rect) {
@@ -20,7 +22,7 @@ function slide(el, value, done) {
   });
 };
 
-module.exports = {
+export default {
   enter: function(el, done) {
     slide.call(this, el, null, done);
   },

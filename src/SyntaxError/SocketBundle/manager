@@ -6,7 +6,7 @@ use Symfony\Component\Console\Application;
 
 $application = new Application();
 $application->setName("Syntax webSocket Server");
-$application->setVersion('1.0');
+$application->setVersion('1.1');
 $application->add( new \SyntaxError\SocketBundle\Command\StartCommand() );
 $application->add( new \SyntaxError\SocketBundle\Command\StopCommand() );
 $application->add( new \SyntaxError\SocketBundle\Command\RestartCommand() );

@@ -11,12 +11,6 @@ module.exports = {
     filename: 'build.js',
   },
 
-  plugins: [
-    new webpack.ProvidePlugin({
-      dyn: 'dynamics.js',
-    }),
-  ],
-
   module: {
     loaders: [
       {

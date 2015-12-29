@@ -30,7 +30,7 @@ main
   import forecast from './components/forecast.vue'
   import navbar from './components/navbar.vue'
   import vial from './components/vial.vue'
-  let Basic = require('./api/basic');
+  import Basic from './api/basic';
 
   export default {
     components: {
@@ -45,7 +45,7 @@ main
       return {
         env: process.env.NODE_ENV,
         api: {
-          source: 'https://pi.syntax-shell.me/api',
+          source: 'https://pogoda.skalagi.pl/api',
           basic: new Basic(),
         },
       };

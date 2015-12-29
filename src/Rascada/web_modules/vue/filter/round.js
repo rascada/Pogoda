@@ -1,3 +1,3 @@
-module.exports = function round(value) {
+export default function round(value) {
   return value.toFixed(1);
 };
