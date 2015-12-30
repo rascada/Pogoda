@@ -56,10 +56,11 @@ class Admin
         ];
     }
 
-    public function createRedisInformer()
+    public function createServerInformer()
     {
         $redis = new \Redis();
         $redis->connect('127.0.0.1');
+        $deployRunning = $redis->exists('deploy_running') ? $redis->get('deploy_running') : "ERR: Empty redis deploy.";
 
         return [
             'forecast' => [
@@ -74,7 +75,8 @@ class Admin
                 'cached' => $redis->exists('alerts'),
                 'ttl' => $redis->exists('alerts') ? gmdate("i# m@", $redis->ttl('alerts')) : null
             ],
-            'deployRunning' => $redis->exists('deploy_running') ? $redis->get('deploy_running') == 'true' : false
+            'deploy' => $deployRunning == "true" ? false : $deployRunning,
+            'branch' => str_replace('ref: ', '', file_get_contents(__DIR__."/../../../../.git/HEAD"))
         ];
     }
 

@@ -112,34 +112,39 @@
         {# Redis status #}
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Redis status</h3>
+                <h3 class="panel-title">Vhost status</h3>
             </div>
             <div class="panel-body">
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <span class="badge" style="background: {{ _self.statusColor(not redis.forecast.cached) }};">
-                            {{ redis.forecast.cached ? redis.forecast.ttl|replace({'#': 'm.', '@': 's.'}) : 'Not cached' }}
+                        <span class="badge" style="background: {{ _self.statusColor(not server.forecast.cached) }};">
+                            {{ server.forecast.cached ? server.forecast.ttl|replace({'#': 'm.', '@': 's.'}) : 'Not cached' }}
                         </span>
                         Wunderground forecast
                     </li>
 
                     <li class="list-group-item">
-                        <span class="badge" style="background: {{ _self.statusColor(not redis.astronomy.cached) }};">
-                            {{ redis.astronomy.cached ? redis.astronomy.ttl|replace({'#': 'm.', '@': 's.'}) : 'Not cached' }}
+                        <span class="badge" style="background: {{ _self.statusColor(not server.astronomy.cached) }};">
+                            {{ server.astronomy.cached ? server.astronomy.ttl|replace({'#': 'm.', '@': 's.'}) : 'Not cached' }}
                         </span>
                         Wunderground astronomy
                     </li>
 
                     <li class="list-group-item">
-                        <span class="badge" style="background: {{ _self.statusColor(not redis.alerts.cached) }};">
-                            {{ redis.alerts.cached ? redis.alerts.ttl|replace({'#': 'm.', '@': 's.'}) : 'Not cached' }}
+                        <span class="badge" style="background: {{ _self.statusColor(not server.alerts.cached) }};">
+                            {{ server.alerts.cached ? server.alerts.ttl|replace({'#': 'm.', '@': 's.'}) : 'Not cached' }}
                         </span>
                         Wunderground alerts
                     </li>
 
                     <li class="list-group-item">
-                        <span class="badge" style="background: {{ _self.statusColor(not redis.deployRunning) }};">&nbsp;</span>
-                        Deploy running
+                        <span class="badge">{{ not server.deploy ? '!!!' : server.deploy }}</span>
+                         {{ not server.deploy ? 'Deploy running now' : 'Last deployment' }}
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="badge">{{ server.branch }}</span>
+                        Git branch
                     </li>
                 </ul>
             </div>

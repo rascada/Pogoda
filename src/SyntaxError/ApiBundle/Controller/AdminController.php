@@ -13,7 +13,7 @@ class AdminController extends Controller
         return $this->render('SyntaxErrorApiBundle:Admin:logged.html.twig', [
             'hardware' => $admin->createHardwareInformer(),
             'database' => $admin->createDatabaseInformer(),
-            'redis' => $admin->createRedisInformer(),
+            'server' => $admin->createServerInformer(),
             'socket' => $admin->createSocketInformer()
         ]);
     }
