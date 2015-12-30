@@ -2,6 +2,8 @@
 
 namespace SyntaxError\ApiBundle\Service;
 
+use SyntaxError\ApiBundle\Tools\IconCache;
+
 class Wunderground
 {
     private $rootApi = "http://api.wunderground.com/api/d3e5e159801b834c/";
@@ -20,9 +22,16 @@ class Wunderground
         $redis = $this->createRedis();
         if( !$redis->exists($dataName) ) {
             $apiUrl = $this->rootApi.$dataName."/lang:".$this->lang."/q/".$this->place.".json";
-            $redis->setEx( $dataName, $lifeTimeInMinutes*60, file_get_contents($apiUrl) );
-        }
+            $wuJson = file_get_contents($apiUrl);
 
+            if($dataName == 'forecast') {
+                $iconCache = new IconCache(
+                    __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."Resources".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."images"
+                );
+                $wuJson = $iconCache->cacheFromWunderground($wuJson);
+            }
+            $redis->setEx($dataName, $lifeTimeInMinutes*60, $wuJson);
+        }
         return $redis->get($dataName);
 
     }
