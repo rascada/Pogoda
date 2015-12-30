@@ -2,6 +2,12 @@
 
 namespace SyntaxError\ApiBundle\Interfaces;
 
+/**
+ * Interface ArchiveDay
+ * All entities without 'Archive' implements this interface.
+ *
+ * @package SyntaxError\ApiBundle\Interfaces
+ */
 interface ArchiveDay
 {
     public function getDatetime();

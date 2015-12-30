@@ -8,15 +8,15 @@ services:
       arguments: [@doctrine.orm.default_entity_manager]
 
     syntax_error_api.day:
-      class: SyntaxError\ApiBundle\Service\DayService
+      class: SyntaxError\ApiBundle\Service\Archive\DayService
       arguments: [@doctrine.orm.default_entity_manager]
 
     syntax_error_api.month:
-      class: SyntaxError\ApiBundle\Service\MonthService
+      class: SyntaxError\ApiBundle\Service\Archive\MonthService
       arguments: [@doctrine.orm.default_entity_manager]
 
     syntax_error_api.year:
-      class: SyntaxError\ApiBundle\Service\YearService
+      class: SyntaxError\ApiBundle\Service\Archive\YearService
       arguments: [@doctrine.orm.default_entity_manager]
 
     syntax_error_api.wu:

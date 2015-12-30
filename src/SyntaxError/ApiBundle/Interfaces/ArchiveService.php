@@ -2,6 +2,12 @@
 
 namespace SyntaxError\ApiBundle\Interfaces;
 
+/**
+ * Interface ArchiveService
+ * All services from SyntaxError\ApiBundle\Service\Archive implements this interface.
+ *
+ * @package SyntaxError\ApiBundle\Interfaces
+ */
 interface ArchiveService
 {
     public function highFormatter(\DateTime $datetime, $archiveName);

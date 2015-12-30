@@ -3,7 +3,6 @@
 namespace SyntaxError\ApiBundle\Tools;
 
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -22,20 +21,9 @@ class Jsoner
 
     public function __construct()
     {
-        $normalizers[0] = new GetSetMethodNormalizer();
-        $normalizers[0]->setCallbacks([
-            'when' => function ($dateTime) {
-                if ($dateTime instanceof \DateTime) {
-                    return $dateTime->format("Y-m-d H:i");
-                }
-                return "Source datetime invalid format.";
-            }
-        ]);
-        $normalizers[] = new PropertyNormalizer();
-
         $this->serializer = new Serializer(
-            $normalizers,
-            [new JsonEncoder(), new XmlEncoder()]
+            [new GetSetMethodNormalizer(), new PropertyNormalizer()],
+            [new JsonEncoder()]
         );
         $this->serializer->supportsEncoding('utf8');
         $this->jsonString = '';

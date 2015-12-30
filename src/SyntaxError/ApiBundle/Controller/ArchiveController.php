@@ -4,7 +4,8 @@ namespace SyntaxError\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use SyntaxError\ApiBundle\Tools\ArchiveManager;
+use SyntaxError\ApiBundle\Interfaces\ArchiveService;
+use SyntaxError\ApiBundle\Record\ArchiveManager;
 
 class ArchiveController extends Controller
 {
@@ -23,16 +24,19 @@ class ArchiveController extends Controller
         $dateTime = new \DateTime(
             $request->query->has('date') ? $request->query->get('date')." 00:00:00" : 'now'
         );
+        $this->manager->handleDate($dateTime);
         $call = $request->query->has('callback') ? $request->query->get('callback') : null;
 
         $serviceName = "syntax_error_api.$period";
-        $archive = $this->manager->handleDate($dateTime)->initService( $this->get($serviceName) );
-        $jsoner = $archive->getRecords($request->query);
-        $ucfPeriod = ucfirst($period);
+        $service = $this->get($serviceName);
+        if(!($service instanceof ArchiveService)) {
+            throw $this->createNotFoundException();
+        }
+        $jsoner = $this->manager->initService($service)->getRecords($request->query);
 
         return $ext == 'json' ? $jsoner->createResponse($call) : $this->render(
             "SyntaxErrorApiBundle:Archive:records.html.twig", [
-            'title' => $ucfPeriod.' records: '.$dateTime->format( $this->datetimeFormat($period) ) ,
+            'datetime' => $dateTime->format( $this->datetimeFormat($period) ) ,
             'json' => $jsoner->getJsonString()
         ]);
     }
@@ -42,16 +46,19 @@ class ArchiveController extends Controller
         $dateTime = new \DateTime(
             $request->query->has('date') ? $request->query->get('date')." 00:00:00" : 'now'
         );
+        $this->manager->handleDate($dateTime);
         $call = $request->query->has('callback') ? $request->query->get('callback') : null;
 
         $serviceName = "syntax_error_api.$period";
-        $archive = $this->manager->handleDate($dateTime)->initService( $this->get($serviceName) );
-        $jsoner = $archive->getChart($type);
-        $ucfPeriod = ucfirst($period);
+        $service = $this->get($serviceName);
+        if(!($service instanceof ArchiveService)) {
+            throw $this->createNotFoundException();
+        }
+        $jsoner = $this->manager->initService($service)->getChart($type);
 
         return $ext == 'json' ? $jsoner->createResponse($call) : $this->render(
             "SyntaxErrorApiBundle:Archive:charts.html.twig", [
-            'title' => $ucfPeriod.' '.ucfirst($type).": ".$dateTime->format( $this->datetimeFormat($period) ),
+            'datetime' => $dateTime->format( $this->datetimeFormat($period) ),
             'json' => $jsoner->getJsonString()
         ]);
     }

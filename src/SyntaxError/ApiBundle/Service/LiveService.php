@@ -71,7 +71,7 @@ class LiveService
         $trend = new Reading();
         $trend->name = "Tendencja ciśnienia";
         $trend->units = Uniter::barometer.Uniter::trend;
-        $trend->value = $this->archiveRepository->getLastPressTrend();
+        $trend->value = $this->archiveRepository->getLastTrend('barometer');
 
         $pressure = new Pressure($current);
         return $pressure->setTrend($trend);
@@ -141,7 +141,7 @@ class LiveService
         $trend = new Reading();
         $trend->name = "Tendencja temperatury";
         $trend->units = Uniter::temp.Uniter::trend;
-        $trend->value = $this->archiveRepository->getLastTempTrend();
+        $trend->value = $this->archiveRepository->getLastTrend('outTemp');
 
         $temperature = new Temperature($current);
         $temperature->setReal($real);
