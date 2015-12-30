@@ -53,4 +53,14 @@ class ArchiveRepository extends EntityRepository
             ->setParameter( 'to', $to->getTimestamp() )
             ->getQuery()->getResult();
     }
+
+    /**
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getBatteryStatus()
+    {
+        return $this->createQueryBuilder('a')->select('a.windBatteryStatus, a.rainBatteryStatus, a.outTempBatteryStatus, a.inTempBatteryStatus')
+            ->orderBy('a.dateTime', 'desc')->setMaxResults(1)->getQuery()->getOneOrNullResult();
+    }
 }
