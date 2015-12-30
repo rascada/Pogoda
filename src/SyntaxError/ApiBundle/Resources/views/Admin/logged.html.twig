@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="robots" content="noindex, nofollow">
+    <meta charset="utf-8"/>
+    <title>Weather admin | Welome</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        section {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+        div.panel {
+            margin: 2em;
+        }
+
+        span.badge {
+            margin-left: 5em;
+        }
+    </style>
+</head>
+
+{% macro statusColor(status) %}
+    {{ status != 0 or status is null ? "#df340c" : "#01cd4f" }}
+{% endmacro %}
+<body>
+
+    <section>
+        {# Battery status #}
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Station status</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge" style="background: {{ _self.statusColor(hardware.batteries.windBatteryStatus) }};">&nbsp;</span>
+                        Wind sensor battery
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge" style="background: {{ _self.statusColor(hardware.batteries.rainBatteryStatus) }};">&nbsp;</span>
+                        Rain sensor battery
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge" style="background: {{ _self.statusColor(hardware.batteries.outTempBatteryStatus) }};">&nbsp;</span>
+                        Thermometer and hygrometer battery
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge" style="background: {{ _self.statusColor(hardware.batteries.inTempBatteryStatus) }};">&nbsp;</span>
+                        Station console battery
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">{{ hardware.last.format("Y-m-d H:i") }}</span>
+                        Last update from console
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        {# Database status #}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Database status</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge">{{ database.count.archive }}</span>
+                        Archive records count
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">{{ database.count.day }}</span>
+                        Day records count
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">{{ database.size.total }} MB</span>
+                        Total size
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">{{ database.size.archive }} MB</span>
+                        Archive table size
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">{{ database.size.rest }} MB</span>
+                        Day tables size
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        {# Redis status #}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Redis status</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge" style="background: {{ _self.statusColor(not redis.forecast.cached) }};">
+                            {{ redis.forecast.cached ? redis.forecast.ttl|replace({'#': 'm.', '@': 's.'}) : 'Not cached' }}
+                        </span>
+                        Wunderground forecast
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="badge" style="background: {{ _self.statusColor(not redis.astronomy.cached) }};">
+                            {{ redis.astronomy.cached ? redis.astronomy.ttl|replace({'#': 'm.', '@': 's.'}) : 'Not cached' }}
+                        </span>
+                        Wunderground astronomy
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="badge" style="background: {{ _self.statusColor(not redis.alerts.cached) }};">
+                            {{ redis.alerts.cached ? redis.alerts.ttl|replace({'#': 'm.', '@': 's.'}) : 'Not cached' }}
+                        </span>
+                        Wunderground alerts
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="badge" style="background: {{ _self.statusColor(not redis.deployRunning) }};">&nbsp;</span>
+                        Deploy running
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        {# Websocket status #}
+        <div class="panel panel-default" style="width: 60%;">
+            <div class="panel-heading">
+                <h3 class="panel-title">WebSocket status</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    {% if not socket.pid %}
+                        <li class="list-group-item list-group-item-danger">Server not running.</li>
+                    {% else %}
+
+                        {% for client in socket.hosts %}
+                            <li class="list-group-item">
+                                <span class="badge">{{ client.connected }}</span>
+                                {{ client.ip }}
+                            </li>
+                        {% else %}
+                            <li class="list-group-item list-group-item-warning">Nobody connected.</li>
+                        {% endfor %}
+
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
