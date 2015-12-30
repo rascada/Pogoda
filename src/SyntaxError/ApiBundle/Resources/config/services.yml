@@ -21,3 +21,9 @@ services:
 
     syntax_error_api.wu:
       class: SyntaxError\ApiBundle\Service\Wunderground
+
+
+    syntax_error_api.admin:
+      class: SyntaxError\ApiBundle\Service\Admin
+      arguments: [@doctrine.orm.default_entity_manager]
+
