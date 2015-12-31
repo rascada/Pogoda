@@ -3,10 +3,13 @@
     <head>
         <meta charset="utf-8"/>
         <title>Weather | {% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="//highlightjs.org/static/demo/styles/atelier-estuary-dark.css">
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.0.0/styles/atelier-estuary-dark.min.css">
+        <script src="//cdn.jsdelivr.net/highlight.js/9.0.0/highlight.min.js"></script>
         <link rel="stylesheet" href="{{ asset('bundles/syntaxerrorapi/css/api.css') }}"/>
         {% block head %}{% endblock %}
+        {% if is_granted("ROLE_ADMIN") %}
+            <style> .admin_button::before { content: "\e112"; } </style>
+        {% endif %}
     </head>
     {% spaceless %}
     <body>
@@ -19,7 +22,6 @@
                 Get raw json with file extension <b>json</b>
             </span>
         </header>
-
 
         <main>
             {% block content %}
@@ -37,6 +39,9 @@
                     <a href="{{ path('syntax_error_api_archive_records', { 'period': 'month' }) }}">Month records</a>
                     <a href="{{ path('syntax_error_api_archive_charts', { 'type': 'outTemp', 'period': 'year' }) }}">Year charts</a>
                     <a href="{{ path('syntax_error_api_archive_records', { 'period': 'year' }) }}">Year records</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <hr/><a href="{{ path('syntax_error_api_admin_logged') }}" class="admin_button">Admin area</a>
+                    {% endif %}
                 </menu>
                 <article>{% block desc %}{% endblock %}</article>
 
