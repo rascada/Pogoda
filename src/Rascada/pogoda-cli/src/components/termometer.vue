@@ -7,7 +7,7 @@
         v-for='n in range'
         v-bind:class='{boldLine: n % 5 == 0}')
           p(v-if='n % 5 == 0 || n == 0').
-            {{ range - n * isPositiveTemp() }}
+            {{ (range - n) * isPositiveTemp() }}
     .sensor
       .temperatureSensor.sensorVal(v-bind:style="{height: sensorVal }")
         span {{ degrees | round }}°C
