@@ -87,11 +87,13 @@ class Admin
         foreach(get_object_vars($hostsObj) as $client) {
             $output[] = $client;
         }
+        $procOut = explode(" ", `ps auxf | grep [S]ocketBundle`)[0];
 
         $configPid = Config::getPid();
         return [
             'hosts' => $output,
-            'pid' => is_numeric($configPid) ? (int)$configPid : false
+            'pid' => is_numeric($configPid) ? (int)$configPid : false,
+            'changeable' => strlen($procOut) ? $procOut == trim(`whoami`) : true
         ];
     }
 }
