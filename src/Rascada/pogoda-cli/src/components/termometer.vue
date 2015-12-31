@@ -11,7 +11,7 @@
             {{ range - n }}
 
     .sensor
-      .temperatureSensor.sensorVal(:style="{height: sensorVal }")
+      .temperatureSensor.sensorVal(:style="{background: color, height: sensorVal }")
         span {{ degrees | round }}°C
     .bottom
 </template>
@@ -28,6 +28,10 @@
     computed: {
       sensorVal() {
         return `${ 13 + ( Math.abs(this.degrees) * 2.9) }%`;
+      },
+
+      color() {
+        return this.degrees >= 0 ? '#f42' : '#a0ccff';
       },
     },
     methods: {
