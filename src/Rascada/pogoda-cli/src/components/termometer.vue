@@ -3,12 +3,11 @@
   h1 Temperatura
   .thermometer
     .measure
-      -for(var i=30;i--;)
-        -if(i % 5 == 0 && i != 30)
-          div.line.boldLine
-            p #{i}
-        -else
-          .line
+      div.line(
+        v-for='n in range'
+        v-bind:class='{boldLine: n % 5 == 0 && n != 30}')
+          p(v-if='n % 5 == 0') {{ n }}
+
     .sensor
       .temperatureSensor.sensorVal(:style="{height: sensorVal }")
         span {{ degrees | round }}°C
@@ -19,7 +18,8 @@
   export default {
     data () {
       return {
-        degrees: 0
+        degrees: 0,
+        range: 30,
       }
     },
 
