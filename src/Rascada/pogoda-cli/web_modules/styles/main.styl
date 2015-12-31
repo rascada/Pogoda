@@ -1,0 +1,19 @@
+@import 'flex'
+
+color = #539DC2
+
+.blockShadow
+  box-shadow 0 .2em .3em .2em rgba(0,0,0,.1)
+
+shadow(x)
+  repeat = (.2em * x)
+  box-shadow 0 repeat (.3em * x) repeat rgba(0,0,0,.1)
+
+.sect
+  color #222
+  padding .5em
+  background #eee
+  overflow hidden
+  @extend .flex-line, .fcolumn, .acenter
+  h1
+    margin 0

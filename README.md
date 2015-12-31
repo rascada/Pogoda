@@ -3,11 +3,12 @@ Strona stacji pogodowej w Skałągach
 
 ## Struktura
 - `env/front.sh`: skrypt bashowy do kompilacji klienta.
-- `src/Rascada`: Pogoda-cli
-- `src/SyntaxError/ApiBundle`: źródła JSONowego API z [Symfony](https://symfony.com/)
+- `src/SyntaxError/ApiBundle`: JSONowe API z [Symfony](https://symfony.com/)
 - `src/SyntaxError/SocketBundle`: serwer web-socketów z [Ratchet](http://socketo.me/)
 
 # Pogoda-cli
+##### `src/Rascada/pogoda-cli`
+
 Klient do api od stacji pogodowej  
 Napisany jest z [vue](http://vuejs.org)
 
@@ -22,13 +23,13 @@ $ npm i -g webpack
 
 ```sh
 # przejście do katalogu pogoda-cli
-~/Pogoda$ cd src/Rascada
+~/Pogoda$ cd src/Rascada/pogoda-cli
 # zbudowanie pogody
-~/Pogoda/src/Rascada$ npm run prod
+~/Pogoda/src/Rascada/pogoda-cli$ npm run prod
 ```
 
 ## hakowanie pogody
 ```sh
-~/Pogoda/src/Rascada$ npm start
+~/Pogoda/src/Rascada/pogoda-cli$ npm start
 ```
 To polecenie uruchomi serwer nasłuchujący na zmiany, który po ich wykryciu zbudje oraz odświeży stronę.
