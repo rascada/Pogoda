@@ -6,7 +6,9 @@
       div.line(
         v-for='n in range'
         v-bind:class='{boldLine: n % 5 == 0}')
-          p(v-if='n % 5 == 0 || n == 0') {{ range - n }}
+          p(v-if='n % 5 == 0 || n == 0').
+            {{ degrees < 0 ? '-' : ''}}
+            {{ range - n }}
 
     .sensor
       .temperatureSensor.sensorVal(:style="{height: sensorVal }")
@@ -24,9 +26,9 @@
     },
 
     computed: {
-      sensorVal () {
-        return `${ 13 + (this.degrees * 2.9) }%`;
-      }
+      sensorVal() {
+        return `${ 13 + ( Math.abs(this.degrees) * 2.9) }%`;
+      },
     },
     methods: {
       updateTemperature(){
