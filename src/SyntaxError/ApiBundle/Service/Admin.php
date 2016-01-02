@@ -76,7 +76,8 @@ class Admin
                 'ttl' => $redis->exists('alerts') ? gmdate("i# m@", $redis->ttl('alerts')) : null
             ],
             'deploy' => $deployRunning == "true" ? false : $deployRunning,
-            'branch' => str_replace('ref: ', '', file_get_contents(__DIR__."/../../../../.git/HEAD"))
+            'branch' => str_replace('ref: ', '', file_get_contents(__DIR__."/../../../../.git/HEAD")),
+            'status' => $redis->exists('wu_requests') ? json_decode($redis->get('wu_requests')) : null
         ];
     }
 

@@ -121,6 +121,7 @@
                             {{ server.forecast.cached ? server.forecast.ttl|replace({'#': 'm.', '@': 's.'}) : 'Not cached' }}
                         </span>
                         Wunderground forecast
+                        {% if server.status.forecast is defined %} ({{ server.status.forecast.today.value ~ ', ' ~ server.status.forecast.total }}) {% endif %}
                     </li>
 
                     <li class="list-group-item">
@@ -128,6 +129,7 @@
                             {{ server.astronomy.cached ? server.astronomy.ttl|replace({'#': 'm.', '@': 's.'}) : 'Not cached' }}
                         </span>
                         Wunderground astronomy
+                        {% if server.status.astronomy is defined %} ({{ server.status.astronomy.today.value ~ ', ' ~ server.status.astronomy.total }}) {% endif %}
                     </li>
 
                     <li class="list-group-item">
@@ -135,6 +137,7 @@
                             {{ server.alerts.cached ? server.alerts.ttl|replace({'#': 'm.', '@': 's.'}) : 'Not cached' }}
                         </span>
                         Wunderground alerts
+                        {% if server.status.alerts is defined %} ({{ server.status.alerts.today.value ~ ', ' ~ server.status.alerts.total }}) {% endif %}
                     </li>
 
                     <li class="list-group-item">
