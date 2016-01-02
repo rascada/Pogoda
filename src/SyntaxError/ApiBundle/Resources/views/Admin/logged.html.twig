@@ -45,9 +45,27 @@
 {% endmacro %}
 <body>
 
-    <section>
-        {# Battery status #}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Weather station admin</a>
+            </div>
 
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div class="nav navbar-nav">
+                    <a class="btn btn-default navbar-btn" href="{{ path('syntax_error_api_home') }}" role="button">Go to API</a>
+                    <a class="btn btn-default navbar-btn" href="/" role="button">Go to client</a>
+                </div>
+
+                <div class="nav navbar-nav navbar-right">
+                    <a class="btn btn-danger navbar-btn" href="{{ path('syntax_error_api_admin_logout') }}" role="button">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="jumbotron">
+        {# Battery status #}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Station status</h3>
@@ -154,7 +172,7 @@
         </div>
     </section>
 
-    <section>
+    <section class="jumbotron">
         {# Websocket status #}
         <div class="panel panel-default" style="width: 60%;">
             <div class="panel-heading">
@@ -190,20 +208,6 @@
 
                     {% endif %}
                 </ul>
-            </div>
-        </div>
-
-        {# Actions #}
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Actions</h3>
-            </div>
-            <div class="panel-body">
-                <p>
-                    <a class="btn btn-primary btn-lg" href="{{ path('syntax_error_api_home') }}" role="button">Go to API</a>
-                    <a class="btn btn-primary btn-lg" href="/" role="button">Go to client</a>
-                    <a class="btn btn-danger btn-lg" href="{{ path('syntax_error_api_admin_logout') }}" role="button">Logout</a>
-                </p>
             </div>
         </div>
     </section>
