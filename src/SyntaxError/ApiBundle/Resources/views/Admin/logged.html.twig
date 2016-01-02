@@ -127,7 +127,7 @@
             </div>
         </div>
 
-        {# Redis status #}
+        {# Vhost status #}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Vhost status</h3>
@@ -160,7 +160,7 @@
 
                     <li class="list-group-item">
                         <span class="badge">{{ not server.deploy ? '!!!' : server.deploy }}</span>
-                         {{ not server.deploy ? 'Deploy running now' : 'Last deployment' }}
+                         {{ not server.deploy ? 'Deploy running now' : 'Last deployment' }} <a href="/hooks_stat.html" target="_blank" class="btn btn-xs btn-default">show status</a>
                     </li>
 
                     <li class="list-group-item">
