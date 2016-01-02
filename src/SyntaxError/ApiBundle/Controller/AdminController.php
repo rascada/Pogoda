@@ -10,7 +10,6 @@ class AdminController extends Controller
 {
     public function loggedAction(Request $request)
     {
-        $admin = $this->get('syntax_error_api.admin');
         if( $request->query->has('ws_action') ) {
             switch($request->query->get('ws_action')) {
                 case 'start':
@@ -25,6 +24,7 @@ class AdminController extends Controller
             }
         }
 
+        $admin = $this->get('syntax_error_api.admin');
         return $this->render('SyntaxErrorApiBundle:Admin:logged.html.twig', [
             'hardware' => $admin->createHardwareInformer(),
             'database' => $admin->createDatabaseInformer(),
