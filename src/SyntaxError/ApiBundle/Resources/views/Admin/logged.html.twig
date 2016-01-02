@@ -37,6 +37,10 @@
         span.badge {
             margin-left: 5em;
         }
+
+        .log-hidden-item {
+            display: none;
+        }
     </style>
 </head>
 
@@ -174,16 +178,16 @@
 
     <section class="jumbotron">
         {# Websocket status #}
-        <div class="panel panel-default" style="width: 60%;">
+        <div class="panel panel-default" style="width: 30%">
             <div class="panel-heading">
                 <h3 class="panel-title">
                     WebSocket status {{ socket.pid ? '(PID: ' ~ socket.pid ~ ')' : '' }}
                     <span style="float: right;">
                         {% if socket.changeable %}
                             {% if socket.pid %}
-                                <a class="btn btn-danger" role="button" id="ws_restart" href="?ws_action=stop" style="margin-top: -.6em">Stop</a>
+                                <a class="btn btn-danger btn-sm" role="button" id="ws_restart" href="?ws_action=stop" style="margin-top: -.4em">Stop</a>
                             {% else %}
-                                <a class="btn btn-success" role="button" id="ws_restart" href="?ws_action=start" style="margin-top: -.6em">Start</a>
+                                <a class="btn btn-success btn-sm" role="button" id="ws_restart" href="?ws_action=start" style="margin-top: -.4em">Start</a>
                             {% endif %}
                         {% else %}
                             Cannot manage WebSocket server.
@@ -210,7 +214,57 @@
                 </ul>
             </div>
         </div>
+
+        {# Websocket logs #}
+        <div class="panel panel-default" style="width: 50%">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    WebSocket logs
+                    <span style="float: right;">
+                        <button class="btn btn-primary btn-sm" role="button" style="margin-top: -.4em" id="show-all-log">Show all</button>
+                    </span>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    {% if not socket.log %}
+                        <li class="list-group-item list-group-item-danger">Cannot open log file.</li>
+                    {% else %}
+                        {% autoescape false %}
+                            {% for logLine in socket.log|reverse %}
+                                {% if logLine|length %}
+                                    <li class="list-group-item {{ loop.index0 > 10 ? 'log-hidden-item' : '' }}" {{ logLine|length > 115 ? 'title="' ~ logLine ~ '"' }}>
+                                        {{ logLine|length > 115 ? logLine|slice(0, 115) ~ "..." : logLine }}
+                                    </li>
+                                {% endif %}
+                            {% else %}
+                                <li class="list-group-item list-group-item-warning">Empty log file.</li>
+                            {% endfor %}
+                        {% endautoescape %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
     </section>
 </body>
+
+<script>
+    var showed = false;
+    document.getElementById('show-all-log').addEventListener('click', function() {
+        var lines = document.getElementsByClassName('log-hidden-item');
+        for(var i=0; i < lines.length; i++) {
+            lines[i].style.display = showed ? 'none' : 'block';
+        }
+        this.innerText = showed ? 'Show all' : 'Hide old';
+        if(showed) {
+            this.className = this.className.replace('btn-danger', '');
+            this.className += ' btn-primary';
+        } else {
+            this.className = this.className.replace('btn-primary', '');
+            this.className += ' btn-danger';
+        }
+        showed = !showed;
+    });
+</script>
 </html>
 
