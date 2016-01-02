@@ -23,9 +23,7 @@
         <main>
             {% block content %}
             <aside>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('syntax_error_api_admin_logged') }}" class="admin-button">Admin area</a>
-                {% endif %}
+                <a href="{{ path('syntax_error_api_admin_logged') }}" class="admin-button">Admin area</a>
                 <menu>
                     <a href="{{ path('syntax_error_api_basic_now') }}">Basic</a>
                     <a href="{{ path('syntax_error_api_sentence') }}">Sentence</a>
