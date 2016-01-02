@@ -5,7 +5,7 @@ namespace SyntaxError\ApiBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 use SyntaxError\ApiBundle\Interfaces\ArchiveDay;
 
-class ArchiveDayRepository extends EntityRepository
+abstract class AbstractDayRepository extends EntityRepository
 {
     /**
      * @param \DateTime $dateTime
