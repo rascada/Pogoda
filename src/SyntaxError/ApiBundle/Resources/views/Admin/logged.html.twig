@@ -37,6 +37,10 @@
         span.badge {
             margin-left: 5em;
         }
+
+        .log-hidden-item {
+            display: none;
+        }
     </style>
 </head>
 
@@ -45,9 +49,27 @@
 {% endmacro %}
 <body>
 
-    <section>
-        {# Battery status #}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Weather station admin</a>
+            </div>
 
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div class="nav navbar-nav">
+                    <a class="btn btn-default navbar-btn" href="{{ path('syntax_error_api_home') }}" role="button">Go to API</a>
+                    <a class="btn btn-default navbar-btn" href="/" role="button">Go to client</a>
+                </div>
+
+                <div class="nav navbar-nav navbar-right">
+                    <a class="btn btn-danger navbar-btn" href="{{ path('syntax_error_api_admin_logout') }}" role="button">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="jumbotron">
+        {# Battery status #}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Station status</h3>
@@ -109,7 +131,7 @@
             </div>
         </div>
 
-        {# Redis status #}
+        {# Vhost status #}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Vhost status</h3>
@@ -121,6 +143,7 @@
                             {{ server.forecast.cached ? server.forecast.ttl|replace({'#': 'm.', '@': 's.'}) : 'Not cached' }}
                         </span>
                         Wunderground forecast
+                        {% if server.status.forecast is defined %} ({{ server.status.forecast.today.value ~ ', ' ~ server.status.forecast.total }}) {% endif %}
                     </li>
 
                     <li class="list-group-item">
@@ -128,6 +151,7 @@
                             {{ server.astronomy.cached ? server.astronomy.ttl|replace({'#': 'm.', '@': 's.'}) : 'Not cached' }}
                         </span>
                         Wunderground astronomy
+                        {% if server.status.astronomy is defined %} ({{ server.status.astronomy.today.value ~ ', ' ~ server.status.astronomy.total }}) {% endif %}
                     </li>
 
                     <li class="list-group-item">
@@ -135,11 +159,12 @@
                             {{ server.alerts.cached ? server.alerts.ttl|replace({'#': 'm.', '@': 's.'}) : 'Not cached' }}
                         </span>
                         Wunderground alerts
+                        {% if server.status.alerts is defined %} ({{ server.status.alerts.today.value ~ ', ' ~ server.status.alerts.total }}) {% endif %}
                     </li>
 
                     <li class="list-group-item">
                         <span class="badge">{{ not server.deploy ? '!!!' : server.deploy }}</span>
-                         {{ not server.deploy ? 'Deploy running now' : 'Last deployment' }}
+                         {{ not server.deploy ? 'Deploy running now' : 'Last deployment' }} <a href="/hooks_stat.html" target="_blank" class="btn btn-xs btn-default">show status</a>
                     </li>
 
                     <li class="list-group-item">
@@ -151,18 +176,18 @@
         </div>
     </section>
 
-    <section>
+    <section class="jumbotron">
         {# Websocket status #}
-        <div class="panel panel-default" style="width: 60%;">
+        <div class="panel panel-default" style="width: 30%">
             <div class="panel-heading">
                 <h3 class="panel-title">
                     WebSocket status {{ socket.pid ? '(PID: ' ~ socket.pid ~ ')' : '' }}
                     <span style="float: right;">
                         {% if socket.changeable %}
                             {% if socket.pid %}
-                                <a class="btn btn-danger" role="button" id="ws_restart" href="?ws_action=stop" style="margin-top: -.6em">Stop</a>
+                                <a class="btn btn-danger btn-sm" role="button" id="ws_restart" href="?ws_action=stop" style="margin-top: -.4em">Stop</a>
                             {% else %}
-                                <a class="btn btn-success" role="button" id="ws_restart" href="?ws_action=start" style="margin-top: -.6em">Start</a>
+                                <a class="btn btn-success btn-sm" role="button" id="ws_restart" href="?ws_action=start" style="margin-top: -.4em">Start</a>
                             {% endif %}
                         {% else %}
                             Cannot manage WebSocket server.
@@ -190,20 +215,56 @@
             </div>
         </div>
 
-        {# Actions #}
-        <div class="panel panel-default">
+        {# Websocket logs #}
+        <div class="panel panel-default" style="width: 50%">
             <div class="panel-heading">
-                <h3 class="panel-title">Actions</h3>
+                <h3 class="panel-title">
+                    WebSocket logs
+                    <span style="float: right;">
+                        <button class="btn btn-primary btn-sm" role="button" style="margin-top: -.4em" id="show-all-log">Show all</button>
+                    </span>
+                </h3>
             </div>
             <div class="panel-body">
-                <p>
-                    <a class="btn btn-primary btn-lg" href="{{ path('syntax_error_api_home') }}" role="button">Go to API</a>
-                    <a class="btn btn-primary btn-lg" href="/" role="button">Go to client</a>
-                    <a class="btn btn-danger btn-lg" href="{{ path('syntax_error_api_admin_logout') }}" role="button">Logout</a>
-                </p>
+                <ul class="list-group">
+                    {% if not socket.log %}
+                        <li class="list-group-item list-group-item-danger">Cannot open log file.</li>
+                    {% else %}
+                        {% autoescape false %}
+                            {% for logLine in socket.log|reverse %}
+                                {% if logLine|length %}
+                                    <li class="list-group-item {{ loop.index0 > 10 ? 'log-hidden-item' : '' }}" {{ logLine|length > 115 ? 'title="' ~ logLine ~ '"' }}>
+                                        {{ logLine|length > 115 ? logLine|slice(0, 115) ~ "..." : logLine }}
+                                    </li>
+                                {% endif %}
+                            {% else %}
+                                <li class="list-group-item list-group-item-warning">Empty log file.</li>
+                            {% endfor %}
+                        {% endautoescape %}
+                    {% endif %}
+                </ul>
             </div>
         </div>
     </section>
 </body>
+
+<script>
+    var showed = false;
+    document.getElementById('show-all-log').addEventListener('click', function() {
+        var lines = document.getElementsByClassName('log-hidden-item');
+        for(var i=0; i < lines.length; i++) {
+            lines[i].style.display = showed ? 'none' : 'block';
+        }
+        this.innerText = showed ? 'Show all' : 'Hide old';
+        if(showed) {
+            this.className = this.className.replace('btn-danger', '');
+            this.className += ' btn-primary';
+        } else {
+            this.className = this.className.replace('btn-primary', '');
+            this.className += ' btn-danger';
+        }
+        showed = !showed;
+    });
+</script>
 </html>
 

@@ -7,9 +7,6 @@
         <script src="//cdn.jsdelivr.net/highlight.js/9.0.0/highlight.min.js"></script>
         <link rel="stylesheet" href="{{ asset('bundles/syntaxerrorapi/css/api.css') }}"/>
         {% block head %}{% endblock %}
-        {% if is_granted("ROLE_ADMIN") %}
-            <style> .admin_button::before { content: "\e112"; } </style>
-        {% endif %}
     </head>
     {% spaceless %}
     <body>
@@ -26,6 +23,7 @@
         <main>
             {% block content %}
             <aside>
+                <a href="{{ path('syntax_error_api_admin_logged') }}" class="admin-button">Admin area</a>
                 <menu>
                     <a href="{{ path('syntax_error_api_basic_now') }}">Basic</a>
                     <a href="{{ path('syntax_error_api_sentence') }}">Sentence</a>
@@ -39,9 +37,6 @@
                     <a href="{{ path('syntax_error_api_archive_records', { 'period': 'month' }) }}">Month records</a>
                     <a href="{{ path('syntax_error_api_archive_charts', { 'type': 'outTemp', 'period': 'year' }) }}">Year charts</a>
                     <a href="{{ path('syntax_error_api_archive_records', { 'period': 'year' }) }}">Year records</a>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <hr/><a href="{{ path('syntax_error_api_admin_logged') }}" class="admin_button">Admin area</a>
-                    {% endif %}
                 </menu>
                 <article>{% block desc %}{% endblock %}</article>
 

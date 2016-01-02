@@ -76,7 +76,8 @@ class Admin
                 'ttl' => $redis->exists('alerts') ? gmdate("i# m@", $redis->ttl('alerts')) : null
             ],
             'deploy' => $deployRunning == "true" ? false : $deployRunning,
-            'branch' => str_replace('ref: ', '', file_get_contents(__DIR__."/../../../../.git/HEAD"))
+            'branch' => str_replace('ref: ', '', file_get_contents(__DIR__."/../../../../.git/HEAD")),
+            'status' => $redis->exists('wu_requests') ? json_decode($redis->get('wu_requests')) : null
         ];
     }
 
@@ -90,10 +91,14 @@ class Admin
         $procOut = explode(" ", `ps auxf | grep [S]ocketBundle`)[0];
 
         $configPid = Config::getPid();
+        $managerPath = __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."SocketBundle".DIRECTORY_SEPARATOR."manager";
+        $logPath = str_replace(PHP_EOL, '', `$managerPath ws:status -l`);
+
         return [
             'hosts' => $output,
             'pid' => is_numeric($configPid) ? (int)$configPid : false,
-            'changeable' => strlen($procOut) ? $procOut == trim(`whoami`) : true
+            'changeable' => strlen($procOut) ? $procOut == trim(`whoami`) : true,
+            'log' => is_readable($logPath) ? explode(PHP_EOL, file_get_contents($logPath)) : false
         ];
     }
 }

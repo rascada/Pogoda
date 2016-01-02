@@ -24,6 +24,23 @@ class Wunderground
             $apiUrl = $this->rootApi.$dataName."/lang:".$this->lang."/q/".$this->place.".json";
             $wuJson = file_get_contents($apiUrl);
 
+            $wuRequests = $redis->exists('wu_requests') ? json_decode($redis->get('wu_requests')) : new \stdClass;
+            $dataStatus = property_exists($wuRequests, $dataName) ? $wuRequests->{$dataName} : new \stdClass;
+            $dataStatus->total = property_exists($dataStatus, 'total') ? $dataStatus->total+1 : 1;
+
+            if( !property_exists($dataStatus, 'today') ) $dataStatus->today = new \stdClass;
+            if( !property_exists($dataStatus->today, 'value') ) $dataStatus->today->value = 1;
+
+            if( property_exists($dataStatus->today, 'date') && $dataStatus->today->date == (new \DateTime('now'))->format("Y-m-d") ) {
+                $dataStatus->today->value++;
+            } else {
+                $dataStatus->today->date = (new \DateTime('now'))->format("Y-m-d");
+                $dataStatus->today->value = 1;
+            }
+
+            $wuRequests->{$dataName} = $dataStatus;
+            $redis->set('wu_requests', json_encode($wuRequests));
+
             if($dataName == 'forecast') {
                 $iconCache = new IconCache(
                     __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."Resources".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."images"

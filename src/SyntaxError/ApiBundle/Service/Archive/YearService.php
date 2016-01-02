@@ -7,7 +7,7 @@ use SyntaxError\ApiBundle\Entity\ArchiveDayOuttemp;
 use SyntaxError\ApiBundle\Entity\ArchiveDayWindgustdir;
 use SyntaxError\ApiBundle\Interfaces\ArchiveService;
 use SyntaxError\ApiBundle\Record\RecordGenerator;
-use SyntaxError\ApiBundle\Repository\ArchiveDayRepository;
+use SyntaxError\ApiBundle\Repository\AbstractDayRepository;
 
 class YearService implements ArchiveService
 {
@@ -27,7 +27,7 @@ class YearService implements ArchiveService
         $to = (new \DateTime( $dateTime->format("Y-12-31 23:59:59") ));
 
         $repository = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDay$archiveName");
-        if($repository instanceof ArchiveDayRepository) {
+        if($repository instanceof AbstractDayRepository) {
             $records = $repository->findBetween($from, $to);
             return $this->generator->highGenerate($records, $archiveName);
         }
