@@ -7,15 +7,18 @@
     option(:value='wind.gust') powiew
   .wind
     compass(:direction='wind.direction || bug')
+    gauge(:speed='5')
 
 </template>
 
 <script>
   import compass from './compass.vue'
+  import gauge from './gauge.vue'
 
   export default {
     components: {
-      compass
+      compass,
+      gauge,
     },
 
     data(){
@@ -45,6 +48,7 @@
 
 <style lang='stylus'>
   @import '~styles/main'
+  @import '~styles/flex'
 
   .windWraper
     @extend .blockShadow
@@ -56,6 +60,6 @@
     h1
       margin .1em
     .wind
-      display flex
+      @extend .flex, .acenter
 
 </style>
