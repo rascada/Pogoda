@@ -10,7 +10,7 @@
             {{ (range - n) * isPositiveTemp() }}
     .sensor
       .temperatureSensor.sensorVal(v-bind:style="{ height: sensorVal }")
-        span {{ degrees | round }}°C
+        span {{ degrees | round 1 }}°C
     .bottom
 </template>
 

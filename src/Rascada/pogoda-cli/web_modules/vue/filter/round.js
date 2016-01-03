@@ -1,3 +1,3 @@
-export default function round(value) {
-  return value.toFixed(1);
+export default function round(value, accuracy) {
+  return value.toFixed(accuracy);
 };
