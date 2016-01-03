@@ -10,6 +10,8 @@
     font-family 'Rajdhani', bold, sans-serif
     main
       @extend .flex, .center, .fwrap, .around
+      > *
+        margin .5em
 </style>
 
 <template lang="jade">
