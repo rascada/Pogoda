@@ -11,7 +11,7 @@ echo $GITPULL >> $STAT
 echo "</h4>" >> $STAT
 
 echo "<h4>Front: " >> $STAT
-`$DIR/front.sh 2>&1` >> $STAT
+$DIR/front.sh 2>&1 >> $STAT
 echo "</h4>" >> $STAT
 
 echo "<h4>Cache: " >> $STAT
