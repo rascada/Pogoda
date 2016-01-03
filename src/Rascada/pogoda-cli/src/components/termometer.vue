@@ -29,14 +29,6 @@
       },
     },
     methods: {
-      updateTemperature() {
-        this.$parent.basic('temperature')
-          .on('success', res => {
-            this.degrees = res.temperature.current.value;
-            setTimeout(this.updateTemperature, res.time.next.value * 1000);
-          }).go();
-      },
-
       apiConnect(api) {
         this.degrees = api.temperature.current.value;
       },
