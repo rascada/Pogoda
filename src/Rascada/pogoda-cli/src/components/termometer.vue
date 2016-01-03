@@ -9,7 +9,7 @@
           p(v-if='n % 5 == 0 || n == 0').
             {{ (range - n) * isPositiveTemp() }}
     .sensor
-      .temperatureSensor.sensorVal(v-bind:style="{height: sensorVal }")
+      .temperatureSensor.sensorVal(v-bind:style="{ height: sensorVal }")
         span {{ degrees | round }}°C
     .bottom
 </template>
@@ -25,7 +25,7 @@
 
     computed: {
       sensorVal() {
-        return `${ 13 + ( Math.abs(this.degrees) * 2.9) }%`;
+        return `${ 10.5 + (Math.abs(this.degrees) * 2.9) }%`;
       },
     },
     methods: {
