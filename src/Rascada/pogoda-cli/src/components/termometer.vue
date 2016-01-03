@@ -15,12 +15,18 @@
 </template>
 
 <script>
+  import round from 'vue/filter/round';
+
   export default {
     data() {
       return {
         degrees: 0,
         range: 30,
       };
+    },
+
+    filters: {
+      round,
     },
 
     computed: {
