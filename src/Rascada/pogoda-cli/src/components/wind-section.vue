@@ -2,9 +2,11 @@
 
 .windWraper
   h1 Wiatr
+  select(v-model='wind.direction')
+    option(:value='wind.actual') aktualny
+    option(:value='wind.gust') powiew
   .wind
-    compass(title='aktualny' v-bind:direction='wind.actual')
-    compass(title='powiew' v-bind:direction='wind.gust')
+    compass(:direction='wind.direction || bug')
 
 </template>
 
@@ -19,10 +21,17 @@
     data(){
       return {
         wind: {
-          gust: 0,
-          actual: 0
+          direction: undefined,
+          gust: null,
+          actual: null,
         }
       }
+    },
+
+    computed: {
+      bug() {
+        return typeof this.wind.direction == 'undefined' ? this.wind.actual : null;
+      },
     },
 
     ready(){
