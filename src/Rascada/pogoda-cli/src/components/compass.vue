@@ -1,18 +1,27 @@
 <template lang='jade'>
 
-.compassWraper
+.compassWrapper
   h1 {{ title }}
   .compass
-    .arrow(:style='arrowDirection')
+    .arrowWrapper
+      .arrow(:style='arrowDirection')
+      .screen
+        slot
+          h1(v-show='direction') {{ direction | round  }}°
 
 </template>
 
 <script>
+  import round from 'vue/filter/round';
 
   export default {
     props: {
       title: '',
       direction: null,
+    },
+
+    filters: {
+      round,
     },
 
     computed: {
@@ -42,11 +51,31 @@
     background color
     position relative
     border-radius 50%
-    .arrow
-      width 80%
-      height 80%
-      background #fff
-      border-radius 0 50% 50% 50%
-      border .4em solid
-      transform rotate(45deg)
+    .arrowWrapper
+      width 85%
+      height 85%
+      position relative
+
+      .arrow
+        box-sizing border-box
+
+        width 100%
+        height 100%
+
+        background #fff
+        position relative
+        border .4em solid
+        transform rotate(45deg)
+        border-radius 0 50% 50% 50%
+
+      .screen
+        @extend .flex, .center
+        position absolute
+
+        arrow = -20%
+        top -(arrow / 2)
+        left -(arrow / 2)
+        width 100% + arrow
+        height 100% + arrow
+
 </style>
