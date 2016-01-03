@@ -3,7 +3,7 @@
 .compassWraper
   h1 {{ title }}
   .compass
-    .arrow(:style='{ transform: "rotate(" + (direction + 45) + "deg)" }')
+    .arrow(:style='arrowDirection')
 
 </template>
 
@@ -12,7 +12,16 @@
   export default {
     props: {
       title: '',
-      direction: 0
+      direction: null,
+    },
+
+    computed: {
+      arrowDirection() {
+        return {
+          transform: `rotate(${(this.direction + 45)}deg)`,
+          borderRadius: !this.direction ? '50%' : null,
+        };
+      },
     },
   }
 
