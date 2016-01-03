@@ -36,7 +36,7 @@
 
   .compass
     @extend .blockShadow, .flex, .center
-    margin .5em
+    margin 1.1em
     width 13em
     height @width
     background color
