@@ -3,7 +3,7 @@
 let webpack = require('webpack');
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/weather.js',
 
   output: {
     path: '../../../web/js',

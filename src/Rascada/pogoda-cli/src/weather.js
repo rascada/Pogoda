@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import App from './app.vue';
+import weather from './weather.vue';
 
 import round from 'vue/filter/round';
 import slide from 'vue/transition/slide';
@@ -13,6 +13,6 @@ if (process.env.NODE_ENV != 'production')
 new Vue({
   el: 'body',
   components: {
-    app: App,
+    weather,
   },
 });
