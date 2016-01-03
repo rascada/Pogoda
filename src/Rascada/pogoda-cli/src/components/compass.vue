@@ -19,7 +19,7 @@
       arrowDirection() {
         return {
           transform: `rotate(${(this.direction + 45)}deg)`,
-          borderRadius: !this.direction ? '50%' : null,
+          borderRadius: this.direction == null ? '50%' : null,
         };
       },
     },
