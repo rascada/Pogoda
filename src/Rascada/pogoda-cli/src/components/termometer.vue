@@ -112,13 +112,12 @@
         span
           background #fff
           padding .2em
-          box-shadow 0 .1em .1em rgba(#000, .1)
-          border .05em solid thermometerColor
+          box-shadow 0 .1em .1em rgba(#000, .2)
           color thermometerColor
           font-weight 600
-          font-size 1.25em
+          font-size 1.1em
           position relative
-          top -7.5%
+          top -.5em
           left 150%
     .measure
       position absolute
