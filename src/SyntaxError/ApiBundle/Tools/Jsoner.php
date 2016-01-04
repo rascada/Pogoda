@@ -4,6 +4,7 @@ namespace SyntaxError\ApiBundle\Tools;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -29,7 +30,7 @@ final class Jsoner
     public function __construct()
     {
         $this->serializer = new Serializer(
-            [new GetSetMethodNormalizer(), new PropertyNormalizer()],
+            [new GetSetMethodNormalizer(), new PropertyNormalizer(), new ObjectNormalizer()],
             [new JsonEncoder()]
         );
         $this->serializer->supportsEncoding('utf8');
