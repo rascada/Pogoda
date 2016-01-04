@@ -2,27 +2,67 @@
 
 namespace SyntaxError\ApiBundle\Tools;
 
+/**
+ * Class Uniter
+ * Static functions and const for unit calc and display.
+ *
+ * @package SyntaxError\ApiBundle\Tools
+ */
 class Uniter
 {
+    /**
+     * Displayed temperature units.
+     */
     const temp = "℃";
 
+    /**
+     * Displayed trend time range.
+     */
     const trend = "/h";
 
+    /**
+     * Displayed humidity units.
+     */
     const humidity = "%";
 
+    /**
+     * Displayed barometer units.
+     */
     const barometer = "hPa";
 
+    /**
+     * Displayed wind speed units.
+     */
     const speed = "km/h";
 
+    /**
+     * Displayed rain sum units.
+     */
     const rain = "mm";
 
+    /**
+     * Displayed wind dir units.
+     */
     const deg = "deg";
 
+    /**
+     * Convert speed in km/h to knots.
+     *
+     * @param $kmph
+     * @return float
+     */
     public static function kmph2knots($kmph)
     {
         return $kmph * 0.539956803;
     }
 
+    /**
+     * Calculate wind chill from wind speed and temperature.
+     *
+     * @param $kmph
+     * @param $temp
+     * @return float
+     */
     public static function getWindChill($kmph, $temp)
     {
         $wind = static::kmph2knots($kmph) * 1.852;
@@ -34,6 +74,13 @@ class Uniter
         return $wind_chill;
     }
 
+    /**
+     * Calculate trend from array of values.
+     *
+     * @param array $values
+     * @param $key
+     * @return float|int
+     */
     public static function getTrend(array $values, $key)
     {
         if(!$values || count($values) < 2) {
@@ -49,6 +96,12 @@ class Uniter
         return array_sum($trends)/count($trends);
     }
 
+    /**
+     * Translate wind dir degrees to polish sentence.
+     *
+     * @param $deg
+     * @return string
+     */
     public static function windDirPl($deg)
     {
         if($deg<20 || $deg>=320) return "z północy";
