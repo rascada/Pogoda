@@ -2,7 +2,12 @@
 
 namespace SyntaxError\ApiBundle\Weather;
 
-
+/**
+ * Class MaxMin
+ * Model for record generation.
+ *
+ * @package SyntaxError\ApiBundle\Weather
+ */
 class MaxMin
 {
     /**
