@@ -8,17 +8,24 @@ use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
-class Jsoner
+final class Jsoner
 {
     /**
      * @var Serializer
      */
     private $serializer;
+
     /**
      * @var string
      */
     private $jsonString;
 
+    /**
+     * Jsoner constructor.
+     *
+     * Use Symfony\Component\Serializer\Serializer with standard normalizers.
+     * Support json utf-8 encoding.
+     */
     public function __construct()
     {
         $this->serializer = new Serializer(
@@ -28,7 +35,10 @@ class Jsoner
         $this->serializer->supportsEncoding('utf8');
         $this->jsonString = '';
     }
+
     /**
+     * Serialize $value to json.
+     *
      * @param $value
      * @return $this
      */
@@ -37,6 +47,7 @@ class Jsoner
         $this->jsonString = $this->serializer->serialize($value, 'json');
         return $this;
     }
+
     /**
      * @return $this
      */
@@ -51,6 +62,7 @@ class Jsoner
         );
         return $this;
     }
+
     /**
      * @return $this
      */
@@ -59,6 +71,7 @@ class Jsoner
         $this->jsonString = str_replace('\\', '', $this->jsonString);
         return $this;
     }
+
     /**
      * @return $this
      */
@@ -67,7 +80,10 @@ class Jsoner
         $this->jsonString = str_replace('\\n', "<br/>", $this->jsonString);
         return $this;
     }
+
     /**
+     * Create JsonResponse with Access-Control-Allow-Origin and optional $callback name.
+     *
      * @param $callback
      * @return Response
      */
@@ -81,7 +97,10 @@ class Jsoner
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
     }
+
     /**
+     * Get serialized json as string variable.
+     *
      * @return string
      */
     public function getJsonString()
