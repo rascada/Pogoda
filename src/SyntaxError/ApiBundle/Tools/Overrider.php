@@ -5,7 +5,13 @@ namespace SyntaxError\ApiBundle\Tools;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Yaml\Parser;
 
-class Overrider
+/**
+ * Class Overrider
+ * Override returned by api values for tests. (look at Resources/override files)
+ *
+ * @package SyntaxError\ApiBundle\Tools
+ */
+final class Overrider
 {
     /**
      * @var array
