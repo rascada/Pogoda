@@ -6,8 +6,8 @@
       div.line(
         v-for='n in range'
         v-bind:class='{boldLine: n % 5 == 0}')
-          p(v-if='n % 5 == 0 || n == 0').
-            {{ (range - n) * isPositiveTemp() }}
+          p(v-if='n % 5 == 0').
+            {{ isPositive ? range - n : -n }}
     .sensor
       .temperatureSensor.sensorVal(v-bind:style="{ height: sensorVal }")
         span {{ degrees | round 1 }}°C
@@ -31,17 +31,19 @@
 
     computed: {
       sensorVal() {
-        return `${ 10.5 + (Math.abs(this.degrees) * 2.9) }%`;
+        let percent = Math.abs(this.degrees) * 2.9;
+
+        return `${this.isPositive ? percent + 10.5 : 97.5 - percent}%`;
+      },
+
+      isPositive() {
+        return this.degrees > 0;
       },
     },
     methods: {
       apiConnect(api) {
         this.degrees = api.temperature.current.value;
       },
-
-      isPositiveTemp() {
-        return this.degrees < 0 ? -1 : 1;
-      }
     },
 
     ready() {
