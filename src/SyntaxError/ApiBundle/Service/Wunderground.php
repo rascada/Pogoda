@@ -4,15 +4,39 @@ namespace SyntaxError\ApiBundle\Service;
 
 use SyntaxError\ApiBundle\Tools\IconCache;
 
+/**
+ * Class Wunderground
+ * @package SyntaxError\ApiBundle\Service
+ */
 class Wunderground
 {
+    /**
+     * Root url to wunderground api.
+     *
+     * @var string
+     */
     private $rootApi = "http://api.wunderground.com/api/d3e5e159801b834c/";
 
+    /**
+     * Language of translation.
+     *
+     * @var string
+     */
     private $lang = "PL";
 
+    /**
+     * Wunderground place code.
+     *
+     * @var string
+     */
     private $place = "pws:IOPOLSKI10";
 
     /**
+     * Read data from cache if exist.
+     * Else download data from wu-api and set to redis with life time in minutes.
+     *
+     * Cache forecast icons and replace links.
+     *
      * @param $dataName
      * @param $lifeTimeInMinutes
      * @return string
@@ -54,6 +78,8 @@ class Wunderground
     }
 
     /**
+     * Create redis instance connected to localhost.
+     *
      * @return \Redis
      */
     private function createRedis()
@@ -64,6 +90,8 @@ class Wunderground
     }
 
     /**
+     * Get translation language.
+     *
      * @return string
      */
     public function getLang()
@@ -72,6 +100,8 @@ class Wunderground
     }
 
     /**
+     * Set translation language.
+     *
      * @param string $lang
      * @return Wunderground
      */
@@ -83,6 +113,8 @@ class Wunderground
     }
 
     /**
+     * Get WU place code.
+     *
      * @return string
      */
     public function getPlace()
@@ -91,6 +123,8 @@ class Wunderground
     }
 
     /**
+     * Set WU place code.
+     *
      * @param string $place
      * @return Wunderground
      */
