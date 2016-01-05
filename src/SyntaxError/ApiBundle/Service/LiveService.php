@@ -1,16 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marcin
- * Date: 28.11.15
- * Time: 18:50
- */
 
 namespace SyntaxError\ApiBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 
-use SyntaxError\ApiBundle\Weather\Pressure;
+use SyntaxError\ApiBundle\Weather\Barometer;
 use SyntaxError\ApiBundle\Weather\Rain;
 use SyntaxError\ApiBundle\Weather\Reading;
 use SyntaxError\ApiBundle\Weather\Temperature;
@@ -18,19 +12,41 @@ use SyntaxError\ApiBundle\Weather\Time;
 use SyntaxError\ApiBundle\Weather\Wind;
 use SyntaxError\ApiBundle\Tools\Uniter;
 
-
+/**
+ * Class LiveService
+ * @package SyntaxError\ApiBundle\Service
+ */
 class LiveService
 {
+    /**
+     * The newest Archive instance in repository.
+     *
+     * @var null|\SyntaxError\ApiBundle\Entity\Archive
+     */
     private $lastArchive;
 
+    /**
+     * Repository of Archive. To take the last instance, search by day and calculation of trend.
+     *
+     * @var \SyntaxError\ApiBundle\Repository\ArchiveRepository
+     */
     private $archiveRepository;
 
+    /**
+     * LiveService constructor.
+     * @param EntityManager $entityManager
+     */
     public function __construct(EntityManager $entityManager)
     {
         $this->archiveRepository = $entityManager->getRepository("SyntaxErrorApiBundle:Archive");
         $this->lastArchive = $this->archiveRepository->findLast();
     }
 
+    /**
+     * Create model of last time from Weather\Time
+     *
+     * @return Time
+     */
     public function createTime()
     {
         $now = (new \DateTime('now'))->getTimestamp();
@@ -52,6 +68,11 @@ class LiveService
         return $time->setNext($next);
     }
 
+    /**
+     * Create model of last humidity.
+     *
+     * @return Reading
+     */
     public function createHumidity()
     {
         $humidity = new Reading();
@@ -61,6 +82,11 @@ class LiveService
         return $humidity;
     }
 
+    /**
+     * Create model of last barometer from Weather\Barometer.
+     *
+     * @return Barometer
+     */
     public function createBarometer()
     {
         $current = new Reading();
@@ -73,10 +99,15 @@ class LiveService
         $trend->units = Uniter::barometer.Uniter::trend;
         $trend->value = $this->archiveRepository->getLastTrend('barometer');
 
-        $pressure = new Pressure($current);
+        $pressure = new Barometer($current);
         return $pressure->setTrend($trend);
     }
 
+    /**
+     * Create model of last rain from Weather\Rain.
+     *
+     * @return Rain
+     */
     public function createRain()
     {
         $current = new Reading();
@@ -93,6 +124,11 @@ class LiveService
         return $rain->setSum($sum);
     }
 
+    /**
+     * Create model of last wind from Weather\Wind.
+     *
+     * @return Wind
+     */
     public function createWind()
     {
         $currentSpeed = new Reading();
@@ -119,6 +155,11 @@ class LiveService
         return $wind->setGust($gustSpeed, $gustDir);
     }
 
+    /**
+     * Create model of last temperature from Weather\Temperature.
+     *
+     * @return Temperature
+     */
     public function createTemperature()
     {
         $current = new Reading();
