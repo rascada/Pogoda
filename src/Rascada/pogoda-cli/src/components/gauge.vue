@@ -39,27 +39,30 @@
   @import '~styles/main'
 
   .gauge
+    box-sizing border-box
     gauge-radius = 6.5em
     @extend .flex, .center
     margin .25em
     width (gauge-radius * 2)
     height @width
-    color color
+    color #fff
+    background color
     border-radius 50%
-    border .1em solid
+    border .4em solid
+    box-shadow 0 .1em .5em .2em rgba(#000, .1)
     .dot
       @extend .flex, .center
       width .5em
       height @width
-      background color
+      background #fff
       border-radius 50%
       position relative
       .pointer
-        background color
+        background #fff
         position absolute
         border-radius .5em
         align-self flex-start
-        height 6em; width .25em
+        height 5.5em; width .25em
         margin-left -.15em; margin-top 50%
         transform-origin top; transform rotate(45deg)
       .measureWrapper
@@ -75,10 +78,12 @@
           transform-origin bottom; transform rotate(-135deg)
           &:after
             content ''
-            width 100%
+            box-sizing border-box
+            width 200%
             height 1em
-            top 0; left 0
-            background #333
+            top 0; left -60%
+            border-radius .5em
+            background #fff
             position absolute
 
 </style>
