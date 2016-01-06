@@ -1,10 +1,11 @@
 <template lang='jade'>
 
 .windWraper
-  h1 Wiatr
-  select(v-model='wind.choice')
-    option(selected) aktualny
-    option powiew
+  .actionBar
+    h1 Wiatr
+    select(v-model='wind.choice')
+      option(selected) aktualny
+      option powiew
   .wind
     compass(:direction='current.direction')
     gauge(:speed='current.speed')
@@ -67,9 +68,23 @@
     color color
     padding 1em
     text-align center
-    h1
-      margin .1em
     .wind
       @extend .flex, .acenter
-
+    .actionBar
+      @extend .flex, .around, .acenter
+      background #fff
+      shadow(.5)
+      h1
+        margin .1em
+      select
+        cursor pointer
+        outline none
+        border 0
+        padding .5em
+        border-radius .25em
+        shadow(.25)
+        transition .5s
+        border .1em solid transparent
+        &:hover
+          border .1em solid color
 </style>
