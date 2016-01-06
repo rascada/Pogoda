@@ -2,6 +2,7 @@
 
 namespace SyntaxError\ApiBundle\Service;
 
+use Symfony\Component\HttpFoundation\RequestStack;
 use SyntaxError\ApiBundle\Tools\IconCache;
 
 /**
@@ -30,6 +31,20 @@ class Wunderground
      * @var string
      */
     private $place = "pws:IOPOLSKI10";
+
+    /**
+     * @var null|\Symfony\Component\HttpFoundation\Request
+     */
+    private $request;
+
+    /**
+     * Wunderground constructor.
+     * @param RequestStack $requestStack
+     */
+    public function __construct(RequestStack $requestStack)
+    {
+        $this->request = $requestStack->getMasterRequest();
+    }
 
     /**
      * Read data from cache if exist.
@@ -69,6 +84,8 @@ class Wunderground
                 $iconCache = new IconCache(
                     __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."Resources".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."images"
                 );
+                $fullServerName = $this->request->isSecure() ? "https://".$this->request->getHost() : $this->request->getHost();
+                $iconCache->setServerName($fullServerName);
                 $wuJson = $iconCache->cacheFromWunderground($wuJson);
             }
             $redis->setEx($dataName, $lifeTimeInMinutes*60, $wuJson);

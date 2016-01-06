@@ -10,6 +10,11 @@ final class IconCache
     private $root;
 
     /**
+     * @var string
+     */
+    private $serverName = '';
+
+    /**
      * IconCache constructor.
      * @param string $root
      */
@@ -29,7 +34,7 @@ final class IconCache
         $forecast = json_decode($forecastJsonString);
         foreach($forecast->forecast->txt_forecast->forecastday as $i => $day) {
             $this->save($day->icon_url);
-            $newUrl = 'https://pogoda.skalagi.pl/bundles/syntaxerrorapi/images/'.$this->getLastName($day->icon_url);
+            $newUrl = $this->serverName.'/bundles/syntaxerrorapi/images/'.$this->getLastName($day->icon_url);
 
             $forecast->forecast->txt_forecast->forecastday[$i]->icon_url = $newUrl;
         }
@@ -61,5 +66,23 @@ final class IconCache
         $exploded = explode("/", $path);
         if(!$exploded) return null;
         return $exploded[count($exploded)-1];
+    }
+
+    /**
+     * @return string
+     */
+    public function getServerName()
+    {
+        return $this->serverName;
+    }
+
+    /**
+     * @param string $serverName
+     * @return IconCache
+     */
+    public function setServerName($serverName)
+    {
+        $this->serverName = preg_match('/http/', $serverName) ? $serverName : ("http://$serverName");
+        return $this;
     }
 }
