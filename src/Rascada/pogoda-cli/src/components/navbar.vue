@@ -7,15 +7,18 @@
           li
 
       h1 {{ name }}
+      next-update
     menu(:visible='navbar.visible')
 </template>
 
 <script>
   import menu from './menu.vue'
+  import nextUpdate from './nextUpdate.vue'
 
   export default {
     components: {
-      menu
+      nextUpdate,
+      menu,
     },
 
     props: {
