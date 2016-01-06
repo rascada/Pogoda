@@ -8,6 +8,7 @@
 
       h1 {{ name }}
       next-update
+      span pogoda2
     menu(:visible='navbar.visible')
 </template>
 
@@ -52,6 +53,11 @@
     @extend .blockShadow
 
     padding .5em 1em
+
+    > span
+      margin-left auto
+      align-self flex-end
+      font-weight 600
 
     .sunLogo
       width 1.5em
