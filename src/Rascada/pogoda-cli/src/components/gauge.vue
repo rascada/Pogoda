@@ -4,6 +4,7 @@
       .pointer
       .measureWrapper
         .unit(v-for='n in measure.range' v-bind:style='unitPosition(n)')
+          span {{ $index * measure.unit }}
 </template>
 
 <script>
@@ -15,7 +16,8 @@
     data() {
       return {
         measure: {
-          range: 5,
+          range: 12,
+          unit: 3,
         }
       }
     },
