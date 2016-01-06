@@ -52,18 +52,22 @@
     border-radius 50%
     border .4em solid
     box-shadow 0 .1em .5em .2em rgba(#000, .1)
+    overflow hidden
     .dot
       @extend .flex, .center
       width .5em
       height @width
-      background #fff
+      background teal
       border-radius 50%
       position relative
       .pointer
-        background #fff
+        z-index 1
+        background color + 20%
         position absolute
         border-radius .5em
         align-self flex-start
+        border .1em solid
+        box-shadow 0 0 .1em .1em rgba(#333, .3)
         height 5.5em; width .25em
         margin-left -.15em; margin-top 50%
         transform-origin top; transform rotate(45deg)
@@ -71,21 +75,19 @@
         margin-left -.075em
         height gauge-radius
         position absolute
-        width .1em
+        width .15em
         bottom 50%
         .unit
           position absolute
           width 100%
           height 100%
           transform-origin bottom; transform rotate(-135deg)
-          &:after
-            content ''
-            box-sizing border-box
-            width 200%
-            height 1em
-            top 0; left -60%
-            border-radius .5em
-            background #fff
-            position absolute
-
+          span
+            top .5em
+            position relative
+            color #fff
+            font-weight 600
+            padding 0 .25em
+            border-bottom .2em solid rgba(#fff, .75)
+            z-index 1
 </style>
