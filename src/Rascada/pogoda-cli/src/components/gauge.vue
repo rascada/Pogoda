@@ -1,10 +1,10 @@
 <template lang='jade'>
   .gauge
     .dot
-      .pointer
+      .pointer(:style='pointer')
       .measureWrapper
         .unit(v-for='n in measure.range' v-bind:style='unitPosition(n)')
-          span {{ $index * measure.unit }}
+          p {{ $index * measure.unit }}
 </template>
 
 <script>
@@ -18,7 +18,7 @@
         measure: {
           range: 12,
           unit: 3,
-        }
+        },
       }
     },
 
@@ -32,6 +32,10 @@
     computed: {
       measureSpace() {
         return 270 / (this.measure.range - 1);
+      },
+
+      pointer() {
+        return {transform: `rotate(${42 + this.speed * this.measureSpace / this.measure.unit}deg)`};
       },
     },
   }
