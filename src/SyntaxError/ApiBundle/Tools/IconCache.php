@@ -2,16 +2,28 @@
 
 namespace SyntaxError\ApiBundle\Tools;
 
-
-class IconCache
+final class IconCache
 {
+    /**
+     * @var string
+     */
     private $root;
 
+    /**
+     * IconCache constructor.
+     * @param string $root
+     */
     public function __construct($root)
     {
         $this->root = $root;
     }
 
+    /**
+     * Parse wunderground forecast json, download pictures and replace paths in returned json string.
+     *
+     * @param $forecastJsonString
+     * @return string
+     */
     public function cacheFromWunderground($forecastJsonString)
     {
         $forecast = json_decode($forecastJsonString);
@@ -24,6 +36,12 @@ class IconCache
         return json_encode($forecast);
     }
 
+    /**
+     * Save file on disk from url.
+     *
+     * @param $urlPath
+     * @return int
+     */
     private function save($urlPath)
     {
         return file_put_contents(
@@ -32,6 +50,12 @@ class IconCache
         );
     }
 
+    /**
+     * Get only filename from file path.
+     *
+     * @param $path
+     * @return null
+     */
     private function getLastName($path)
     {
         $exploded = explode("/", $path);

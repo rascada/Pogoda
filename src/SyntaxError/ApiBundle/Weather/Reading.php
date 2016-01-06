@@ -2,6 +2,12 @@
 
 namespace SyntaxError\ApiBundle\Weather;
 
+/**
+ * Class Reading
+ * One reading from every sensor.
+ *
+ * @package SyntaxError\ApiBundle\Weather
+ */
 class Reading
 {
     /**
