@@ -2,12 +2,12 @@
 
 .windWraper
   h1 Wiatr
-  select(v-model='wind.direction')
-    option(:value='wind.actual') aktualny
-    option(:value='wind.gust') powiew
+  select(v-model='wind.choice')
+    option(selected) aktualny
+    option powiew
   .wind
-    compass(:direction='wind.direction || bug')
     gauge(:speed='5')
+    compass(:direction='current.direction')
 
 </template>
 
@@ -24,23 +24,32 @@
     data(){
       return {
         wind: {
-          direction: undefined,
-          gust: null,
-          actual: null,
-        }
-      }
+          choice: '',
+          actual: {
+            direction: null,
+          },
+          gust: {
+            direction: null,
+          },
+        },
+      };
     },
 
     computed: {
-      bug() {
-        return typeof this.wind.direction == 'undefined' ? this.wind.actual : null;
+      current() {
+        switch (this.wind.choice) {
+          case 'powiew':
+            return this.wind.gust;
+          default:
+            return this.wind.actual;
+        };
       },
     },
 
     ready(){
       this.$parent.api.basic.on('updated', api => {
-        this.wind.actual = api.wind.currentDir.value;
-        this.wind.gust = api.wind.gustDir.value;
+        this.wind.actual.direction = api.wind.currentDir.value;
+        this.wind.gust.direction = api.wind.gustDir.value;
       });
     }
   }
