@@ -6,8 +6,8 @@
     option(selected) aktualny
     option powiew
   .wind
-    gauge(:speed='5')
     compass(:direction='current.direction')
+    gauge(:speed='current.speed')
 
 </template>
 
@@ -27,9 +27,11 @@
           choice: '',
           actual: {
             direction: null,
+            speed: 0,
           },
           gust: {
             direction: null,
+            speed: 0,
           },
         },
       };
@@ -50,6 +52,9 @@
       this.$parent.api.basic.on('updated', api => {
         this.wind.actual.direction = api.wind.currentDir.value;
         this.wind.gust.direction = api.wind.gustDir.value;
+
+        this.wind.actual.speed = api.wind.currentSpeed.value
+        this.wind.gust.speed = api.wind.gustSpeed.value
       });
     }
   }
