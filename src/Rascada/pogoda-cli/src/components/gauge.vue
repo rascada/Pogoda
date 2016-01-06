@@ -1,9 +1,7 @@
 <template lang='jade'>
   .gauge
     .dot
-    .pointer
-
-
+      .pointer
 </template>
 
 <script>
@@ -26,16 +24,18 @@
     border-radius 50%
     border .1em solid
     .dot
+      @extend .flex, .center
       width .5em
       height @width
       background color
       border-radius 50%
-    .pointer
-      align-self flex-start
       position relative
-      background color
-      left -.35em; top 50%
-      height 40%; width .2em
-      transform rotate(45deg)
-      transform-origin top
+      .pointer
+        align-self flex-start
+        position absolute
+        background color
+        height 6em; width .25em
+        margin-left -.15em; margin-top 50%
+        border-radius .5em
+        transform-origin top; transform rotate(45deg)
 </style>
