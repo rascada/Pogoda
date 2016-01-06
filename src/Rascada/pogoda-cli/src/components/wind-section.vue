@@ -15,6 +15,8 @@
   import compass from './compass.vue'
   import gauge from './gauge.vue'
 
+  import model from './model/wind'
+
   export default {
     components: {
       compass,
@@ -25,14 +27,8 @@
       return {
         wind: {
           choice: '',
-          actual: {
-            direction: null,
-            speed: 0,
-          },
-          gust: {
-            direction: null,
-            speed: 0,
-          },
+          actual: model(),
+          gust: model(),
         },
       };
     },
