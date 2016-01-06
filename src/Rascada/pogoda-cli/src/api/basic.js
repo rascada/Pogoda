@@ -29,6 +29,8 @@ export default class Basic extends eventEmiter{
   handleRequest(api) {
     if (api) {
       this.emit('updated', api);
+      this.emit('nextUpdate', api.time.next.value);
+
       this.sendRequest(api.time.next.value * 1000);
     } else if (!this.time) this.sendRequest();
   }
