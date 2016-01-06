@@ -23,7 +23,7 @@
     "aja": "^0.4.1",
     "dynamics.js": "0.0.9",
     "eventemitter2": "^0.4.14",
-    "vue": "^1.0.0"
+    "vue": "^1.0.13"
   },
   "devDependencies": {
     "babel-core": "^6.1.2",
