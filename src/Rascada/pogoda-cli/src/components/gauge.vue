@@ -25,6 +25,8 @@
     methods: {
       unitPosition(n) {
         let rotation = -135 + ((n) * this.measureSpace);
+
+
         return {transform: `rotate(${rotation}deg)`};
       },
     },
@@ -61,7 +63,7 @@
       @extend .flex, .center
       width .5em
       height @width
-      background teal
+      background #fff
       border-radius 50%
       position relative
       .pointer
@@ -71,8 +73,8 @@
         border-radius .5em
         align-self flex-start
         border .1em solid
-        box-shadow 0 0 .1em .1em rgba(#333, .3)
-        height 5.5em; width .25em
+        box-shadow .1em 0 .1em .1em rgba(#333, .2)
+        height gauge-radius - 1.5em; width .25em
         margin-left -.15em; margin-top 50%
         transform-origin top; transform rotate(45deg)
       .measureWrapper
@@ -86,12 +88,13 @@
           width 100%
           height 100%
           transform-origin bottom; transform rotate(-135deg)
-          span
-            top .5em
+          p
+            z-index 1
+            top .33em
+            left -.5em
+            margin 0
             position relative
             color #fff
             font-weight 600
-            padding 0 .25em
-            border-bottom .2em solid rgba(#fff, .75)
-            z-index 1
+            transform rotate(-2.5deg)
 </style>
