@@ -53,29 +53,29 @@
     margin .25em
     width (gauge-radius * 2)
     height @width
-    color #fff
-    background color
+    color color
+    background #fff
     border-radius 50%
-    border .4em solid
+    border 1.5em solid color
     box-shadow 0 .1em .5em .2em rgba(#000, .1)
-    overflow hidden
     .dot
       @extend .flex, .center
       width .5em
       height @width
-      background #fff
+      background color
       border-radius 50%
+      border .1em solid color + 20%
+      box-shadow 0 .1em .1em rgba(#333, .2)
       position relative
       .pointer
-        z-index 1
-        background color + 20%
+        background color
         position absolute
         border-radius .5em
         align-self flex-start
-        border .1em solid
-        box-shadow .1em 0 .1em .1em rgba(#333, .2)
+        border .1em solid color + 20%
+        box-shadow .1em 0 .1em rgba(#333, .2)
         height gauge-radius - 1.5em; width .25em
-        margin-left -.15em; margin-top 50%
+        margin-left -.2em; margin-top 50%
         transform-origin top; transform rotate(45deg)
       .measureWrapper
         margin-left -.075em
@@ -90,7 +90,7 @@
           transform-origin bottom; transform rotate(-135deg)
           p
             z-index 1
-            top .33em
+            top .1em
             left -.5em
             margin 0
             position relative
