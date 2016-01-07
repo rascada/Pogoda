@@ -152,6 +152,10 @@ class LiveService
         $gustDir->value = $this->lastArchive->getWindGustDir();
 
         $wind = new Wind($currentSpeed, $currentDir);
+        $wind->setTranslatedDir([
+            'current' => Uniter::windDirPl($currentDir->value),
+            'gust' => Uniter::windDirPl($gustDir->value)
+        ]);
         return $wind->setGust($gustSpeed, $gustDir);
     }
 
