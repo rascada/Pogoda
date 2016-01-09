@@ -1,13 +1,11 @@
 <template lang='jade'>
 
-.compassWrapper
-  h1 {{ title }}
-  .compass
-    .arrowWrapper
-      .arrow(:style='arrowDirection')
-      .screen
-        slot
-          h1(v-show='direction') {{ direction | round  }}°
+.compass
+  .arrowWrapper
+    .arrow(:style='arrowDirection')
+    .screen
+      slot
+        h1(v-show='direction') {{ direction | round  }}°
 
 </template>
 
@@ -39,9 +37,6 @@
 <style lang='stylus'>
   @import "~styles/main"
   @import "~styles/flex"
-
-  .compassWraper
-    text-align center
 
   .compass
     @extend .blockShadow, .flex, .center
