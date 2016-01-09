@@ -60,14 +60,10 @@
 <style lang='stylus'>
   @import '~styles/main'
   @import '~styles/flex'
+  @import '~styles/section'
 
   .windWraper
-    @extend .blockShadow
-    border-radius .25em
-    background #eee
-    color color
-    padding 1em
-    text-align center
+    @extend .section
     .wind
       @extend .flex, .acenter
     .actionBar
