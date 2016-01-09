@@ -1,13 +1,15 @@
 <template lang='jade'>
-  .vial
-    .measure
-      -for(var i=20;i--;)
-        -if(i % 5 == 0 && i != 0)
-          div.line.boldLine
-        -else
-          .line
-    .vialVal
-      .rainVal#rainCurrentSensor
+
+.vial
+  .measure
+    -for(var i=20;i--;)
+      -if(i % 5 == 0 && i != 0)
+        div.line.boldLine
+      -else
+        .line
+  .vialVal
+    .rainVal#rainCurrentSensor
+
 </template>
 
 <style lang='stylus'>

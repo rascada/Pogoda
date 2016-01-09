@@ -1,10 +1,12 @@
 <template lang='jade'>
-  .gauge
-    .dot
-      .pointer(:style='pointer')
-      .measureWrapper
-        .unit(v-for='n in measure.range' v-bind:style='unitPosition(n)')
-          p {{ $index * measure.unit }}
+
+.gauge
+  .dot
+    .pointer(:style='pointer')
+    .measureWrapper
+      .unit(v-for='n in measure.range' v-bind:style='unitPosition(n)')
+        p {{ $index * measure.unit }}
+
 </template>
 
 <script>

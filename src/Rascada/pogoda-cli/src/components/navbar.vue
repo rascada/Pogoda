@@ -1,15 +1,17 @@
 <template lang='jade'>
-  .navbar(@mouseover='navbar.visible = true' @mouseout='navbar.visible = false')
-    header
 
-      ul.sunLogo
-        -for(var i = 3; i--;)
-          li
+.navbar(@mouseover='navbar.visible = true' @mouseout='navbar.visible = false')
+  header
 
-      h1 {{ name }}
-      next-update
-      span pogoda2
-    menu(:visible='navbar.visible')
+    ul.sunLogo
+      -for(var i = 3; i--;)
+        li
+
+    h1 {{ name }}
+    next-update
+    span pogoda2
+  menu(:visible='navbar.visible')
+
 </template>
 
 <script>

@@ -1,20 +1,22 @@
 <template lang='jade'>
-  .forecast
-    .peroid(v-for='forecast in week' v-show='focused == $index')
-      .title
-        img(:src='forecast.icon_url')
-        h1 {{ forecast.title | shortWeekTitle }}
-      p {{ forecast.fcttext_metric }}
-    .arrows
-      button(@click='focused--' v-show='near.yesterday').
-        {{ near.yesterday.title | shortWeekTitle }}
 
-      button(@click='focused++' v-show='near.tomorrow').
-        {{ near.tomorrow.title | shortWeekTitle }}
+.forecast
+  .peroid(v-for='forecast in week' v-show='focused == $index')
+    .title
+      img(:src='forecast.icon_url')
+      h1 {{ forecast.title | shortWeekTitle }}
+    p {{ forecast.fcttext_metric }}
+  .arrows
+    button(@click='focused--' v-show='near.yesterday').
+      {{ near.yesterday.title | shortWeekTitle }}
 
-    .update(v-show='update')
-      span prognoza
-      span dane z {{ update }}
+    button(@click='focused++' v-show='near.tomorrow').
+      {{ near.tomorrow.title | shortWeekTitle }}
+
+  .update(v-show='update')
+    span prognoza
+    span dane z {{ update }}
+
 </template>
 
 <script>

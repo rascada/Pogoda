@@ -1,4 +1,5 @@
 <template lang='jade'>
+
 .tempSect
   h1 Temperatura
   .thermometer
@@ -12,6 +13,7 @@
       .temperatureSensor.sensorVal(v-bind:style="{ height: sensorVal }")
         span {{ degrees | round 1 }}°C
     .bottom
+
 </template>
 
 <script>

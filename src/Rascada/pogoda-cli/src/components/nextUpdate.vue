@@ -1,5 +1,7 @@
 <template lang="jade">
+
 span aktualizacja za {{timeToUpdate}}s
+
 </template>
 
 <script>
