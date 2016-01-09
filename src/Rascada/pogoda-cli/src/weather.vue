@@ -19,6 +19,7 @@
 navbar(name='Pogoda Skałągi')
 main
   forecast
+  humidity
   wind-section
   termometer
 
@@ -29,6 +30,7 @@ main
   import termometer from './components/termometer.vue'
   import forecast from './components/forecast.vue'
   import navbar from './components/navbar.vue'
+  import humidity from './components/humidity.vue'
   import vial from './components/vial.vue'
   import Basic from './api/basic';
 
@@ -37,6 +39,7 @@ main
       windSection,
       termometer,
       navbar,
+      humidity,
       vial,
       forecast,
     },
