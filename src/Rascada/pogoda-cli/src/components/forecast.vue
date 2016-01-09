@@ -77,6 +77,7 @@
 
   .forecast
     @extends .blockShadow, .sect
+    animation float 7s infinite ease-in-out
     text-align center
     max-width 15em
 
@@ -84,7 +85,7 @@
       @extends .flex, .around, .acenter
       img
         transform translateY(-.2em)
-        animation float 7.5s infinite ease-in-out
+        animation float 6s infinite ease-in-out
       h1
         padding-left .25em
 
