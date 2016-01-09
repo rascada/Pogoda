@@ -32,7 +32,7 @@
 
     filters: {
       shortWeekTitle: function(value = '') {
-        return value.replace('wieczór i noc', '');
+        return value.replace('wieczór i', '');
       },
     },
 
