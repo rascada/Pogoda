@@ -71,15 +71,18 @@
 </script>
 
 <style lang='stylus'>
+  @import '~styles/section'
   @import '~styles/flex'
   @import '~styles/main'
   @import '~styles/ui'
 
   .forecast
-    @extends .blockShadow, .sect
+    @extends .section
     animation float 7s infinite ease-in-out
-    text-align center
     max-width 15em
+    padding .5em
+    h1
+      margin 0
 
     .title
       @extends .flex, .around, .acenter
@@ -99,7 +102,6 @@
       @extends .flex, .between
       width 100%
 
-      border-top .1em solid
       padding-top .5em
       color #777
 
