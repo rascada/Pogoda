@@ -8,7 +8,7 @@
       option powiew
   .wind
     compass(:direction='current.direction')
-    gauge(:speed='current.speed')
+    gauge(:value='current.speed')
 
 </template>
 
