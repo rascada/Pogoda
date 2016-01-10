@@ -21,6 +21,7 @@ main
   forecast
   humidity
   wind-section
+  barometer
   termometer
 
 </template>
@@ -31,6 +32,7 @@ main
   import forecast from './components/forecast.vue'
   import navbar from './components/navbar.vue'
   import humidity from './components/humidity.vue'
+  import barometer from './components/barometer.vue'
   import vial from './components/vial.vue'
   import Basic from './api/basic';
 
@@ -39,6 +41,7 @@ main
       windSection,
       termometer,
       navbar,
+      barometer,
       humidity,
       vial,
       forecast,
