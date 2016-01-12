@@ -41,6 +41,10 @@
         .log-hidden-item {
             display: none;
         }
+
+        .btn-sm {
+            margin-top: -.5em
+        }
     </style>
 </head>
 
@@ -181,13 +185,15 @@
         <div class="panel panel-default" style="width: 30%">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    WebSocket status {{ socket.pid ? '(PID: ' ~ socket.pid ~ ')' : '' }}
-                    <span style="float: right;">
+                    <span>
+                        WebSocket status <span id="socket-pid">{{ socket.pid ? '(PID: ' ~ socket.pid ~ ')' : '' }}</span>
+                    </span>
+                    <span style="float: right;" id="socket-manager">
                         {% if socket.changeable %}
                             {% if socket.pid %}
-                                <a class="btn btn-danger btn-sm" role="button" id="ws_restart" href="?ws_action=stop" style="margin-top: -.4em">Stop</a>
+                                <a class="btn btn-danger btn-sm" role="button" href="?ws_action=stop">Stop</a>
                             {% else %}
-                                <a class="btn btn-success btn-sm" role="button" id="ws_restart" href="?ws_action=start" style="margin-top: -.4em">Start</a>
+                                <a class="btn btn-success btn-sm" role="button" href="?ws_action=start">Start</a>
                             {% endif %}
                         {% else %}
                             Cannot manage WebSocket server.
@@ -196,7 +202,7 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <ul class="list-group">
+                <ul class="list-group" id="socket-hosts-list">
                     {% if not socket.pid %}
                         <li class="list-group-item list-group-item-danger">Server not running.</li>
                     {% else %}
@@ -221,7 +227,7 @@
                 <h3 class="panel-title">
                     WebSocket logs
                     <span style="float: right;">
-                        <button class="btn btn-primary btn-sm" role="button" style="margin-top: -.4em" id="show-all-log">Show all</button>
+                        <button class="btn btn-primary btn-sm" role="button" id="show-all-log">Show all</button>
                     </span>
                 </h3>
             </div>
@@ -249,6 +255,7 @@
 </body>
 
 <script>
+    /* Show or hide webSockets logs. */
     var showed = false;
     document.getElementById('show-all-log').addEventListener('click', function() {
         var lines = document.getElementsByClassName('log-hidden-item');
@@ -265,6 +272,59 @@
         }
         showed = !showed;
     });
+
+    /* Refresh webSocket server status and clients list. */
+    var intervalSec = 3;
+    (function timer() {
+        $.get(location.href, {}, function(socket) {
+            document.getElementById('socket-pid').innerText = socket.pid ? '(PID: '+ socket.pid+')' : '';
+
+            var $manager = document.getElementById('socket-manager');
+            if(socket.changeable) {
+                $manager.innerText = '';
+                var $button = document.createElement('a');
+                $button.className = 'btn btn-sm';
+                $button.className += socket.pid ? ' btn-danger' : ' btn-success';
+                $button.setAttribute('role', 'button');
+                $button.setAttribute('href', socket.pid ? '?ws_action=stop' : '?ws_action=start');
+                $button.innerText = socket.pid ? 'Stop' : 'Start';
+                $manager.appendChild($button);
+            } else {
+                $manager.innerText = 'Cannot manage WebSocket server.';
+            }
+
+            var $clients = document.getElementById('socket-hosts-list');
+            $clients.innerHTML = '';
+            if(!socket.pid) {
+                var $pidErrorItem = document.createElement('li');
+                $pidErrorItem.className = 'list-group-item list-group-item-danger';
+                $pidErrorItem.innerText = 'Server not running.';
+                $clients.appendChild($pidErrorItem);
+                setTimeout(timer, intervalSec*1000);
+                return;
+            }
+            if(!socket.hosts.length) {
+                var $emptyHostsWarn = document.createElement('li');
+                $emptyHostsWarn.className = 'list-group-item list-group-item-warning';
+                $emptyHostsWarn.innerText = 'Nobody connected.';
+                $clients.appendChild($emptyHostsWarn);
+                setTimeout(timer, intervalSec*1000);
+                return;
+            }
+            for(var i=0; i < socket.hosts.length; i++) {
+                var $newHost = document.createElement('li');
+                $newHost.className = 'list-group-item';
+
+                var $badge = document.createElement('span');
+                $badge.className = 'badge';
+                $badge.innerText = socket.hosts[i].connected;
+                $newHost.appendChild($badge);
+                $newHost.innerText += socket.hosts[i].ip;
+                $clients.appendChild($newHost);
+            }
+            setTimeout(timer, intervalSec*1000);
+        });
+    })();
 </script>
 </html>
 
