@@ -5,14 +5,15 @@
     .pointer(:style='pointer')
     .measureWrapper
       .unit(v-for='n in measure.range' v-bind:style='unitPosition(n)')
-        p {{ $index * measure.unit }}
+        p {{ ($index + from) * measure.unit }}
 
 </template>
 
 <script>
   export default {
     props: {
-      speed: Number,
+      value: Number,
+      from: { default: 0 },
     },
 
     data() {
@@ -28,7 +29,6 @@
       unitPosition(n) {
         let rotation = -135 + ((n) * this.measureSpace);
 
-
         return {transform: `rotate(${rotation}deg)`};
       },
     },
@@ -39,7 +39,7 @@
       },
 
       pointer() {
-        return {transform: `rotate(${42 + this.speed * this.measureSpace / this.measure.unit}deg)`};
+        return {transform: `rotate(${42 + this.value * this.measureSpace / this.measure.unit}deg)`};
       },
     },
   }
