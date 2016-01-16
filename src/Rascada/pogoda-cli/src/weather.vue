@@ -26,12 +26,12 @@ main
 </template>
 
 <script>
-  import windSection from './components/wind-section.vue'
-  import termometer from './components/termometer.vue'
-  import forecast from './components/forecast.vue'
-  import navbar from './components/navbar.vue'
-  import humidity from './components/humidity.vue'
-  import vial from './components/vial.vue'
+  import windSection from './components/wind-section'
+  import termometer from './components/termometer'
+  import forecast from './components/forecast'
+  import navbar from './components/navbar'
+  import humidity from './components/humidity'
+  import vial from './components/vial'
   import Basic from './api/basic';
 
   export default {
