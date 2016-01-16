@@ -5,7 +5,7 @@
     .pointer(:style='pointer')
     .measureWrapper
       .unit(v-for='n in measure.range' v-bind:style='unitPosition(n)')
-        p {{ ($index + from) * measure.unit }}
+        p {{ ($index + measure.from) * measure.unit }}
 
 </template>
 
@@ -13,16 +13,15 @@
   export default {
     props: {
       value: Number,
-      from: { default: 0 },
-    },
-
-    data() {
-      return {
-        measure: {
-          range: 12,
-          unit: 3,
+      measure: {
+        default: function() {
+          return {
+            range: 12,
+            from: 0,
+            unit: 3,
+          };
         },
-      }
+      },
     },
 
     methods: {
