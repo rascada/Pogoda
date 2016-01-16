@@ -1,12 +1,11 @@
 <template lang="jade">
 .barometer
   h2 ciśnienie
-  h1 {{ pressure }}
-  gauge(:start='960')
+  gauge(:measure='{ from: 960, unit: 40 }' v-bind:value='pressure')
 </template>
 
 <script>
-  import gauge from './gauge.vue'
+  import gauge from './gauge'
 
   export default {
     components: {
