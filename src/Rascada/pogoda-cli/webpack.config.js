@@ -1,6 +1,7 @@
 'use strict';
 
 let webpack = require('webpack');
+let path = require('path');
 
 module.exports = {
   entry: './src/weather.js',
@@ -9,6 +10,13 @@ module.exports = {
     path: '../../../web/js',
     publicPath: '/js/',
     filename: 'build.js',
+  },
+
+  resolve: {
+    extensions: ['', '.js', '.vue'],
+    alias: {
+      src: path.resolve(__dirname, '../src'),
+    },
   },
 
   module: {

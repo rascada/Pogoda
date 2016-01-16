@@ -4,6 +4,7 @@ namespace SyntaxError\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use SyntaxError\ApiBundle\Tools\Jsoner;
 use SyntaxError\SocketBundle\Server\Config;
 
 class AdminController extends Controller
@@ -23,8 +24,14 @@ class AdminController extends Controller
                     return $this->redirectToRoute( $request->attributes->get('_route') );
             }
         }
-
         $admin = $this->get('syntax_error_api.admin');
+
+        if( $request->isXmlHttpRequest() ) {
+            $jsoner = new Jsoner();
+            $jsoner->createJson( $admin->createSocketInformer() );
+            return $jsoner->createResponse(null);
+        }
+
         return $this->render('SyntaxErrorApiBundle:Admin:logged.html.twig', [
             'hardware' => $admin->createHardwareInformer(),
             'database' => $admin->createDatabaseInformer(),
