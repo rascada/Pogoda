@@ -45,21 +45,22 @@
       },
 
       unitValuePosition(n) {
-        let shift = 0;
-        let rotation = -4;
+        let shift = { x: 0, y: 0 };
+        let rotation = 0;
 
         let val = this.unitValue(n);
         switch (true) {
           case val >= 1000:
-            shift = -.7;
-            rotation = -3;
+            shift.x = -.8;
+            shift.y = .1;
+            rotation = -5;
             break;
           case val >= 100:
-            shift = -.5;
+            shift.x = -.5;
             break;
         }
 
-        return {transform: `translateX(${shift}em) rotate(${rotation}deg)`};
+        return {transform: `translate(${shift.x}em, ${shift.y}em) rotate(${rotation}deg)`};
       },
 
       unitPosition(n) {
