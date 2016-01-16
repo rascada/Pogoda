@@ -10,16 +10,23 @@
 </template>
 
 <script>
+  function defaultProps(merge) {
+    let defaultProps = {
+      range: 12,
+      from: 0,
+      unit: 3,
+    };
+
+    return Object.assign({}, defaultProps, merge);
+  }
+
   export default {
     props: {
       value: Number,
       measure: {
-        default: function() {
-          return {
-            range: 12,
-            from: 0,
-            unit: 3,
-          };
+        default: defaultProps,
+        coerce: function(val) {
+          return defaultProps(val);
         },
       },
     },
