@@ -7,7 +7,7 @@
     .pointer(:style='pointer')
     .measureWrapper
       .unit(v-for='n in measure.range' v-bind:style='unitPosition(n)')
-        p {{ ($index + measure.from) * measure.unit }}
+        p(:style='unitValuePosition(n)') {{ unitValue(n) }}
 
 </template>
 
@@ -40,8 +40,30 @@
     },
 
     methods: {
+      unitValue(n) {
+        return n * this.measure.unit + this.measure.from;
+      },
+
+      unitValuePosition(n) {
+        let shift = 0;
+        let rotation = -4;
+
+        let val = this.unitValue(n);
+        switch (true) {
+          case val >= 1000:
+            shift = -.7;
+            rotation = -3;
+            break;
+          case val >= 100:
+            shift = -.5;
+            break;
+        }
+
+        return {transform: `translateX(${shift}em) rotate(${rotation}deg)`};
+      },
+
       unitPosition(n) {
-        let rotation = -135 + ((n) * this.measureSpace);
+        let rotation = -135 + n * this.measureSpace;
 
         return {transform: `rotate(${rotation}deg)`};
       },
@@ -53,7 +75,7 @@
       },
 
       pointer() {
-        return {transform: `rotate(${42 + this.value * this.measureSpace / this.measure.unit}deg)`};
+        return {transform: `rotate(${42 + (this.value - this.measure.from) * this.measureSpace / this.measure.unit}deg)`};
       },
     },
   }
@@ -121,5 +143,4 @@
             position relative
             color #fff
             font-weight 600
-            transform rotate(-2.5deg)
 </style>
