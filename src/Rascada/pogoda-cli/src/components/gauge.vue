@@ -1,6 +1,8 @@
 <template lang='jade'>
 
 .gauge
+  .screen
+    h1 {{ value | round }}
   .dot
     .pointer(:style='pointer')
     .measureWrapper
@@ -10,6 +12,8 @@
 </template>
 
 <script>
+  import round from 'vue/filter/round';
+
   function defaultProps(merge) {
     let defaultProps = {
       range: 12,
@@ -29,6 +33,10 @@
           return defaultProps(val);
         },
       },
+    },
+
+    filters: {
+      round,
     },
 
     methods: {
@@ -57,15 +65,24 @@
   .gauge
     box-sizing border-box
     gauge-radius = 6.5em
+
     @extend .flex, .center
+    position relative
     margin .25em
     width (gauge-radius * 2)
     height @width
+
     color color
     background #fff
     border-radius 50%
     border 1.5em solid color
     box-shadow 0 .1em .5em .2em rgba(#000, .1)
+    .screen
+      @extend .flex, .jcenter, .aend
+      position absolute
+      left 0; top 0
+      width 100%
+      height 100%
     .dot
       @extend .flex, .center
       width .5em
