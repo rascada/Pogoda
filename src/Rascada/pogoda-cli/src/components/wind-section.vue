@@ -73,12 +73,13 @@
       h1
         margin .1em
       select
+        background #fff
         cursor pointer
         outline none
         border 0
         padding .5em
         border-radius .25em
-        shadow(.25)
+        shadow(.5)
         transition .5s
         border .1em solid transparent
         &:hover
