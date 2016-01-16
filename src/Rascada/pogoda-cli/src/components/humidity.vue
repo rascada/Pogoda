@@ -45,6 +45,6 @@
     .overlay
       width 100%
       color #fff
-      bottom 1em; left 0
+      bottom .75em; left 0
       position absolute
 </style>
