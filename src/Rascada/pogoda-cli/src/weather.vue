@@ -12,14 +12,19 @@
       @extend .flex, .center, .fwrap, .around
       > *
         margin .5em
+      section
+        @extend .flex, .acenter, .between, .fcolumn
+        > *
+          margin .5em
 </style>
 
 <template lang="jade">
 
 navbar(name='Pogoda Skałągi')
 main
-  forecast
-  humidity
+  section
+    humidity
+    forecast
   wind-section
   barometer
   termometer
