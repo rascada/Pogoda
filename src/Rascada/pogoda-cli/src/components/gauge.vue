@@ -2,7 +2,7 @@
 
 .gauge
   .screen
-    h1 {{ value | round }}
+    h3 {{ value | round }} {{ unitName }}
   .dot
     .pointer(:style='pointer')
     .measureWrapper
@@ -27,6 +27,7 @@
   export default {
     props: {
       value: Number,
+      unitName: '',
       measure: {
         default: defaultProps,
         coerce: function(val) {

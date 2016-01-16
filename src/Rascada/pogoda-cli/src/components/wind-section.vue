@@ -8,13 +8,13 @@
       option powiew
   .wind
     compass(:direction='current.direction')
-    gauge(:value='current.speed')
+    gauge(:value='current.speed' unit-name='km/h')
 
 </template>
 
 <script>
-  import compass from './compass.vue'
-  import gauge from './gauge.vue'
+  import compass from './compass'
+  import gauge from './gauge'
 
   import model from './model/wind'
 

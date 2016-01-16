@@ -1,7 +1,7 @@
 <template lang="jade">
 .barometer
   h2 ciśnienie
-  gauge(:measure='{ from: 960, unit: 40 }' v-bind:value='pressure')
+  gauge(:measure='{ from: 960, unit: 40 }' v-bind:value='pressure' unit-name='hPa')
 </template>
 
 <script>
