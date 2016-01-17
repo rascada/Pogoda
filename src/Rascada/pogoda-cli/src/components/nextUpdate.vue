@@ -1,6 +1,6 @@
 <template lang="jade">
 
-span aktualizacja za {{timeToUpdate}}
+span {{updateInfo}}
 
 </template>
 
@@ -10,24 +10,30 @@ import ms from 'pretty-ms';
 export default {
   data() {
     return {
-      timeToUpdate: 0,
+      updateInfo: 'aktualizowanie',
     };
   },
 
   ready() {
-    this.$parent.$parent.api.basic.on('nextUpdate', time => this.nextUpdate(time));
+    this.$parent.$parent.api.basic
+      .on('nextUpdate', time => this.nextUpdate(time));
   },
 
   methods: {
     nextUpdate(time) {
       if (time) {
         this.thread ? clearTimeout(this.thread) : null;
-        this.thread = setInterval(_ => {
-          this.timeToUpdate = ms(--time * 1000);
-        }, 1000);
+
+        this.thread = setInterval(_ => this.parse(--time), 1000);
       }
       return time;
     },
+
+    parse(time) {
+      this.updateInfo = time
+        ? `aktualizacja za ${ ms(time * 1000) }`
+        : 'aktualizowanie';
+    }
   },
 }
 </script>
