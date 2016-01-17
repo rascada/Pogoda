@@ -30,9 +30,9 @@ export default {
     },
 
     parse(time) {
-      this.updateInfo = time
+      this.updateInfo = time > 0
         ? `aktualizacja za ${ ms(time * 1000) }`
-        : 'aktualizowanie';
+        : `aktualizowanie w trakcie ${time ? `(${ms(-time * 1000)})` : ''}`;
     }
   },
 }
