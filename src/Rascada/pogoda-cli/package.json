@@ -23,6 +23,7 @@
     "aja": "^0.4.1",
     "dynamics.js": "0.0.9",
     "eventemitter2": "^0.4.14",
+    "pretty-ms": "^2.1.0",
     "vue": "^1.0.0"
   },
   "devDependencies": {
