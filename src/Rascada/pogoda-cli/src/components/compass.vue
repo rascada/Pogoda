@@ -36,7 +36,7 @@
 
 <style lang='stylus'>
   @import "~styles/main"
-  @import "~styles/flex"
+  @import "~flexstyl/index"
 
   .compass
     @extend .blockShadow, .flex, .center

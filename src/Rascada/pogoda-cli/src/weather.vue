@@ -1,7 +1,7 @@
 <style lang="stylus">
   @import url("https://fonts.googleapis.com/css?family=Rajdhani:400,600&amp;subset=latin,latin-ext");
   @import "~styles/main"
-  @import "~styles/flex"
+  @import "~flexstyl/index"
 
   body
     margin 1em 1.5em

@@ -59,7 +59,7 @@
 
 <style lang='stylus'>
   @import '~styles/main'
-  @import '~styles/flex'
+  @import '~flexstyl/index'
   @import '~styles/section'
 
   .windWraper

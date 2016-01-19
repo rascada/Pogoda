@@ -71,7 +71,7 @@
 </script>
 
 <style lang='stylus'>
-  @import '~styles/flex'
+  @import '~flexstyl/index'
   @import '~styles/main'
   @import '~styles/ui'
 

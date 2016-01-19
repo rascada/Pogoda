@@ -14,7 +14,7 @@
 
 <style lang='stylus'>
   @import "~styles/main"
-  @import "~styles/flex"
+  @import "~flexstyl/index"
 
   .vial
     @extend .blockShadow, .flex, .center
@@ -32,7 +32,7 @@
         height .11em
         margin-left .1em
         width 1em
-        background #555;
+        background #555
       .boldLine
         width 1.5em
     .vialVal
