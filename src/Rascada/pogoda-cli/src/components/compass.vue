@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import round from 'vue/filter/round';
+  import round from 'vue-round-filter';
 
   export default {
     props: {

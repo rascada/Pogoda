@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import round from 'vue/filter/round';
+  import round from 'vue-round-filter';
 
   function defaultProps(merge) {
     let defaultProps = {
