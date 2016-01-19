@@ -30,6 +30,11 @@ export default {
     },
 
     parse(time) {
+      if (time == 260) {
+        this.updateInfo = `aktualizacja za 4:20`;
+        return time;
+      }
+
       this.updateInfo = time > 0
         ? `aktualizacja za ${ ms(time * 1000) }`
         : `aktualizowanie w trakcie ${time ? `(${ms(-time * 1000)})` : ''}`;
