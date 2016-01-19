@@ -5,7 +5,7 @@
     .arrow(:style='arrowDirection')
     .screen
       slot
-        h1(v-show='direction') {{ direction | round  }}°
+        h1(v-show='direction') {{ direction | round 2 }}°
 
 </template>
 
