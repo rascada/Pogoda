@@ -14,13 +14,7 @@ Klient do api od stacji pogodowej
 Napisany jest z [vue](http://vuejs.org)
 
 ## Kompilacja
-### [webpack](https://webpack.github.io/)
-Pogoda-cli używa go do skompilowania aplikacji.
-```sh
-# aby go zainstalować należy
-$ npm i -g webpack
-```
-### aby skompilować Pogode
+Aby skompilować pogodę należy wpisać `npm run prod` w katalogu pogoda-cli
 
 ```sh
 # przejście do katalogu pogoda-cli
