@@ -59,6 +59,9 @@
           case val >= 100:
             shift.x = -.5;
             break;
+          case val >= 10:
+            shift.x = -.25;
+            break;
         }
 
         return {transform: `translate(${shift.x}em, ${shift.y}em) rotate(${rotation}deg)`};
@@ -77,7 +80,7 @@
       },
 
       pointer() {
-        return {transform: `rotate(${42 + (this.value - this.measure.from) * this.measureSpace / this.measure.unit}deg)`};
+        return {transform: `rotate(${41 + (this.value - this.measure.from) * this.measureSpace / this.measure.unit}deg)`};
       },
     },
   }
@@ -123,7 +126,7 @@
         align-self flex-start
         border .1em solid color + 20%
         box-shadow .1em 0 .1em rgba(#333, .2)
-        height gauge-radius - 1.5em; width .25em
+        width .25em; height gauge-radius - 1.6em
         margin-left -.2em; margin-top 50%
         transform-origin top; transform rotate(45deg)
       .measureWrapper
