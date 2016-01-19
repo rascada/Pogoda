@@ -3,17 +3,23 @@
   .sensor(:style='{ height: humidity + "%" }')
     .overlay
       h2 Wilgotność
-      h1 {{ humidity }}%
+      h1 {{ humidity | round 2 }}%
   h2 Wilgotność
-  h1 {{ humidity }}%
+  h1 {{ humidity | round 2 }}%
 </template>
 
 <script>
+  import round from 'vue-round-filter';
+
   export default {
     data() {
       return {
         humidity: 0,
       };
+    },
+
+    filters: {
+      round,
     },
 
     ready() {
