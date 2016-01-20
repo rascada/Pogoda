@@ -1,7 +1,5 @@
 'use strict';
 
-export default Basic;
-
 import aja from 'aja';
 import eventEmiter from 'eventemitter2';
 
@@ -39,7 +37,6 @@ class Basic extends eventEmiter {
     return aja().url(`${this.source}/basic.json${params}`);
   }
 
-
   /**
    * @param {object} [api] emit api.
    */
@@ -53,3 +50,5 @@ class Basic extends eventEmiter {
     } else if (!this.time) this.sendRequest();
   }
 };
+
+export default Basic;
