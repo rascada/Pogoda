@@ -4,10 +4,7 @@
   "description": "Strona o pogodzie napędzana przez stacje pogodową w Skałągach",
   "main": "",
   "scripts": {
-    "prestart": "npm i",
-    "start": "webpack-dev-server --inline --hot --colors --progress --display-error-details --display-cached --content-base ../../../web ",
-    "prod": "webpack --progress --hide-modules --config webpack-prod.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server --inline --hot --colors --progress --config build/webpack.dev.conf.js --content-base ../../../web",
   },
   "repository": {
     "type": "git",
