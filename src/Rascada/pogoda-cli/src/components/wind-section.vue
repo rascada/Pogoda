@@ -48,8 +48,8 @@
     methods: {
       setWind(which, direction, speed) {
         Object.assign(this.wind[which], {
-          direction.value,
-          speed.value,
+          direction: direction.value,
+          speed: speed.value,
         });
       },
 
