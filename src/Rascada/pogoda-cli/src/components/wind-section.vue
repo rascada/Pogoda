@@ -8,6 +8,7 @@
       option powiew
   .wind
     compass(:direction='current.direction')
+      span(slot='screen') {{ current.humanReadable }}
     gauge(:value='current.speed' unit-name='km/h')
 
 </template>
@@ -46,18 +47,20 @@
     },
 
     methods: {
-      setWind(which, direction, speed) {
+      setWind(which, direction, speed, humanReadable) {
+
         Object.assign(this.wind[which], {
           direction: direction.value,
           speed: speed.value,
+          humanReadable,
         });
       },
 
       handleApi(api) {
         let wind = api.wind;
 
-        this.setWind('actual', wind.currentDir, wind.currentSpeed);
-        this.setWind('gust', wind.gustDir, wind.gustSpeed);
+        this.setWind('actual', wind.currentDir, wind.currentSpeed, wind.translatedDir.current);
+        this.setWind('gust', wind.gustDir, wind.gustSpeed, wind.translatedDir.gust);
       },
     },
 
@@ -76,6 +79,9 @@
     @extend .section
     .wind
       @extend .flex, .acenter
+      .compass
+        span
+          font-weight 600
     .actionBar
       @extend .flex, .around, .acenter
       background #fff
