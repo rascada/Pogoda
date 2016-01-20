@@ -45,14 +45,24 @@
       },
     },
 
-    ready(){
-      this.$parent.api.basic.on('updated', api => {
-        this.wind.actual.direction = api.wind.currentDir.value;
-        this.wind.gust.direction = api.wind.gustDir.value;
+    methods: {
+      setWind(which, direction, speed) {
+        Object.assign(this.wind[which], {
+          direction.value,
+          speed.value,
+        });
+      },
 
-        this.wind.actual.speed = api.wind.currentSpeed.value
-        this.wind.gust.speed = api.wind.gustSpeed.value
-      });
+      handleApi(api) {
+        let wind = api.wind;
+
+        this.setWind('actual', wind.currentDir, wind.currentSpeed);
+        this.setWind('gust', wind.gustDir, wind.gustSpeed);
+      },
+    },
+
+    ready(){
+      this.$parent.api.basic.on('updated', this.handleApi.bind(this));
     }
   }
 </script>
