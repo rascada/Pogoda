@@ -1,14 +1,27 @@
 'use strict';
 
+export default Basic;
+
 import aja from 'aja';
 import eventEmiter from 'eventemitter2';
 
-export default class Basic extends eventEmiter{
+/** Class representing basic api */
+class Basic extends eventEmiter {
+
+  /**
+   * @param {string} [url] Url to pogoda api.
+   */
+
   init(source) {
     this.source = source;
     this.handleRequest();
     this.emit('init');
   }
+
+  /**
+   * Send request to api.
+   * @param {number} [delay] Delay request.
+   */
 
   sendRequest(delay) {
     setTimeout(_=>
@@ -25,6 +38,11 @@ export default class Basic extends eventEmiter{
 
     return aja().url(`${this.source}/basic.json${params}`);
   }
+
+
+  /**
+   * @param {object} [api] emit api.
+   */
 
   handleRequest(api) {
     if (api) {
