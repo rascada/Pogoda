@@ -6,6 +6,7 @@
     .screen
       slot
         h1(v-show='direction') {{ direction | round 2 }}°
+      slot(name='screen')
 
 </template>
 
@@ -64,7 +65,7 @@
         border-radius 0 50% 50% 50%
 
       .screen
-        @extend .flex, .center
+        @extend .flex, .center, .fcolumn
         position absolute
 
         arrow = -20%
