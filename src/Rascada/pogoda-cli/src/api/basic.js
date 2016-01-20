@@ -6,20 +6,26 @@ import eventEmiter from 'eventemitter2';
 /** Class representing basic api */
 class Basic extends eventEmiter {
 
-  /**
-   * @param {string} [url] Url to pogoda api.
-   */
+/**
+  * @param {String} [url] Url to pogoda api.
+  * @fires Basic#init
+  */
 
   init(source) {
     this.source = source;
     this.handleRequest();
+
+    /**
+      * Basic initialized
+      * @event Basic#init
+      */
     this.emit('init');
   }
 
-  /**
-   * Send request to api.
-   * @param {number} [delay] Delay request.
-   */
+/**
+  * Send request to api.
+  * @param {Number} [delay] Delay request.
+  */
 
   sendRequest(delay) {
     setTimeout(_=>
@@ -37,13 +43,26 @@ class Basic extends eventEmiter {
     return aja().url(`${this.source}/basic.json${params}`);
   }
 
-  /**
-   * @param {object} [api] emit api.
-   */
+/**
+  * @param {Object} [api] emit api.
+  * @fires Basic#updated
+  * @fires Basic#nextUpdate
+  */
 
   handleRequest(api) {
     if (api) {
+      /**
+        * api was updated
+        * @event Basic#updated
+        * @param {Object} basic api
+        */
       this.emit('updated', api);
+
+      /**
+        * Time to next update
+        * @event Basic#nextUpdate
+        * @param {Number} time to next update.
+        */
       this.emit('nextUpdate', api.time.next.value);
 
       this.sendRequest(api.time.next.value * 1000);
