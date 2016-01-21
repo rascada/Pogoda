@@ -5,9 +5,9 @@ module.exports = {
     app: './src/weather.js',
   },
   output: {
-    path: '../../../web/js',
-    publicPath: '/static',
-    filename: 'static/build.js',
+    path: '../../../web/static',
+    publicPath: '/static/',
+    filename: '[name].js',
   },
   resolve: {
     extensions: ['', '.js', '.vue'],

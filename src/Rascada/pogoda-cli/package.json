@@ -4,7 +4,7 @@
   "description": "Strona o pogodzie napędzana przez stacje pogodową w Skałągach",
   "main": "",
   "scripts": {
-    "dev": "webpack-dev-server --inline --hot --colors --progress --config build/webpack.dev.conf.js --content-base ../../../web",
+    "dev": "webpack-dev-server --inline --hot --colors --progress --config build/webpack.dev.conf.js",
     "test": "karma start build/karma.conf.js"
   },
   "repository": {
@@ -34,7 +34,7 @@
     "babel-preset-stage-0": "^6.0.0",
     "babel-runtime": "^5.8.0",
     "css-loader": "^0.23.0",
-    "html-webpack-plugin": "^2.7.1",
+    "html-webpack-plugin": "^1.7.0",
     "jade": "^1.11.0",
     "jscs": "^2.8.0",
     "jscs-loader": "^0.2.0",
