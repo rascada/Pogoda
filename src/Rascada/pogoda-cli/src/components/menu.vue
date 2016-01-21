@@ -6,12 +6,14 @@ nav( v-show='visible' transition='slide' )
 </template>
 
 <script>
+
   export default {
     props: {
       visible: true,
       buttons: [],
     },
-  }
+  };
+
 </script>
 
 <style lang='stylus' scoped>

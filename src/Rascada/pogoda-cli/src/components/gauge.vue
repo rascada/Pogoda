@@ -64,13 +64,13 @@
             break;
         }
 
-        return {transform: `translate(${shift.x}em, ${shift.y}em) rotate(${rotation}deg)`};
+        return { transform: `translate(${shift.x}em, ${shift.y}em) rotate(${rotation}deg)` };
       },
 
       unitPosition(n) {
         let rotation = -135 + n * this.measureSpace;
 
-        return {transform: `rotate(${rotation}deg)`};
+        return { transform: `rotate(${rotation}deg)` };
       },
     },
 
@@ -80,10 +80,11 @@
       },
 
       pointer() {
-        return {transform: `rotate(${41 + (this.value - this.measure.from) * this.measureSpace / this.measure.unit}deg)`};
+        return { transform: `rotate(${41 + (this.value - this.measure.from) * this.measureSpace / this.measure.unit}deg)` };
       },
     },
-  }
+  };
+
 </script>
 
 <style lang='stylus'>

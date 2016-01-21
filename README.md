@@ -14,17 +14,17 @@ Klient do api od stacji pogodowej
 Napisany jest z [vue](http://vuejs.org)
 
 ## Kompilacja
-Aby skompilować pogodę należy wpisać `npm run prod` w katalogu pogoda-cli
+Aby skompilować pogodę należy wpisać `npm run build` w katalogu pogoda-cli
 
 ```sh
 # przejście do katalogu pogoda-cli
 ~/Pogoda$ cd src/Rascada/pogoda-cli
 # zbudowanie pogody
-~/Pogoda/src/Rascada/pogoda-cli$ npm run prod
+~/Pogoda/src/Rascada/pogoda-cli$ npm run build
 ```
 
 ## hakowanie pogody
 ```sh
-~/Pogoda/src/Rascada/pogoda-cli$ npm start
+~/Pogoda/src/Rascada/pogoda-cli$ npm run dev
 ```
 To polecenie uruchomi serwer nasłuchujący na zmiany, który po ich wykryciu zbudje oraz odświeży stronę.

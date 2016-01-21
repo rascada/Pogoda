@@ -26,6 +26,7 @@ export default {
 
         this.thread = setInterval(_ => this.parse(--time), 1000);
       }
+
       return time;
     },
 
@@ -38,7 +39,8 @@ export default {
       this.updateInfo = time > 0
         ? `aktualizacja za ${ ms(time * 1000) }`
         : `aktualizowanie w trakcie ${time ? `(${ms(-time * 1000)})` : ''}`;
-    }
+    },
   },
-}
+};
+
 </script>
