@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/rascada/Pogoda/issues"
   },
-  "homepage": "pi.syntax-shell.me",
+  "homepage": "pogoda.skalagi.pl",
   "dependencies": {
     "aja": "^0.4.1",
     "dynamics.js": "0.0.9",
