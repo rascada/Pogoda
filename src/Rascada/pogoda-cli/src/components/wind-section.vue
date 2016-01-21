@@ -14,10 +14,10 @@
 </template>
 
 <script>
-  import compass from './compass'
-  import gauge from './gauge'
+  import compass from './compass';
+  import gauge from './gauge';
 
-  import model from './model/wind'
+  import model from './model/wind';
 
   export default {
     components: {
@@ -25,7 +25,7 @@
       gauge,
     },
 
-    data(){
+    data() {
       return {
         wind: {
           choice: '',
@@ -64,10 +64,11 @@
       },
     },
 
-    ready(){
+    ready() {
       this.$parent.api.basic.on('updated', this.handleApi.bind(this));
-    }
-  }
+    },
+  };
+
 </script>
 
 <style lang='stylus'>

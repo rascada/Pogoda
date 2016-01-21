@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import gauge from './gauge'
+  import gauge from './gauge';
 
   export default {
     components: {
@@ -22,8 +22,9 @@
       this.$parent.api.basic.on('updated', api => {
         this.pressure = api.barometer.current.value;
       });
-    }
-  }
+    },
+  };
+
 </script>
 
 <style lang="stylus">

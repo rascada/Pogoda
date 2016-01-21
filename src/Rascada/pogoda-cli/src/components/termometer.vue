@@ -54,8 +54,9 @@
 
     destroyed() {
 
-    }
-  }
+    },
+  };
+
 </script>
 
 <style lang='stylus'>

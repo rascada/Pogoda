@@ -15,8 +15,8 @@
 </template>
 
 <script>
-  import menu from './menu.vue'
-  import nextUpdate from './nextUpdate.vue'
+  import menu from './menu.vue';
+  import nextUpdate from './nextUpdate.vue';
 
   export default {
     components: {
@@ -25,17 +25,18 @@
     },
 
     props: {
-      name: 'Wstaw nazwe'
+      name: 'Wstaw nazwe',
     },
 
-    data(){
+    data() {
       return {
         navbar: {
-          visible: true
-        }
+          visible: true,
+        },
       };
-    }
-  }
+    },
+  };
+
 </script>
 
 <style lang='stylus'>

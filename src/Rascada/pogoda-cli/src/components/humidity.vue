@@ -26,8 +26,9 @@
       this.$parent.api.basic.on('updated',
         api => this.humidity = api.humidity.value
       );
-    }
-  }
+    },
+  };
+
 </script>
 
 <style lang="stylus">
