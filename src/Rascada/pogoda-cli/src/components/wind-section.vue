@@ -47,10 +47,15 @@
     },
 
     methods: {
-      setWind(which, direction, speed, humanReadable) {
+      windDirection(fromBlow) {
+        let direction = fromBlow.value + 180;
 
+        return direction < 360 ? direction : direction - 360;
+      },
+
+      setWind(which, fromBlow, speed, humanReadable) {
         Object.assign(this.wind[which], {
-          direction: direction.value,
+          direction: this.windDirection(fromBlow),
           speed: speed.value,
           humanReadable,
         });
