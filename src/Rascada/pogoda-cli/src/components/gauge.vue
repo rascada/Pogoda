@@ -13,16 +13,7 @@
 
 <script>
   import round from 'vue-round-filter';
-
-  function defaultProps(merge) {
-    let defaultProps = {
-      range: 12,
-      from: 0,
-      unit: 3,
-    };
-
-    return Object.assign({}, defaultProps, merge);
-  }
+  import defaultProps from './model/gauge';
 
   export default {
     props: {
