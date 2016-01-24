@@ -25,8 +25,10 @@ main
   section
     humidity
     forecast
-  wind-section
-  barometer
+  //vial
+  section
+    barometer
+    wind-section
   termometer
 
 </template>

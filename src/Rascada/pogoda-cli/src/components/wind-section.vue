@@ -91,7 +91,8 @@
     .actionBar
       @extend .flex, .around, .acenter
       background #fff
-      shadow(.5)
+      padding .5em 0
+      shadow .5
       h1
         margin .1em
       select
