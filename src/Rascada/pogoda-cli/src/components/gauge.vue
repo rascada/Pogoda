@@ -49,7 +49,7 @@
 
       animate(value, prev) {
         if (!this.animation) {
-          this.animation = true;
+          this.$dispatch('animate', this.animation = true);
           this.value = prev;
 
           dynamic.animate(this, {
@@ -59,7 +59,7 @@
             duration: 2000,
             friction: 300,
             delay: 250,
-            complete: _ => this.animation = false,
+            complete: _ => this.$dispatch('animate', this.animation = false),
           });
         }
       },
