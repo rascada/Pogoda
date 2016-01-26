@@ -1,5 +1,5 @@
 <template lang="jade">
-.dropletWrapper
+.dropletWrapper(v-show='humidity != null')
   .droplet
     .humidity
       .sensor(:style='{ height: humidity + "%" }')
