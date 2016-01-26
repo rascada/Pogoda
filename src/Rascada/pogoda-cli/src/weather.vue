@@ -16,7 +16,7 @@
         @extend .flex, .acenter, .between, .fcolumn
 
         .section
-          @extend .flex, .acenter, .between
+          @extend .flex, .acenter, .w-around
           background none
           shadow 0
           > div

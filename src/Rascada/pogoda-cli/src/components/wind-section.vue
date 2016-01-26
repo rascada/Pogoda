@@ -91,7 +91,7 @@
   .windWraper
     @extend .section
     .wind
-      @extend .flex, .acenter
+      @extend .flex, .acenter, .w-around
       .compass
         span
           font-weight 600
