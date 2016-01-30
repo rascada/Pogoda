@@ -11,6 +11,8 @@
 
 </template>
 
+<style lang='stylus' src='./style/gauge'></style>
+
 <script>
   import round from 'vue-round-filter';
   import defaultProps from './model/gauge';
@@ -105,67 +107,3 @@
   };
 
 </script>
-
-<style lang='stylus'>
-  @import '~styles/main'
-
-  .gauge
-    box-sizing border-box
-    gauge-radius = 6.5em
-
-    @extend .flex, .center
-    position relative
-    margin .25em
-    width (gauge-radius * 2)
-    height @width
-
-    color color
-    background #fff
-    border-radius 50%
-    border 1.5em solid color
-    box-shadow 0 .1em .5em .2em rgba(#000, .1)
-    .screen
-      @extend .flex, .jcenter, .aend
-      position absolute
-      left 0; top 0
-      width 100%
-      height 100%
-    .dot
-      @extend .flex, .center
-      width .5em
-      height @width
-      background color
-      border-radius 50%
-      border .1em solid color + 20%
-      box-shadow 0 .1em .1em rgba(#333, .2)
-      position relative
-      .pointer
-        background color
-        position absolute
-        border-radius .5em
-        align-self flex-start
-        border .1em solid color + 20%
-        box-shadow .1em 0 .1em rgba(#333, .2)
-        width .25em; height gauge-radius - 1.6em
-        margin-left -.2em; margin-top 50%
-        transform-origin top; transform rotate(45deg)
-      .measureWrapper
-        margin-left -.075em
-        height gauge-radius
-        position absolute
-        width .15em
-        bottom 50%
-        .unit
-          position absolute
-          width 100%
-          height 100%
-          transform-origin bottom; transform rotate(-135deg)
-          p
-            z-index 1
-            top .1em
-            left -.5em
-            margin 0
-            position relative
-            color #fff
-            font-weight 600
-</style>

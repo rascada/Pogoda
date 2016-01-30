@@ -25,6 +25,8 @@
 
 </template>
 
+<style lang='stylus' src='./style/forecast'></style>
+
 <script>
   let aja = require('aja');
 
@@ -76,63 +78,3 @@
   };
 
 </script>
-
-<style lang='stylus'>
-  @import '~styles/section'
-  @import '~flexstyl/index'
-  @import '~styles/main'
-  @import '~styles/ui'
-
-  .forecast
-    @extends .section
-    animation float 7s infinite ease-in-out
-    max-width 15em
-    padding .5em
-    h1
-      margin 0
-
-    .title
-      @extends .flex, .around, .acenter
-      img
-        transform translateY(-.2em)
-        animation float 6s infinite ease-in-out
-      h1
-        padding-left .25em
-
-    p
-      color #222
-
-    .arrows
-      @extend .flex, .around
-      margin .5em
-      button()
-
-    .update
-      @extends .flex, .between, .acenter
-      width 100%
-
-      padding-top .5em
-      color #777
-
-      span
-        margin 0 .25em
-
-      .name
-        color color
-        font-size 1.1em
-        font-weight 600
-
-
-    .icons
-      @extend .flex, .between
-      margin-top .5em
-      .icon
-        cursor pointer
-        transition .25s
-
-        &:hover
-          transform scale(1.25)
-
-        img
-          width 1.75em
-</style>
