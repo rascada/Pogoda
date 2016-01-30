@@ -31,7 +31,7 @@
 navbar(name='Pogoda Skałągi')
 main
   humidity
-  termometer
+  temperature
   //vial
   section
     div.section
@@ -43,6 +43,7 @@ main
 
 <script>
   import windSection from './components/wind-section';
+  import temperature from './components/temperature';
   import termometer from './components/termometer';
   import forecast from './components/forecast';
   import navbar from './components/navbar';
@@ -54,7 +55,7 @@ main
   export default {
     components: {
       windSection,
-      termometer,
+      temperature,
       navbar,
       barometer,
       humidity,
