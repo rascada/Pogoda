@@ -2,9 +2,9 @@
 
 .temperature
   h1 Temperatura
-  termometer(:degrees='temperature')
+  termometer(:degrees='current')
 
-  select
+  select(v-model='choice')
     option aktualna
     option(selected) odczuwalna
 
@@ -21,13 +21,33 @@ export default {
 
   data() {
     return {
-      temperature: 0,
+      choice: '',
+      temperature: {
+        actual: 0,
+        real: 0,
+      },
     };
   },
 
   methods: {
     apiConnect(api) {
-      this.temperature = api.temperature.current.value;
+      let temperature = api.temperature;
+
+      Object.assign(this.temperature, {
+        actual: temperature.current.value,
+        real: temperature.real.value,
+      });
+    },
+  },
+
+  computed: {
+    current() {
+      switch (this.choice) {
+        case 'aktualna':
+          return this.temperature.actual;
+        default:
+          return this.temperature.real;
+      };
     },
   },
 
