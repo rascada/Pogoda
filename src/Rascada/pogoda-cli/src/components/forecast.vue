@@ -19,6 +19,10 @@
     span.name prognoza
     span dane z {{ update }}
 
+  .icons
+    .icon(v-for='forecast in week' @click="focused = $index")
+      img(:src='forecast.icon_url')
+
 </template>
 
 <script>
@@ -100,7 +104,6 @@
 
     .arrows
       @extend .flex, .around
-      width 100%
       margin .5em
       button()
 
@@ -118,4 +121,18 @@
         color color
         font-size 1.1em
         font-weight 600
+
+
+    .icons
+      @extend .flex, .between
+      margin-top .5em
+      .icon
+        cursor pointer
+        transition .25s
+
+        &:hover
+          transform scale(1.25)
+
+        img
+          width 1.75em
 </style>
