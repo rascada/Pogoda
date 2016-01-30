@@ -61,10 +61,12 @@
 
 <style lang='stylus'>
   @import "~styles/main"
+  @import "~styles/section"
   thermometerColor = #f42
 
   .tempSect
-    @extend .sect, .blockShadow
+    @extend .section, .flex, .fcolumn, .acenter
+    overflow hidden
 
   .thermometer
     width 4.5em
@@ -148,6 +150,8 @@
         width 150%
         p
           position absolute
+          font-weight 600
+          color #444
           right 110%
           top -200%
           margin 0
