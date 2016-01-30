@@ -10,8 +10,9 @@
           p(v-if='n % 5 == 0').
             {{ isPositive ? range - n : -n }}
     .sensor
-      .temperatureSensor.sensorVal(:style="{background: color, height: sensorVal }")
+      .temperatureSensor.sensorVal(:style="{background: color, color: color, height: sensorVal }")
         span {{ degrees | round 2 }}°C
+        .bottomColor
 
     .bottom
 
@@ -56,10 +57,6 @@
     ready() {
       this.$parent.api.basic.on('updated', this.apiConnect);
     },
-
-    destroyed() {
-
-    },
   };
 
 </script>
@@ -103,7 +100,7 @@
       height 135%
       z-index 3
       transform skew(25deg) rotate(25deg)
-      background rgba(0,0,0,.1)
+      background rgba(#000, .1)
     .sensor
       z-index 2
       width 15%
@@ -111,12 +108,12 @@
       position relative
       borderRound()
       background #eee
-      &:before
-        top 97%
+      .bottomColor
+        top 98%
         width 150%
-        height 18%
+        height 4em
         content ''
-        background thermometerColor
+        background inherit
         position absolute
         border-radius 2em
         left 49.5% - (@width/2)
@@ -126,12 +123,12 @@
         left 0
         width 100%
         height 70%
+        color thermometerColor
         background thermometerColor
         span
           background #fff
           padding .2em
           box-shadow 0 .1em .1em rgba(#000, .2)
-          color thermometerColor
           font-weight 600
           font-size 1.1em
           position relative
