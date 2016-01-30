@@ -55,24 +55,24 @@
 
     methods: {
       windDirection(fromBlow) {
-        let direction = fromBlow.value + 180;
+        let direction = fromBlow + 180;
 
         return direction < 360 ? direction : direction - 360;
       },
 
-      setWind(which, fromBlow, speed, humanReadable) {
+      setWind(which, wind) {
         Object.assign(this.wind[which], {
-          direction: this.windDirection(fromBlow),
-          speed: speed.value,
-          humanReadable,
+          direction: this.windDirection(wind.dir.value),
+          speed: wind.speed.value,
+          humanReadable: wind.translated,
         });
       },
 
       handleApi(api) {
         let wind = api.wind;
 
-        this.setWind('actual', wind.currentDir, wind.currentSpeed, wind.translatedDir.current);
-        this.setWind('gust', wind.gustDir, wind.gustSpeed, wind.translatedDir.gust);
+        this.setWind('actual', wind.current);
+        this.setWind('gust', wind.gust);
       },
     },
 
