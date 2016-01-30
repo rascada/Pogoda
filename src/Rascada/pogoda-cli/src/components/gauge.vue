@@ -13,16 +13,8 @@
 
 <script>
   import round from 'vue-round-filter';
-
-  function defaultProps(merge) {
-    let defaultProps = {
-      range: 12,
-      from: 0,
-      unit: 3,
-    };
-
-    return Object.assign({}, defaultProps, merge);
-  }
+  import defaultProps from './model/gauge';
+  import dynamic from 'dynamics.js';
 
   export default {
     props: {
@@ -36,6 +28,16 @@
       },
     },
 
+    data() {
+      return {
+        animation: false,
+      };
+    },
+
+    ready() {
+      this.$watch('value', this.animate);
+    },
+
     filters: {
       round,
     },
@@ -43,6 +45,23 @@
     methods: {
       unitValue(n) {
         return n * this.measure.unit + this.measure.from;
+      },
+
+      animate(value, prev) {
+        if (!this.animation) {
+          this.$dispatch('animate', this.animation = true);
+          this.value = prev;
+
+          dynamic.animate(this, {
+            value,
+          }, {
+            type: dynamic.spring,
+            duration: 2000,
+            friction: 300,
+            delay: 250,
+            complete: _ => this.$dispatch('animate', this.animation = false),
+          });
+        }
       },
 
       unitValuePosition(n) {

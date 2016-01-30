@@ -3,7 +3,7 @@
 .windWraper
   .actionBar
     h1 Wiatr
-    select(v-model='wind.choice')
+    select(v-model='wind.choice' v-bind:disabled='animation')
       option(selected) aktualny
       option powiew
   .wind
@@ -27,6 +27,7 @@
 
     data() {
       return {
+        animation: false,
         wind: {
           choice: '',
           actual: model(),
@@ -43,6 +44,12 @@
           default:
             return this.wind.actual;
         };
+      },
+    },
+
+    events: {
+      animate(isAnimating) {
+        this.animation = isAnimating;
       },
     },
 
@@ -84,14 +91,15 @@
   .windWraper
     @extend .section
     .wind
-      @extend .flex, .acenter
+      @extend .flex, .acenter, .w-around
       .compass
         span
           font-weight 600
     .actionBar
       @extend .flex, .around, .acenter
       background #fff
-      shadow(.5)
+      padding .5em 0
+      shadow .5
       h1
         margin .1em
       select

@@ -14,6 +14,14 @@
         margin .5em
       section
         @extend .flex, .acenter, .between, .fcolumn
+
+        .section
+          @extend .flex, .acenter, .w-around
+          background none
+          shadow 0
+          > div
+            margin .5em
+
         > *
           margin .5em
 </style>
@@ -22,12 +30,14 @@
 
 navbar(name='Pogoda Skałągi')
 main
-  section
-    humidity
-    forecast
-  wind-section
-  barometer
+  humidity
   termometer
+  //vial
+  section
+    div.section
+      forecast
+      barometer
+    wind-section
 
 </template>
 

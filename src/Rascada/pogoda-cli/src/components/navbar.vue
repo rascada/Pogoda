@@ -41,14 +41,14 @@
 
 <style lang='stylus'>
   @import "~styles/main"
+  @import "~flexstyl/index"
   sunWidth = 4em
 
   .navbar
     margin .5em
 
   header
-    display flex
-    align-items center
+    @extend .flex, .w-around, .acenter
 
     background #eee
     color color
