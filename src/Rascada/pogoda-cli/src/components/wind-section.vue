@@ -114,4 +114,9 @@
         border .1em solid transparent
         &:hover
           border .1em solid color
+        &:disabled
+          shadow 0
+          color #555
+          cursor progress
+          border-color transparent
 </style>
