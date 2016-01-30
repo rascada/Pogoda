@@ -1,21 +1,19 @@
 <template lang='jade'>
 
-.tempSect
-  h1 Temperatura
-  .thermometer
-    .measure
-      div.line(
-        v-for='n in range'
-        v-bind:class='{boldLine: n % 5 == 0}')
-          p(v-if='n % 5 == 0').
-            {{ isPositive ? range - n : -n }}
-    .sensor
-      .temperatureSensor.sensorVal(:style="{background: color, color: color, height: sensorVal }")
-        span {{ degrees | round 2 }}°C
+.thermometer
+  .measure
+    div.line(
+      v-for='n in range'
+      v-bind:class='{boldLine: n % 5 == 0}')
+        p(v-if='n % 5 == 0').
+          {{ isPositive ? range - n : -n }}
+  .sensor
+    .temperatureSensor.sensorVal(:style="{background: color, color: color, height: sensorVal }")
+      span {{ degrees | round 2 }}°C
 
-        .bottomColor
+      .bottomColor
 
-    .bottom
+  .bottom
 
 </template>
 
@@ -23,9 +21,12 @@
   import round from 'vue-round-filter';
 
   export default {
+    props: {
+      degrees: Number
+    },
+
     data() {
       return {
-        degrees: 0,
         range: 30,
       };
     },
@@ -49,15 +50,6 @@
         return this.degrees > 0 ? '#f42' : '#a0ccff';
       },
     },
-    methods: {
-      apiConnect(api) {
-        this.degrees = api.temperature.current.value;
-      },
-    },
-
-    ready() {
-      this.$parent.api.basic.on('updated', this.apiConnect);
-    },
   };
 
 </script>
@@ -66,10 +58,6 @@
   @import "~styles/main"
   @import "~styles/section"
   thermometerColor = #f42
-
-  .tempSect
-    @extend .section, .flex, .fcolumn, .acenter
-    overflow hidden
 
   .thermometer
     width 4.5em
