@@ -2,6 +2,8 @@
 
 namespace SyntaxError\ApiBundle\Weather;
 
+use SyntaxError\ApiBundle\Tools\Uniter;
+
 /**
  * Class Wind
  * @package SyntaxError\ApiBundle\Model\Basic
@@ -9,100 +11,39 @@ namespace SyntaxError\ApiBundle\Weather;
 class Wind
 {
     /**
-     * @var Reading
+     * @var array
      */
-    private $currentSpeed;
-
-    /**
-     * @var Reading
-     */
-    private $currentDir;
-
-    /**
-     * @var Reading
-     */
-    private $gustSpeed;
-
-    /**
-     * @var Reading
-     */
-    private $gustDir;
+    private $current = [];
 
     /**
      * @var array
      */
-    private $translatedDir = [];
+    private $gust = [];
 
     /**
-     * @param $speed
-     * @param $dir
+     * Wind constructor.
+     * @param Reading $currentSpeed
+     * @param Reading $currentDir
      */
-    public function __construct(Reading $speed, Reading $dir)
+    public function __construct(Reading $currentSpeed, Reading $currentDir)
     {
-        $this->currentDir = $dir;
-        $this->currentSpeed = $speed;
+        if(!$currentSpeed->value) $currentDir->value = null;
+        $this->current['speed'] = $currentSpeed;
+        $this->current['dir'] = $currentDir;
+        $this->current['translated'] = $currentDir->value ? Uniter::windDirPl($currentDir->value) : null;
     }
 
     /**
-     * @param $speed
-     * @param $dir
+     * @param Reading $gustSpeed
+     * @param Reading $gustDir
      * @return Wind
      */
-    public function setGust(Reading $speed, Reading $dir)
+    public function setGust(Reading $gustSpeed, Reading $gustDir)
     {
-        $this->gustDir = $dir;
-        $this->gustSpeed = $speed;
+        if(!$gustSpeed->value) $gustDir = null;
+        $this->gust['speed'] = $gustSpeed;
+        $this->gust['dir'] = $gustDir;
+        $this->gust['translated'] = $gustDir->value ? Uniter::windDirPl($gustDir->value) : null;
         return $this;
-    }
-
-    /**
-     * @param array $translatedDir
-     * @return Wind
-     */
-    public function setTranslatedDir(array $translatedDir)
-    {
-        $this->translatedDir = $translatedDir;
-
-        return $this;
-    }
-
-    /**
-     * @return Reading
-     */
-    public function getCurrentSpeed()
-    {
-        return $this->currentSpeed;
-    }
-
-    /**
-     * @return Reading
-     */
-    public function getCurrentDir()
-    {
-        return $this->currentDir;
-    }
-
-    /**
-     * @return Reading
-     */
-    public function getGustSpeed()
-    {
-        return $this->gustSpeed;
-    }
-
-    /**
-     * @return Reading
-     */
-    public function getGustDir()
-    {
-        return $this->gustDir;
-    }
-
-    /**
-     * @return array
-     */
-    public function getTranslatedDir()
-    {
-        return $this->translatedDir;
     }
 }
