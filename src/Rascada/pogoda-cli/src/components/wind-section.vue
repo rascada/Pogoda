@@ -102,21 +102,4 @@
       shadow .5
       h1
         margin .1em
-      select
-        background #fff
-        cursor pointer
-        outline none
-        border 0
-        padding .5em
-        border-radius .25em
-        shadow(.5)
-        transition .5s
-        border .1em solid transparent
-        &:hover
-          border .1em solid color
-        &:disabled
-          shadow 0
-          color #555
-          cursor progress
-          border-color transparent
 </style>
