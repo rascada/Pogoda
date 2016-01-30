@@ -12,6 +12,7 @@
     .sensor
       .temperatureSensor.sensorVal(:style="{background: color, color: color, height: sensorVal }")
         span {{ degrees | round 2 }}°C
+
         .bottomColor
 
     .bottom
@@ -41,11 +42,11 @@
       },
 
       isPositive() {
-        return this.degrees > 0;
+        return this.degrees >= 0;
       },
 
       color() {
-        return this.degrees >= 0 ? '#f42' : '#a0ccff';
+        return this.degrees > 0 ? '#f42' : '#a0ccff';
       },
     },
     methods: {
