@@ -31,7 +31,7 @@ class ArchiveRepository extends EntityRepository
     public function getLastTrend($archiveProperty)
     {
         $archives = $this->getEntityManager()->getRepository("SyntaxErrorApiBundle:Archive")->createQueryBuilder('a')
-            ->select("a.$archiveProperty")->orderBy('a.dateTime', 'desc')->setMaxResults(12)->getQuery()->getResult();
+            ->select("a.$archiveProperty")->orderBy('a.dateTime', 'desc')->setMaxResults(24)->getQuery()->getResult();
         if(!$archives) return 0;
         return Uniter::getTrend($archives, $archiveProperty);
     }
@@ -52,5 +52,15 @@ class ArchiveRepository extends EntityRepository
             ->setParameter( 'from', $from->getTimestamp() )
             ->setParameter( 'to', $to->getTimestamp() )
             ->getQuery()->getResult();
+    }
+
+    /**
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getBatteryStatus()
+    {
+        return $this->createQueryBuilder('a')->select('a.windBatteryStatus, a.rainBatteryStatus, a.outTempBatteryStatus, a.inTempBatteryStatus')
+            ->orderBy('a.dateTime', 'desc')->setMaxResults(1)->getQuery()->getOneOrNullResult();
     }
 }

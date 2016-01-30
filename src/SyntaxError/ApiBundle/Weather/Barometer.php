@@ -3,10 +3,10 @@
 namespace SyntaxError\ApiBundle\Weather;
 
 /**
- * Class Pressure
+ * Class Barometer
  * @package SyntaxError\ApiBundle\Model\Basic
  */
-class Pressure
+class Barometer
 {
     /**
      * @var Reading
@@ -33,7 +33,7 @@ class Pressure
 
     /**
      * @param Reading $trend
-     * @return Pressure
+     * @return Barometer
      */
     public function setTrend(Reading $trend)
     {

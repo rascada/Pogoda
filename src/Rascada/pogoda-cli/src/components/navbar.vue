@@ -1,47 +1,54 @@
 <template lang='jade'>
-  .navbar(@mouseover='navbar.visible = true' @mouseout='navbar.visible = false')
-    header
 
-      ul.sunLogo
-        -for(var i = 3; i--;)
-          li
+.navbar(@mouseover='navbar.visible = true' @mouseout='navbar.visible = false')
+  header
 
-      h1 {{ name }}
-    menu(:visible='navbar.visible')
+    ul.sunLogo
+      -for(var i = 3; i--;)
+        li
+
+    h1 {{ name }}
+    next-update
+    span pogoda2
+  menu(:visible='navbar.visible')
+
 </template>
 
 <script>
-  import menu from './menu.vue'
+  import menu from './menu.vue';
+  import nextUpdate from './nextUpdate.vue';
 
   export default {
     components: {
-      menu
+      nextUpdate,
+      menu,
     },
 
     props: {
-      name: 'Wstaw nazwe'
+      name: 'Wstaw nazwe',
     },
 
-    data(){
+    data() {
       return {
         navbar: {
-          visible: true
-        }
+          visible: true,
+        },
       };
-    }
-  }
+    },
+  };
+
 </script>
 
 <style lang='stylus'>
   @import "~styles/main"
+  @import "~flexstyl/index"
   sunWidth = 4em
 
   .navbar
     margin .5em
 
   header
-    display flex
-    align-items center
+    @extend .flex, .w-around, .acenter
 
     background #eee
     color color
@@ -49,6 +56,11 @@
     @extend .blockShadow
 
     padding .5em 1em
+
+    > span
+      margin-left auto
+      align-self flex-end
+      font-weight 600
 
     .sunLogo
       width 1.5em

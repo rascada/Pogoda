@@ -1,29 +1,47 @@
 <template lang='jade'>
-  .forecast
-    .peroid(v-for='forecast in week' v-show='focused == $index')
-      .title
-        img(:src='forecast.icon_url')
-        h1 {{ forecast.title }}
-      p {{ forecast.fcttext_metric }}
-    .arrows
-      button(@click='focused--' v-show='near.yesterday') {{ near.yesterday.title }}
-      button(@click='focused++' v-show='near.tomorrow') {{ near.tomorrow.title }}
-    .update(v-show='update')
-      span prognoza
-      span dane z {{ update }}
+
+.forecast
+  .peroid(v-for='forecast in week' v-show='focused == $index')
+    .title
+      img(:src='forecast.icon_url')
+      h1 {{ forecast.title | shortWeekTitle }}
+
+    p {{ forecast.fcttext_metric }}
+
+  .arrows
+    button(@click='focused--' v-show='near.yesterday').
+      {{ near.yesterday.title | shortWeekTitle }}
+
+    button(@click='focused++' v-show='near.tomorrow').
+      {{ near.tomorrow.title | shortWeekTitle }}
+
+  .update(v-show='update')
+    span.name prognoza
+    span dane z {{ update }}
+
+  .icons
+    .icon(v-for='forecast in week' @click="focused = $index")
+      img(:src='forecast.icon_url')
+
 </template>
 
 <script>
   let aja = require('aja');
 
   export default {
-    data(){
+    data() {
       return {
         focused: 0,
         update: false,
         week: false,
         simple: false,
-      }
+      };
+    },
+
+    filters: {
+      shortWeekTitle: function(value = '') {
+        return value.replace('wieczór i', '');
+      },
     },
 
     computed: {
@@ -41,7 +59,7 @@
       },
     },
 
-    ready(){
+    ready() {
       aja().url(`${this.$parent.api.source}/wu/forecast.json`)
         .on('success', res => {
           let forecast = res.forecast;
@@ -50,46 +68,71 @@
           Object.assign(this, {
             update: week.date,
             week: week.forecastday,
-            simple: forecast.simpleforecast.forecastday
-          })
+            simple: forecast.simpleforecast.forecastday,
+          });
         })
         .go();
     },
-  }
+  };
+
 </script>
 
 <style lang='stylus'>
-  @import '~styles/flex'
+  @import '~styles/section'
+  @import '~flexstyl/index'
   @import '~styles/main'
   @import '~styles/ui'
 
   .forecast
-    @extends .blockShadow, .sect
-    text-align center
+    @extends .section
+    animation float 7s infinite ease-in-out
     max-width 15em
+    padding .5em
+    h1
+      margin 0
 
     .title
       @extends .flex, .around, .acenter
       img
         transform translateY(-.2em)
-        animation float 7.5s infinite ease-in-out
+        animation float 6s infinite ease-in-out
       h1
         padding-left .25em
 
+    p
+      color #222
+
     .arrows
       @extend .flex, .around
-      width 100%
       margin .5em
       button()
 
     .update
-      @extends .flex, .between
+      @extends .flex, .between, .acenter
       width 100%
 
-      border-top .1em solid
       padding-top .5em
       color #777
 
       span
         margin 0 .25em
+
+      .name
+        color color
+        font-size 1.1em
+        font-weight 600
+
+
+    .icons
+      @extend .flex, .between
+      margin-top .5em
+      .icon
+        cursor pointer
+        transition .25s
+
+        &:hover
+          transform scale(1.25)
+
+        img
+          width 1.75em
 </style>

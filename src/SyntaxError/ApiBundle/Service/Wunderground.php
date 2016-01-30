@@ -2,17 +2,56 @@
 
 namespace SyntaxError\ApiBundle\Service;
 
+use Symfony\Component\HttpFoundation\RequestStack;
 use SyntaxError\ApiBundle\Tools\IconCache;
 
+/**
+ * Class Wunderground
+ * @package SyntaxError\ApiBundle\Service
+ */
 class Wunderground
 {
+    /**
+     * Root url to wunderground api.
+     *
+     * @var string
+     */
     private $rootApi = "http://api.wunderground.com/api/d3e5e159801b834c/";
 
+    /**
+     * Language of translation.
+     *
+     * @var string
+     */
     private $lang = "PL";
 
+    /**
+     * Wunderground place code.
+     *
+     * @var string
+     */
     private $place = "pws:IOPOLSKI10";
 
     /**
+     * @var null|\Symfony\Component\HttpFoundation\Request
+     */
+    private $request;
+
+    /**
+     * Wunderground constructor.
+     * @param RequestStack $requestStack
+     */
+    public function __construct(RequestStack $requestStack)
+    {
+        $this->request = $requestStack->getMasterRequest();
+    }
+
+    /**
+     * Read data from cache if exist.
+     * Else download data from wu-api and set to redis with life time in minutes.
+     *
+     * Cache forecast icons and replace links.
+     *
      * @param $dataName
      * @param $lifeTimeInMinutes
      * @return string
@@ -24,10 +63,29 @@ class Wunderground
             $apiUrl = $this->rootApi.$dataName."/lang:".$this->lang."/q/".$this->place.".json";
             $wuJson = file_get_contents($apiUrl);
 
+            $wuRequests = $redis->exists('wu_requests') ? json_decode($redis->get('wu_requests')) : new \stdClass;
+            $dataStatus = property_exists($wuRequests, $dataName) ? $wuRequests->{$dataName} : new \stdClass;
+            $dataStatus->total = property_exists($dataStatus, 'total') ? $dataStatus->total+1 : 1;
+
+            if( !property_exists($dataStatus, 'today') ) $dataStatus->today = new \stdClass;
+            if( !property_exists($dataStatus->today, 'value') ) $dataStatus->today->value = 1;
+
+            if( property_exists($dataStatus->today, 'date') && $dataStatus->today->date == (new \DateTime('now'))->format("Y-m-d") ) {
+                $dataStatus->today->value++;
+            } else {
+                $dataStatus->today->date = (new \DateTime('now'))->format("Y-m-d");
+                $dataStatus->today->value = 1;
+            }
+
+            $wuRequests->{$dataName} = $dataStatus;
+            $redis->set('wu_requests', json_encode($wuRequests));
+
             if($dataName == 'forecast') {
                 $iconCache = new IconCache(
                     __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."Resources".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."images"
                 );
+                $fullServerName = $this->request->isSecure() ? "https://".$this->request->getHost() : $this->request->getHost();
+                $iconCache->setServerName($fullServerName);
                 $wuJson = $iconCache->cacheFromWunderground($wuJson);
             }
             $redis->setEx($dataName, $lifeTimeInMinutes*60, $wuJson);
@@ -37,6 +95,8 @@ class Wunderground
     }
 
     /**
+     * Create redis instance connected to localhost.
+     *
      * @return \Redis
      */
     private function createRedis()
@@ -47,6 +107,8 @@ class Wunderground
     }
 
     /**
+     * Get translation language.
+     *
      * @return string
      */
     public function getLang()
@@ -55,6 +117,8 @@ class Wunderground
     }
 
     /**
+     * Set translation language.
+     *
      * @param string $lang
      * @return Wunderground
      */
@@ -66,6 +130,8 @@ class Wunderground
     }
 
     /**
+     * Get WU place code.
+     *
      * @return string
      */
     public function getPlace()
@@ -74,6 +140,8 @@ class Wunderground
     }
 
     /**
+     * Set WU place code.
+     *
      * @param string $place
      * @return Wunderground
      */

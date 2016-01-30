@@ -1,43 +1,77 @@
 <template lang='jade'>
 
-.compassWraper
-  h1 {{ title }}
-  .compass
-    .arrow(:style='{ transform: "rotate(" + (direction + 45) + "deg)" }')
+.compass
+  .arrowWrapper
+    .arrow(:style='arrowDirection')
+    .screen
+      slot
+        h1(v-show='direction != null') {{ direction | round 2 }}°
+      slot(name='screen')
 
 </template>
 
 <script>
+  import round from 'vue-round-filter';
 
   export default {
     props: {
       title: '',
-      direction: 0
+      direction: null,
     },
-  }
+
+    filters: {
+      round,
+    },
+
+    computed: {
+      arrowDirection() {
+        return {
+          transform: `rotate(${this.direction + 45}deg)`,
+          borderRadius: this.direction == null ? '50%' : null,
+        };
+      },
+    },
+  };
 
 </script>
 
 <style lang='stylus'>
   @import "~styles/main"
-  @import "~styles/flex"
-
-  .compassWraper
-    text-align center
+  @import "~flexstyl/index"
 
   .compass
     @extend .blockShadow, .flex, .center
-    margin .5em
+    margin 1.1em
     width 13em
     height @width
     background color
     position relative
     border-radius 50%
-    .arrow
-      width 80%
-      height 80%
-      background #fff
-      border-radius 0 50% 50% 50%
-      border .4em solid
-      transform rotate(45deg)
+    .arrowWrapper
+      width 85%
+      height 85%
+      position relative
+
+      .arrow
+        box-sizing border-box
+
+        width 100%
+        height 100%
+
+        background #fff
+        position relative
+        border .4em solid
+        transform rotate(45deg)
+        border-radius 0 50% 50% 50%
+
+      .screen
+        @extend .flex, .center, .fcolumn
+        position absolute
+
+        arrow = -20%
+        top -(arrow / 2)
+        left -(arrow / 2)
+        width 100% + arrow
+        height 100% + arrow
+
 </style>

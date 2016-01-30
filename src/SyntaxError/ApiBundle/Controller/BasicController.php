@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use SyntaxError\ApiBundle\Tools\Jsoner;
+use SyntaxError\ApiBundle\Tools\Overrider;
 
 class BasicController extends Controller
 {
@@ -13,6 +14,8 @@ class BasicController extends Controller
     {
         $live = $this->get('syntax_error_api.live');
         $jsoner = new Jsoner();
+        $overrider = new Overrider('basic.yml');
+
         $data = [];
         $call = $request->query->has('callback') ? $request->query->get('callback') : null;
 
@@ -20,14 +23,14 @@ class BasicController extends Controller
             foreach(get_class_methods('SyntaxError\ApiBundle\Service\LiveService') as $method) {
                 if($method == '__construct' || $method == 'createTime') continue;
                 $key = strtolower( str_replace('create', '', $method) );
-                $data[$key] = call_user_func([$live, $method]);
+                $data[$key] = $overrider->has($key) ? $overrider->get($key) : call_user_func([$live, $method]);
             }
         }
 
         foreach($request->query->all() as $key => $param) {
             $methodName = "create".ucfirst($key);
             if( method_exists($live, $methodName) ) {
-                $data[$key] = call_user_func([$live, $methodName]);
+                $data[$key] = $overrider->has($key) ? $overrider->get($key) : call_user_func([$live, $methodName]);
             }
         }
         $data['time'] = $live->createTime();

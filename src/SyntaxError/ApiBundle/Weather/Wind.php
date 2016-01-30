@@ -29,6 +29,11 @@ class Wind
     private $gustDir;
 
     /**
+     * @var array
+     */
+    private $translatedDir = [];
+
+    /**
      * @param $speed
      * @param $dir
      */
@@ -47,6 +52,17 @@ class Wind
     {
         $this->gustDir = $dir;
         $this->gustSpeed = $speed;
+        return $this;
+    }
+
+    /**
+     * @param array $translatedDir
+     * @return Wind
+     */
+    public function setTranslatedDir(array $translatedDir)
+    {
+        $this->translatedDir = $translatedDir;
+
         return $this;
     }
 
@@ -80,5 +96,13 @@ class Wind
     public function getGustDir()
     {
         return $this->gustDir;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTranslatedDir()
+    {
+        return $this->translatedDir;
     }
 }

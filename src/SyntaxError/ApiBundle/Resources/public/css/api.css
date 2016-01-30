@@ -82,6 +82,35 @@ aside #powered-by img {
     margin: 0 .75em;
 }
 
+.admin-button {
+    position: relative;
+    display: block;
+    padding: .4em .4em .4em .8em;
+    margin: .5em 0 .5em 2.5em;
+    background: #ddd;
+    color: #444;
+    transition: all .3s ease-out;
+}
+
+.admin-button:before {
+    content: '→';
+    position: absolute;
+    left: -2.5em;
+    top: 50%;
+    margin-top: -1em;
+    background: #c3bab8;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.admin-button:hover:after {
+    left: -.5em;
+    border-left-color: #c3bab8;
+}
+
 /* navi */
 menu {
     counter-reset: a; /* Initiate a counter */
@@ -119,7 +148,7 @@ menu a:before{
     font-weight: bold;
 }
 
-menu a:after{
+menu a:after, .admin-button:after{
     position: absolute;
     content: '';
     border: .5em solid transparent;
@@ -129,7 +158,7 @@ menu a:after{
     transition: all .3s ease-out;
 }
 
-menu a:hover:after{
+menu a:hover:after {
     left: -.5em;
     border-left-color: #fa8072;
 }

@@ -6,18 +6,39 @@ use Doctrine\ORM\EntityManager;
 use SyntaxError\ApiBundle\Tools\Jsoner;
 use SyntaxError\ApiBundle\Tools\Uniter;
 
+/**
+ * Class InfoService
+ * Create array of strings about weather information.
+ *
+ * @package SyntaxError\ApiBundle\Service
+ */
 class InfoService
 {
+    /**
+     * @var EntityManager
+     */
     private $em;
 
+    /**
+     * The newest instance in Archive repository.
+     *
+     * @var null|\SyntaxError\ApiBundle\Entity\Archive
+     */
     private $last;
 
+    /**
+     * InfoService constructor.
+     * @param EntityManager $entityManager
+     */
     public function __construct(EntityManager $entityManager)
     {
         $this->em = $entityManager;
         $this->last = $this->em->getRepository("SyntaxErrorApiBundle:Archive")->findLast();
     }
 
+    /**
+     * @return string
+     */
     private function temperature()
     {
         $tempTrend = round($this->em->getRepository("SyntaxErrorApiBundle:Archive")->getLastTrend('outTemp'), 3);
@@ -31,6 +52,9 @@ class InfoService
         return $tempSentence;
     }
 
+    /**
+     * @return string
+     */
     private function barometer()
     {
         $baroTrend = round($this->em->getRepository("SyntaxErrorApiBundle:Archive")->getLastTrend('barometer'), 3);
@@ -44,6 +68,9 @@ class InfoService
         return $baroSentence;
     }
 
+    /**
+     * @return string
+     */
     private function humidity()
     {
         $humidity = round($this->last->getOutHumidity(), 2);
@@ -55,6 +82,9 @@ class InfoService
         return $sentence;
     }
 
+    /**
+     * @return array|string
+     */
     private function wind()
     {
         $speed = $this->last->getWindSpeed();
@@ -79,6 +109,9 @@ class InfoService
         return [$sentence." ".Uniter::windDirPl($dir).".", $gust];
     }
 
+    /**
+     * @return array
+     */
     private function rain()
     {
         $rainRate = round($this->last->getRainRate(), 3);
@@ -102,6 +135,11 @@ class InfoService
         ];
     }
 
+    /**
+     * Return serialized array of weather strings as Jsoner instance.
+     *
+     * @return Jsoner
+     */
     public function all()
     {
         $data = [];

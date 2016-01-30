@@ -1,18 +1,20 @@
 <template lang='jade'>
-  .vial
-    .measure
-      -for(var i=20;i--;)
-        -if(i % 5 == 0 && i != 0)
-          div.line.boldLine
-        -else
-          .line
-    .vialVal
-      .rainVal#rainCurrentSensor
+
+.vial
+  .measure
+    -for(var i = 20; i--;)
+      -if(i % 5 == 0 && i != 0)
+        div.line.boldLine
+      -else
+        .line
+  .vialVal
+    .rainVal(style='height: 10%')
+
 </template>
 
 <style lang='stylus'>
   @import "~styles/main"
-  @import "~styles/flex"
+  @import "~flexstyl/index"
 
   .vial
     @extend .blockShadow, .flex, .center
@@ -30,7 +32,7 @@
         height .11em
         margin-left .1em
         width 1em
-        background #555;
+        background #555
       .boldLine
         width 1.5em
     .vialVal

@@ -2,7 +2,10 @@
 
 namespace SyntaxError\ApiBundle\Weather;
 
-
+/**
+ * Class Time
+ * @package SyntaxError\ApiBundle\Weather
+ */
 class Time
 {
     /**

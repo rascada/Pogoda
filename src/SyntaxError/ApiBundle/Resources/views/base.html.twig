@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8"/>
         <title>Weather | {% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="//highlightjs.org/static/demo/styles/atelier-estuary-dark.css">
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.0.0/styles/atelier-estuary-dark.min.css">
+        <script src="//cdn.jsdelivr.net/highlight.js/9.0.0/highlight.min.js"></script>
         <link rel="stylesheet" href="{{ asset('bundles/syntaxerrorapi/css/api.css') }}"/>
         {% block head %}{% endblock %}
     </head>
@@ -20,10 +20,10 @@
             </span>
         </header>
 
-
         <main>
             {% block content %}
             <aside>
+                <a href="{{ path('syntax_error_api_admin_logged') }}" class="admin-button">Admin area</a>
                 <menu>
                     <a href="{{ path('syntax_error_api_basic_now') }}">Basic</a>
                     <a href="{{ path('syntax_error_api_sentence') }}">Sentence</a>
