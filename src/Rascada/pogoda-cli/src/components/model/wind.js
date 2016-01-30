@@ -1,5 +1,6 @@
 module.exports = function(o) {
   let model = {
+    humanReadable: '',
     direction: null,
     speed: 0,
   };

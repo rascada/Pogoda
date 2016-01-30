@@ -1,8 +1,9 @@
 .DS_Store
 prepros.cfg
 
-web/css/*.css
-web/js/build.js
+web/index.html
+web/static
+
 *.log
 
 viewsCompiled

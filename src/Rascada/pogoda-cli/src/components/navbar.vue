@@ -15,8 +15,8 @@
 </template>
 
 <script>
-  import menu from './menu.vue'
-  import nextUpdate from './nextUpdate.vue'
+  import menu from './menu.vue';
+  import nextUpdate from './nextUpdate.vue';
 
   export default {
     components: {
@@ -25,29 +25,30 @@
     },
 
     props: {
-      name: 'Wstaw nazwe'
+      name: 'Wstaw nazwe',
     },
 
-    data(){
+    data() {
       return {
         navbar: {
-          visible: true
-        }
+          visible: true,
+        },
       };
-    }
-  }
+    },
+  };
+
 </script>
 
 <style lang='stylus'>
   @import "~styles/main"
+  @import "~flexstyl/index"
   sunWidth = 4em
 
   .navbar
     margin .5em
 
   header
-    display flex
-    align-items center
+    @extend .flex, .w-around, .acenter
 
     background #eee
     color color

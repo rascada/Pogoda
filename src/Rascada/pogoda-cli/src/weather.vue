@@ -1,7 +1,7 @@
 <style lang="stylus">
   @import url("https://fonts.googleapis.com/css?family=Rajdhani:400,600&amp;subset=latin,latin-ext");
   @import "~styles/main"
-  @import "~styles/flex"
+  @import "~flexstyl/index"
 
   body
     margin 1em 1.5em
@@ -12,26 +12,43 @@
       @extend .flex, .center, .fwrap, .around
       > *
         margin .5em
+      section
+        @extend .flex, .acenter, .between, .fcolumn
+
+        .section
+          @extend .flex, .acenter, .w-around
+          background none
+          shadow 0
+          > div
+            margin .5em
+
+        > *
+          margin .5em
 </style>
 
 <template lang="jade">
 
 navbar(name='Pogoda Skałągi')
 main
-  forecast
   humidity
-  wind-section
   termometer
+  //vial
+  section
+    div.section
+      forecast
+      barometer
+    wind-section
 
 </template>
 
 <script>
-  import windSection from './components/wind-section.vue'
-  import termometer from './components/termometer.vue'
-  import forecast from './components/forecast.vue'
-  import navbar from './components/navbar.vue'
-  import humidity from './components/humidity.vue'
-  import vial from './components/vial.vue'
+  import windSection from './components/wind-section';
+  import termometer from './components/termometer';
+  import forecast from './components/forecast';
+  import navbar from './components/navbar';
+  import humidity from './components/humidity';
+  import barometer from './components/barometer';
+  import vial from './components/vial';
   import Basic from './api/basic';
 
   export default {
@@ -39,6 +56,7 @@ main
       windSection,
       termometer,
       navbar,
+      barometer,
       humidity,
       vial,
       forecast,
@@ -54,8 +72,9 @@ main
       };
     },
 
-    ready(){
+    ready() {
       this.api.basic.init(this.env == 'production' ? '/api' : this.api.source);
     },
-  }
+  };
+
 </script>

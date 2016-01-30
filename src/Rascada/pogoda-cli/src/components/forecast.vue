@@ -23,13 +23,13 @@
   let aja = require('aja');
 
   export default {
-    data(){
+    data() {
       return {
         focused: 0,
         update: false,
         week: false,
         simple: false,
-      }
+      };
     },
 
     filters: {
@@ -53,7 +53,7 @@
       },
     },
 
-    ready(){
+    ready() {
       aja().url(`${this.$parent.api.source}/wu/forecast.json`)
         .on('success', res => {
           let forecast = res.forecast;
@@ -62,17 +62,18 @@
           Object.assign(this, {
             update: week.date,
             week: week.forecastday,
-            simple: forecast.simpleforecast.forecastday
-          })
+            simple: forecast.simpleforecast.forecastday,
+          });
         })
         .go();
     },
-  }
+  };
+
 </script>
 
 <style lang='stylus'>
   @import '~styles/section'
-  @import '~styles/flex'
+  @import '~flexstyl/index'
   @import '~styles/main'
   @import '~styles/ui'
 

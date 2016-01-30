@@ -11,13 +11,13 @@
             {{ isPositive ? range - n : -n }}
     .sensor
       .temperatureSensor.sensorVal(v-bind:style="{ height: sensorVal }")
-        span {{ degrees | round 1 }}°C
+        span {{ degrees | round 2 }}°C
     .bottom
 
 </template>
 
 <script>
-  import round from 'vue/filter/round';
+  import round from 'vue-round-filter';
 
   export default {
     data() {
@@ -54,8 +54,9 @@
 
     destroyed() {
 
-    }
-  }
+    },
+  };
+
 </script>
 
 <style lang='stylus'>

@@ -1,35 +1,95 @@
 <template lang='jade'>
 
 .gauge
+  .screen
+    h3 {{ value | round 2 }} {{ unitName }}
   .dot
     .pointer(:style='pointer')
     .measureWrapper
       .unit(v-for='n in measure.range' v-bind:style='unitPosition(n)')
-        p {{ $index * measure.unit }}
+        p(:style='unitValuePosition(n)') {{ unitValue(n) }}
 
 </template>
 
 <script>
+  import round from 'vue-round-filter';
+  import defaultProps from './model/gauge';
+  import dynamic from 'dynamics.js';
+
   export default {
     props: {
-      speed: Number,
+      value: Number,
+      unitName: '',
+      measure: {
+        default: defaultProps,
+        coerce: function(val) {
+          return defaultProps(val);
+        },
+      },
     },
 
     data() {
       return {
-        measure: {
-          range: 12,
-          unit: 3,
-        },
-      }
+        animation: false,
+      };
+    },
+
+    ready() {
+      this.$watch('value', this.animate);
+    },
+
+    filters: {
+      round,
     },
 
     methods: {
+      unitValue(n) {
+        return n * this.measure.unit + this.measure.from;
+      },
+
+      animate(value, prev) {
+        if (!this.animation) {
+          this.$dispatch('animate', this.animation = true);
+          this.value = prev;
+
+          dynamic.animate(this, {
+            value,
+          }, {
+            type: dynamic.spring,
+            duration: 2000,
+            friction: 300,
+            delay: 250,
+            complete: _ => this.$dispatch('animate', this.animation = false),
+          });
+        }
+      },
+
+      unitValuePosition(n) {
+        let shift = { x: 0, y: 0 };
+        let rotation = 0;
+
+        let val = this.unitValue(n);
+        switch (true) {
+          case val >= 1000:
+            shift.x = -.8;
+            shift.y = .1;
+            rotation = -5;
+            break;
+          case val >= 100:
+            shift.x = -.5;
+            break;
+          case val >= 10:
+            shift.x = -.25;
+            break;
+        }
+
+        return { transform: `translate(${shift.x}em, ${shift.y}em) rotate(${rotation}deg)` };
+      },
+
       unitPosition(n) {
-        let rotation = -135 + ((n) * this.measureSpace);
+        let rotation = -135 + n * this.measureSpace;
 
-
-        return {transform: `rotate(${rotation}deg)`};
+        return { transform: `rotate(${rotation}deg)` };
       },
     },
 
@@ -39,10 +99,11 @@
       },
 
       pointer() {
-        return {transform: `rotate(${42 + this.speed * this.measureSpace / this.measure.unit}deg)`};
+        return { transform: `rotate(${41 + (this.value - this.measure.from) * this.measureSpace / this.measure.unit}deg)` };
       },
     },
-  }
+  };
+
 </script>
 
 <style lang='stylus'>
@@ -51,15 +112,24 @@
   .gauge
     box-sizing border-box
     gauge-radius = 6.5em
+
     @extend .flex, .center
+    position relative
     margin .25em
     width (gauge-radius * 2)
     height @width
+
     color color
     background #fff
     border-radius 50%
     border 1.5em solid color
     box-shadow 0 .1em .5em .2em rgba(#000, .1)
+    .screen
+      @extend .flex, .jcenter, .aend
+      position absolute
+      left 0; top 0
+      width 100%
+      height 100%
     .dot
       @extend .flex, .center
       width .5em
@@ -76,7 +146,7 @@
         align-self flex-start
         border .1em solid color + 20%
         box-shadow .1em 0 .1em rgba(#333, .2)
-        height gauge-radius - 1.5em; width .25em
+        width .25em; height gauge-radius - 1.6em
         margin-left -.2em; margin-top 50%
         transform-origin top; transform rotate(45deg)
       .measureWrapper
@@ -98,5 +168,4 @@
             position relative
             color #fff
             font-weight 600
-            transform rotate(-2.5deg)
 </style>

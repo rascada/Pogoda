@@ -5,12 +5,13 @@
     .arrow(:style='arrowDirection')
     .screen
       slot
-        h1(v-show='direction') {{ direction | round  }}°
+        h1(v-show='direction != null') {{ direction | round 2 }}°
+      slot(name='screen')
 
 </template>
 
 <script>
-  import round from 'vue/filter/round';
+  import round from 'vue-round-filter';
 
   export default {
     props: {
@@ -30,13 +31,13 @@
         };
       },
     },
-  }
+  };
 
 </script>
 
 <style lang='stylus'>
   @import "~styles/main"
-  @import "~styles/flex"
+  @import "~flexstyl/index"
 
   .compass
     @extend .blockShadow, .flex, .center
@@ -64,7 +65,7 @@
         border-radius 0 50% 50% 50%
 
       .screen
-        @extend .flex, .center
+        @extend .flex, .center, .fcolumn
         position absolute
 
         arrow = -20%
