@@ -5,7 +5,9 @@
     .title
       img(:src='forecast.icon_url')
       h1 {{ forecast.title | shortWeekTitle }}
+
     p {{ forecast.fcttext_metric }}
+
   .arrows
     button(@click='focused--' v-show='near.yesterday').
       {{ near.yesterday.title | shortWeekTitle }}
@@ -14,7 +16,7 @@
       {{ near.tomorrow.title | shortWeekTitle }}
 
   .update(v-show='update')
-    span prognoza
+    span.name prognoza
     span dane z {{ update }}
 
 </template>
@@ -93,6 +95,9 @@
       h1
         padding-left .25em
 
+    p
+      color #222
+
     .arrows
       @extend .flex, .around
       width 100%
@@ -100,7 +105,7 @@
       button()
 
     .update
-      @extends .flex, .between
+      @extends .flex, .between, .acenter
       width 100%
 
       padding-top .5em
@@ -108,4 +113,9 @@
 
       span
         margin 0 .25em
+
+      .name
+        color color
+        font-size 1.1em
+        font-weight 600
 </style>
