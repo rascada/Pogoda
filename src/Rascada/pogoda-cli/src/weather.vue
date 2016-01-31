@@ -1,5 +1,4 @@
 <style lang="stylus">
-  @import url("https://fonts.googleapis.com/css?family=Rajdhani:400,600&amp;subset=latin,latin-ext");
   @import "~styles/main"
   @import "~flexstyl/index"
 
@@ -27,6 +26,7 @@
 </style>
 
 <template lang="jade">
+link(href='https://fonts.googleapis.com/css?family=Rajdhani:400,600&subset=latin,latin-ext' rel='stylesheet' type='text/css')
 
 navbar(name='Pogoda Skałągi')
 main
