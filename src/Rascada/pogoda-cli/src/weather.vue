@@ -27,6 +27,7 @@
 
 <template lang="jade">
 link(href='https://fonts.googleapis.com/css?family=Rajdhani:400,600&subset=latin,latin-ext' rel='stylesheet' type='text/css')
+material
 
 navbar(name='Pogoda Skałągi')
 main
@@ -52,8 +53,11 @@ main
   import vial from './components/vial';
   import Basic from './api/basic';
 
+  import material from './components/material';
+
   export default {
     components: {
+      material,
       windSection,
       temperature,
       navbar,
