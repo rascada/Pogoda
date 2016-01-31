@@ -1,27 +1,31 @@
 <template lang='jade'>
 
 .forecast
-  .peroid(v-for='forecast in week' v-show='focused == $index')
-    .title
-      img(:src='forecast.icon_url')
-      h1 {{ forecast.title | shortWeekTitle }}
+  div(v-if='populated')
+    .peroid(v-for='forecast in week' v-show='focused == $index')
+      .title
+        img(:src='forecast.icon_url')
+        h1 {{ forecast.title | shortWeekTitle }}
 
-    p {{ forecast.fcttext_metric }}
+      p {{ forecast.fcttext_metric }}
 
-  .arrows
-    button(@click='focused--' v-show='near.yesterday').
-      {{ near.yesterday.title | shortWeekTitle }}
+    .arrows
+      button(@click='focused--' v-show='near.yesterday').
+        {{ near.yesterday.title | shortWeekTitle }}
 
-    button(@click='focused++' v-show='near.tomorrow').
-      {{ near.tomorrow.title | shortWeekTitle }}
+      button(@click='focused++' v-show='near.tomorrow').
+        {{ near.tomorrow.title | shortWeekTitle }}
 
-  .update(v-show='update')
-    span.name prognoza
-    span dane z {{ update }}
+    .update(v-show='update')
+      span.name prognoza
+      span dane z {{ update }}
 
-  .icons
-    .icon(v-for='forecast in week' @click="focused = $index")
-      img(:src='forecast.icon_url')
+    .icons
+      .icon(v-for='forecast in week' @click="focused = $index")
+        img(:src='forecast.icon_url')
+
+  .spinner(v-else)
+    paper-spinner(:active='!populated')
 
 </template>
 
@@ -34,9 +38,10 @@
     data() {
       return {
         focused: 0,
-        update: false,
         week: false,
+        update: false,
         simple: false,
+        populated: false,
       };
     },
 
@@ -66,6 +71,8 @@
         .on('success', res => {
           let forecast = res.forecast;
           let week = forecast.txt_forecast;
+
+          this.populated = true;
 
           Object.assign(this, {
             update: week.date,
