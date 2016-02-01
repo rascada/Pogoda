@@ -49,7 +49,11 @@ paper-material.forecast
 
     methods: {
       changeForecast(howMuch) {
-        if (this.ripple)
+        let inRange = howMuch == 1
+          ? this.focused != this.week.length - 1
+          : this.focused > 0;
+
+        if (this.ripple && inRange)
           this.focused += howMuch;
 
         this.ripple = !this.ripple;
