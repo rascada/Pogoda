@@ -6,6 +6,7 @@
     .screen
       slot
         h1(v-show='direction != null') {{ direction | round 2 }}°
+          paper-tooltip(position='top') {{ direction }}°
       slot(name='screen')
 
 </template>
@@ -73,5 +74,8 @@
         left -(arrow / 2)
         width 100% + arrow
         height 100% + arrow
+
+        h1
+          cursor help
 
 </style>

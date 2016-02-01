@@ -3,6 +3,7 @@
 .gauge
   .screen
     h3 {{ value | round 2 }} {{ unitName }}
+      paper-tooltip {{ value }} {{ unitName }}
   .dot
     .pointer(:style='pointer')
     .measureWrapper

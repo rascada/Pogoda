@@ -6,6 +6,7 @@ paper-material.forecast
       .icons
         .icon(v-for='forecast in week' @click="focused = $index")
           img(:src='forecast.icon_url')
+          paper-tooltip(position='top') {{ forecast.title | shortWeekTitle }}
 
       .title
         img(:src='forecast.icon_url')
