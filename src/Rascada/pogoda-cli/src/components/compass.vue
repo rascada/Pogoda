@@ -1,11 +1,12 @@
 <template lang='jade'>
 
-.compass
+paper-material(elevation='2').compass
   .arrowWrapper
     .arrow(:style='arrowDirection')
     .screen
       slot
         h1(v-show='direction != null') {{ direction | round 2 }}°
+          paper-tooltip(position='top') {{ direction }}°
       slot(name='screen')
 
 </template>
@@ -40,7 +41,7 @@
   @import "~flexstyl/index"
 
   .compass
-    @extend .blockShadow, .flex, .center
+    @extend .flex, .center
     margin 1.1em
     width 13em
     height @width
@@ -73,5 +74,8 @@
         left -(arrow / 2)
         width 100% + arrow
         height 100% + arrow
+
+        h1
+          cursor help
 
 </style>

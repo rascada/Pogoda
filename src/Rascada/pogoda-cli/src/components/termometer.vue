@@ -10,6 +10,7 @@
   .sensor
     .temperatureSensor.sensorVal(:style="{background: color, color: color, height: sensorVal }")
       span {{ degrees | round 2 }}°C
+        paper-tooltip {{ degrees }}°C
 
       .bottomColor
 
@@ -24,7 +25,7 @@
 
   export default {
     props: {
-      degrees: Number
+      degrees: Number,
     },
 
     data() {

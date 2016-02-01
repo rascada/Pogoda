@@ -1,6 +1,6 @@
 <template lang='jade'>
 
-.navbar(@mouseover='navbar.visible = true' @mouseout='navbar.visible = false')
+paper-material.navbar(@mouseover='menu.visible = true' @mouseout='menu.visible = false')
   header
 
     ul.sunLogo
@@ -10,7 +10,8 @@
     h1 {{ name }}
     next-update
     span pogoda2
-  menu(:visible='navbar.visible')
+  menu(:visible='menu.visible')
+  paper-progress(:indeterminate='updateInProgress')
 
 </template>
 
@@ -30,10 +31,19 @@
 
     data() {
       return {
-        navbar: {
+        updateInProgress: true,
+        menu: {
           visible: true,
         },
       };
+    },
+
+    ready() {
+      this.$parent.api.basic
+        .on('nextUpdate', time => {
+          this.updateInProgress = false;
+          setTimeout(_ => this.updateInProgress = true, time * 1000);
+        });
     },
   };
 
@@ -47,13 +57,15 @@
   .navbar
     margin .5em
 
+  paper-progress
+    width 100%
+
   header
     @extend .flex, .w-around, .acenter
 
     background #eee
     color color
     text-shadow .05em .05em (teal + 20%)
-    @extend .blockShadow
 
     padding .5em 1em
 

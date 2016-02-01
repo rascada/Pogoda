@@ -1,8 +1,13 @@
 <template lang='jade'>
 
-.forecast
+paper-material.forecast
   div(v-if='populated')
     .peroid(v-for='forecast in week' v-show='focused == $index')
+      .icons
+        .icon(v-for='forecast in week' @click="focused = $index")
+          img(:src='forecast.icon_url')
+          paper-tooltip(position='top') {{ forecast.title | shortWeekTitle }}
+
       .title
         img(:src='forecast.icon_url')
         h1 {{ forecast.title | shortWeekTitle }}
@@ -10,19 +15,15 @@
       p {{ forecast.fcttext_metric }}
 
     .arrows
-      button(@click='focused--' v-show='near.yesterday').
+      paper-button(@transitionend='changeForecast(-1)' v-show='near.yesterday').
         {{ near.yesterday.title | shortWeekTitle }}
 
-      button(@click='focused++' v-show='near.tomorrow').
+      paper-button(@transitionend='changeForecast(1)' v-show='near.tomorrow').
         {{ near.tomorrow.title | shortWeekTitle }}
 
     .update(v-show='update')
       span.name prognoza
       span dane z {{ update }}
-
-    .icons
-      .icon(v-for='forecast in week' @click="focused = $index")
-        img(:src='forecast.icon_url')
 
   .spinner(v-else)
     paper-spinner(:active='!populated')
@@ -42,7 +43,21 @@
         update: false,
         simple: false,
         populated: false,
+        ripple: false,
       };
+    },
+
+    methods: {
+      changeForecast(howMuch) {
+        let inRange = howMuch == 1
+          ? this.focused != this.week.length - 1
+          : this.focused > 0;
+
+        if (this.ripple && inRange)
+          this.focused += howMuch;
+
+        this.ripple = !this.ripple;
+      },
     },
 
     filters: {
