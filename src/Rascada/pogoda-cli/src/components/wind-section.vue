@@ -1,7 +1,7 @@
 <template lang='jade'>
 
-.windWraper
-  .actionBar
+paper-material.windWraper
+  paper-material.actionBar
     h1 Wiatr
     select(v-model='wind.choice' v-bind:disabled='animation')
       option(selected) aktualny
@@ -99,7 +99,6 @@
       @extend .flex, .around, .acenter
       background #fff
       padding .5em 0
-      shadow .5
       h1
         margin .1em
 </style>

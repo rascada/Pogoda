@@ -1,6 +1,6 @@
 <template lang='jade'>
 
-.forecast
+paper-material.forecast
   div(v-if='populated')
     .peroid(v-for='forecast in week' v-show='focused == $index')
       .title

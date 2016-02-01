@@ -1,13 +1,16 @@
 {
   "name": "pogoda-cli",
   "homepage": "https://github.com/rascada/pogoda",
-  "authors": ["rascada <carftjr@gmail.com>"],
+  "authors": [
+    "rascada <carftjr@gmail.com>"
+  ],
   "description": "",
   "main": "",
   "moduleType": [],
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "paper-spinner": "PolymerElements/paper-spinner#^1.1.0"
+    "paper-spinner": "PolymerElements/paper-spinner#^1.1.0",
+    "paper-material": "PolymerElements/paper-material#^1.0.6"
   }
 }

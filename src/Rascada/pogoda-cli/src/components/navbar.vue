@@ -1,6 +1,6 @@
 <template lang='jade'>
 
-.navbar(@mouseover='navbar.visible = true' @mouseout='navbar.visible = false')
+paper-material.navbar(@mouseover='navbar.visible = true' @mouseout='navbar.visible = false')
   header
 
     ul.sunLogo
@@ -53,7 +53,6 @@
     background #eee
     color color
     text-shadow .05em .05em (teal + 20%)
-    @extend .blockShadow
 
     padding .5em 1em
 

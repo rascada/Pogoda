@@ -1,6 +1,6 @@
 <template lang='jade'>
 
-.temperature
+paper-material.temperature
   h1 Temperatura
   termometer(:degrees='current')
 
