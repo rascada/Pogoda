@@ -1,6 +1,6 @@
 <template lang='jade'>
 
-paper-material.navbar(@mouseover='navbar.visible = true' @mouseout='navbar.visible = false')
+paper-material.navbar(@mouseover='menu.visible = true' @mouseout='menu.visible = false')
   header
 
     ul.sunLogo
@@ -10,7 +10,7 @@ paper-material.navbar(@mouseover='navbar.visible = true' @mouseout='navbar.visib
     h1 {{ name }}
     next-update
     span pogoda2
-  menu(:visible='navbar.visible')
+  menu(:visible='menu.visible')
   paper-progress(:indeterminate='updateInProgress')
 
 </template>
@@ -32,7 +32,7 @@ paper-material.navbar(@mouseover='navbar.visible = true' @mouseout='navbar.visib
     data() {
       return {
         updateInProgress: true,
-        navbar: {
+        menu: {
           visible: true,
         },
       };
