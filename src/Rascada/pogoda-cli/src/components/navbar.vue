@@ -11,6 +11,7 @@ paper-material.navbar(@mouseover='navbar.visible = true' @mouseout='navbar.visib
     next-update
     span pogoda2
   menu(:visible='navbar.visible')
+  paper-progress(:indeterminate='updateInProgress')
 
 </template>
 
@@ -30,10 +31,19 @@ paper-material.navbar(@mouseover='navbar.visible = true' @mouseout='navbar.visib
 
     data() {
       return {
+        updateInProgress: true,
         navbar: {
           visible: true,
         },
       };
+    },
+
+    ready() {
+      this.$parent.api.basic
+        .on('nextUpdate', time => {
+          this.updateInProgress = false;
+          setTimeout(_ => this.updateInProgress = true, time * 1000);
+        });
     },
   };
 
@@ -46,6 +56,9 @@ paper-material.navbar(@mouseover='navbar.visible = true' @mouseout='navbar.visib
 
   .navbar
     margin .5em
+
+  paper-progress
+    width 100%
 
   header
     @extend .flex, .w-around, .acenter
