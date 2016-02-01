@@ -53,7 +53,7 @@ paper-material.forecast
           this.focused += howMuch;
 
         this.ripple = !this.ripple;
-      }
+      },
     },
 
     filters: {
