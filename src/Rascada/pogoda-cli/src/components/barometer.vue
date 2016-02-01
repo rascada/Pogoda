@@ -1,7 +1,7 @@
 <template lang="jade">
 paper-material.barometer
   h1 Ciśnienie
-  gauge(:measure='{ from: 960, unit: 40 }' v-bind:value='pressure' unit-name='hPa')
+  gauge(:measure='measure' v-bind:value='pressure' unit-name='hPa')
 </template>
 
 <script>
@@ -15,6 +15,10 @@ paper-material.barometer
     data() {
       return {
         pressure: 960,
+        measure: {
+          from: 960,
+          unit: 40,
+        },
       };
     },
 
