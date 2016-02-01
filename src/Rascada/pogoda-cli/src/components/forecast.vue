@@ -14,10 +14,10 @@ paper-material.forecast
       p {{ forecast.fcttext_metric }}
 
     .arrows
-      paper-button(@click='focused--' v-show='near.yesterday').
+      paper-button(@transitionend='changeForecast(-1)' v-show='near.yesterday').
         {{ near.yesterday.title | shortWeekTitle }}
 
-      paper-button(@click='focused++' v-show='near.tomorrow').
+      paper-button(@transitionend='changeForecast(1)' v-show='near.tomorrow').
         {{ near.tomorrow.title | shortWeekTitle }}
 
     .update(v-show='update')
@@ -42,7 +42,17 @@ paper-material.forecast
         update: false,
         simple: false,
         populated: false,
+        ripple: false,
       };
+    },
+
+    methods: {
+      changeForecast(howMuch) {
+        if (this.ripple)
+          this.focused += howMuch;
+
+        this.ripple = !this.ripple;
+      }
     },
 
     filters: {
