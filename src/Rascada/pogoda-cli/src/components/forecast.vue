@@ -10,10 +10,10 @@ paper-material.forecast
       p {{ forecast.fcttext_metric }}
 
     .arrows
-      button(@click='focused--' v-show='near.yesterday').
+      paper-button(@click='focused--' v-show='near.yesterday').
         {{ near.yesterday.title | shortWeekTitle }}
 
-      button(@click='focused++' v-show='near.tomorrow').
+      paper-button(@click='focused++' v-show='near.tomorrow').
         {{ near.tomorrow.title | shortWeekTitle }}
 
     .update(v-show='update')
