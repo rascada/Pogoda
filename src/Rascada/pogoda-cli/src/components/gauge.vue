@@ -1,6 +1,6 @@
 <template lang='jade'>
 
-.gauge
+paper-material(elevation='2').gauge
   .screen
     h3 {{ value | round 2 }} {{ unitName }}
       paper-tooltip {{ value }} {{ unitName }}

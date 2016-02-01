@@ -1,6 +1,6 @@
 <template lang='jade'>
 
-.compass
+paper-material(elevation='2').compass
   .arrowWrapper
     .arrow(:style='arrowDirection')
     .screen
@@ -41,7 +41,7 @@
   @import "~flexstyl/index"
 
   .compass
-    @extend .blockShadow, .flex, .center
+    @extend .flex, .center
     margin 1.1em
     width 13em
     height @width
