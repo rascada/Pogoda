@@ -3,6 +3,10 @@
 paper-material.forecast
   div(v-if='populated')
     .peroid(v-for='forecast in week' v-show='focused == $index')
+      .icons
+        .icon(v-for='forecast in week' @click="focused = $index")
+          img(:src='forecast.icon_url')
+
       .title
         img(:src='forecast.icon_url')
         h1 {{ forecast.title | shortWeekTitle }}
@@ -19,10 +23,6 @@ paper-material.forecast
     .update(v-show='update')
       span.name prognoza
       span dane z {{ update }}
-
-    .icons
-      .icon(v-for='forecast in week' @click="focused = $index")
-        img(:src='forecast.icon_url')
 
   .spinner(v-else)
     paper-spinner(:active='!populated')
