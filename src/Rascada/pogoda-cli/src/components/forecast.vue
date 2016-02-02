@@ -5,6 +5,7 @@ paper-material.forecast
     .peroid(v-for='forecast in week' v-show='focused == $index')
       .icons
         .icon(v-for='forecast in week' @click="focused = $index")
+          p {{ $index | weekDay }}
           img(:src='forecast.icon_url')
           paper-tooltip(position='top') {{ forecast.title | shortWeekTitle }}
 
@@ -33,7 +34,7 @@ paper-material.forecast
 <style lang='stylus' src='./style/forecast'></style>
 
 <script>
-  let aja = require('aja');
+  import aja from 'aja';
 
   export default {
     data() {
@@ -58,11 +59,32 @@ paper-material.forecast
 
         this.ripple = !this.ripple;
       },
+
+      humanWeekDay(day) {
+        switch (day) {
+          case 1: return 'pon';
+          case 2: return 'wt';
+          case 3: return 'śr';
+          case 4: return 'czw';
+          case 5: return 'pt';
+          case 6: return 'sob';
+          case 7: return 'niedz';
+        }
+      },
     },
 
     filters: {
       shortWeekTitle: function(value = '') {
         return value.replace('wieczór i', '');
+      },
+
+      weekDay($index) {
+        let today = new Date().getDay();
+        let day = today + $index / 2;
+        let night = day != day.toFixed();
+        let weekDay = this.humanWeekDay(day - (night ? .5 : 0));
+
+        return !night ? weekDay : `${weekDay} noc`;
       },
     },
 
