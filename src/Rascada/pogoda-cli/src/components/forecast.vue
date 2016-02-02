@@ -2,12 +2,13 @@
 
 paper-material.forecast
   div(v-if='populated')
+    .icons
+      .icon(v-for='forecast in week' @click="focused = $index")
+        p(:class="{ active: focused == $index }") {{ $index | weekDay }}
+        img(:src='forecast.icon_url')
+        paper-tooltip(position='top') {{ forecast.title | shortWeekTitle }}
+
     .peroid(v-for='forecast in week' v-show='focused == $index')
-      .icons
-        .icon(v-for='forecast in week' @click="focused = $index")
-          p {{ $index | weekDay }}
-          img(:src='forecast.icon_url')
-          paper-tooltip(position='top') {{ forecast.title | shortWeekTitle }}
 
       .title
         img(:src='forecast.icon_url')
@@ -84,7 +85,7 @@ paper-material.forecast
         let night = day != day.toFixed();
         let weekDay = this.humanWeekDay(day - (night ? .5 : 0));
 
-        return !night ? weekDay : `${weekDay} noc`;
+        return weekDay;
       },
     },
 
