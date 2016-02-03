@@ -27,6 +27,9 @@ class Notifier
      */
     private $redis;
 
+    /**
+     * @var \Twig_Environment
+     */
     private $twig;
 
     /**
