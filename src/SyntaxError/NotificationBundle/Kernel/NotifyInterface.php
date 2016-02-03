@@ -28,7 +28,8 @@ interface NotifyInterface
     /**
      * Return content of notify in HTML.
      *
+     * @param \Twig_Environment $twig
      * @return string
      */
-    public function getContent();
+    public function getContent(\Twig_Environment $twig);
 }

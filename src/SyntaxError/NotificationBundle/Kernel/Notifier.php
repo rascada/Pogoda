@@ -27,6 +27,8 @@ class Notifier
      */
     private $redis;
 
+    private $twig;
+
     /**
      * Notifier constructor.
      */
@@ -39,6 +41,15 @@ class Notifier
 
         $this->gun = new Mailgun($key, 'api.mailgun.net', 'v3', true);
         $this->redis = new RedisStorage('127.0.0.1');
+
+        $twigCachePath = __DIR__."/../../../../app/cache/notify";
+        if(!file_exists($twigCachePath)) {
+            mkdir($twigCachePath, 0777);
+        }
+        $loader = new \Twig_Loader_Filesystem(__DIR__."/../Resources/views");
+        $this->twig = new \Twig_Environment($loader, array(
+            'cache' => $twigCachePath,
+        ));
     }
 
     /**
@@ -84,7 +95,7 @@ class Notifier
                 'from'    => 'Stacja pogodowa Skałągi <info@pogoda.skalagi.pl>',
                 'to'      => $subscriber,
                 'subject' => $notify->getName(),
-                'text'    => $notify->getContent()
+                'text'    => $notify->getContent($this->twig)
             ]);
         }
 
