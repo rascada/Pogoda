@@ -24,7 +24,7 @@ export default {
     style() {
       return {
         transform: `translate(${this.x}px, ${this.y}px)`,
-        zIndex: this.onTop > .75 ? 2 : -1,
+        zIndex: this.onTop > .8 ? 2 : -1,
       };
     },
   },
