@@ -40,6 +40,7 @@
         barometer
       wind-section
 
+  cloud(v-for='n in 7')
 </template>
 
 <script>
