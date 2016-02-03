@@ -21,7 +21,7 @@ services:
 
     syntax_error_api.wu:
       class: SyntaxError\ApiBundle\Service\Wunderground
-      arguments: [@request_stack]
+      arguments: [@request_stack, @service_container]
 
 
     syntax_error_api.admin:

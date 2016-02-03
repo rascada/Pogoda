@@ -2,6 +2,7 @@
 
 namespace SyntaxError\ApiBundle\Service;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use SyntaxError\ApiBundle\Tools\IconCache;
 
@@ -16,7 +17,7 @@ class Wunderground
      *
      * @var string
      */
-    private $rootApi = "http://api.wunderground.com/api/d3e5e159801b834c/";
+    private $rootApi = "http://api.wunderground.com/api/";
 
     /**
      * Language of translation.
@@ -40,10 +41,12 @@ class Wunderground
     /**
      * Wunderground constructor.
      * @param RequestStack $requestStack
+     * @param ContainerInterface $container
      */
-    public function __construct(RequestStack $requestStack)
+    public function __construct(RequestStack $requestStack, ContainerInterface $container)
     {
         $this->request = $requestStack->getMasterRequest();
+        $this->rootApi .= $container->getParameter('wu_token')."/";
     }
 
     /**
