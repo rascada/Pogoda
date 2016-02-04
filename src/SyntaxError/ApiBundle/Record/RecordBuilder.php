@@ -23,6 +23,9 @@ class RecordBuilder
      */
     private $other;
 
+    /**
+     * RecordBuilder constructor.
+     */
     public function __construct()
     {
         $this->max = new Reading();

@@ -6,14 +6,24 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 use SyntaxError\ApiBundle\Interfaces\ArchiveService;
 use SyntaxError\ApiBundle\Tools\Jsoner;
 
+/**
+ * Class ArchiveManager
+ * Use in ArchiveController for manage ArchiveService services.
+ *
+ * @package SyntaxError\ApiBundle\Record
+ */
 class ArchiveManager
 {
     /**
+     * Registered service for record generation.
+     *
      * @var ArchiveService|null
      */
     private $service;
 
     /**
+     * Date and time for lookup.
+     *
      * @var \DateTime|null
      */
     private $datetime;
@@ -49,6 +59,8 @@ class ArchiveManager
     }
 
     /**
+     * Return Jsoner with records (max/min) created from database by $requestQuery ParameterBag.
+     *
      * @param ParameterBag $requestQuery
      * @return Jsoner
      */
@@ -85,6 +97,8 @@ class ArchiveManager
     }
 
     /**
+     * Create Jsoner with database archive data formatted for HighCharts library.
+     *
      * @param $type
      * @return Jsoner
      */

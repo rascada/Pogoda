@@ -23,6 +23,13 @@ class RecordGenerator
                         $cnt = $record->getCount();
                         $output[] = [($record->getDatetime()+3600)*1000, $cnt ? $record->getSum() / $cnt : 0];
                     }
+                }
+                if(!count($output)) {
+                    foreach($records as $i => $record) {
+                        if($record instanceof ArchiveDay) {
+                            $output[] = [($record->getDatetime()+3600)*1000, $record->getMin(), $record->getMax()];
+                        }
+                    }
                 } break;
 
             case 'Rain':
@@ -31,6 +38,13 @@ class RecordGenerator
                         if( (new \DateTime())->setTimestamp( $record->getDatetime() )->format("H") != 0) continue;
                         $output[] = [($record->getDatetime()+3600)*1000, $record->getSum()];
                     }
+                }
+                if(!count($output)) {
+                    foreach($records as $i => $record) {
+                        if($record instanceof ArchiveDay) {
+                            $output[] = [($record->getDatetime()+3600)*1000, $record->getMin(), $record->getMax()];
+                        }
+                    }
                 } break;
 
             default:
@@ -38,6 +52,13 @@ class RecordGenerator
                     if($record instanceof ArchiveDay) {
                         if( (new \DateTime())->setTimestamp( $record->getDatetime() )->format("H") != 0) continue;
                         $output[] = [($record->getDatetime()+3600)*1000, $record->getMin(), $record->getMax()];
+                    }
+                }
+                if(!count($output)) {
+                    foreach($records as $i => $record) {
+                        if($record instanceof ArchiveDay) {
+                            $output[] = [($record->getDatetime()+3600)*1000, $record->getMin(), $record->getMax()];
+                        }
                     }
                 } break;
         }
