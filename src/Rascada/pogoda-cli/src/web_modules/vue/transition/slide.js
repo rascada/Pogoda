@@ -4,12 +4,12 @@ import dyn from 'dynamics.js';
 
 function slide(el, value, done) {
 
-  if (!this.rect) {
+  if (!this.height) {
     el.style.height = null;
-    this.rect = el.getBoundingClientRect().height;
+    this.height = el.getBoundingClientRect().height;
   }
 
-  value = typeof value != 'number' ? this.rect : value;
+  value = typeof value != 'number' ? this.height : value;
 
   dyn.stop(el);
   dyn.animate(el, {

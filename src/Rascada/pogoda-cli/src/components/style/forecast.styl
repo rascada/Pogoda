@@ -49,10 +49,20 @@
     margin-top .5em
     .icon
       cursor pointer
-      transition .25s
 
-      &:hover
-        transform scale(1.25)
+      p
+        margin 0
+        color #777
+        font-weight 600
+        &:nth-child(2)
+          color red
+
+      .active
+        color color
 
       img
         width 1.75em
+        transition .25s
+
+        &:hover
+          transform scale(1.25)
