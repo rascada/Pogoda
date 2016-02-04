@@ -43,6 +43,13 @@ syntax_error_api_archive_charts:
     period: day|month|year
     type: outTemp|outHumidity|barometer|windGust|windGustDir|rain|rainRate
 
+# Notifications subscriber
+syntax_error_api_sub:
+   path: /notifications/{type}
+   defaults: { _controller: SyntaxErrorApiBundle:Info:subscribe }
+   requirements: { type: subscribe|unsubscribe }
+   methods: [POST]
+
 # Redirect
 syntax_error_api_home:
   path: /

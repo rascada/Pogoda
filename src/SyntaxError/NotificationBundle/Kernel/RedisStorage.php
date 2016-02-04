@@ -81,4 +81,42 @@ class RedisStorage
         $this->subscribers = $decoded !== null && is_array($decoded) ? $decoded : [];
         return $this;
     }
+
+    /**
+     * Add subscriber to Redis.
+     *
+     * @param $subscriber
+     * @return bool
+     */
+    public function addSubscriber($subscriber)
+    {
+        if(!count($this->subscribers)) $this->loadSubscribers();
+        if(in_array($subscriber, $this->subscribers)) return false;
+        $this->subscribers[] = $subscriber;
+        $this->redis->set(static::prefix.'subscribers', json_encode($this->subscribers));
+        return true;
+    }
+
+    /**
+     * Remove subscriber from Redis.
+     *
+     * @param $subscriber
+     * @return bool
+     */
+    public function removeSubscriber($subscriber)
+    {
+        if(!count($this->subscribers)) $this->loadSubscribers();
+        $found = false;
+        foreach($this->subscribers as $i => $registeredSubscriber) {
+            if($subscriber == $registeredSubscriber) {
+                unset($this->subscribers[$i]);
+                $found = true;
+            }
+        }
+
+        if(!$found) return $found;
+        $this->subscribers = array_values($this->subscribers);
+        $this->redis->set(static::prefix.'subscribers', json_encode($this->subscribers));
+        return true;
+    }
 }
