@@ -6,15 +6,14 @@ paper-material(elevation='2').gauge
       paper-tooltip {{ value }} {{ unitName }}
   .dot
     .pointer(:style='pointer')
-    .measureWrapper
-      .unit(v-for='n in measure.range' v-bind:style='unitPosition(n)')
-        p(:style='unitValuePosition(n)') {{ unitValue(n) }}
+    measure(:options='measure')
 
 </template>
 
 <style lang='stylus' src='./style/gauge'></style>
 
 <script>
+  import measure from './measure';
   import round from 'vue-round-filter';
   import defaultProps from './model/gauge';
   import dynamic from 'dynamics.js';
@@ -45,11 +44,11 @@ paper-material(elevation='2').gauge
       round,
     },
 
-    methods: {
-      unitValue(n) {
-        return n * this.measure.unit + this.measure.from;
-      },
+    components: {
+      measure,
+    },
 
+    methods: {
       animate(value, prev) {
         if (!this.animation) {
           this.$dispatch('animate', this.animation = true);
@@ -65,34 +64,6 @@ paper-material(elevation='2').gauge
             complete: _ => this.$dispatch('animate', this.animation = false),
           });
         }
-      },
-
-      unitValuePosition(n) {
-        let shift = { x: 0, y: 0 };
-        let rotation = 0;
-
-        let val = this.unitValue(n);
-        switch (true) {
-          case val >= 1000:
-            shift.x = -.8;
-            shift.y = .1;
-            rotation = -5;
-            break;
-          case val >= 100:
-            shift.x = -.5;
-            break;
-          case val >= 10:
-            shift.x = -.25;
-            break;
-        }
-
-        return { transform: `translate(${shift.x}em, ${shift.y}em) rotate(${rotation}deg)` };
-      },
-
-      unitPosition(n) {
-        let rotation = -135 + n * this.measureSpace;
-
-        return { transform: `rotate(${rotation}deg)` };
       },
     },
 
