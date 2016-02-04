@@ -26,30 +26,32 @@
 </style>
 
 <template lang="jade">
-link(href='https://fonts.googleapis.com/css?family=Rajdhani:400,600&subset=latin,latin-ext' rel='stylesheet' type='text/css')
-material
+.weather
+  link(href='https://fonts.googleapis.com/css?family=Rajdhani:400,600&subset=latin,latin-ext' rel='stylesheet' type='text/css')
+  material
+  navbar(name='Pogoda Skałągi')
+  main
+    humidity
+    temperature
+    //vial
+    section
+      .section
+        forecast
+        barometer
+      wind-section
 
-navbar(name='Pogoda Skałągi')
-main
-  humidity
-  temperature
-  //vial
-  section
-    div.section
-      forecast
-      barometer
-    wind-section
-
+  cloud(v-for='n in 7')
 </template>
 
 <script>
   import windSection from './components/wind-section';
   import temperature from './components/temperature';
   import termometer from './components/termometer';
-  import forecast from './components/forecast';
-  import navbar from './components/navbar';
-  import humidity from './components/humidity';
   import barometer from './components/barometer';
+  import forecast from './components/forecast';
+  import humidity from './components/humidity';
+  import navbar from './components/navbar';
+  import cloud from './components/cloud';
   import vial from './components/vial';
   import Basic from './api/basic';
 
@@ -57,14 +59,15 @@ main
 
   export default {
     components: {
-      material,
       windSection,
       temperature,
-      navbar,
       barometer,
       humidity,
-      vial,
       forecast,
+      material,
+      navbar,
+      cloud,
+      vial,
     },
 
     data() {
