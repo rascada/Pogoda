@@ -83,7 +83,7 @@ paper-material.forecast
         let today = new Date().getDay();
         let day = today + $index / 2;
         let night = day != day.toFixed();
-        let weekDay = this.humanWeekDay(day - (night ? .5 : 0));
+        let weekDay = night ? 'noc' : this.humanWeekDay(day);
 
         return weekDay;
       },
