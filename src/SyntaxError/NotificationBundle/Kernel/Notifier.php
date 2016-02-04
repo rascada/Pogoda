@@ -94,12 +94,12 @@ class Notifier
         if(!$notify->isActive($this->container)) return false;
 
         foreach($this->redis->getSubscribers() as $subscriber) {
-            $this->gun->sendMessage($this->container->getParameter('gun_mail'), [
-                'from'    => 'Stacja pogodowa Skałągi <info@pogoda.skalagi.pl>',
-                'to'      => $subscriber,
-                'subject' => $notify->getName(),
-                'text'    => $notify->getContent($this->twig)
-            ]);
+            $message = $this->gun->MessageBuilder();
+            $message->setFromAddress('Stacja pogodowa Skałągi <info@pogoda.skalagi.pl>');
+            $message->addToRecipient($subscriber);
+            $message->setSubject($notify->getName());
+            $message->setHtmlBody($notify->getContent($this->twig));
+            $this->gun->sendMessage($this->container->getParameter('gun_mail'), $message->getMessage());
         }
 
         $this->redis->lock(get_class($notify));
