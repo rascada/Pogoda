@@ -37,7 +37,7 @@ class Notifier
      */
     public function __construct()
     {
-        $kernel = new \AppKernel('dev', true);
+        $kernel = new \AppKernel('prod', false);
         $kernel->boot();
         $this->container = $kernel->getContainer();
         $key = $this->container->getParameter('gun_key');
