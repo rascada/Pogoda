@@ -71,6 +71,7 @@ class Notifier
                    sprintf("All classes in '%s' should implements NotifyInterface. Check '%s' class.", $className, $class)
                );
 
+               echo "[".(new \DateTime('now'))->format("Y-m-d H:i:s")."] | ";
                if(!$this->redis->isLocked(get_class($object))) {
                    echo $this->checkNotify($object) ? "Notify $class send to subscribers. [".count($this->redis->getSubscribers())."]" : "Notify $class not active now.";
                } else {
