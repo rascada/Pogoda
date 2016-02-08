@@ -55,6 +55,18 @@ class ArchiveRepository extends EntityRepository
     }
 
     /**
+     * @param \DateTime $any
+     * @return null|Archive
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findProximate(\DateTime $any)
+    {
+        return $this->getEntityManager()->getRepository("SyntaxErrorApiBundle:Archive")->createQueryBuilder('a')
+            ->where('a.dateTime <= :any_unix')->setParameter('any_unix', $any->getTimestamp())
+            ->orderBy('a.dateTime', 'desc')->setMaxResults(1)->getQuery()->getOneOrNullResult();
+    }
+
+    /**
      * @return mixed
      * @throws \Doctrine\ORM\NonUniqueResultException
      */

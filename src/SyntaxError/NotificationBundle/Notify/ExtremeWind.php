@@ -39,18 +39,14 @@ class ExtremeWind implements NotifyInterface
         if($todayRecordSpeed->getMax() > $monthMax->getMax()) {
             $this->period = "miesiąca";
             $this->record['speed'] = $todayRecordSpeed;
-            $this->record['dir'] = $em->getRepository("SyntaxErrorApiBundle:Archive")->findOneBy([
-                'dateTime' => $todayRecordSpeed->getMaxtime()
-            ])->getWindGustDir();
+            $this->record['dir'] = $em->getRepository("SyntaxErrorApiBundle:Archive")->findProximate($todayRecordSpeed->getMaxtime())->getWindGustDir();
             return true;
         }
 
         if($todayRecordSpeed->getMax() > $yearMax->getMax()) {
             $this->period = "roku";
             $this->record['speed'] = $todayRecordSpeed;
-            $this->record['dir'] = $em->getRepository("SyntaxErrorApiBundle:Archive")->findOneBy([
-                'dateTime' => $todayRecordSpeed->getMaxtime()
-            ])->getWindGustDir();
+            $this->record['dir'] = $em->getRepository("SyntaxErrorApiBundle:Archive")->findProximate($todayRecordSpeed->getMaxtime())->getWindGustDir();
             return true;
         }
 
