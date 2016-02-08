@@ -19,9 +19,7 @@ class ExtremeWind implements NotifyInterface
     public function isActive(ContainerInterface $container)
     {
         $em = $container->get('doctrine.orm.default_entity_manager');
-        $todayRecordSpeed = $em->getRepository("SyntaxErrorApiBundle:ArchiveDayWindgust")->findOneBy([
-            'datetime' => $this->todayMidnight()->getTimestamp()
-        ]);
+        $todayRecordSpeed = $em->getRepository("SyntaxErrorApiBundle:ArchiveDayWindgust")->findOneByDay($this->todayMidnight());
 
         $dayOfMonth = (new \DateTime('now'))->format("d");
         if($dayOfMonth < 7) return false;

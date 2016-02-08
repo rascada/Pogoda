@@ -59,4 +59,20 @@ abstract class AbstractDayRepository extends EntityRepository
             ->setParameter( 'from', $from->getTimestamp() )->setParameter( 'to', $to->getTimestamp() )
             ->orderBy('a.datetime', 'asc')->getQuery()->getResult();
     }
+
+    /**
+     * @param \DateTime $day
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneByDay(\DateTime $day)
+    {
+        $start = new \DateTime($day->format("Y-m-d 00:00:00"));
+        $day->setTime(23, 59, 59);
+        return $this->getEntityManager()->getRepository($this->getEntityName())
+            ->createQueryBuilder('a')->where('a.datetime BETWEEN :day_start AND :day_end')
+            ->setParameter('day_start', $start->getTimestamp())
+            ->setParameter('day_end', $day->getTimestamp())
+            ->setMaxResults(1)->getQuery()->getOneOrNullResult();
+    }
 }

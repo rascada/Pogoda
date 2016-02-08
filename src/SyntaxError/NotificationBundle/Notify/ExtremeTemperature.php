@@ -20,10 +20,7 @@ class ExtremeTemperature implements NotifyInterface
     public function isActive(ContainerInterface $container)
     {
         $em = $container->get('doctrine.orm.default_entity_manager');
-        $todayRecord = $em->getRepository("SyntaxErrorApiBundle:ArchiveDayOuttemp")->findOneBy([
-            'datetime' => $this->todayMidnight()->getTimestamp()
-        ]);
-
+        $todayRecord = $em->getRepository("SyntaxErrorApiBundle:ArchiveDayOuttemp")->findOneByDay($this->todayMidnight());
         $dayOfMonth = (new \DateTime('now'))->format("d");
         if($dayOfMonth < 7) return false;
 

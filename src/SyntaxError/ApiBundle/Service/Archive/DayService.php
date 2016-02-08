@@ -32,62 +32,49 @@ class DayService implements ArchiveService
 
     public function createTemperature(\DateTime $dateTime)
     {
-        $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayOuttemp")->findOneBy([
-            'datetime' => $dateTime->setTime(0,0,0)->getTimestamp()
-        ]);
+        $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayOuttemp")->findOneByDay($dateTime);
 
         return $this->generator->generateTemperature($record, $record);
     }
 
     public function createHumidity(\DateTime $dateTime)
     {
-        $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayOuthumidity")->findOneBy([
-            'datetime' => $dateTime->setTime(0,0,0)->getTimestamp()
-        ]);
+        $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayOuthumidity")->findOneByDay($dateTime);
 
         return $this->generator->generateHumidity($record, $record);
     }
 
     public function createBarometer(\DateTime $dateTime)
     {
-        $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayBarometer")->findOneBy([
-            'datetime' => $dateTime->setTime(0,0,0)->getTimestamp()
-        ]);
+        $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayBarometer")->findOneByDay($dateTime);
+
         return $this->generator->generateBarometer($record, $record);
     }
 
     public function createWindSpeed(\DateTime $dateTime)
     {
-        $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayWindgust")->findOneBy([
-            'datetime' => $dateTime->setTime(0,0,0)->getTimestamp()
-        ]);
+        $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayWindgust")->findOneByDay($dateTime);
 
         return $this->generator->generateWindSpeed($record);
     }
 
     public function createWindDir(\DateTime $dateTime)
     {
-        $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayWindgustdir")->findOneBy([
-            'datetime' => $dateTime->setTime(0,0,0)->getTimestamp()
-        ]);
+        $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayWindgustdir")->findOneByDay($dateTime);
 
         return $this->generator->generateWindDir( $record->getSum() / $record->getCount() );
     }
 
     public function createRainRate(\DateTime $dateTime)
     {
-        $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayRainrate")->findOneBy([
-            'datetime' => $dateTime->setTime(0,0,0)->getTimestamp()
-        ]);
+        $record = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayRainrate")->findOneByDay($dateTime);
 
         return $this->generator->generateRainRate($record);
     }
 
     public function createRain(\DateTime $dateTime)
     {
-        $sum = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayRain")->findOneBy([
-            'datetime' => $dateTime->setTime(0,0,0)->getTimestamp()
-        ]);
+        $sum = $this->em->getRepository("SyntaxErrorApiBundle:ArchiveDayRain")->findOneByDay($dateTime);
 
         return $this->generator->generateRain( $sum->getSum() );
     }
