@@ -10,5 +10,5 @@
 
 
 {% block small %}
-    {{ alert.attribution }}
+    {% autoescape false %}{{ alert.attribution }}{% endautoescape %}
 {% endblock %}
