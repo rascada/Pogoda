@@ -1,6 +1,7 @@
 <template lang='jade'>
 
 paper-material(elevation='2').compass
+  measure(:values='directions' v-bind:options='{ range: 0, start: 0 }')
   .arrowWrapper
     .arrow(:style='arrowDirection')
     .screen
@@ -13,11 +14,22 @@ paper-material(elevation='2').compass
 
 <script>
   import round from 'vue-round-filter';
+  import measure from './measure';
 
   export default {
     props: {
       title: '',
       direction: null,
+    },
+
+    data() {
+      return {
+        directions: ['pn', 'wsch', 'pd', 'zach'],
+      };
+    },
+
+    components: {
+      measure,
     },
 
     filters: {
@@ -48,6 +60,14 @@ paper-material(elevation='2').compass
     background color
     position relative
     border-radius 50%
+
+    .measureDot
+      position absolute
+      top 0; left @top
+      height 13em
+      width @height
+      z-index 1
+
     .arrowWrapper
       width 85%
       height 85%
