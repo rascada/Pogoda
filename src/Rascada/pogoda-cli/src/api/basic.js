@@ -66,6 +66,9 @@ class Basic extends eventEmiter {
       this.sendRequest(api.time.next.value * 1000);
     } else if (!this.time) this.sendRequest(this.requests > 10 ? 5000 : 0);
 
+    if (this.requests === 10)
+      this.emit('offline');
+
     this.requests = api ? 0 : this.requests + 1;
   }
 };
