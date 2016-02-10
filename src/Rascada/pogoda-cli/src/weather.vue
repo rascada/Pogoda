@@ -36,8 +36,8 @@
     //vial
     section
       .section
-        forecast
         barometer
+        forecast
       wind-section
 
   cloud(v-for='n in 7')
