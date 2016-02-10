@@ -16,8 +16,8 @@ paper-material.navbar(@mouseover='menu.visible = true' @mouseout='menu.visible =
 </template>
 
 <script>
-  import menu from './menu.vue';
-  import nextUpdate from './nextUpdate.vue';
+  import menu from './navbar/menu';
+  import nextUpdate from './navbar/nextUpdate';
 
   export default {
     components: {
