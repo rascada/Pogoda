@@ -22,7 +22,7 @@ export default {
   methods: {
     nextUpdate(time) {
       if (time) {
-        this.thread ? clearTimeout(this.thread) : null;
+        this.thread ? clearInterval(this.thread) : null;
 
         this.thread = setInterval(_ => this.parse(--time), 1000);
       }
