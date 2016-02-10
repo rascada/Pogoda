@@ -1,6 +1,6 @@
 <template lang="jade">
 
-span {{updateInfo}}
+span(:style='style') {{updateInfo}}
 
 </template>
 
@@ -11,6 +11,9 @@ export default {
   data() {
     return {
       updateInfo: 'aktualizowanie',
+      style: {
+        color: '',
+      },
     };
   },
 
@@ -26,6 +29,7 @@ export default {
     nextUpdate(time) {
       if (time) {
         this.thread ? clearInterval(this.thread) : null;
+        this.style.color = '';
 
         this.thread = setInterval(_ => this.parse(--time), 1000);
       } else this.offline();
@@ -36,6 +40,7 @@ export default {
     offline() {
       clearInterval(this.thread);
       this.updateInfo = 'Stacja jest offline';
+      this.style.color = 'red';
     },
 
     parse(time) {
