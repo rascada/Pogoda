@@ -6,7 +6,7 @@ paper-material(elevation='2').gauge
       paper-tooltip {{ value }} {{ unitName }}
   .dot
     .pointer(:style='pointer')
-    measure(:options='measure')
+  measure(:options='measure')
 
 </template>
 
