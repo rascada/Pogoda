@@ -2,7 +2,7 @@
 
 .measureDot
   .measureWrapper
-    .unit(v-for='n in options.range' v-bind:style='unitPosition(-135, n)')
+    .unit(v-for='n in values.length > 1 ? values : options.range' v-bind:style='unitPosition($index)')
       p(:style='unitValuePosition(n)') {{ unitValue(n) }}
 
 </template>
@@ -11,12 +11,28 @@
 
 export default {
   props: {
-    options: {},
+    options: {
+      coerce(ob) {
+        if (typeof ob.start !== 'number')
+          ob.start = -135;
+
+        return ob;
+      },
+    },
+    values: {
+      default: [],
+    },
   },
 
   methods: {
     unitValue(n) {
-      return n * this.options.unit + this.options.from;
+      return this.values.length ? n : n * this.options.unit + this.options.from;
+    },
+
+    unitPosition(n) {
+      let rotation = this.options.start + n * this.measureSpace;
+
+      return { transform: `rotate(${rotation}deg)` };
     },
 
     unitValuePosition(n) {
@@ -24,7 +40,14 @@ export default {
       let rotation = 0;
 
       let val = this.unitValue(n);
-      switch (true) {
+      if (this.values.length > 0) switch (true) {
+          case val.length < 3:
+            shift.x = .1;
+
+            break;
+          default:
+            shift.x = -.1 * (val.length);
+        } else switch (true) {
         case val >= 1000:
           shift.x = -.8;
           shift.y = .1;
@@ -39,12 +62,6 @@ export default {
       }
 
       return { transform: `translate(${shift.x}em, ${shift.y}em) rotate(${rotation}deg)` };
-    },
-
-    unitPosition(start, n) {
-      let rotation = start + n * this.measureSpace;
-
-      return { transform: `rotate(${rotation}deg)` };
     },
   },
 
