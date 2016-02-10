@@ -2,11 +2,7 @@
 
 paper-material.forecast
   div(v-if='populated')
-    .icons
-      .icon(v-for='forecast in week' @click="focused = $index")
-        p(:class="{ active: focused == $index }") {{ $index | weekDay }}
-        img(:src='forecast.icon_url')
-        paper-tooltip(position='top') {{ forecast.title | shortWeekTitle }}
+    forecast-icons(:days='week' v-bind:focused.sync='focused')
 
     .peroid(v-for='forecast in week' v-show='focused == $index')
 
@@ -36,11 +32,14 @@ paper-material.forecast
 
 <script>
   import aja from 'aja';
-  import weekDay from './forecast/weekDay';
   import shortWeek from './forecast/shortWeek';
   import forecastIcons from './forecast/icons';
 
   export default {
+    components: {
+      forecastIcons,
+    },
+
     data() {
       return {
         focused: 0,
@@ -67,7 +66,6 @@ paper-material.forecast
 
     filters: {
       shortWeek,
-      weekDay,
     },
 
     computed: {
