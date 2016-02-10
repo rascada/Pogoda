@@ -17,6 +17,9 @@ export default {
   ready() {
     this.$parent.$parent.api.basic
       .on('nextUpdate', time => this.nextUpdate(time));
+
+    this.$parent.$parent.api.basic
+      .on('offline', this.offline.bind(this));
   },
 
   methods: {
@@ -25,9 +28,14 @@ export default {
         this.thread ? clearInterval(this.thread) : null;
 
         this.thread = setInterval(_ => this.parse(--time), 1000);
-      }
+      } else this.offline();
 
       return time;
+    },
+
+    offline() {
+      clearInterval(this.thread);
+      this.updateInfo = 'Stacja jest offline';
     },
 
     parse(time) {
