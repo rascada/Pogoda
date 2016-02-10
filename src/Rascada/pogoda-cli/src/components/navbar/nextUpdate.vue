@@ -19,7 +19,7 @@ export default {
       .on('nextUpdate', time => this.nextUpdate(time));
 
     this.$parent.$parent.api.basic
-      .on('offline', this.offline.bind(this));
+      .on('offline', ::this.offline);
   },
 
   methods: {
