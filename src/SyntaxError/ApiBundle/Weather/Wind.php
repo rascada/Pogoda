@@ -40,7 +40,7 @@ class Wind
      */
     public function setGust(Reading $gustSpeed, Reading $gustDir)
     {
-        if(!$gustSpeed->value) $gustDir = null;
+        if(!$gustSpeed->value) $gustDir->value = null;
         $this->gust['speed'] = $gustSpeed;
         $this->gust['dir'] = $gustDir;
         $this->gust['translated'] = $gustDir->value ? Uniter::windDirPl($gustDir->value) : null;
