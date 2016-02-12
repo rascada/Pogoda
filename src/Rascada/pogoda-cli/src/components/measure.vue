@@ -41,13 +41,13 @@ export default {
 
       let val = this.unitValue(n);
       if (this.values.length > 0) switch (true) {
-          case val.length < 3:
-            shift.x = .1;
+        case val.length < 3:
+          shift.x = .1;
 
-            break;
-          default:
-            shift.x = -.1 * (val.length);
-        } else switch (true) {
+          break;
+        default:
+          shift.x = -.1 * (val.length);
+      } else switch (true) {
         case val >= 1000:
           shift.x = -.8;
           shift.y = .1;
