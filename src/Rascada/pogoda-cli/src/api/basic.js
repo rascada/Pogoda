@@ -1,6 +1,5 @@
 'use strict';
 
-import aja from 'aja';
 import eventEmiter from 'eventemitter2';
 
 /** Class representing basic api */
@@ -29,8 +28,7 @@ class Basic extends eventEmiter {
   sendRequest(delay) {
     setTimeout(_=>
       this.prepareRequest()
-        .on('success', this.handleRequest.bind(this))
-        .go(), delay);
+        .then(::this.handleRequest), delay);
   }
 
   prepareRequest(firstGetParam, ...getParams) {
@@ -39,7 +37,7 @@ class Basic extends eventEmiter {
     if (getParams)
       getParams.forEach(param => params += `&${param}`);
 
-    return aja().url(`${this.source}/basic.json${params}`);
+    return fetch(`${this.source}/basic.json${params}`).then(res => res.json());
   }
 
   /**

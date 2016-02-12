@@ -19,7 +19,6 @@
   },
   "homepage": "pogoda.skalagi.pl",
   "dependencies": {
-    "aja": "^0.4.1",
     "dynamics.js": "0.0.9",
     "eventemitter2": "^0.4.14",
     "flexstyl": "0.0.4",

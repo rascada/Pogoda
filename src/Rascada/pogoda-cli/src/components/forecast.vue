@@ -35,8 +35,6 @@ paper-material.forecast
 <style lang='stylus' src='./style/forecast'></style>
 
 <script>
-  import aja from 'aja';
-
   export default {
     data() {
       return {
@@ -105,8 +103,9 @@ paper-material.forecast
     },
 
     ready() {
-      aja().url(`${this.$parent.api.source}/wu/forecast.json`)
-        .on('success', res => {
+      fetch(`${this.$parent.api.source}/wu/forecast.json`)
+        .then(res => res.json())
+        .then(res => {
           let forecast = res.forecast;
           let week = forecast.txt_forecast;
 
@@ -117,8 +116,7 @@ paper-material.forecast
             week: week.forecastday,
             simple: forecast.simpleforecast.forecastday,
           });
-        })
-        .go();
+        });
     },
   };
 
