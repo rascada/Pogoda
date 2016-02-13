@@ -20,7 +20,7 @@ export default {
       },
     },
     values: {
-      default: [],
+      default() { return []; },
     },
   },
 
