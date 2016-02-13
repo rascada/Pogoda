@@ -4,9 +4,6 @@ import routerConfig from './router.config';
 import weather from './weather.vue';
 const Weather = Vue.extend(weather);
 
-import slide from 'vue/transition/slide';
-Vue.transition('slide', slide);
-
 if (process.env.NODE_ENV != 'production')
   Vue.config.debug = true;
 
