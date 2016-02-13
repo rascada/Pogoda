@@ -32,6 +32,7 @@ paper-material.forecast
 
 <script>
   import aja from 'aja';
+  import { api } from '../config';
   import shortWeek from './forecast/shortWeek';
   import forecastIcons from './forecast/icons';
 
@@ -84,7 +85,7 @@ paper-material.forecast
     },
 
     ready() {
-      aja().url(`${this.$parent.api.source}/wu/forecast.json`)
+      aja().url(`${api()}/wu/forecast.json`)
         .on('success', res => {
           let forecast = res.forecast;
           let week = forecast.txt_forecast;
