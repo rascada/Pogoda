@@ -32,16 +32,14 @@
 
     data() {
       return {
-        env: process.env.NODE_ENV,
         api: {
-          source: 'https://pogoda.skalagi.pl/api',
           basic: new Basic(),
         },
       };
     },
 
     ready() {
-      this.api.basic.init(this.env == 'production' ? '/api' : this.api.source);
+      this.api.basic.on('updated', e => this.$broadcast('updated', e));
     },
   };
 

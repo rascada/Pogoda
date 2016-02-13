@@ -51,6 +51,13 @@ paper-material.windWraper
       animate(isAnimating) {
         this.animation = isAnimating;
       },
+
+      updated(api) {
+        let wind = api.wind;
+
+        this.setWind('actual', wind.current);
+        this.setWind('gust', wind.gust);
+      },
     },
 
     methods: {
@@ -67,17 +74,6 @@ paper-material.windWraper
           humanReadable: wind.translated,
         });
       },
-
-      handleApi(api) {
-        let wind = api.wind;
-
-        this.setWind('actual', wind.current);
-        this.setWind('gust', wind.gust);
-      },
-    },
-
-    ready() {
-      this.$parent.api.basic.on('updated', this.handleApi.bind(this));
     },
   };
 

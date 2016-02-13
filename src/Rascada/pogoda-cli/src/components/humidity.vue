@@ -25,10 +25,10 @@
       round,
     },
 
-    ready() {
-      this.$parent.api.basic.on('updated',
-        api => this.humidity = api.humidity.value
-      );
+    events: {
+      updated(api) {
+        this.humidity = api.humidity.value;
+      },
     },
   };
 

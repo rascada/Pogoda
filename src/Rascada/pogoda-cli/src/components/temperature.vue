@@ -29,17 +29,6 @@ export default {
     };
   },
 
-  methods: {
-    apiConnect(api) {
-      let temperature = api.temperature;
-
-      Object.assign(this.temperature, {
-        actual: temperature.current.value,
-        real: temperature.real.value,
-      });
-    },
-  },
-
   computed: {
     current() {
       switch (this.choice) {
@@ -51,8 +40,15 @@ export default {
     },
   },
 
-  ready() {
-    this.$parent.api.basic.on('updated', this.apiConnect);
+  events: {
+    updated(api) {
+      let temperature = api.temperature;
+
+      Object.assign(this.temperature, {
+        actual: temperature.current.value,
+        real: temperature.real.value,
+      });
+    },
   },
 };
 
