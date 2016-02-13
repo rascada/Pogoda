@@ -55,7 +55,7 @@ paper-material.windWraper
 
     methods: {
       windDirection(fromBlow) {
-        let direction = fromBlow + 180;
+        let direction = fromBlow === null ? fromBlow : fromBlow + 180;
 
         return direction < 360 ? direction : direction - 360;
       },
