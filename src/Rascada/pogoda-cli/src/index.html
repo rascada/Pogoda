@@ -10,7 +10,7 @@
     <meta name='keywords' content='stacja, meteo, pogodowa, pogoda, skałągi, temperatura, wiatr, kluczbork, wołczyn, prognoza, wilgotność, meteorologiczna, szkoła, podstawowa, rcre, opolskie'>
   </head>
   <body>
-    <weather></weather>{% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
+    <div id='weather'></div>{% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
     <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>{% } %}
   </body>
 </html>
