@@ -36,14 +36,13 @@ main
 </template>
 
 <script>
-  import windSection from './wind-section';
-  import temperature from './temperature';
-  import termometer from './termometer';
-  import barometer from './barometer';
-  import forecast from './forecast';
-  import humidity from './humidity';
-  import cloud from './cloud';
-  import vial from './vial';
+  import windSection from '../components/wind-section';
+  import temperature from '../components/temperature';
+  import barometer from '../components/barometer';
+  import forecast from '../components/forecast';
+  import humidity from '../components/humidity';
+  import cloud from '../components/cloud';
+  import vial from '../components/vial';
 
   export default {
     components: {

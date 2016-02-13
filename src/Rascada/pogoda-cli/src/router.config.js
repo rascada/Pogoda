@@ -1,4 +1,4 @@
-import weather from './components/weather';
+import weather from './views/weather';
 
 export default function(router) {
   router.map({
