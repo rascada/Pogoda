@@ -2,8 +2,6 @@
 
 namespace SyntaxError\NotificationBundle\Kernel;
 
-use Mailgun\Mailgun;
-
 /**
  * Class Notifier
  * Kernel of cron application for sending notifies for subscriber emails.
@@ -12,11 +10,6 @@ use Mailgun\Mailgun;
  */
 class Notifier
 {
-    /**
-     * @var Mailgun
-     */
-    private $gun;
-
     /**
      * @var \Symfony\Component\DependencyInjection\ContainerInterface
      */
@@ -40,9 +33,7 @@ class Notifier
         $kernel = new \AppKernel('prod', false);
         $kernel->boot();
         $this->container = $kernel->getContainer();
-        $key = $this->container->getParameter('gun_key');
 
-        $this->gun = new Mailgun($key, 'api.mailgun.net', 'v3', true);
         $this->redis = new RedisStorage('127.0.0.1');
 
         $twigCachePath = __DIR__."/../../../../app/cache/notify";
@@ -94,15 +85,23 @@ class Notifier
     {
         if(!$notify->isActive($this->container)) return false;
 
+        $findQueues = false;
         foreach($this->redis->getSubscribers() as $subscriber) {
-            $message = $this->gun->MessageBuilder();
-            $message->setFromAddress('Stacja pogodowa Skałągi <info@pogoda.skalagi.pl>');
-            $message->addToRecipient($subscriber);
-            $message->setSubject($notify->getName());
-            $message->setHtmlBody($notify->getContent($this->twig));
-            $this->gun->sendMessage($this->container->getParameter('gun_mail'), $message->getMessage());
+            $message = \Swift_Message::newInstance()
+                ->setFrom([$this->container->getParameter('mailer_user') => 'Stacja pogodowa Skałągi'])
+                ->setTo($subscriber)
+                ->setSubject($notify->getName())
+                ->setBody($notify->getContent($this->twig), 'text/html', 'utf-8')
+                ->setDescription('Wiadomość wygenerowana przez stacje pogodową w Skałągach.');
+            /** @noinspection PhpParamsInspection */
+            $this->container->get('mailer')->send($message);
+            $findQueues = true;
         }
-
+        if($findQueues) {
+            $spool = $this->container->get('mailer')->getTransport()->getSpool();
+            $transport = $this->container->get('swiftmailer.transport.real');
+            $spool->flushQueue($transport);
+        }
         $this->redis->lock(get_class($notify));
         return true;
     }

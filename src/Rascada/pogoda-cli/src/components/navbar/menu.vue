@@ -6,13 +6,18 @@ nav( v-show='visible' transition='slide' )
 </template>
 
 <script>
+import slide from 'vue/transition/slide';
 
-  export default {
-    props: {
-      visible: true,
-      buttons: [],
-    },
-  };
+export default {
+  transitions: {
+    slide,
+  },
+
+  props: {
+    visible: true,
+    buttons: [],
+  },
+};
 
 </script>
 

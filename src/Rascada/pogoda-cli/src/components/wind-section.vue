@@ -51,11 +51,18 @@ paper-material.windWraper
       animate(isAnimating) {
         this.animation = isAnimating;
       },
+
+      updated(api) {
+        let wind = api.wind;
+
+        this.setWind('actual', wind.current);
+        this.setWind('gust', wind.gust);
+      },
     },
 
     methods: {
       windDirection(fromBlow) {
-        let direction = fromBlow + 180;
+        let direction = fromBlow === null ? fromBlow : fromBlow + 180;
 
         return direction < 360 ? direction : direction - 360;
       },
@@ -67,17 +74,6 @@ paper-material.windWraper
           humanReadable: wind.translated,
         });
       },
-
-      handleApi(api) {
-        let wind = api.wind;
-
-        this.setWind('actual', wind.current);
-        this.setWind('gust', wind.gust);
-      },
-    },
-
-    ready() {
-      this.$parent.api.basic.on('updated', this.handleApi.bind(this));
     },
   };
 

@@ -2,26 +2,22 @@
 
 paper-material.forecast
   div(v-if='populated')
-    .icons
-      .icon(v-for='forecast in week' @click="focused = $index")
-        p(:class="{ active: focused == $index }") {{ $index | weekDay }}
-        img(:src='forecast.icon_url')
-        paper-tooltip(position='top') {{ forecast.title | shortWeekTitle }}
+    forecast-icons(:days='week' v-bind:focused.sync='focused')
 
     .peroid(v-for='forecast in week' v-show='focused == $index')
 
       .title
         img(:src='forecast.icon_url')
-        h1 {{ forecast.title | shortWeekTitle }}
+        h1 {{ forecast.title | shortWeek }}
 
       p {{ forecast.fcttext_metric }}
 
     .arrows
       paper-button(@transitionend='changeForecast(-1)' v-show='near.yesterday').
-        {{ near.yesterday.title | shortWeekTitle }}
+        {{ near.yesterday.title | shortWeek }}
 
       paper-button(@transitionend='changeForecast(1)' v-show='near.tomorrow').
-        {{ near.tomorrow.title | shortWeekTitle }}
+        {{ near.tomorrow.title | shortWeek }}
 
     .update(v-show='update')
       span.name prognoza
@@ -35,7 +31,15 @@ paper-material.forecast
 <style lang='stylus' src='./style/forecast'></style>
 
 <script>
+  import { api } from '../config';
+  import shortWeek from './forecast/shortWeek';
+  import forecastIcons from './forecast/icons';
+
   export default {
+    components: {
+      forecastIcons,
+    },
+
     data() {
       return {
         focused: 0,
@@ -58,33 +62,10 @@ paper-material.forecast
 
         this.ripple = !this.ripple;
       },
-
-      humanWeekDay(day) {
-        switch (day) {
-          case 1: return 'pon';
-          case 2: return 'wt';
-          case 3: return 'śr';
-          case 4: return 'czw';
-          case 5: return 'pt';
-          case 6: return 'sob';
-          case 7: return 'niedz';
-        }
-      },
     },
 
     filters: {
-      shortWeekTitle: function(value = '') {
-        return value.replace('wieczór i', '');
-      },
-
-      weekDay($index) {
-        let today = new Date().getDay();
-        let day = today + $index / 2;
-        let night = day != day.toFixed();
-        let weekDay = night ? 'noc' : this.humanWeekDay(day);
-
-        return weekDay;
-      },
+      shortWeek,
     },
 
     computed: {
@@ -103,7 +84,7 @@ paper-material.forecast
     },
 
     ready() {
-      fetch(`${this.$parent.api.source}/wu/forecast.json`)
+      fetch(`${api()}/wu/forecast.json`)
         .then(res => res.json())
         .then(res => {
           let forecast = res.forecast;

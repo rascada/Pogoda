@@ -1,5 +1,6 @@
 'use strict';
 
+import { api } from '../config';
 import eventEmiter from 'eventemitter2';
 
 /** Class representing basic api */
@@ -9,9 +10,11 @@ class Basic extends eventEmiter {
     * @param {String} [url] Url to pogoda api.
     * @fires Basic#init
     */
-  init(source) {
-    this.source = source;
+  constructor() {
+    super();
+
     this.requests = 0;
+    this.source = api();
     this.handleRequest();
 
     /**

@@ -22,10 +22,10 @@ paper-material.barometer
       };
     },
 
-    ready() {
-      this.$parent.api.basic.on('updated', api => {
+    events: {
+      updated(api) {
         this.pressure = api.barometer.current.value;
-      });
+      },
     },
   };
 
