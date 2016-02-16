@@ -22,7 +22,9 @@
 <script>
   import material from './components/material';
   import navbar from './components/navbar';
-  import Basic from './api/basic';
+  import Basic from '@pogoda/basic-api';
+  import { api } from './config';
+  import 'whatwg-fetch';
 
   export default {
     components: {
@@ -33,7 +35,7 @@
     data() {
       return {
         api: {
-          basic: new Basic(),
+          basic: new Basic(api()),
         },
       };
     },

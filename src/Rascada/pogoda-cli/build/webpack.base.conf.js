@@ -34,7 +34,10 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel',
-        exclude: /node_modules/,
+        include: [
+          path.resolve(__dirname, '../node_modules/@pogoda'),
+          path.resolve(__dirname, '../src'),
+        ],
       },
       {
         test: /\.json$/,
