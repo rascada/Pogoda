@@ -1,5 +1,6 @@
 'use strict';
 
+import 'whatwg-fetch';
 import { api } from '../config';
 import eventEmiter from 'eventemitter2';
 
