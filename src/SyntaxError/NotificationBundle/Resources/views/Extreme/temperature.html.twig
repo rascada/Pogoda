@@ -13,10 +13,12 @@
         {% set value = record.max|round(2) %}
     {% endif %}
 
-    Dzisiaj o godzinie {{ time }} zanotowano temperaturę {{ value }}℃. <br/>Jest to najwyższa temperatura w tym {{ period }}.
+    Dzisiaj o godzinie {{ time }} zanotowano temperaturę {{ value }}℃. <br/>Jest to {{ type == 'niska' ? 'najniższa' : 'najwyższa' }} temperatura w tym {{ period }}.
 {% endblock %}
 
 
 {% block small %}
-    Zalecamy ogarniczenie czasu spędzanego na zewnątrz.
+    {% if value > 25 || value < 10 %}
+        Zalecamy ogarniczenie czasu spędzanego na zewnątrz.
+    {% endif %}
 {% endblock %}
