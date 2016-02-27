@@ -45,9 +45,8 @@ syntax_error_api_archive_charts:
 
 # Notifications subscriber
 syntax_error_api_sub:
-   path: /notifications/{type}
+   path: /subscribe
    defaults: { _controller: SyntaxErrorApiBundle:Info:subscribe }
-   requirements: { type: subscribe|unsubscribe }
    methods: [POST]
 
 # Redirect

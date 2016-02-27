@@ -25,16 +25,18 @@ class InfoController extends Controller
         return $this->render("SyntaxErrorApiBundle:Info:socket.html.twig");
     }
 
-    public function subscribeAction($type, Request $request)
+    public function subscribeAction(Request $request)
     {
         if(!$request->request->has('email')) {
             return new JsonResponse(['status' => 'Require email in POST parameters.', 500]);
         }
+        $email = $request->request->get('email');
         $redisStorage = new RedisStorage('127.0.0.1');
-        if($type == 'subscribe') {
-            return $redisStorage->addSubscriber($request->request->get('email')) ? new JsonResponse(['status' => 'Added.']) : new JsonResponse(['status' => 'Exist.'], 500);
-        }
 
-        return $redisStorage->removeSubscriber($request->request->get('email')) ? new JsonResponse(['status' => 'Removed.']) : new JsonResponse(['status' => 'Not found.'], 404);
+        if($redisStorage->hasSubscriber($email)) {
+            return $redisStorage->removeSubscriber($request->request->get('email')) ? new JsonResponse(['status' => 'Removed.']) : new JsonResponse(['status' => 'Not found.'], 404);
+
+        }
+        return $redisStorage->addSubscriber($request->request->get('email')) ? new JsonResponse(['status' => 'Added.']) : new JsonResponse(['status' => 'Internal server error.'], 500);
     }
 }

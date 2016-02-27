@@ -119,4 +119,13 @@ class RedisStorage
         $this->redis->set(static::prefix.'subscribers', json_encode($this->subscribers));
         return true;
     }
+
+    /**
+     * @param $subscriber
+     * @return bool
+     */
+    public function hasSubscriber($subscriber)
+    {
+        return in_array($subscriber, $this->getSubscribers());
+    }
 }
