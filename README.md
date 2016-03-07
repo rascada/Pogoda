@@ -1,3 +1,8 @@
+# repo oficjalnie zamknięte!
+zostało odpowiednio podzielone na 2 osobne:
+- [pogoda-api](https://github.com/skalagi/pogoda-api)
+- [pogoda-cli](https://github.com/skalagi/pogoda-cli)
+
 # Pogoda
 Strona stacji pogodowej w Skałągach
 
